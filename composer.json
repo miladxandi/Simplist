@@ -1,0 +1,12 @@
+{
+  "name": "vendor_name/package_name",
+  "description": "This is a simple framework for Blogs.",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Milad Xandi",
+      "email": "info@miladzandi.ir"
+    }
+  ]
+}
