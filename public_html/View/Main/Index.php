@@ -1,5 +1,5 @@
 <?php
-include "../../Core/Requirement/Autoloader.php";
+include "../../../Core/Requirement/Autoloader.php";
 
 $Object = new Core\Security\Check();
 ?>
@@ -13,7 +13,7 @@ $Object = new Core\Security\Check();
  <div>
      <?php
 
-     //print $Object->Func();
+     print $Object->Func();
 
      ?>
  </div>
