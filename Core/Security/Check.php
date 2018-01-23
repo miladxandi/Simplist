@@ -1,8 +1,8 @@
 <?php
 
-namespace Simplist\Core\Security;
+namespace Core\Security;
 
-use Simplist\Core\Watcher\Configurations;
+use Core\Watcher\Configurations;
 
 class Check
 {

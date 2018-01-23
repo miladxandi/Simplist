@@ -1,6 +1,7 @@
 <?php
-include "../../Core/Security/Check.php";
-$Object = new Simplist\Core\Security\Check();
+include "../../Core/Requirement/Autoloader.php";
+
+$Object = new Core\Security\Check();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +13,9 @@ $Object = new Simplist\Core\Security\Check();
  <div>
      <?php
 
-     print $Object->Func(); ?>
+     //print $Object->Func();
+
+     ?>
  </div>
 </body>
 </html>

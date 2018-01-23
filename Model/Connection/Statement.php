@@ -1,8 +1,8 @@
 <?php
 
-namespace Simplist\Model\Connection;
+namespace Model\Connection;
 
-use Simplist\Model\Connection;
+use Model\Connection;
 
 class Statement
 {

@@ -2,7 +2,7 @@
 
 //Do not remove these classes.
 
-namespace Simplist\Core\Watcher;
+namespace Core\Watcher;
 
 abstract class Core
 {

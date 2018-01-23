@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Simplist\Model\Connection;
+namespace Model\Connection;
 
 
 class Database

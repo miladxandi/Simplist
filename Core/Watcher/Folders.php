@@ -6,7 +6,7 @@
  * Time: 01:28 PM
  */
 
-namespace Simplist\Core\Watcher;
+namespace Core\Watcher;
 
 
 final class Folders extends Core
