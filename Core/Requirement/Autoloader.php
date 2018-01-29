@@ -1,9 +1,9 @@
 <?php
 function autoload($Class)
 {
-    $ClassNameSpacePath = "../../../".str_replace("\\","/","$Class");
+    $ClassNameSpacePath = str_replace("\\","/","$Class");
     $ClassPath= $ClassNameSpacePath.".php";
-    if ((file_exists($ClassPath) && is_readable($ClassPath)) && file_exists("../../"))
+    if ((file_exists($ClassPath) && is_readable($ClassPath)))
     {
         include $ClassPath;
     }

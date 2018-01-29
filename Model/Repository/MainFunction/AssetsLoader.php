@@ -14,24 +14,24 @@ class AssetsLoader
     public function __construct(bool $MainAssets=true, bool $CustomAssets=false,string $CustomAssetsValue="localhost")
     {
         $this->BaseUrl="../../..";
-        if ($MainAssets==true && $CustomAssets==false)
-        {
-            echo '<link rel="stylesheet" href="../../../Style/Main/main.css">
-        <script src="../../../Script/Main/main.js"></script>';
-        }
-        else if ($MainAssets==true && $CustomAssets==true)
-        {
-            echo '<link rel="stylesheet" href="../../../Style/Main/main.css">
-        <script src="../../../Script/Main/main.js"></script>'.$CustomAssetsValue.'';
-        }
-        else if($MainAssets==false && $CustomAssets==true)
-        {
-            echo $CustomAssetsValue;
-        }
-        else
-        {
-
-        }
+//        if ($MainAssets==true && $CustomAssets==false)
+//        {
+//            echo '<link rel="stylesheet" href="../../../Style/Main/main.css">
+//        <script src="../../../Script/Main/main.js"></script>';
+//        }
+//        else if ($MainAssets==true && $CustomAssets==true)
+//        {
+//            echo '<link rel="stylesheet" href="../../../Style/Main/main.css">
+//        <script src="../../../Script/Main/main.js"></script>'.$CustomAssetsValue.'';
+//        }
+//        else if($MainAssets==false && $CustomAssets==true)
+//        {
+//            echo $CustomAssetsValue;
+//        }
+//        else
+//        {
+//
+//        }
     }
     public function Loader($Extension,$Name,$UniqueUrl=null,$Local=false,$UniqueType=null)
     {
