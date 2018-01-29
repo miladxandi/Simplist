@@ -7,7 +7,9 @@ use Model\Connection;
 class EIDU
 {
     private $Database;
-    private $Object;
+    private $DbValue;
+    private $Index=0;
+    private $Object=array();
     private $Table;
     private $PrimaryKey;
 
@@ -20,18 +22,26 @@ class EIDU
         if ($Query!=null)
         {
 
-             return $this->Database->Commander("$Query")->fetch(\PDO::FETCH_ASSOC);
+            while($this->DbValue == $this->Database->Commander("$Query")->fetch(\PDO::FETCH_ASSOC))
+            {
 
+                $this->Object[$this->Index]=$this->DbValue;
+                $this->Index++;
+            }
+            return $this->Object;
         }
-        else if ($Query==null)
+        else if ($Query=="SelectAll")
         {
-
-             return $this->Database->Commander("SELECT * FROM products")->fetch(\PDO::FETCH_ASSOC);
-
+            while($this->DbValue == $this->Database->Commander("SELECT * FROM products")->fetch(\PDO::FETCH_ASSOC))
+            {
+                $this->Object[$this->Index]=$this->DbValue;
+                $this->Index++;
+            }
+            return $this->Object;
         }
         else
         {
-            echo "Not connected.";
+            echo "There is a problem with your values.";
         }
     }
 
