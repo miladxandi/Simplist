@@ -2,13 +2,25 @@
 
 namespace Route\Core;
 
-
 class Router
 {
+
+    protected static $BaseController="Controller\\Main\\";
     public static function Register()
     {
-        $Routes = self::getRoutes();
-        var_dump($Routes);
+        $CurrentRoute= self::getCurrentRoute();
+        $Routes = self::isRouteDefined("$CurrentRoute");
+        list($Controller,$Method)=explode(".",$Routes);
+        $ControllerClass= self::$BaseController.$Controller;
+        $ControllerInstance = new $ControllerClass;
+        if (method_exists($ControllerInstance,"$Method"))
+        {
+            $ControllerInstance->$Method();
+        }
+        else
+        {
+            return ['NotFound'=>'FailedController@NotFound'];
+        }
         exit;
     }
 
@@ -19,7 +31,15 @@ class Router
 
     public static function isRouteDefined(string $Route)
     {
-
+        $Routes = self::getRoutes();
+        if (array_key_exists($Route,$Routes))
+        {
+            return $Routes[$Route];
+        }
+        else
+        {
+            return ['NotFound'=>'FailedController@NotFound'];
+        }
     }
 
     public static function getRoutes()

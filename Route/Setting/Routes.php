@@ -1,4 +1,4 @@
 <?php
 return[
-    '/'=>'HomeController@index'
+    '/'=>'HomeController.index'
 ];
