@@ -63,7 +63,7 @@ class Router
 
     public static function getRoutes()
     {
-        $Routes = include Path . DIRECTORY_SEPARATOR . 'Setting/Routes.php';
+        $Routes = include PATH . DIRECTORY_SEPARATOR . 'Setting/Routes.php';
         return $Routes;
     }
     public static function currentRequestVerb()

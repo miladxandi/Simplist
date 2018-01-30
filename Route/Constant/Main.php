@@ -1,3 +1,3 @@
 <?php
-define('Path',__DIR__.DIRECTORY_SEPARATOR.'..');
-return Path;
+define('PATH',__DIR__.DIRECTORY_SEPARATOR.'..');
+define('VIEW',PATH.DIRECTORY_SEPARATOR.'../public_html/View/');

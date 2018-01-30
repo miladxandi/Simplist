@@ -3,11 +3,14 @@
 namespace Controller\Main;
 
 
+use Route\Show\View;
+
 class HomeController
 {
     public function index()
     {
-        print"Hello";
+        $Viewbag="SIMPLIST";
+        View::Process("Main.Home.Index",compact('Viewbag'));
     }
 
 }

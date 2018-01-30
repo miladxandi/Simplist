@@ -13,7 +13,7 @@ class AssetsLoader
     private $BaseUrl;
     public function __construct(bool $MainAssets=true, bool $CustomAssets=false,string $CustomAssetsValue="localhost")
     {
-        $this->BaseUrl="../../..";
+        $this->BaseUrl="../../../..";
 //        if ($MainAssets==true && $CustomAssets==false)
 //        {
 //            echo '<link rel="stylesheet" href="../../../Style/Main/main.css">
@@ -39,15 +39,15 @@ class AssetsLoader
         {
             if ($Extension=="js")
             {
-                echo '<script src="'.$this->BaseUrl."Script"."/".$Name.".".$Extension.'"></script>';
+                echo '<script src="'.$this->BaseUrl."/Script"."/".$Name.".".$Extension.'"></script>';
             }
             else if($Extension=="css")
             {
-                echo '<link rel="stylesheet" href="'. $this->BaseUrl."Style"."/".$Name.".".$Extension  .'">';
+                echo '<link rel="stylesheet" type="text/css" href="'. $this->BaseUrl."/Style"."/".$Name.".".$Extension  .'">';
             }
             else if($Extension=="png"||$Extension=="jpg"||$Extension=="jpeg"||$Extension=="ico")
             {
-                echo '<img src="'. $this->BaseUrl."Content"."/".$Name.".".$Extension  .'" alt="">';
+                echo '<img src="'. $this->BaseUrl."/Content"."/".$Name.".".$Extension  .'" alt="">';
             }
         }
         else
@@ -56,16 +56,38 @@ class AssetsLoader
             {
                 if ($Local==true)
                 {
-                    echo $this->BaseUrl.$UniqueUrl."/".$Name.".".$UniqueType;
+                    if ($Extension=="js")
+                    {
+                        echo '<script src="'.$this->BaseUrl.$UniqueType."/Script"."/".$Name.".".$Extension.'"></script>';
+                    }
+                    else if($Extension=="css")
+                    {
+                        echo '<link rel="stylesheet" type="text/css" href="'. $this->BaseUrl.$UniqueType."/Style"."/".$Name.".".$Extension  .'">';
+                    }
+                    else if($Extension=="png"||$Extension=="jpg"||$Extension=="jpeg"||$Extension=="ico")
+                    {
+                        echo '<img src="'. $this->BaseUrl.$UniqueType."/Content"."/".$Name.".".$Extension  .'" alt="">';
+                    }
                 }
                 else
                 {
-                    echo $UniqueUrl."/".$Name.".".$UniqueType;
+                    echo '<link href="'.$UniqueUrl."/".$Name.".".$UniqueType.'">';
                 }
             }
             else
             {
-                echo $UniqueUrl."/".$Name.".".$Extension;
+                if ($Extension=="js")
+                {
+                    echo '<script src="'.$UniqueUrl."/".$Name.".".$Extension.'"></script>';
+                }
+                else if($Extension=="css")
+                {
+                    echo '<link rel="stylesheet" type="text/css" href="'.$UniqueUrl."/".$Name.".".$Extension.'">';
+                }
+                else if($Extension=="png"||$Extension=="jpg"||$Extension=="jpeg"||$Extension=="ico")
+                {
+                    echo '<img src=""'.$UniqueUrl."/".$Name.".".$Extension.'" alt="">';
+                }
             }
         }
     }
