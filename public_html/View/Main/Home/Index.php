@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta content="object" property="og:type">
-    <meta content="Simplist is a free & open-source framework for developing online blogs." name="description">
+    <meta content="Simplist is a free & open-source framework for developing, creating & designing online blogs simply." name="description">
     <meta content="origin-when-cross-origin" name="referrer">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
     <link rel="shortcut icon" type="image/x-icon" href="https://assets.gitlab-static.net/uploads/-/system/project/avatar/5242843/SimplistLogo.png" id="favicon">
