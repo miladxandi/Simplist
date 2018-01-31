@@ -1,16 +1,14 @@
 <?php
 return[
-    '/'=>[
-        'target'=>'Main.HomeController.Index',
-        'verb'=> 'GET',
-        'middleware'=>''
+    '/' => [
+        'target' => 'Main.HomeController.Index',
+        'verb'=> 'GET'
     ],
-    '/Aboutus'=>[
+    '/Aboutus' => [
         'target'=>'Main.HomeController.Aboutus',
-        'verb'=> 'GET',
-        'middleware'=>''
+        'verb'=> 'GET'
     ],
-    '/Login'=>[
+    '/Login' => [
         'target'=>'Panel.UserController.Login',
         'verb'=> 'GET',
         'middleware'=>''

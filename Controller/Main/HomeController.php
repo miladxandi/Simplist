@@ -14,7 +14,6 @@ class HomeController
     }
     public function Aboutus()
     {
-        $Viewbag="SIMPLIST";
-        View::Process("Main.Home.Aboutus",compact('Viewbag'));
+        View::Process("Main.Home.Aboutus");
     }
 }
