@@ -8,17 +8,20 @@
 	<meta name="description" content="Xenon Boostrap Admin Panel" />
 	<meta name="author" content="" />
 
-	<title>Xenon - Login</title>
-
-	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
-	<link rel="stylesheet" href="assets/css/fonts/linecons/css/linecons.css">
-	<link rel="stylesheet" href="assets/css/fonts/fontawesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="assets/css/bootstrap.css">
-	<link rel="stylesheet" href="assets/css/xenon-core.css">
-	<link rel="stylesheet" href="assets/css/xenon-forms.css">
-	<link rel="stylesheet" href="assets/css/xenon-components.css">
-	<link rel="stylesheet" href="assets/css/xenon-skins.css">
-	<link rel="stylesheet" href="assets/css/custom.css">
+	<title>Simplist - Login</title>
+    <?php
+    $Adder = new \Model\Repository\MainFunction\AssetsLoader();
+    $Adder->Loader("css","Panel/linecons");
+    $Adder->Loader("css","Panel/font-awesome.min");
+    $Adder->Loader("css","Panel/bootstrap");
+    $Adder->Loader("css","Panel/xenon-core");
+    $Adder->Loader("css","Panel/xenon-forms");
+    $Adder->Loader("css","Panel/xenon-components");
+    $Adder->Loader("css","Panel/xenon-skins");
+    $Adder->Loader("css","Panel/custom");
+    $Adder->Loader("js","html5shiv.min","https://oss.maxcdn.com/html5shiv/3.7.2");
+    $Adder->Loader("js","respond.min","https://oss.maxcdn.com/respond/1.4.2");
+    ?>
 
 	<script src="assets/js/jquery-1.11.1.min.js"></script>
 

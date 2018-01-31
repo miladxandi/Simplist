@@ -24,17 +24,18 @@ class Router
             }
             else
             {
-                print '<div class="Container" style="text-align: center;vertical-align: middle;padding-top: 300px;">';
-                print '<div class="MainText" style="text-align: center;vertical-align: middle;font-size: 100px;font-family: '.'Calibri Light'.';">NOT FOUND</div>';
-                print '<div class="SubText" style="text-align: center;vertical-align: middle;font-size: 25px;font-family: '.'Calibri Light'.';">Or the area is restricted.</div>';
-                print '</div>';
+                //print '<div class="Container" style="text-align: center;vertical-align: middle;padding-top: 300px;">';
+                //print '<div class="MainText" style="text-align: center;vertical-align: middle;font-size: 100px;font-family: '.'Calibri Light'.';">NOT FOUND</div>';
+                //print '<div class="SubText" style="text-align: center;vertical-align: middle;font-size: 25px;padding-top: 0px;font-family: '.'Calibri Light'.';">Or the area is restricted.</div>';
+                //print '</div>';
+                return $Routes['/NotFound'];
             }
         }
         else
         {
             print '<div class="Container" style="text-align: center;vertical-align: middle;padding-top: 300px;">';
-            print '<div class="MainText" style="text-align: center;vertical-align: middle;font-size: 100px;font-family: '.'Calibri Light'.';">NOT FOUND</div>';
-            print '<div class="SubText" style="text-align: center;vertical-align: middle;font-size: 25px;font-family: '.'Calibri Light'.';">Or the area is restricted.</div>';
+            print '<div class="MainText" style="text-align: center;vertical-align: middle;font-size: 100px;font-family: '.'Calibri Light'.';">Area restrited</div>';
+            print '<div class="SubText" style="text-align: center;vertical-align: middle;font-size: 25px;padding-top: 0px;font-family: '.'Calibri Light'.';">This page wont accept POST requests.</div>';
             print '</div>';
         }
 
@@ -54,10 +55,7 @@ class Router
         }
         else
         {
-            print '<div class="Container" style="text-align: center;vertical-align: middle;padding-top: 300px;">';
-            print '<div class="MainText" style="text-align: center;vertical-align: middle;font-size: 100px;padding-top: 300px;font-family: '.'Calibri Light'.';">NOT FOUND</div>';
-            print '<div class="SubText" style="text-align: center;vertical-align: middle;font-size: 25px;padding-top: 0px;font-family: '.'Calibri Light'.';">Or the area is restricted.</div>';
-            print '</div>';
+            return $Routes['/NotFound'];
         }
     }
 

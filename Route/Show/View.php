@@ -20,6 +20,10 @@ class View
             extract($Viewbag);
             include $FullViewPath;
         }
+        else
+        {
+            include "../../public_html/View/Helper/Home/NotFound.php";
+        }
 
     }
 }
