@@ -33,7 +33,7 @@ class AssetsLoader
 //
 //        }
     }
-    public function Loader($Extension,$Name,$UniqueUrl=null,$Local=false,$UniqueType=null)
+    public function Loader(string $Extension,string $Name,string $ImageAlt=null,string $ImageWidth=null,string $ImageHeight=null,string $ImageStyle=null,string $UniqueUrl=null,bool $Local=false,string $UniqueType=null)
     {
         if ($UniqueUrl==null)
         {
@@ -47,7 +47,7 @@ class AssetsLoader
             }
             else if($Extension=="png"||$Extension=="jpg"||$Extension=="jpeg"||$Extension=="ico")
             {
-                echo '<img src="'. $this->BaseUrl."/Content"."/".$Name.".".$Extension  .'" alt="">';
+                echo '<img src="'. $this->BaseUrl."/Content"."/".$Name.".".$Extension  .'" Width="'.$ImageWidth.'px" Height="'.$ImageHeight.'px" Style="'.$ImageStyle.'" alt="'.$ImageAlt.'">';
             }
         }
         else
@@ -66,7 +66,7 @@ class AssetsLoader
                     }
                     else if($Extension=="png"||$Extension=="jpg"||$Extension=="jpeg"||$Extension=="ico")
                     {
-                        echo '<img src="'. $this->BaseUrl.$UniqueType."/Content"."/".$Name.".".$Extension  .'" alt="">';
+                        echo '<img src="'. $this->BaseUrl.$UniqueType."/Content"."/".$Name.".".$Extension  .'" Width="'.$ImageWidth.'px" Height="'.$ImageHeight.'px" Style="'.$ImageStyle.'" alt="'.$ImageAlt.'">';
                     }
                 }
                 else
@@ -86,7 +86,7 @@ class AssetsLoader
                 }
                 else if($Extension=="png"||$Extension=="jpg"||$Extension=="jpeg"||$Extension=="ico")
                 {
-                    echo '<img src=""'.$UniqueUrl."/".$Name.".".$Extension.'" alt="">';
+                    echo '<img src="'.$UniqueUrl."/".$Name.".".$Extension.'" Width="'.$ImageWidth.'px" Height="'.$ImageHeight.'px" Style="'.$ImageStyle.'" alt="'.$ImageAlt.'">';
                 }
             }
         }

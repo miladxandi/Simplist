@@ -6,18 +6,18 @@ namespace Model\Connection;
 
 class Database
 {
-    private $ConnectionString;
+    protected $ConnectionString;
     public function __construct()
     {
         Try {
-            $this->ConnectionString = new \PDO("mysql:host=localhost;dbname=milad.dev;charset=utf8", "root", "");
+            $this->ConnectionString = new \PDO("mysql:host=localhost;dbname=simplist;charset=utf8", "root", "");
         }
         catch (\PDOException $exception)
         {
             $exception->getMessage();
         }
     }
-    public function Connector()
+    /*public function Connector()
     {
         Try {
             $this->ConnectionString = new \PDO("mysql:host=localhost;dbname=milad.dev;charset=utf8", "root", "");
@@ -27,5 +27,5 @@ class Database
         {
             $exception->getMessage();
         }
-    }
+    }*/
 }

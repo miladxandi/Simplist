@@ -33,4 +33,14 @@ return[
         'verb'=> 'GET',
         'middleware'=>''
     ],
+    '/Content' => [
+        'target'=>'Helper.ErrorController.NotFound',
+        'verb'=> 'GET',
+        'middleware'=>''
+    ],
+    '/content' => [
+        'target'=>'Helper.ErrorController.NotFound',
+        'verb'=> 'GET',
+        'middleware'=>''
+    ],
 ];

@@ -1,4 +1,6 @@
-
+<?php
+$Adder = new \Model\Repository\MainFunction\AssetsLoader();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,12 +10,12 @@
     <meta content="Simplist is a free & open-source framework for developing, creating & designing online blogs simply." name="description">
     <meta content="origin-when-cross-origin" name="referrer">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
-    <link rel="shortcut icon" type="image/x-icon" href="https://assets.gitlab-static.net/uploads/-/system/project/avatar/5242843/SimplistLogo.png" id="favicon">
-    <link rel="apple-touch-icon" type="image/x-icon" href="https://assets.gitlab-static.net/uploads/-/system/project/avatar/5242843/SimplistLogo.png">
-    <link rel="apple-touch-icon" type="image/x-icon" href="https://assets.gitlab-static.net/uploads/-/system/project/avatar/5242843/SimplistLogo.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../../../../Content/Shared/Logo.png" id="favicon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="../../../../Content/Shared/Logo.png">
+    <link rel="apple-touch-icon" type="image/x-icon" href="../../../../Content/Shared/Logo.png">
     <title>WELCOME TO SIMPLIST</title>
     <?php
-    $Adder = new \Model\Repository\MainFunction\AssetsLoader();
+
     $Adder->Loader("css","Main/main");
     $Adder->Loader("js","Main/main");
     $Adder->Loader("css","bootstrap.min","https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css","false");
@@ -26,8 +28,11 @@
  <div>
      <?php
      print '<div class="Container" style="text-align: center;vertical-align: middle;margin-top: 150px;">';
-     print '<a href="https://simplist.ir" target="_blank"><img src="https://assets.gitlab-static.net/uploads/-/system/project/avatar/5242843/SimplistLogo.png" width="100" height="100" alt="Simplist"></a>';
-     print '<div class="MainText" style="text-align: center;vertical-align: middle;font-size: 100px;font-family: '.'Calibri Light'.';">WELCOME TO '.$Viewbag.'</div>';
+     ?>
+     <a href="https://simplist.ir" target="_blank"><?php echo $Adder->Loader("png","Logo","Simplist","100","100","","../../../../Content/Shared"); ?></a>
+     <?php
+     print '<div class="MainText" style="text-align: center;vertical-align: middle;font-size: 100px;font-family: '.'Calibri Light'.';">WELCOME TO SIMPLIST</div>';
+     print '<div class="SubText" style="text-align: center;vertical-align: middle;font-size: 25px;font-family: '.'Calibri Light'.';">My name is <a href="https://miladzandi.ir" target="_blank">'.$Item['user_Firstname'].'</a> and I`m very happy because its useful for you.</div>';
      print '<div class="SubText" style="text-align: center;vertical-align: middle;font-size: 25px;font-family: '.'Calibri Light'.';">You can download it from our <a href="https://gitlab.com/miladxandi/Simplist" target="_blank">Gitlab</a> repository and stay connected.</div>';
      print '</div>';
      ?>

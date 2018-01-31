@@ -4,20 +4,17 @@ namespace Model\Connection;
 
 use Model\Connection;
 
-class Statement
+class Statement extends Database
 {
-    private $PdoObject;
     private $Statement;
 
     public function __construct()
     {
-        session_start();
-        $this->PdoObject= new Connection\Database;
+        parent::__construct();
     }
-
     public function Commander($Query)
     {
-        $this->Statement=$this->PdoObject->Connector()->prepare("$Query");
+        $this->Statement=$this->ConnectionString->prepare("$Query");
         $this->Statement->execute();
         return $this->Statement;
     }
