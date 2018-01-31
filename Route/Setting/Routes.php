@@ -18,13 +18,13 @@ return[
         'middleware'=>''
 
     ],
-    '/Panel/Login' => [
-        'target'=>'Panel.UserController.Login',
+    '/Panel' => [
+        'target'=>'Panel.UserController.Dashboard',
         'verb'=> 'GET',
         'middleware'=>''
     ],
-    '/Panel/login' => [
-        'target'=>'Panel.UserController.Login',
+    '/Panel' => [
+        'target'=>'Panel.UserController.Dashboard',
         'verb'=> 'GET',
         'middleware'=>''
     ],

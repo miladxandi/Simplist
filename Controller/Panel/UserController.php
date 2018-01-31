@@ -18,4 +18,16 @@ class UserController
     {
         View::Process("Panel.User.Login");
     }
+    public function Signup()
+    {
+        View::Process("Panel.User.Signup");
+    }
+    public function ForgetPassword()
+    {
+        View::Process("Panel.User.ForgetPassword");
+    }
+    public function Dashboard()
+    {
+        View::Process("Panel.User.Dashboard");
+    }
 }
