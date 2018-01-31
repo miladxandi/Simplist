@@ -12,12 +12,18 @@ return[
         'middleware'=>''
 
     ],
-    '/Login' => [
+    '/aboutus' => [
+        'target'=>'Main.HomeController.Aboutus',
+        'verb'=> 'GET',
+        'middleware'=>''
+
+    ],
+    '/Panel/Login' => [
         'target'=>'Panel.UserController.Login',
         'verb'=> 'GET',
         'middleware'=>''
     ],
-    '/login' => [
+    '/Panel/login' => [
         'target'=>'Panel.UserController.Login',
         'verb'=> 'GET',
         'middleware'=>''

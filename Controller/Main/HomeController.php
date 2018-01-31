@@ -14,6 +14,6 @@ class HomeController
     }
     public function Aboutus()
     {
-        //View::Process("Main.Home.Aboutus");
+        View::Process("Main.Home.Aboutus");
     }
 }
