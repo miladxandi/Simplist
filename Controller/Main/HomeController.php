@@ -7,10 +7,14 @@ use Route\Show\View;
 
 class HomeController
 {
-    public function index()
+    public function Index()
     {
         $Viewbag="SIMPLIST";
         View::Process("Main.Home.Index",compact('Viewbag'));
     }
-
+    public function Aboutus()
+    {
+        $Viewbag="SIMPLIST";
+        View::Process("Main.Home.Aboutus",compact('Viewbag'));
+    }
 }

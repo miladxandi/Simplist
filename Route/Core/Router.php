@@ -5,7 +5,7 @@ namespace Route\Core;
 class Router
 {
 
-    protected static $BaseController="Controller\\Main\\";
+    protected static $BaseController="Controller\\";
     public static function Register()
     {
         $CurrentRoute= self::getCurrentRoute();
@@ -15,8 +15,8 @@ class Router
 
         if ($CurrentRouteVerb==$RequestVerb)
         {
-            list($Controller,$Method)=explode(".",$Routes['target']);
-            $ControllerClass= self::$BaseController.$Controller;
+            list($Folder,$Controller,$Method)=explode(".",$Routes['target']);
+            $ControllerClass= self::$BaseController.$Folder."\\".$Controller;
             $ControllerInstance = new $ControllerClass;
             if (method_exists($ControllerInstance,"$Method"))
             {

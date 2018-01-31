@@ -1,7 +1,17 @@
 <?php
 return[
     '/'=>[
-        'target'=>'HomeController.index',
+        'target'=>'Main.HomeController.Index',
+        'verb'=> 'GET',
+        'middleware'=>''
+    ],
+    '/Aboutus'=>[
+        'target'=>'Main.HomeController.Aboutus',
+        'verb'=> 'GET',
+        'middleware'=>''
+    ],
+    '/Login'=>[
+        'target'=>'Panel.UserController.Login',
         'verb'=> 'GET',
         'middleware'=>''
     ],
