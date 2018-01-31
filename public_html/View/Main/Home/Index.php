@@ -26,7 +26,7 @@
  <div>
      <?php
      print '<div class="Container" style="text-align: center;vertical-align: middle;margin-top: 150px;">';
-     print '<img src="https://assets.gitlab-static.net/uploads/-/system/project/avatar/5242843/SimplistLogo.png" width="100" height="100" alt="Simplist">';
+     print '<a href="https://simplist.ir" target="_blank"><img src="https://assets.gitlab-static.net/uploads/-/system/project/avatar/5242843/SimplistLogo.png" width="100" height="100" alt="Simplist"></a>';
      print '<div class="MainText" style="text-align: center;vertical-align: middle;font-size: 100px;font-family: '.'Calibri Light'.';">WELCOME TO '.$Viewbag.'</div>';
      print '<div class="SubText" style="text-align: center;vertical-align: middle;font-size: 25px;font-family: '.'Calibri Light'.';">You can download it from our <a href="https://gitlab.com/miladxandi/Simplist" target="_blank">Gitlab</a> repository and stay connected.</div>';
      print '</div>';
