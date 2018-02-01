@@ -10,10 +10,11 @@ class Router
     {
         $CurrentRoute= self::getCurrentRoute();
         $Routes = self::isRouteDefined("$CurrentRoute");
-        $RequestVerb = $Routes['verb'];
+        $gRequestVerb = $Routes['gverb'];
+        $pRequestVerb = $Routes['pverb'];
         $CurrentRouteVerb = self::currentRequestVerb();
 
-        if ($CurrentRouteVerb==$RequestVerb)
+        if ($CurrentRouteVerb==$gRequestVerb||$CurrentRouteVerb==$pRequestVerb)
         {
             list($Folder,$Controller,$Method)=explode(".",$Routes['target']);
             $ControllerClass= self::$BaseController.$Folder."\\".$Controller;
@@ -33,12 +34,29 @@ class Router
         }
         else
         {
-            print '<div class="Container" style="text-align: center;vertical-align: middle;padding-top: 300px;">';
-            print '<div class="MainText" style="text-align: center;vertical-align: middle;font-size: 100px;font-family: '.'Calibri Light'.';">Area restrited</div>';
-            print '<div class="SubText" style="text-align: center;vertical-align: middle;font-size: 25px;padding-top: 0px;font-family: '.'Calibri Light'.';">This page wont accept POST requests.</div>';
-            print '</div>';
-        }
+            if ($CurrentRouteVerb!=$gRequestVerb)
+            {
+                print '<div class="Container" style="text-align: center;vertical-align: middle;padding-top: 300px;">';
+                print '<div class="MainText" style="text-align: center;vertical-align: middle;font-size: 100px;font-family: '.'Calibri Light'.';">Bad Request</div>';
+                print '<div class="SubText" style="text-align: center;vertical-align: middle;font-size: 25px;padding-top: 0px;font-family: '.'Calibri Light'.';">This page wont accept '.$gRequestVerb.' requests from outside!</div>';
+                print '</div>';
+            }
+            else if($CurrentRouteVerb!=$pRequestVerb)
+            {
+                print '<div class="Container" style="text-align: center;vertical-align: middle;padding-top: 300px;">';
+                print '<div class="MainText" style="text-align: center;vertical-align: middle;font-size: 100px;font-family: '.'Calibri Light'.';">Bad Request</div>';
+                print '<div class="SubText" style="text-align: center;vertical-align: middle;font-size: 25px;padding-top: 0px;font-family: '.'Calibri Light'.';">This page wont accept '.$pRequestVerb.' requests from outside!</div>';
+                print '</div>';
+            }
+            else
+            {
+                print '<div class="Container" style="text-align: center;vertical-align: middle;padding-top: 300px;">';
+                print '<div class="MainText" style="text-align: center;vertical-align: middle;font-size: 100px;font-family: '.'Calibri Light'.';">Area restrited</div>';
+                print '<div class="SubText" style="text-align: center;vertical-align: middle;font-size: 25px;padding-top: 0px;font-family: '.'Calibri Light'.';">This page wont accept '.$CurrentRouteVerb.' type requests!</div>';
+                print '</div>';
+            }
 
+        }
     }
 
     public static function getCurrentRoute()

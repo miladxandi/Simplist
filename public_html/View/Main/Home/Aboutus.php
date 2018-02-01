@@ -1,4 +1,6 @@
-
+<?php
+$Adder = new \Model\Repository\MainFunction\AssetsLoader();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,8 +15,8 @@
     <link rel="apple-touch-icon" type="image/x-icon" href="../../../../Content/Shared/Logo.png">
     <title>WELCOME TO SIMPLIST</title>
     <?php
-    $Adder = new \Model\Repository\MainFunction\AssetsLoader();
     $Adder->Loader("css","Main/main");
+    $Adder->Loader("css","Shared/Logos");
     $Adder->Loader("js","Main/main");
     $Adder->Loader("css","bootstrap.min","https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css","false");
     $Adder->Loader("js","jquery-3.2.1.slim.min","https://code.jquery.com","false");

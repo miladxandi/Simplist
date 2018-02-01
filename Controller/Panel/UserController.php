@@ -9,14 +9,19 @@
 namespace Controller\Panel;
 
 
+use Model\Repository\MainFunction\UserRepository;
 use Route\Show\View;
 
 class UserController
 {
-
+    private $Data;
+    public function __construct()
+    {
+       $this->Data= new UserRepository();
+    }
     public function Login()
     {
-        View::Process("Panel.User.Login");
+        View::Process("Panel.User.Login",compact('Item'));
     }
     public function Signup()
     {

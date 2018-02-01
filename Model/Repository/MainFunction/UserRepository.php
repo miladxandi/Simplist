@@ -25,4 +25,9 @@ class UserRepository extends BaseRepository
 
     }
 
+    public function Login($Username,$Password)
+    {
+        $Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->Uername}={$Username} AND {$this->Password}={$Password}");
+        return $Result->fetch(\PDO::FETCH_ASSOC);
+    }
 }

@@ -2,45 +2,63 @@
 return[
     '/' => [
         'target' => 'Main.HomeController.Index',
-        'verb'=> 'GET',
+        'gverb'=> 'GET',
         'middleware'=>''
 
     ],
     '/Aboutus' => [
         'target'=>'Main.HomeController.Aboutus',
-        'verb'=> 'GET',
+        'gverb'=> 'GET',
+        'pverb'=> '',
         'middleware'=>''
 
     ],
     '/aboutus' => [
         'target'=>'Main.HomeController.Aboutus',
-        'verb'=> 'GET',
+        'gverb'=> 'GET',
+        'pverb'=> '',
         'middleware'=>''
 
     ],
     '/Panel' => [
         'target'=>'Panel.UserController.Dashboard',
-        'verb'=> 'GET',
+        'gverb'=> 'POST',
+        'pverb'=> '',
         'middleware'=>''
     ],
-    '/Panel' => [
+    '/panel' => [
         'target'=>'Panel.UserController.Dashboard',
-        'verb'=> 'GET',
+        'gverb'=> 'POST',
+        'pverb'=> '',
         'middleware'=>''
     ],
     '/NotFound' => [
         'target'=>'Helper.ErrorController.NotFound',
-        'verb'=> 'GET',
+        'gverb'=> 'GET',
         'middleware'=>''
     ],
     '/Content' => [
         'target'=>'Helper.ErrorController.NotFound',
-        'verb'=> 'GET',
+        'gverb'=> 'GET',
+        'pverb'=> '',
         'middleware'=>''
     ],
     '/content' => [
         'target'=>'Helper.ErrorController.NotFound',
-        'verb'=> 'GET',
+        'gverb'=> 'GET',
+        'pverb'=> '',
         'middleware'=>''
     ],
+    '/login' => [
+        'target'=>'Panel.UserController.Login',
+        'gverb'=> 'GET',
+        'pverb'=> 'POST',
+        'middleware'=>''
+    ],
+    '/Login' => [
+        'target'=>'Panel.UserController.Login',
+        'gverb'=> 'GET',
+        'pverb'=> 'POST',
+        'middleware'=>''
+    ]
 ];

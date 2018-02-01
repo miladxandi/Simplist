@@ -20,21 +20,8 @@
     $Adder->Loader("css","Panel/all");
     $Adder->Loader("css","Panel/ie9");
     $Adder->Loader("css","Panel/ie8");
-    $Adder->Loader("css","Panel/all");
-    $Adder->Loader("css","Panel/all");
-    $Adder->Loader("css","Panel/all");
-    $Adder->Loader("css","Panel/all");
-    $Adder->Loader("css","Panel/all");
     ?>
-	
-	<!--[if gte IE 9]>
-	<link rel="stylesheet" href="stylesheets/ie9.css" type="text/css" />
-	<![endif]-->
-	
-	<!--[if gte IE 8]>
-	<link rel="stylesheet" href="stylesheets/ie8.css" type="text/css" />
-	<![endif]-->
-	
+
 </head>
 
 <body>

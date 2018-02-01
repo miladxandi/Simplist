@@ -9,6 +9,8 @@ abstract class BaseRepository
     protected $rStatement;
     protected $Table;
     protected $PrimaryKey;
+    protected $Uername;
+    protected $Password;
     public function __construct()
     {
         $this->rStatement=new Connection\Statement();
