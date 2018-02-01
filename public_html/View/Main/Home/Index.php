@@ -2,7 +2,7 @@
 $Adder = new \Model\Repository\MainFunction\AssetsLoader();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
@@ -30,9 +30,9 @@ $Adder = new \Model\Repository\MainFunction\AssetsLoader();
      <?php
 
      print '<div class="Container " style="text-align: center;vertical-align: middle;margin-top: 150px;">';
-     print '<a href="https://miladzandi.ir" target=""_blank><div class="Simplistlogo" >Simplist</div></a>';
+     print '<a href="https://miladzandi.ir" target="_blank"><div class="Simplistlogo" >Simplist</div></a>';
      print '<div class="MainText" style="text-align: center;vertical-align: middle;font-size: 100px;font-family: '.'Calibri Light'.';">WELCOME TO SIMPLIST</div>';
-     print '<div class="SubText" style="text-align: center;vertical-align: middle;font-size: 25px;font-family: '.'Calibri Light'.';">My name is <a href="https://miladzandi.ir" target="_blank">'.$Item['user_Firstname'].'</a> and I`m very happy because its useful for you.</div>';
+     print '<div class="SubText" style="text-align: center;vertical-align: middle;font-size: 25px;font-family: '.'Calibri Light'.';">My name is <a href="https://miladzandi.ir" target="_blank">'.$Item['user_Firstname'].' '.$Item['user_Lastname'].'</a> and I`m very happy because its useful for you.</div>';
      print '<div class="SubText" style="text-align: center;vertical-align: middle;font-size: 25px;font-family: '.'Calibri Light'.';">You can download it from our <a href="https://gitlab.com/miladxandi/Simplist" target="_blank">Gitlab</a> repository and stay connected.</div>';
      print '</div>';
      ?>
