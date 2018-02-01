@@ -37,7 +37,7 @@
     session_start();
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['form_name']) && $_POST['form_name'] == 'loginform')
     {
-        $success_page = '/Dashboard';
+        $success_page = '/Panel';
         $error_page = '/Login';
         $mysql_server = 'localhost';
         $mysql_username = 'root';
@@ -112,7 +112,7 @@
 </head>
 
 <body>
-<form accept-charset="UTF-8" action="<?php echo basename("/Login"); ?>" method="post" id="loginform">
+<form accept-charset="UTF-8" action="/Panel" method="POST" id="loginform">
 <div class="d-flex align-items-center justify-content-center bg-sl-primary ht-100v">
     <div class="login-wrapper wd-300 wd-xs-350 pd-25 pd-xs-40 bg-white">
         <div class="signin-logo tx-center tx-24 tx-bold tx-inverse DefinedFonts">صفحه <span class="tx-info tx-bold DefinedFonts">ورود</span></div>
@@ -120,13 +120,19 @@
         <div class="Simplistlogo">Simplist</div>
 
         <div class="form-group" style="direction: rtl">
-            <input type="text" class="form-control DefinedFonts" name="username" placeholder="نام کاربری">
+            <input type="text" class="form-control DefinedFonts" name="username" value="<?php $User ?>" placeholder="نام کاربری">
         </div><!-- form-group -->
         <div class="form-group" style="direction: rtl">
-            <input type="password" class="form-control DefinedFonts" name="password" placeholder="رمز عبور">
+            <input type="password" class="form-control DefinedFonts" value="<?php $Password ?>" name="password" placeholder="رمز عبور">
             <a href="" class="tx-info tx-12 d-block mg-t-10 DefinedFonts">رمز عبور خود را فراموش کردید؟</a>
         </div><!-- form-group -->
         <button type="submit" class="btn btn-info btn-block DefinedFonts">ورود</button>
+        <?php
+        if ($User==$Item['user_Username'] && $Password==$Item['user_Password'])
+        {
+
+        }
+        ?>
 
         <div class="mg-t-60 tx-center DefinedFonts">هنوز عضو نیستید؟ <a href="page-signup.html" class="tx-info DefinedFonts">ثبت نام</a></div>
     </div><!-- login-wrapper -->

@@ -33,53 +33,6 @@ $Adder = new \Model\Repository\MainFunction\AssetsLoader();
      <div class="MainText" style="text-align: center;vertical-align: middle;font-size: 100px;font-family: Calibri Light;">WELCOME TO SIMPLIST</div>
      <div class="SubText" style="text-align: center;vertical-align: middle;font-size: 25px;font-family: Calibri Light;">You can download it from our <a href="https://gitlab.com/miladxandi/Simplist" target="_blank">Gitlab</a> repository and stay connected.</div>
      </div>
-
-     <footer class="container py-5" style="margin-bottom: 20px;">
-         <div class="row">
-             <div class="col-12 col-md">
-                 <img src="https://gitlab.com/uploads/-/system/group/avatar/2407345/favicon.png" width="24" height="24" />
-                 <small class="d-block mb-3 text-muted">© 2017-2018</small>
-             </div>
-             <div class="col-6 col-md">
-                 <h5>Features</h5>
-                 <ul class="list-unstyled text-small">
-                     <li><a class="text-muted" href="#">Cool stuff</a></li>
-                     <li><a class="text-muted" href="#">Random feature</a></li>
-                     <li><a class="text-muted" href="#">Team feature</a></li>
-                     <li><a class="text-muted" href="#">Stuff for developers</a></li>
-                     <li><a class="text-muted" href="#">Another one</a></li>
-                     <li><a class="text-muted" href="#">Last time</a></li>
-                 </ul>
-             </div>
-             <div class="col-6 col-md">
-                 <h5>Resources</h5>
-                 <ul class="list-unstyled text-small">
-                     <li><a class="text-muted" href="#">Resource</a></li>
-                     <li><a class="text-muted" href="#">Resource name</a></li>
-                     <li><a class="text-muted" href="#">Another resource</a></li>
-                     <li><a class="text-muted" href="#">Final resource</a></li>
-                 </ul>
-             </div>
-             <div class="col-6 col-md">
-                 <h5>Resources</h5>
-                 <ul class="list-unstyled text-small">
-                     <li><a class="text-muted" href="#">Business</a></li>
-                     <li><a class="text-muted" href="#">Education</a></li>
-                     <li><a class="text-muted" href="#">Government</a></li>
-                     <li><a class="text-muted" href="#">Gaming</a></li>
-                 </ul>
-             </div>
-             <div class="col-6 col-md">
-                 <h5>About</h5>
-                 <ul class="list-unstyled text-small">
-                     <li><a class="text-muted" href="#">Team</a></li>
-                     <li><a class="text-muted" href="#">Locations</a></li>
-                     <li><a class="text-muted" href="#">Privacy</a></li>
-                     <li><a class="text-muted" href="#">Terms</a></li>
-                 </ul>
-             </div>
-         </div>
-     </footer>
  </div>
 </body>
 </html>

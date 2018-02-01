@@ -21,6 +21,7 @@ class UserController
     }
     public function Login()
     {
+        $Item= $this->Data->Login('Admin','123456');
         View::Process("Panel.User.Login",compact('Item'));
     }
     public function Signup()

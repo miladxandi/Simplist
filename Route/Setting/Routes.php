@@ -3,6 +3,7 @@ return[
     '/' => [
         'target' => 'Main.HomeController.Index',
         'gverb'=> 'GET',
+        'pverb'=> '',
         'middleware'=>''
 
     ],
@@ -22,19 +23,20 @@ return[
     ],
     '/Panel' => [
         'target'=>'Panel.UserController.Dashboard',
-        'gverb'=> 'POST',
-        'pverb'=> '',
+        'gverb'=> '',
+        'pverb'=> 'POST',
         'middleware'=>''
     ],
     '/panel' => [
         'target'=>'Panel.UserController.Dashboard',
-        'gverb'=> 'POST',
-        'pverb'=> '',
+        'gverb'=> '',
+        'pverb'=> 'POST',
         'middleware'=>''
     ],
     '/NotFound' => [
         'target'=>'Helper.ErrorController.NotFound',
         'gverb'=> 'GET',
+        'pverb'=> '',
         'middleware'=>''
     ],
     '/Content' => [
