@@ -17,6 +17,7 @@ $Adder = new \Model\Repository\MainFunction\AssetsLoader();
     <?php
 
     $Adder->Loader("css","Main/main");
+    $Adder->Loader("css","Shared/Logos");
     $Adder->Loader("js","Main/main");
     $Adder->Loader("css","bootstrap.min","https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css","false");
     $Adder->Loader("js","jquery-3.2.1.slim.min","https://code.jquery.com","false");
@@ -27,10 +28,9 @@ $Adder = new \Model\Repository\MainFunction\AssetsLoader();
 <body>
  <div>
      <?php
-     print '<div class="Container" style="text-align: center;vertical-align: middle;margin-top: 150px;">';
-     ?>
-     <a href="https://simplist.ir" target="_blank"><?php echo $Adder->Loader("png","Logo","Simplist","100","100","","../../../../Content/Shared"); ?></a>
-     <?php
+
+     print '<div class="Container " style="text-align: center;vertical-align: middle;margin-top: 150px;">';
+     print '<a href="https://miladzandi.ir" target=""_blank><div class="Simplistlogo" >Simplist</div></a>';
      print '<div class="MainText" style="text-align: center;vertical-align: middle;font-size: 100px;font-family: '.'Calibri Light'.';">WELCOME TO SIMPLIST</div>';
      print '<div class="SubText" style="text-align: center;vertical-align: middle;font-size: 25px;font-family: '.'Calibri Light'.';">My name is <a href="https://miladzandi.ir" target="_blank">'.$Item['user_Firstname'].'</a> and I`m very happy because its useful for you.</div>';
      print '<div class="SubText" style="text-align: center;vertical-align: middle;font-size: 25px;font-family: '.'Calibri Light'.';">You can download it from our <a href="https://gitlab.com/miladxandi/Simplist" target="_blank">Gitlab</a> repository and stay connected.</div>';

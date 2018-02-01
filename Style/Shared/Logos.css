@@ -1,0 +1,5 @@
+.Simplistlogo, .Simplisteastcloud
+{ display: inline-block; background: url('Logo.png') no-repeat; overflow: hidden; text-indent: -9999px; text-align: left; }
+
+.Simplistlogo { background-position: -0px -0px; width: 100px; height: 100px; }
+.Simplisteastcloud { background-position: -0px -100px; width: 100px; height: 100px; }
