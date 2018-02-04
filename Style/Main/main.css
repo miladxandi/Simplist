@@ -10,3 +10,17 @@ a:active{
 a:visited{
     color: #9756B4 ;
 }
+.MainText
+{
+    text-align: center;
+    vertical-align: middle;
+    font-size: 6vw;
+    font-family: Calibri Light;
+}
+.SubText
+{
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1.5vw;
+    font-family: Calibri Light;
+}
