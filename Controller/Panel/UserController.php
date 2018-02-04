@@ -36,4 +36,8 @@ class UserController
     {
         View::Process("Panel.User.Dashboard");
     }
+    public function Maps()
+    {
+        View::Process("Panel.User.Maps");
+    }
 }

@@ -16,7 +16,7 @@ class UserRepository extends BaseRepository
     public function __construct()
     {
         parent::__construct();
-        $this->Table="Users";
+        $this->Table="users";
         $this->PrimaryKey="user_Id";
     }
 

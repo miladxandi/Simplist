@@ -10,7 +10,7 @@ class Database
     public function __construct()
     {
         Try {
-            $this->ConnectionString = new \PDO("mysql:host=localhost;dbname=simplist;charset=utf8", "root", "");
+            $this->ConnectionString = new \PDO("mysql:host=localhost;dbname=simplist;charset=utf8", "simple", "milad0937");
         }
         catch (\PDOException $exception)
         {

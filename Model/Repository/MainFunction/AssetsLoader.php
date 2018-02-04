@@ -4,12 +4,6 @@ namespace Model\Repository\MainFunction;
 
 class AssetsLoader
 {
-
-
-    //Use these class to have more better desipline
-
-
-
     private $BaseUrl;
     public function __construct(bool $MainAssets=true, bool $CustomAssets=false,string $CustomAssetsValue="localhost")
     {
@@ -33,7 +27,7 @@ class AssetsLoader
 //
 //        }
     }
-    public function Loader(string $Extension,string $Name,string $ImageAlt=null,string $ImageWidth=null,string $ImageHeight=null,string $ImageStyle=null,string $UniqueUrl=null,bool $Local=false,string $UniqueType=null)
+    public function Loader(string $Extension,string $Name,string $UniqueUrl=null,bool $Local=false,string $UniqueType=null,string $ImageAlt=null,string $ImageWidth=null,string $ImageHeight=null,string $ImageStyle=null)
     {
         if ($UniqueUrl==null)
         {
@@ -76,18 +70,37 @@ class AssetsLoader
             }
             else
             {
-                if ($Extension=="js")
+                if ($Local==true)
                 {
-                    echo '<script src="'.$UniqueUrl."/".$Name.".".$Extension.'"></script>';
+                    if ($Extension=="js")
+                    {
+                        echo '<script src="'.$this->BaseUrl.$UniqueUrl."/".$Name.".".$Extension.'"></script>';
+                    }
+                    else if($Extension=="css")
+                    {
+                        echo '<link rel="stylesheet" type="text/css" href="'.$this->BaseUrl.$UniqueUrl."/".$Name.".".$Extension.'">';
+                    }
+                    else if($Extension=="png"||$Extension=="jpg"||$Extension=="jpeg"||$Extension=="ico")
+                    {
+                        echo '<img src="'.$this->BaseUrl.$UniqueUrl."/".$Name.".".$Extension.'" Width="'.$ImageWidth.'px" Height="'.$ImageHeight.'px" Style="'.$ImageStyle.'" alt="'.$ImageAlt.'">';
+                    }
                 }
-                else if($Extension=="css")
+                else
                 {
-                    echo '<link rel="stylesheet" type="text/css" href="'.$UniqueUrl."/".$Name.".".$Extension.'">';
+                    if ($Extension=="js")
+                    {
+                        echo '<script src="'.$UniqueUrl."/".$Name.".".$Extension.'"></script>';
+                    }
+                    else if($Extension=="css")
+                    {
+                        echo '<link rel="stylesheet" type="text/css" href="'.$UniqueUrl."/".$Name.".".$Extension.'">';
+                    }
+                    else if($Extension=="png"||$Extension=="jpg"||$Extension=="jpeg"||$Extension=="ico")
+                    {
+                        echo '<img src="'.$UniqueUrl."/".$Name.".".$Extension.'" Width="'.$ImageWidth.'px" Height="'.$ImageHeight.'px" Style="'.$ImageStyle.'" alt="'.$ImageAlt.'">';
+                    }
                 }
-                else if($Extension=="png"||$Extension=="jpg"||$Extension=="jpeg"||$Extension=="ico")
-                {
-                    echo '<img src="'.$UniqueUrl."/".$Name.".".$Extension.'" Width="'.$ImageWidth.'px" Height="'.$ImageHeight.'px" Style="'.$ImageStyle.'" alt="'.$ImageAlt.'">';
-                }
+
             }
         }
     }

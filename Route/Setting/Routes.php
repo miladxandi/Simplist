@@ -23,13 +23,13 @@ return[
     ],
     '/Panel' => [
         'target'=>'Panel.UserController.Dashboard',
-        'gverb'=> '',
+        'gverb'=> 'GET',
         'pverb'=> 'POST',
         'middleware'=>''
     ],
     '/panel' => [
         'target'=>'Panel.UserController.Dashboard',
-        'gverb'=> '',
+        'gverb'=> 'GET',
         'pverb'=> 'POST',
         'middleware'=>''
     ],
@@ -62,5 +62,29 @@ return[
         'gverb'=> 'GET',
         'pverb'=> 'POST',
         'middleware'=>''
-    ]
+    ],
+    '/Signup' => [
+    'target'=>'Panel.UserController.Signup',
+    'gverb'=> 'GET',
+    'pverb'=> 'POST',
+    'middleware'=>''
+    ],
+    '/signup' => [
+        'target'=>'Panel.UserController.Signup',
+        'gverb'=> 'GET',
+        'pverb'=> 'POST',
+        'middleware'=>''
+    ],
+    '/Panel/Maps' => [
+        'target'=>'Panel.UserController.Maps',
+        'gverb'=> 'GET',
+        'pverb'=> '',
+        'middleware'=>''
+    ],
+    '/Panel/maps' => [
+        'target'=>'Panel.UserController.Maps',
+        'gverb'=> 'GET',
+        'pverb'=> '',
+        'middleware'=>''
+    ],
 ];
