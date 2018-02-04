@@ -18,20 +18,23 @@ $Adder = new \Model\Repository\MainFunction\AssetsLoader();
     $Adder->Loader("css","Main/main");
     $Adder->Loader("css","Shared/Logos");
     $Adder->Loader("js","Main/main");
-    $Adder->Loader("css","bootstrap.min","https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css","true","false");
-    $Adder->Loader("js","jquery-3.2.1.slim.min","https://code.jquery.com","true","false");
-    $Adder->Loader("js","popper.min","https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd","true","false");
-    $Adder->Loader("js","bootstrap.min","https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js","true","false");
+    $Adder->Loader("css","bootstrap.min","https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css","true");
+    $Adder->Loader("js","jquery-3.2.1.slim.min","https://code.jquery.com","true");
+    $Adder->Loader("js","popper.min","https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd","true");
+    $Adder->Loader("js","bootstrap.min","https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js","true");
     ?>
 </head>
 <body>
  <div>
-     <div class="Container " style="text-align: center;vertical-align: middle;margin-top: 150px;">
-         <a href="https://miladzandi.ir" target="_blank"><div class="Simplistlogo" >Simplist</div></a>
-         <div class="MainText" style="text-align: center;vertical-align: middle;font-size: 100px;font-family:Calibri Light;">WELCOME TO SIMPLIST</div>
-         <div class="SubText" style="text-align: center;vertical-align: middle;font-size: 25px;font-family:Calibri Light;">My name is <a href="https://miladzandi.ir" target="_blank">Milad Xandi</a> and I`m very happy because its useful for you.</div>
-         <div class="SubText" style="text-align: center;vertical-align: middle;font-size: 25px;font-family: Calibri Light;">You can download it from our <a href="https://gitlab.com/miladxandi/Simplist" target="_blank">Gitlab</a> repository and stay connected.</div>
-     </div>
+     <?php
+
+     print '<div class="Container " style="text-align: center;vertical-align: middle;margin-top: 150px;">';
+     print '<a href="https://miladzandi.ir" target="_blank"><div class="Simplistlogo" >Simplist</div></a>';
+     print '<div class="MainText" style="text-align: center;vertical-align: middle;font-size: 100px;font-family: '.'Calibri Light'.';">WELCOME TO SIMPLIST</div>';
+     print '<div class="SubText" style="text-align: center;vertical-align: middle;font-size: 25px;font-family: '.'Calibri Light'.';">My name is <a href="https://miladzandi.ir" target="_blank">Milad Xandi</a> and I`m very happy because its useful for you.</div>';
+     print '<div class="SubText" style="text-align: center;vertical-align: middle;font-size: 25px;font-family: '.'Calibri Light'.';">You can download it from our <a href="https://gitlab.com/miladxandi/Simplist" target="_blank">Gitlab</a> repository and stay connected.</div>';
+     print '</div>';
+     ?>
  </div>
 </body>
 </html>

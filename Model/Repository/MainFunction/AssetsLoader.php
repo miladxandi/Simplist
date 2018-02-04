@@ -70,25 +70,8 @@ class AssetsLoader
             }
             else
             {
-                if ($Local==true)
+                if ($Extension=="js")
                 {
-                    if ($Extension=="js")
-                    {
-                        echo '<script src="'.$this->BaseUrl.$UniqueUrl."/".$Name.".".$Extension.'"></script>';
-                    }
-                    else if($Extension=="css")
-                    {
-                        echo '<link rel="stylesheet" type="text/css" href="'.$this->BaseUrl.$UniqueUrl."/".$Name.".".$Extension.'">';
-                    }
-                    else if($Extension=="png"||$Extension=="jpg"||$Extension=="jpeg"||$Extension=="ico")
-                    {
-                        echo '<img src="'.$this->BaseUrl.$UniqueUrl."/".$Name.".".$Extension.'" Width="'.$ImageWidth.'px" Height="'.$ImageHeight.'px" Style="'.$ImageStyle.'" alt="'.$ImageAlt.'">';
-                    }
-                }
-                else
-                {
-                    if ($Extension=="js")
-                    {
                         echo '<script src="'.$UniqueUrl."/".$Name.".".$Extension.'"></script>';
                     }
                     else if($Extension=="css")
@@ -98,9 +81,7 @@ class AssetsLoader
                     else if($Extension=="png"||$Extension=="jpg"||$Extension=="jpeg"||$Extension=="ico")
                     {
                         echo '<img src="'.$UniqueUrl."/".$Name.".".$Extension.'" Width="'.$ImageWidth.'px" Height="'.$ImageHeight.'px" Style="'.$ImageStyle.'" alt="'.$ImageAlt.'">';
-                    }
                 }
-
             }
         }
     }
