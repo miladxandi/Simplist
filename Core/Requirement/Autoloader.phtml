@@ -1,0 +1,16 @@
+<?php
+function autoload($Class)
+{
+    $ClassNameSpacePath = str_replace("\\","/","$Class");
+    $ClassPath= $ClassNameSpacePath.".phtml";
+    if ((file_exists($ClassPath) && is_readable($ClassPath)))
+    {
+        include $ClassPath;
+    }
+    else
+    {
+        echo "The $ClassPath does not exist.";
+    }
+}
+
+spl_autoload_register("autoload");
