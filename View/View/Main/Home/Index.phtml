@@ -15,6 +15,14 @@ $Adder = new \Model\Repository\MainFunction\AssetsLoader();
     <link rel="apple-touch-icon" type="image/x-icon" href="../../../../Content/Shared/Logo.png">
     <title>WELCOME TO SIMPLIST</title>
     <?php
+    /*<div>
+        <div class="Container " style="text-align: center;vertical-align: middle;margin-top: 150px;">
+            <a href="https://miladzandi.ir" target="_blank"></a>
+            <div class="MainText DefinedRoya">به Simplist خوش آمدید</div>
+            <div class="SubText PurpText DefinedRoya">نام من <a href="https://miladzandi.ir" target="_blank" class="DefinedRoya PurpStyle">میلاد زندی</a> و بابت اینکه از این فریمورک استفاده میکنید خوشحالم.</div>
+            <div class="SubText PurpText DefinedRoya">شما میتوانید این را از ریپازیتوری <a href="https://gitlab.com/miladxandi/Simplist" class="PurpStyle" target="_blank"> گیت لب ما </a>دانلود نموده و با ما در ارتباط باشید.</div>
+        </div>
+    </div>*/
     $Adder->Loader("css","Main/main");
     $Adder->Loader("css","Shared/Logos");
     $Adder->Loader("css","bootstrap.min","https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css");
@@ -26,61 +34,102 @@ $Adder = new \Model\Repository\MainFunction\AssetsLoader();
     ?>
 </head>
 <body>
- <div>
 
 
-     <div class="Container " style="text-align: center;vertical-align: middle;margin-top: 150px;">
-     <a href="https://miladzandi.ir" target="_blank"><div class="Simplistlogo" >Simplist</div></a>
-     <div class="MainText">WELCOME TO SIMPLIST</div>
-     <div class="SubText">My name is <a href="https://miladzandi.ir" target="_blank">Milad Xandi</a> and I`m very happy because its useful for you.</div>
-     <div class="SubText">You can download it from our <a href="https://gitlab.com/miladxandi/Simplist" target="_blank">Gitlab</a> repository and stay connected.</div>
-     </div>
- </div>
- <footer class="container py-5">
-     <div class="row">
-         <div class="col-12 col-md">
-             <?php $Adder->Loader("png","eastCloud","Shared",true,null,"eastCloud",24,24); ?>
-             <small class="d-block mb-3 text-muted">© 2017-2018</small>
-         </div>
-         <div class="col-6 col-md">
-             <h5>Features</h5>
-             <ul class="list-unstyled text-small">
-                 <li><a class="text-muted" href="#">Cool stuff</a></li>
-                 <li><a class="text-muted" href="#">Random feature</a></li>
-                 <li><a class="text-muted" href="#">Team feature</a></li>
-                 <li><a class="text-muted" href="#">Stuff for developers</a></li>
-                 <li><a class="text-muted" href="#">Another one</a></li>
-                 <li><a class="text-muted" href="#">Last time</a></li>
-             </ul>
-         </div>
-         <div class="col-6 col-md">
-             <h5>Resources</h5>
-             <ul class="list-unstyled text-small">
-                 <li><a class="text-muted" href="#">Resource</a></li>
-                 <li><a class="text-muted" href="#">Resource name</a></li>
-                 <li><a class="text-muted" href="#">Another resource</a></li>
-                 <li><a class="text-muted" href="#">Final resource</a></li>
-             </ul>
-         </div>
-         <div class="col-6 col-md">
-             <h5>Resources</h5>
-             <ul class="list-unstyled text-small">
-                 <li><a class="text-muted" href="#">Business</a></li>
-                 <li><a class="text-muted" href="#">Education</a></li>
-                 <li><a class="text-muted" href="#">Government</a></li>
-                 <li><a class="text-muted" href="#">Gaming</a></li>
-             </ul>
-         </div>
-         <div class="col-6 col-md">
-             <h5>About</h5>
-             <ul class="list-unstyled text-small">
-                 <li><a class="text-muted" href="#">Team</a></li>
-                 <li><a class="text-muted" href="#">Locations</a></li>
-                 <li><a class="text-muted" href="#">Privacy</a></li>
-                 <li><a class="text-muted" href="#">Terms</a></li>
-             </ul>
-         </div>
-     </div>
- </footer>
+    <!--  Menu -->
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+                <?php $Adder->Loader("png","Logo","Shared",true,null,"eastCloud",30,30,null,"d-inline-block align-top"); ?>
+            </a>
+            <a class="navbar-brand" href="/">SIMPLIST</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Aboutus">Aboutus</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Links
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="https://gitlab.com/miladxandi/Simplist">Direct Download</a>
+                            <a class="dropdown-item" href="https://gitlab.com/miladxandi/Simplist">GITLAB</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="http://eastcloud.ir">eastCloud LLC.</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+
+    <!--  Content -->
+    <div>
+        <div class="Container " style="text-align: center;vertical-align: middle;margin: 150px;">
+            <a href="https://miladzandi.ir" target="_blank"><div class="Simplistlogo">Simplist</div></a>            <div class="MainText ">WELCOME TO SIMPLIST</div>
+            <div class="SubText PurpText ">Our group is <a href="https://estcloud.ir" target="_blank" class="DefinedRoya PurpStyle">estCloud LLC.</a> and your trust made us happy.</div>
+            <div class="SubText PurpText ">You can download our the project from <a href="https://gitlab.com/miladxandi/Simplist" class="PurpStyle" target="_blank"> our Gitlab </a> and stay connected with us.</div>
+        </div>
+    </div>
+
+
+    <!--  Footer -->
+    <footer class="container py-5">
+        <div class="row">
+            <div class="col-12 col-md">
+                <?php $Adder->Loader("png","eastCloud","Shared",true,null,"eastCloud",24,24); ?>
+                <small class="d-block mb-3 text-muted">© 2017-2018</small>
+            </div>
+            <div class="col-6 col-md">
+                <h5>Features</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="text-muted" href="#">Cool stuff</a></li>
+                    <li><a class="text-muted" href="#">Random feature</a></li>
+                    <li><a class="text-muted" href="#">Team feature</a></li>
+                    <li><a class="text-muted" href="#">Stuff for developers</a></li>
+                    <li><a class="text-muted" href="#">Another one</a></li>
+                    <li><a class="text-muted" href="#">Last time</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-md">
+                <h5>Resources</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="text-muted" href="#">Resource</a></li>
+                    <li><a class="text-muted" href="#">Resource name</a></li>
+                    <li><a class="text-muted" href="#">Another resource</a></li>
+                    <li><a class="text-muted" href="#">Final resource</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-md">
+                <h5>Resources</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="text-muted" href="#">Business</a></li>
+                    <li><a class="text-muted" href="#">Education</a></li>
+                    <li><a class="text-muted" href="#">Government</a></li>
+                    <li><a class="text-muted" href="#">Gaming</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-md">
+                <h5>About</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="text-muted" href="#">Team</a></li>
+                    <li><a class="text-muted" href="#">Locations</a></li>
+                    <li><a class="text-muted" href="#">Privacy</a></li>
+                    <li><a class="text-muted" href="#">Terms</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+
 </body>
 </html>

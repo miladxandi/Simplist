@@ -1,0 +1,13 @@
+@font-face
+{
+	font-family: "IR Roya";
+	src: url('../../Fonts/Shared/irroya_0.eot');
+	src: url('../../Fonts/Shared/irroya_0.eot?iefix') format('embeded-opentype'),
+		 url('../../Fonts/Shared/irroya_0.woff') format('woff'),
+		 url('../../Fonts/Shared/irroya_0.ttf') format('truetype'),
+		 url('../../Fonts/Shared/irroya_0.svg') format('svg');
+}
+.DefinedRoya{
+	font-family: IR Roya;
+	color: #000;
+}
