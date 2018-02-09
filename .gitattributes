@@ -1,7 +1,7 @@
 ###############################################################################
 # Set default behavior to automatically normalize line endings.
 ###############################################################################
-*.phtml linguist-language=PHP
+*.PHP linguist-language=PHP
 
 ###############################################################################
 # Set default behavior for command prompt diff.
