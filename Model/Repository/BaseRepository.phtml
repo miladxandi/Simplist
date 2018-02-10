@@ -2,18 +2,23 @@
 
 
 namespace Model\Repository;
-use Illuminate\Database\Capsule;
+use Model\Connection;
+//use Illuminate\Database\Capsule;
 
 abstract class BaseRepository
 {
     protected static $Model;
+    protected $rStatement;
+    protected $Table;
+    protected $PrimaryKey;
     public function __construct()
     {
-        //$this->rStatement=new Connection\Statement();
+        $this->rStatement=new Connection\Statement();
     }
     public function Find(int $ID)
     {
-        return self::$Model::Find($ID);
+        $Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->PrimaryKey}={$ID} ");
+        return $Result->fetch(\PDO::FETCH_ASSOC);
     }
 
     public function All()

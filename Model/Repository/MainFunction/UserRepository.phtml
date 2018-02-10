@@ -10,6 +10,7 @@ namespace Model\Repository\MainFunction;
 
 
 use Model\Repository\BaseRepository;
+use Model\Connection;
 use Model\Eloquent\Panel;
 
 class UserRepository extends BaseRepository
@@ -17,6 +18,7 @@ class UserRepository extends BaseRepository
     protected static $Model = Panel\UserModel::class;
     public function __construct()
     {
-
+        $this->Table="users";
+        $this->PrimaryKey="user_Id";
     }
 }

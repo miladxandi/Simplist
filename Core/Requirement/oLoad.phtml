@@ -1,52 +1,53 @@
 <?php
-namespace Model\Repository\MainFunction;
+
+namespace Core\Requirement;
 
 
-class AssetsLoader
+class oLoad
 {
     private $BaseUrl;
-    public function __construct(bool $MainAssets=true, bool $CustomAssets=false,string $CustomAssetsValue="localhost")
+    private $Css;
+    private $Js;
+    private $Image;
+    public function __construct(string $BasePath,string $CssPath,string $JsPath,string $ImagePath)
     {
-        $this->BaseUrl="../../../..";
+        $this->BaseUrl=$BasePath;
+        $this->Css= $CssPath;
+        $this->Js= $JsPath;
+        $this->Image= $ImagePath;
+
     }
-    public function Loader(string $Extension,string $Name,string $UniqueUrl=null,$Local=false,string $UniqueType=null,string $ImageAlt=null,int $ImageWidth=null,int $ImageHeight=null,string $ImageStyle=null,string $ImageClass=null)
+    public function Loader(string $Extension,string $Name,string $UniqueUrl=null,$Local=false,bool $UniqueType=false,string $ImageAlt=null,int $ImageWidth=null,int $ImageHeight=null,string $ImageStyle=null,string $ImageClass=null)
     {
-        if ($UniqueUrl==null || $UniqueUrl=="")
+        if (($UniqueUrl==null || $UniqueUrl=="") && $UniqueType==false)
         {
             if ($Extension=="js")
             {
-                echo '<script src="'.$this->BaseUrl."/Script"."/".$Name.".".$Extension.'"></script>';
+                echo '<script src="'.$this->BaseUrl."/".$this->Js."/".$Name.".".$Extension.'"></script>';
             }
             else if($Extension=="css")
             {
-                echo '<link rel="stylesheet" type="text/css" href="'. $this->BaseUrl."/Style"."/".$Name.".".$Extension  .'">';
+                echo '<link rel="stylesheet" type="text/css" href="'.$this->BaseUrl."/".$this->Css."/".$Name.".".$Extension  .'">';
             }
             else if($Extension=="png"||$Extension=="jpg"||$Extension=="jpeg"||$Extension=="ico")
             {
-                echo '<img src="'. $this->BaseUrl."/Content"."/".$Name.".".$Extension  .'" Width="'.$ImageWidth.'px" Height="'.$ImageHeight.'px" Class="'.$ImageClass.'" alt="'.$ImageAlt.'">';
+                echo '<img src="'. $this->BaseUrl."/".$this->Image."/".$Name.".".$Extension  .'" Width="'.$ImageWidth.'px" Height="'.$ImageHeight.'px" Class="'.$ImageClass.'" alt="'.$ImageAlt.'">';
             }
         }
         else
         {
-            if ($UniqueType!=null)
+            if ($UniqueType==true&&$UniqueUrl!=null)
             {
-                if ($Local==true)
+                if ($Local==true )
                 {
-                    if ($Extension=="js")
-                    {
-                        echo '<script src="'.$this->BaseUrl.$UniqueType."/Script/".$Name.".".$Extension.'"></script>';
-                    }
-                    else if($Extension=="css")
-                    {
-                        echo '<link rel="stylesheet" type="text/css" href="'. $this->BaseUrl.$UniqueType."/Style/".$Name.".".$Extension  .'">';
-                    }
-                    else if($Extension=="png"||$Extension=="jpg"||$Extension=="jpeg"||$Extension=="ico")
-                    {
-                        echo '<img src="'. $this->BaseUrl.$UniqueType."/Content/".$Name.".".$Extension  .'" Width="'.$ImageWidth.'px" Height="'.$ImageHeight.'px" Class="'.$ImageClass.'" Style="'.$ImageStyle.'" alt="'.$ImageAlt.'">';
-                    }
+                    echo ''.$this->BaseUrl."/".$UniqueUrl."/".$Name.".".$Extension.'';
+                }
+                else if ($Local==false)
+                {
+                    echo ''.$UniqueUrl."/".$Name.".".$Extension.'';
                 }
             }
-            else
+            else if($UniqueType!=true&&$UniqueUrl!=null)
             {
                 if ($Local==false || $Local=="")
                 {
@@ -67,15 +68,15 @@ class AssetsLoader
                 {
                     if ($Extension=="js")
                     {
-                        echo '<script src="'.$this->BaseUrl."/Script/".$UniqueUrl."/".$Name.".".$Extension.'"></script>';
+                        echo '<script src="'.$this->BaseUrl."/".$this->Js."/".$UniqueUrl."/".$Name.".".$Extension.'"></script>';
                     }
                     else if($Extension=="css")
                     {
-                        echo '<link rel="stylesheet" type="text/css" href="'.$this->BaseUrl."/Style/".$UniqueUrl."/".$Name.".".$Extension.'">';
+                        echo '<link rel="stylesheet" type="text/css" href="'.$this->BaseUrl."/".$this->Css."/".$UniqueUrl."/".$Name.".".$Extension.'">';
                     }
                     else if($Extension=="png"||$Extension=="jpg"||$Extension=="jpeg"||$Extension=="ico")
                     {
-                        echo '<img src="'.$this->BaseUrl."/Content/".$UniqueUrl."/".$Name.".".$Extension.'" Width="'.$ImageWidth.'px" Height="'.$ImageHeight.'px" Class="'.$ImageClass.'" Style="'.$ImageStyle.'" alt="'.$ImageAlt.'">';
+                        echo '<img src="'.$this->BaseUrl."/".$this->Image."/".$UniqueUrl."/".$Name.".".$Extension.'" Width="'.$ImageWidth.'px" Height="'.$ImageHeight.'px" Class="'.$ImageClass.'" Style="'.$ImageStyle.'" alt="'.$ImageAlt.'">';
                     }
                 }
                 else

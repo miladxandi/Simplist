@@ -1,5 +1,5 @@
 <?php
-$Adder = new \Model\Repository\MainFunction\AssetsLoader();
+$Add = new Core\Requirement\oLoad("../../../..","Style","Script","Content");
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -23,14 +23,14 @@ $Adder = new \Model\Repository\MainFunction\AssetsLoader();
             <div class="SubText PurpText DefinedRoya">شما میتوانید این را از ریپازیتوری <a href="https://gitlab.com/miladxandi/Simplist" class="PurpStyle" target="_blank"> گیت لب ما </a>دانلود نموده و با ما در ارتباط باشید.</div>
         </div>
     </div>*/
-    $Adder->Loader("css","Main/main");
-    $Adder->Loader("css","Shared/Logos");
-    $Adder->Loader("css","bootstrap.min","https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css");
-    $Adder->Loader("cs","product","http://getbootstrap.com/docs/4.0/examples/product");
-    $Adder->Loader("js","Main/main");
-    $Adder->Loader("js","jquery-3.2.1.slim.min","https://code.jquery.com");
-    $Adder->Loader("js","popper.min","https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd");
-    $Adder->Loader("js","bootstrap.min","https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js");
+    $Add->Loader("css","Main/main");
+    $Add->Loader("css","Shared/Logos");
+    $Add->Loader("css","bootstrap.min","https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css");
+    $Add->Loader("cs","product","http://getbootstrap.com/docs/4.0/examples/product");
+    $Add->Loader("js","Main/main");
+    $Add->Loader("js","jquery-3.2.1.slim.min","https://code.jquery.com");
+    $Add->Loader("js","popper.min","https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd");
+    $Add->Loader("js","bootstrap.min","https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js");
     ?>
 </head>
 <body>
@@ -92,7 +92,7 @@ $Adder = new \Model\Repository\MainFunction\AssetsLoader();
 <footer class="container py-5">
     <div class="row">
         <div class="col-12 col-md">
-            <?php $Adder->Loader("png","eastCloud","Shared",true,null,"eastCloud",24,24); ?>
+            <?php $Add->Loader("png","eastCloud","Shared",true,false,"eastCloud",24,24); ?>
             <small class="d-block mb-3 text-muted">© 2017-2018</small>
         </div>
         <div class="col-6 col-md">
