@@ -1,0 +1,40 @@
+[10-Feb-2018 17:20:05 UTC] PHP Fatal error:  Uncaught Error: Class 'Core\Requirement\oLoad' not found in /home/simplist/public_html/View/View/Main/Home/Index.phtml:2
+Stack trace:
+#0 /home/simplist/public_html/Route/Show/View.phtml(21): include()
+#1 /home/simplist/public_html/Controller/Main/HomeController.phtml(21): Route\Show\View::Process('Main/Home/Index', Array)
+#2 /home/simplist/public_html/Route/Core/Router.phtml(24): Controller\Main\HomeController->Index()
+#3 /home/simplist/public_html/index.php(6): Route\Core\Router::Register()
+#4 {main}
+  thrown in /home/simplist/public_html/View/View/Main/Home/Index.phtml on line 2
+[10-Feb-2018 18:54:41 UTC] PHP Fatal error:  Uncaught Error: Class 'Core\Requirement\oLoad' not found in /home/simplist/public_html/View/View/Main/Home/Index.phtml:2
+Stack trace:
+#0 /home/simplist/public_html/Route/Show/View.phtml(21): include()
+#1 /home/simplist/public_html/Controller/Main/HomeController.phtml(21): Route\Show\View::Process('Main/Home/Index', Array)
+#2 /home/simplist/public_html/Route/Core/Router.phtml(24): Controller\Main\HomeController->Index()
+#3 /home/simplist/public_html/index.php(6): Route\Core\Router::Register()
+#4 {main}
+  thrown in /home/simplist/public_html/View/View/Main/Home/Index.phtml on line 2
+[10-Feb-2018 18:59:01 UTC] PHP Fatal error:  Uncaught Error: Class 'Core\Requirement\oLoad' not found in /home/simplist/public_html/View/View/Main/Home/Index.phtml:2
+Stack trace:
+#0 /home/simplist/public_html/Route/Show/View.phtml(21): include()
+#1 /home/simplist/public_html/Controller/Main/HomeController.phtml(21): Route\Show\View::Process('Main/Home/Index', Array)
+#2 /home/simplist/public_html/Route/Core/Router.phtml(24): Controller\Main\HomeController->Index()
+#3 /home/simplist/public_html/index.php(6): Route\Core\Router::Register()
+#4 {main}
+  thrown in /home/simplist/public_html/View/View/Main/Home/Index.phtml on line 2
+[12-Feb-2018 02:51:08 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home/simplist/public_html/Model/Connection/Statement.phtml:17
+Stack trace:
+#0 /home/simplist/public_html/Model/Repository/BaseRepository.phtml(23): Model\Connection\Statement->Commander('SELECT * FROM u...')
+#1 /home/simplist/public_html/Controller/Main/HomeController.phtml(19): Model\Repository\BaseRepository->Find(1)
+#2 /home/simplist/public_html/Route/Core/Router.phtml(24): Controller\Main\HomeController->Index()
+#3 /home/simplist/public_html/index.php(7): Route\Core\Router::Register()
+#4 {main}
+  thrown in /home/simplist/public_html/Model/Connection/Statement.phtml on line 17
+[12-Feb-2018 02:51:12 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home/simplist/public_html/Model/Connection/Statement.phtml:17
+Stack trace:
+#0 /home/simplist/public_html/Model/Repository/BaseRepository.phtml(23): Model\Connection\Statement->Commander('SELECT * FROM u...')
+#1 /home/simplist/public_html/Controller/Main/HomeController.phtml(19): Model\Repository\BaseRepository->Find(1)
+#2 /home/simplist/public_html/Route/Core/Router.phtml(24): Controller\Main\HomeController->Index()
+#3 /home/simplist/public_html/index.php(7): Route\Core\Router::Register()
+#4 {main}
+  thrown in /home/simplist/public_html/Model/Connection/Statement.phtml on line 17

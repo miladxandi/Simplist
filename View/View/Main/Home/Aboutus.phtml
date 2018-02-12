@@ -1,5 +1,18 @@
 <?php
 $Add = new Core\Requirement\oLoad("../../../..","Style","Script","Content");
+if (isset($_COOKIE['Username']) &&($_COOKIE['Username']!=null||$_COOKIE['Username']!=""))
+
+{
+    $Is_User_LoggedIn=true;
+}
+
+else
+
+{
+    $Is_User_LoggedIn=false;
+}
+
+?>
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -40,32 +53,56 @@ $Add = new Core\Requirement\oLoad("../../../..","Style","Script","Content");
 <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">
-            <?php $Adder->Loader("png","Logo","Shared",true,null,"eastCloud",30,30,null,"d-inline-block align-top"); ?>
+            <?php if ($Is_User_LoggedIn): ?>
+                <?php $Add->Loader("png",$_COOKIE['Username'],"Shared/Profile",true,false,"",30,30,null,"d-inline-block align-top"); ?>
+            <?php else: ?>
+                <?php $Add->Loader("png","Logo","Shared",true,false,"eastCloud",30,30,null,"d-inline-block align-top"); ?>
+            <?php endif; ?>
         </a>
-        <a class="navbar-brand" href="/">SIMPLIST</a>
+        <?php if ($Is_User_LoggedIn): ?>
+            <a class="navbar-brand" href="#">Hello <?php echo $_COOKIE['Username']; ?></a>
+
+        <?php else: ?>
+            <a class="navbar-brand" href="/Login">Login</a>
+        <?php endif; ?>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="/">Home</a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="/Aboutus">Aboutus</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Links
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="https://gitlab.com/miladxandi/Simplist" target="_blank">Direct Download</a>
-                        <a class="dropdown-item" href="https://gitlab.com/miladxandi/Simplist" target="_blank">GITLAB</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="http://eastcloud.ir" target="_blank">eastCloud LLC.</a>
-                    </div>
-                </li>
+                <?php if ($Is_User_LoggedIn): ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Links
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#" target="_blank">Profile</a>
+                            <a class="dropdown-item" href="#" target="_blank">Account</a>
+                            <a class="dropdown-item" href="<?php unset($_COOKIE['Username']);  ?>" target="_blank">Logout</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="https://gitlab.com/miladxandi/Simplist" target="_blank">Direct Download</a>
+                            <a class="dropdown-item" href="https://gitlab.com/miladxandi/Simplist" target="_blank">GITLAB</a>
+
+                        </div>
+                    </li>
+                <?php else: ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Links
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="https://gitlab.com/miladxandi/Simplist" target="_blank">Direct Download</a>
+                            <a class="dropdown-item" href="https://gitlab.com/miladxandi/Simplist" target="_blank">GITLAB</a>
+                        </div>
+                    </li>
+                <?php endif; ?>
             </ul>
         </div>
     </nav>
@@ -92,50 +129,46 @@ $Add = new Core\Requirement\oLoad("../../../..","Style","Script","Content");
 <footer class="container py-5">
     <div class="row">
         <div class="col-12 col-md">
-            <?php $Add->Loader("png","eastCloud","Shared",true,false,"eastCloud",24,24); ?>
+            <a href="http://eastcloud.ir"><?php $Add->Loader("png","eastCloud","Shared",true,false,"eastCloud",24,24); ?></a>
             <small class="d-block mb-3 text-muted">© 2017-2018</small>
         </div>
         <div class="col-6 col-md">
-            <h5>Features</h5>
+            <h5>New Features</h5>
             <ul class="list-unstyled text-small">
-                <li><a class="text-muted" href="#">Cool stuff</a></li>
-                <li><a class="text-muted" href="#">Random feature</a></li>
-                <li><a class="text-muted" href="#">Team feature</a></li>
-                <li><a class="text-muted" href="#">Stuff for developers</a></li>
-                <li><a class="text-muted" href="#">Another one</a></li>
-                <li><a class="text-muted" href="#">Last time</a></li>
+                <li><a class="text-muted" href="/Feacture/Driver">Choose Driver</a></li>
+                <li><a class="text-muted" href="/Feacture/Hash">Make it Hash!</a></li>
+                <li><a class="text-muted" href="/Feacture/SUS">Sunshine Sec</a></li>
+                <li><a class="text-muted" href="/Feacture/Observer">Observer</a></li>
             </ul>
         </div>
         <div class="col-6 col-md">
-            <h5>Resources</h5>
+            <h5>Resources & Versions</h5>
             <ul class="list-unstyled text-small">
-                <li><a class="text-muted" href="#">Resource</a></li>
-                <li><a class="text-muted" href="#">Resource name</a></li>
-                <li><a class="text-muted" href="#">Another resource</a></li>
-                <li><a class="text-muted" href="#">Final resource</a></li>
+                <li><a class="text-muted" href="/Res">Resource</a></li>
+                <li><a class="text-muted" href="/Download/Versions">Stable Versions</a></li>
+                <li><a class="text-muted" href="/Dev/Versions">Dev Versions</a></li>
+                <li><a class="text-muted" href="/Download/Versions/Latest">Download Lates</a></li>
             </ul>
         </div>
         <div class="col-6 col-md">
-            <h5>Resources</h5>
+            <h5>Develop</h5>
             <ul class="list-unstyled text-small">
-                <li><a class="text-muted" href="#">Business</a></li>
-                <li><a class="text-muted" href="#">Education</a></li>
-                <li><a class="text-muted" href="#">Government</a></li>
-                <li><a class="text-muted" href="#">Gaming</a></li>
+                <li><a class="text-muted" href="https://github.com/miladxandi/Simplist">Github</a></li>
+                <li><a class="text-muted" href="/Documentation/Education">Education</a></li>
+                <li><a class="text-muted" href="/Documentation">Documentations</a></li>
+                <li><a class="text-muted" href="/Services">Services</a></li>
             </ul>
         </div>
         <div class="col-6 col-md">
             <h5>About</h5>
             <ul class="list-unstyled text-small">
-                <li><a class="text-muted" href="#">Team</a></li>
-                <li><a class="text-muted" href="#">Locations</a></li>
-                <li><a class="text-muted" href="#">Privacy</a></li>
-                <li><a class="text-muted" href="#">Terms</a></li>
+                <li><a class="text-muted" href="/Team">Team</a></li>
+                <li><a class="text-muted" href="/Locations">Locations</a></li>
+                <li><a class="text-muted" href="/Privacy">Privacy</a></li>
+                <li><a class="text-muted" href="/Terms">Terms</a></li>
             </ul>
         </div>
     </div>
 </footer>
-
-
 </body>
 </html>

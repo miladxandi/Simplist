@@ -48,8 +48,8 @@
             $Username = $_POST['username'];
             $Password = $_POST['password'];
             $Data = new Model\Repository\MainFunction\UserRepository();
-            $Val = $Data->FindByUser("123");
-            $uResult = $Data->Email($Username);
+            $Val = $Data->FindByUser($Username);
+            $uResult = $Data->Username($Username);
             $pResult = $Data->Password($Password);
             if ($uResult == true && $pResult==1)
             {

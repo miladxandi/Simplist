@@ -1,4 +1,6 @@
 <?php
-$Serv = new Model\Repository\MainFunction\UserRepository();
-$Val = $Serv->FindByUser("123");
-echo $Val['Values']['user_Firstname'];
+if (!isset($_COOKIE['Username']) &&!($_COOKIE['Username']!=null||$_COOKIE['Username']!=""))
+{
+    header("Location: /Login");
+
+}
