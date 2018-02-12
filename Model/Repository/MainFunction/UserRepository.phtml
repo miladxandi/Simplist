@@ -11,14 +11,36 @@ namespace Model\Repository\MainFunction;
 
 use Model\Repository\BaseRepository;
 use Model\Connection;
-use Model\Eloquent\Panel;
+//use Model\Eloquent\Panel;
 
 class UserRepository extends BaseRepository
 {
-    protected static $Model = Panel\UserModel::class;
     public function __construct()
     {
+        parent::__construct();
         $this->Table="users";
         $this->PrimaryKey="user_Id";
+        $this->uName="user_Username";
+        $this->uMail="user_Email";
+        $this->uPass="user_Password";
+    }
+
+    public function Username($Username)
+    {
+        $Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->uName}={$Username}");
+        $Result->fetch(\PDO::FETCH_COLUMN);
+        return $Result->rowCount();
+    }
+    public function Email($Email)
+    {
+        $Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->uMail}={$Email}");
+        $Result->fetch(\PDO::FETCH_COLUMN);
+        return $Result->rowCount();
+    }
+    public function Password($Password)
+    {
+        $Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->uPass}={$Password}");
+        $Result->fetch(\PDO::FETCH_COLUMN);
+        return $Result->rowCount();
     }
 }

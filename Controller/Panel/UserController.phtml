@@ -21,7 +21,8 @@ class UserController
     }
     public function Login()
     {
-        View::Process("Panel.User.Login");
+        $Item= $this->Data->Find(1);
+        View::Process("Panel.User.Login",compact('Item'));
     }
     public function Signup()
     {
@@ -33,7 +34,8 @@ class UserController
     }
     public function Dashboard()
     {
-        View::Process("Panel.User.Dashboard");
+        $Item= $this->Data->Find(1);
+        View::Process("Panel.User.Dashboard",compact('Item'));
     }
     public function Maps()
     {

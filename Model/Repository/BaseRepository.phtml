@@ -11,16 +11,23 @@ abstract class BaseRepository
     protected $rStatement;
     protected $Table;
     protected $PrimaryKey;
+    protected $uName;
+    protected $uPass;
+    protected $uMail;
     public function __construct()
     {
         $this->rStatement=new Connection\Statement();
     }
     public function Find(int $ID)
     {
-        $Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->PrimaryKey}={$ID} ");
-        return $Result->fetch(\PDO::FETCH_ASSOC);
+        $Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->PrimaryKey}={$ID}");
+        return ['Values'=>$Result->fetch(\PDO::FETCH_ASSOC),'Rows'=>$Result->rowCount()];
     }
-
+    public function FindByUser(string $Username)
+    {
+        $Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->uName}={$Username}");
+        return ['Values'=>$Result->fetch(\PDO::FETCH_ASSOC),'Rows'=>$Result->rowCount()];
+    }
     public function All()
     {
 

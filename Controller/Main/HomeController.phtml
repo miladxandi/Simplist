@@ -16,9 +16,9 @@ class HomeController
     }
     public function Index()
     {
-        //$Item= $this->Username->Find(1);
-        $Viewbag="SIMPLIST";
-        View::Process("Main.Home.Index");
+        $Item= $this->Username->Find(1);
+        //$Viewbag="SIMPLIST";
+        View::Process("Main.Home.Index",compact('Item'));
     }
     public function Aboutus()
     {

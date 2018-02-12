@@ -35,10 +35,44 @@
     <!-- vendor css -->
     <?php
     session_start();
-    $_SESSION['username']='username';
-    $_SESSION['password']='password';
-    setcookie("username","username","0","","simplist.dev","true","true");
-    $Adder = new \Model\Repository\MainFunction\AssetsLoader();
+    $error=''; // Variable To Store Error Message
+    if (isset($_POST['submit']))
+    {
+        if (empty($_POST['username']) || empty($_POST['password']))
+        {
+            $error = "Username or Password is invalid";
+        }
+        else
+        {
+
+            $Username = $_POST['username'];
+            $Password = $_POST['password'];
+            $Data = new Model\Repository\MainFunction\UserRepository();
+            $Val = $Data->FindByUser("123");
+            $uResult = $Data->Email($Username);
+            $pResult = $Data->Password($Password);
+            if ($uResult == true && $pResult==1)
+            {
+                header("Location: /Panel");
+                //var_dump($uResult);
+                //var_dump($pResult);
+                //var_dump($Username);
+                //var_dump($Password);
+                setcookie("Username",$Val['Values']['user_Firstname'],0,"","simplist.dev",false,true);            }
+            else
+            {
+                header("Location: /Login");
+                //var_dump($uResult);
+                //var_dump($pResult);
+                //var_dump($Username);
+                //var_dump($Password);
+            }
+        }
+    }
+    //$_SESSION['username']='username';
+    //$_SESSION['password']='password';
+    //setcookie("username","username","0","","simplist.dev","true","true");
+    $Adder = new Core\Requirement\oLoad("../../../..","Style","Script","Content");
     $Adder->Loader("css","Panel/font-awesome");
     $Adder->Loader("css","Panel/ionicons");
     $Adder->Loader("css","Panel/starlight");
@@ -55,7 +89,7 @@
 </head>
 
 <body>
-<form accept-charset="UTF-8" action="/Panel" method="POST" id="loginform">
+<form accept-charset="UTF-8" action="" method="POST" id="loginform">
 <div class="d-flex align-items-center justify-content-center bg-sl-primary ht-100v">
     <div class="login-wrapper wd-300 wd-xs-350 pd-25 pd-xs-40 bg-white">
         <div class="signin-logo tx-center tx-24 tx-bold tx-inverse DefinedFonts">صفحه <span class="tx-info tx-bold DefinedFonts">ورود</span></div>
@@ -63,23 +97,25 @@
         <div class="Simplistlogo">Simplist</div>
 
         <div class="form-group" style="direction: rtl">
-            <input type="text" class="form-control DefinedFonts" data-parsley-errors-container="#cbErrorContainer" required name="username" placeholder="نام کاربری">
-        </div><!-- form-group -->
+            <input type="text" id="username" class="form-control DefinedFonts" data-parsley-errors-container="#cbErrorContainer" required name="username" placeholder="نام کاربری">
+        </div>
+        <!-- form-group -->
         <div class="form-group" style="direction: rtl">
-            <input type="password" class="form-control DefinedFonts" data-parsley-errors-container="#cbErrorContainer" required name="password" placeholder="رمز عبور">
+            <input type="password" id="password" class="form-control DefinedFonts" data-parsley-errors-container="#cbErrorContainer" required name="password" placeholder="رمز عبور">
             <br>
-            <label class="ckbox DefinedFonts" style="margin-right: -15px">
-                <input type="checkbox" name="check" value="1" data-parsley-mincheck="2"
+            <label class="ckbox DefinedFonts" id="rememberme" style="margin-right: -15px">
+                <input type="checkbox" name="check" id="check" value="1" data-parsley-mincheck="2"
                        data-parsley-class-handler="#cbWrapper"
-                       data-parsley-errors-container="#cbErrorContainer" ><span class=" tx-inverse DefinedFonts">مرا به خاطر بسپار</span>
+                       data-parsley-errors-container="#cbErrorContainer" ><span class=" tx-inverse DefinedFonts" >مرا به خاطر بسپار</span>
             </label>
             <a href="" class="tx-info tx-12 d-block mg-t-10 DefinedFonts">رمز عبور خود را فراموش کردید؟</a>
         </div><!-- form-group -->
-        <button type="submit" class="btn btn-info btn-block DefinedFonts">ورود</button>
+        <button type="submit" name="submit" id="submit" class="btn btn-info btn-block DefinedFonts">ورود</button>
 
         <div class="mg-t-60 tx-center DefinedFonts">هنوز عضو نیستید؟ <a href="/Signup" class="tx-info DefinedFonts">ثبت نام</a></div>
     </div><!-- login-wrapper -->
 </div><!-- d-flex -->
+    <span><?php echo $error; ?></span>
 </form>
 </body>
 </html>
