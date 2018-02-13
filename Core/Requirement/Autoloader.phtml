@@ -2,7 +2,7 @@
 function autoload($Class)
 {
     $ClassNameSpacePath = str_replace("\\","/","$Class");
-    $ClassPath= $ClassNameSpacePath.".phtml";
+    $ClassPath= "..".DIRECTORY_SEPARATOR.$ClassNameSpacePath.".phtml";
     if ((file_exists($ClassPath) && is_readable($ClassPath)))
     {
         include $ClassPath;
