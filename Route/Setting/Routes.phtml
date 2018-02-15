@@ -64,10 +64,10 @@ return[
         'middleware'=>''
     ],
     '/Signup' => [
-    'target'=>'Panel.UserController.Signup',
-    'gverb'=> 'GET',
-    'pverb'=> 'POST',
-    'middleware'=>''
+        'target'=>'Panel.UserController.Signup',
+        'gverb'=> 'GET',
+        'pverb'=> 'POST',
+        'middleware'=>''
     ],
     '/signup' => [
         'target'=>'Panel.UserController.Signup',
@@ -95,6 +95,24 @@ return[
     ],
     '/Panel/sleep' => [
         'target'=>'Panel.UserController.Sleep',
+        'gverb'=> 'GET',
+        'pverb'=> 'POST',
+        'middleware'=>''
+    ],
+    '/Val' => [
+        'target'=>'Panel.UserController.Val',
+        'gverb'=> '',
+        'pverb'=> 'POST',
+        'middleware'=>''
+    ],
+    '/Panel/Tables' => [
+        'target'=>'Panel.UserController.Tables',
+        'gverb'=> 'GET',
+        'pverb'=> 'POST',
+        'middleware'=>''
+    ],
+    '/Panel/tables' => [
+        'target'=>'Panel.UserController.Tables',
         'gverb'=> 'GET',
         'pverb'=> 'POST',
         'middleware'=>''

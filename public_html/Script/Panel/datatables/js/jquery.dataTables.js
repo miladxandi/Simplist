@@ -10788,7 +10788,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sFirst": "First",
+				"sFirst": "اولین",
 	
 	
 				/**
@@ -10811,7 +10811,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sLast": "Last",
+				"sLast": "آخرین",
 	
 	
 				/**
@@ -10834,7 +10834,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sNext": "Next",
+				"sNext": "بعدی",
 	
 	
 				/**
@@ -10857,7 +10857,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sPrevious": "Previous"
+				"sPrevious": "قبلی"
 			},
 	
 			/**
@@ -10880,7 +10880,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sEmptyTable": "No data available in table",
+			"sEmptyTable": "داده ای در این جدول موجود نیست!",
 	
 	
 			/**
@@ -10933,7 +10933,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfoEmpty": "Showing 0 to 0 of 0 entries",
+			"sInfoEmpty": "نمایش 0 تا 0 از 0 مقدار",
 	
 	
 			/**
@@ -11097,7 +11097,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sLoadingRecords": "Loading...",
+			"sLoadingRecords": "در حال بارگذاری ...",
 	
 	
 			/**
@@ -11118,7 +11118,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sProcessing": "Processing...",
+			"sProcessing": "در حال پردازش ...",
 	
 	
 			/**
@@ -11153,7 +11153,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sSearch": "Search:",
+			"sSearch": "جستجو:",
 	
 	
 			/**
@@ -11164,7 +11164,7 @@
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.searchPlaceholder
 			 */
-			"sSearchPlaceholder": "",
+			"sSearchPlaceholder": "نام کاربران ...",
 	
 	
 			/**
@@ -11211,7 +11211,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sZeroRecords": "No matching records found"
+			"sZeroRecords": "هیچ مقدار متناظری یافت نشد!"
 		},
 	
 	

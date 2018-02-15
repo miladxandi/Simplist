@@ -3,7 +3,6 @@
 namespace Controller\Main;
 
 
-use Model\Repository\MainFunction\UserRepository;
 use Route\Show\View;
 
 class HomeController
@@ -12,13 +11,12 @@ class HomeController
 
     public function __construct()
     {
-        $this->Username=new UserRepository();
+        //$this->Username=new UserRepository();
     }
     public function Index()
     {
-        $Item= $this->Username->Find(1);
         //$Viewbag="SIMPLIST";
-        View::Process("Main.Home.Index",compact('Item'));
+        View::Process("Main.Home.Index");
     }
     public function Aboutus()
     {

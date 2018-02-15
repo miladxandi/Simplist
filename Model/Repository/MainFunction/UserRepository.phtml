@@ -10,11 +10,10 @@ namespace Model\Repository\MainFunction;
 
 
 use Model\Repository\BaseRepository;
-use Model\Connection;
 //use Model\Eloquent\Panel;
-
 class UserRepository extends BaseRepository
 {
+    Private $Value;
     public function __construct()
     {
         parent::__construct();
@@ -40,6 +39,24 @@ class UserRepository extends BaseRepository
     public function Password($Password)
     {
         $Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->uPass}={$Password}");
+        $Result->fetch(\PDO::FETCH_COLUMN);
+        return $Result->rowCount();
+    }
+    public function Insert($Values)
+    {
+        foreach ($Values as $Value)
+        {
+            if ($Value=="NULL" || $Value=="CURRENT_TIMESTAMP")
+            {
+                $this->Value = $this->Value.' '.$Value.',';
+            }
+            else
+            {
+                $this->Value = $this->Value." '".$Value."',";
+            }
+        }
+        echo $this->Value;
+        $Result = $this->rStatement->Commander("INSERT INTO {$this->Table} ( user_Id, user_Firstname, user_Lastname, user_Nickname, user_Username, user_Password, user_Type, user_Email, user_Phone, user_CreatedAt, user_ExpiredAt, user_Status, user_Image, user_Bio, user_IsPaid ) VALUES ( {$this->Value} )");
         $Result->fetch(\PDO::FETCH_COLUMN);
         return $Result->rowCount();
     }

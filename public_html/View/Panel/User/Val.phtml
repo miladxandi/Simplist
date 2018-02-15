@@ -1,0 +1,5 @@
+<?php
+//var_dump($_POST);
+$MyValue = new Model\Repository\MainFunction\UserRepository();
+//$Value = $_POST['id'].",".$_POST['name'].",".$_POST['lastname'].",".$_POST['nickname'].",".$_POST['username'].",".$_POST['password'].",".$_POST['type'].",".$_POST['email'].",".$_POST['phone'].",".$_POST['created'].",".$_POST['expired'].",".$_POST['status'].",".$_POST['image'].",".$_POST['bio'].",".$_POST['ispaid'];
+echo $MyValue->Insert($_POST);

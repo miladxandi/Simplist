@@ -12,7 +12,7 @@
     <link rel="apple-touch-icon" type="image/x-icon" href="https://assets.gitlab-static.net/uploads/-/system/project/avatar/5242843/SimplistLogo.png">
     <title>SIMPLIST - NOT FOUND</title>
     <?php
-    $Adder = new \Model\Repository\MainFunction\AssetsLoader();
+    $Adder = new Core\Requirement\oLoad("../../..","Style/Panel","Script/Panel","Content/");
     $Adder->Loader("css","Main/main");
     $Adder->Loader("js","Main/main");
     $Adder->Loader("css","bootstrap.min","https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css","false");

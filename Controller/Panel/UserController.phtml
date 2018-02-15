@@ -36,8 +36,12 @@ class UserController
         $Item= $this->Data->Find(1);
         View::Process("Panel.User.Dashboard",compact('Item'));
     }
-    public function Maps()
+    public function Tables()
     {
-        View::Process("Panel.User.Maps");
+        View::Process("Panel.User.Tables");
+    }
+    public function Val()
+    {
+        View::Process("Panel.User.Val");
     }
 }

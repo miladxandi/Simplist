@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Xenon Boostrap Admin Panel" />
+    <meta name="author" content="" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../Content/Shared/Logo.png" id="favicon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="../../../Content/Shared/Logo.png">
+    <link rel="apple-touch-icon" type="image/x-icon" href="../../../Content/Shared/Logo.png">
+    <title>SIMPLIST - TABLES</title>
+    <?php
+
+    $Values = new Model\Repository\MainFunction\UserRepository();
+    $Row =1;
+    $Date=new Core\Requirement\Date();
+    $Values->Table="users";
+    if (!isset($_COOKIE['Username']) &&!($_COOKIE['Username']!=null||$_COOKIE['Username']!=""))
+    {
+        header("Location: /Login");
+
+    }
+    $Adder = new Core\Requirement\oLoad("../../..","Style/Panel","Script/Panel","Content/");
+    $Adder->Loader("css","fonts/fontawesome/css/font-awesome.min");
+    $Adder->Loader("css","fonts/linecons/css/linecons");
+    $Adder->Loader("css","bootstrap");
+    $Adder->Loader("css","xenon-core");
+    $Adder->Loader("css","xenon-forms");
+    $Adder->Loader("css","xenon-components");
+    $Adder->Loader("css","xenon-skins");
+    $Adder->Loader("css","custom");
+    $Adder->Loader("css","mytest");
+    $Adder->Loader("js","jquery-1.11.1.min");
+    $Adder->Loader("js","html5shiv.min","https://oss.maxcdn.com/html5shiv/3.7.2/",false);
+    $Adder->Loader("js","respond.min","https://oss.maxcdn.com/respond/1.4.2/");
+    ?>
+
+	
+	
+</head>
+<body class="page-body right-sidebar" dir="rtl">
+
+
+<div class="settings-pane">
+
+    <a href="#" data-toggle="settings-pane" data-animate="true">
+        &times;
+    </a>
+
+    <div class="settings-pane-inner">
+
+        <div class="row">
+
+            <div class="col-md-4">
+
+                <div class="user-info">
+
+                    <div class="user-image">
+                        <a href="extra-profile.html">
+                            <img src="../../../../Content/Shared/Profile/Milad.png" class="img-responsive img-circle" />
+                        </a>
+                    </div>
+
+                    <div class="user-details">
+
+                        <h3>
+                            <a href="extra-profile.html" class="DefinedFonts">میلاد زندی</a>
+
+                            <!-- Available statuses: is-online, is-idle, is-busy and is-offline -->
+                            <span class="user-status is-online DefinedFonts"></span>
+                        </h3>
+
+                        <p class="user-title DefinedFonts">توسعه دهنده وب</p>
+
+                        <div class="user-links">
+                            <a href="extra-profile.html" class="btn btn-primary DefinedFonts">ویرایش مشخصات</a>
+                            <a href="extra-profile.html" class="btn btn-success DefinedFonts">ارتقاء</a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-8 link-blocks-env">
+
+                <div class="links-block left-sep">
+                    <h4>
+                        <span class="DefinedFonts">اطلاعیه</span>
+                    </h4>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <input type="checkbox" class="cbr cbr-primary DefinedFonts" checked="checked" id="sp-chk1" />
+                            <label for="sp-chk1" class="DefinedFonts">پیام ها</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="cbr cbr-primary DefinedFonts" checked="checked" id="sp-chk2" />
+                            <label for="sp-chk2" class="DefinedFonts">رویدادها</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="cbr cbr-primary DefinedFonts" checked="checked" id="sp-chk3" />
+                            <label for="sp-chk3" class="DefinedFonts">به روز رسانی</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="cbr cbr-primary DefinedFonts" checked="checked" id="sp-chk4" />
+                            <label for="sp-chk4" class="DefinedFonts">زمان آپلود سرور</label>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="links-block left-sep">
+                    <h4>
+                        <a href="#">
+                            <span class="DefinedFonts">میز کمک</span>
+                        </a>
+                    </h4>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#" class="DefinedFonts">
+                                <i class="fa-angle-right"></i>
+                                مرکز پشتیبانی
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="DefinedFonts">
+                                <i class="fa-angle-right"></i>
+                                ارسال بلیط
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="DefinedFonts">
+                                <i class="fa-angle-right"></i>
+                                پروتکل دامنه
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="DefinedFonts">
+                                <i class="fa-angle-right"></i>
+                                شرایط استفاده از خدمات
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="page-container">
+
+    <div class="sidebar-menu toggle-others fixed">
+
+        <div class="sidebar-menu-inner">
+
+            <header class="logo-env">
+
+                <!-- logo -->
+                <div class="logo">
+                    <a href="/Panel" class="logo-expanded">
+                        <?php $Adder->Loader("png","Logo","Shared",true,"","Simplist",40) ?>
+                    </a>
+
+                    <a href="dashboard-1.html" class="logo-collapsed">
+                        <img src="assets/images/logo-collapsed@2x.png" width="40" alt="" />
+                    </a>
+                </div>
+
+                <!-- This will toggle the mobile menu and will be visible only on mobile devices -->
+                <div class="mobile-menu-toggle visible-xs">
+                    <a href="#" data-toggle="user-info-menu">
+                        <i class="fa-bell-o"></i>
+                        <span class="badge badge-success">7</span>
+                    </a>
+
+                    <a href="#" data-toggle="mobile-menu">
+                        <i class="fa-bars"></i>
+                    </a>
+                </div>
+
+                <!-- This will open the popup with user profile settings, you can use for any purpose, just be creative -->
+                <div class="settings-icon">
+                    <a href="#" data-toggle="settings-pane" data-animate="true">
+                        <i class="linecons-cog"></i>
+                    </a>
+                </div>
+
+
+            </header>
+
+
+
+            <ul id="main-menu" class="main-menu" dir="rtl">
+                <!-- add class "multiple-expanded" to allow multiple submenus to open -->
+                <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+                <li class="opened active">
+                    <a href="/Panel">
+                        <i class="fa-home"></i>
+                        <span class="title">خانه</span>
+                    </a>
+
+
+                </li>
+                <li>
+                    <a href="layout-variants.html">
+                        <i class="fa-list-ul"></i>
+                        <span class="title">لیست مناطق تحت پوشش</span>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="layout-variants.html">
+                                <span class="title">روستا ها</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="layout-collapsed-sidebar.html">
+                                <span class="title">آثار تاریخی</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="layout-static-sidebar.html">
+                                <span class="title">مزارع</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="layout-horizontal-menu.html">
+                                <span class="title">دهیاری ها</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="ui-panels.html">
+                        <i class="fa-bar-chart"></i>
+                        <span class="title">داده های آماری</span>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="ui-panels.html">
+                                <span class="title">آمار روستاها</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="ui-buttons.html">
+                                <span class="title">محصولات روستا</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="ui-tabs-accordions.html">
+                                <span class="title">سوغاتی و صنایع دستی</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="ui-modals.html">
+                                <span class="title">شناسنامه روستا</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="ui-panels.html">
+                        <i class="fa-bus"></i>
+                        <span class="title">خدمات روستایی</span>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="ui-panels.html">
+                                <span class="title">مکاتبات و نامه نگاری</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="ui-buttons.html">
+                                <span class="title">دریافت وارسال مدارک</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="ui-tabs-accordions.html">
+                                <span class="title">شکایات</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="ui-modals.html">
+                                <span class="title"> صدای روستا</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="ui-modals.html">
+                                <span class="title">امور تحصیل واختراعات</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="ui-modals.html">
+                                <span class="title"> روستای هوشمند</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                <li class="opened active">
+                    <a href="dashboard-1.html">
+                        <i class="fa-laptop"></i>
+                        <span class="title">دسترسی ها</span>
+                    </a>
+
+
+                </li>
+                <li class="opened active">
+                    <a href="dashboard-1.html">
+                        <i class="fa-folder-open-o"></i>
+                        <span class="title">پرونده های آزاد</span>
+                    </a>
+
+
+                </li>
+
+
+                <li>
+                    <a href="mailbox-main.html">
+                        <i class="fa-file-text-o"></i>
+                        <span class="title">اطلاعیه ها</span>
+                        <span class="label label-success pull-right">5</span>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="mailbox-main.html">
+                                <span class="title">سخنرانی ها</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailbox-compose.html">
+                                <span class="title">پویش ها</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailbox-message.html">
+                                <span class="title">همایش ها</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailbox-message.html">
+                                <span class="title"> رخدادها</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailbox-message.html">
+                                <span class="title">اعلان های عمومی</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="opened active">
+                    <a href="/Panel/Sleep">
+                        <i class="fa-lock"></i>
+                        <span class="title">قفل</span>
+                    </a>
+                <li class="opened active">
+                    <a href="/Login">
+                        <i class="fa-power-off"></i>
+                        <span class="title">خروج</span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+
+		<div class="main-content">
+
+			<!-- User Info, Notifications and Menu Bar -->
+            <nav class="navbar user-info-navbar" role="navigation">
+
+                <!-- Left links for user info navbar -->
+                <ul class="user-info-menu left-links list-inline list-unstyled">
+
+                    <!--<li class="hidden-sm hidden-xs">
+                        <a href="#" data-toggle="sidebar">
+                            <i class="fa-bars"></i>
+                        </a>
+                    </li>-->
+
+                    <li class="dropdown hover-line" style="min-height: 77px;">
+                        <a data-toggle="dropdown">
+                            <i class="fa-envelope-o"></i>
+                            <span class="badge badge-green DefinedFonts">4</span>
+                        </a>
+
+                        <!--<ul class="dropdown-menu messages">
+
+
+                            <li class="external">
+                                <a href="blank-sidebar.html">
+                                    <span class="DefinedFonts">همه ی پیام ها</span>
+                                    <i class="fa-link-ext"></i>
+                                </a>
+                            </li>
+                        </ul>-->
+                    </li>
+                    <li style="min-height: 77px;">
+                        <a href="#" data-toggle="chat">
+                            <i class="fa-comments-o"></i>
+                        </a>
+                    </li>
+                </ul>
+
+
+                <!-- Right links for user info navbar -->
+                <ul class="user-info-menu right-links list-inline list-unstyled" dir="rtl">
+
+                    <li class="search-form" style="min-height: 77px;"><!-- You can add "always-visible" to show make the search input visible -->
+
+                        <form method="get" action="extra-search.html">
+                            <input name="s" class="form-control search-field DefinedFonts" placeholder="جستجو..." type="text">
+
+                            <button type="submit" class="btn btn-link">
+                                <i class="linecons-search"></i>
+                            </button>
+                        </form>
+
+                    </li>
+
+                    <li class="dropdown user-profile" dir="rtl" style="min-height: 77px;">
+                        <a href="#" data-toggle="dropdown">
+                            <img src="../../../../Content/Shared/Profile/Milad.png" alt="user-image" class="img-circle img-inline userpic-32" width="28">
+                            <span class="DefinedFonts">
+								میلاد زندی
+								<i class="fa-angle-down"></i>
+							</span>
+                        </a>
+
+                        <ul class="dropdown-menu pull-right user-profile-menu list-unstyled" style="direction: rtl">
+                            <li>
+                                <a href="#edit-profile" class="DefinedFonts  pull-right">
+                                    <i class="fa-edit"></i>
+                                    پست جدید
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#settings" class="DefinedFonts pull-right">
+                                    <i class="fa-wrench"></i>
+                                    تنظیمات
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#profile" class="DefinedFonts pull-right">
+                                    <i class="fa-user"></i>
+                                    پروفایل
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#help" class="DefinedFonts pull-right">
+                                    <i class="fa-info"></i>
+                                    راهنما
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Panel/Sleep" class="DefinedFonts pull-right">
+                                    <i class="fa-lock"></i>
+                                    قفل
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Login" class="last DefinedFonts pull-right">
+                                    <i class="fa-lock"></i>
+                                    خروج
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="hidden-sm hidden-xs" style="min-height: 77px;">
+                        <a href="#" data-toggle="sidebar">
+                            <i class="fa-bars"></i>
+                        </a>
+                    </li>
+
+                </ul>
+
+            </nav>
+            <div class="page-title">
+
+
+
+			</div>
+
+
+				<div >
+
+					<div class="panel panel-default">
+						<div class="panel-heading">تحلیل های این هفته</div>
+						<table class="table">
+							<thead>
+								<tr>
+									<th>نوع</th>
+									<th width="20%">جمع</th>
+									<th width="50%">جدول هفتگی</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>بازدید ها</td>
+									<td>23,670</td>
+									<td>
+										<div class="sparkline line2010 dx-visibility-change-handler"><svg width="169" height="30" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" stroke="none" stroke-width="0" fill="none" class="dxsl dxsl-sparkline" direction="ltr" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); display: block; overflow: hidden;"><g class="dxc-labels" visibility="hidden"></g><g class="dxsl-series"><g class="dxc-series"><g class="dxc-elements" stroke="#f7aa47" stroke-width="2"><path stroke-width="2" d="M 5 19 L 19 24 L 34 17 L 48 13 L 63 9 L 77 23 L 92 23 L 106 19 L 121 20 L 135 14 L 150 12 L 164 6"></path></g><g fill="#ffffff" stroke="#ffffff" stroke-width="2" r="3" visibility="hidden" class="dxc-markers" opacity="1"><circle cx="0" cy="0" r="3" fill="#ffffff" stroke="#666666" stroke-width="2" visibility="visible" transform="translate(5,19)"></circle><circle cx="0" cy="0" r="3" fill="#ffffff" stroke="#4fcdfc" stroke-width="2" visibility="visible" transform="translate(19,24)"></circle><circle cx="0" cy="0" r="3" fill="#ffffff" stroke="#d5080f" stroke-width="2" visibility="visible" transform="translate(164,6)"></circle></g></g></g></svg><div style="position: relative"><svg width="169" height="30" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" stroke="none" stroke-width="0" fill="none" class="dxsl dxsl-tooltip" direction="ltr" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); display: block; overflow: hidden; left: 0px; top: -30px; position: absolute;"><g class="dxsl-tooltip-group" style="z-index: 1;"></g><g class="dxsl-tooltip-tracker-group"><rect x="0" y="0" width="169" height="30" rx="0" ry="0" fill="grey" opacity="0"></rect></g></svg></div></div>
+									</td>
+								</tr>
+								<tr>
+									<td>نرخ پرش</td>
+									<td>37,5%</td>
+									<td>
+										<div class="sparkline spline2010 dx-visibility-change-handler"><svg width="169" height="30" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" stroke="none" stroke-width="0" fill="none" class="dxsl dxsl-sparkline" direction="ltr" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); display: block; overflow: hidden;"><g class="dxc-labels" visibility="hidden"></g><g class="dxsl-series"><g class="dxc-series"><g class="dxc-elements" stroke="#68b828" stroke-width="3"><path stroke-width="3" d="M 5 23 C 5 23 12 24 19 24 C 26.5 24 29 23.517241379310345 34 23 C 38.666666666666664 22.517241379310345 43.333333333333336 21.80459770114943 48 21 C 53 20.137931034482758 58 18.862068965517242 63 18 C 67.66666666666667 17.195402298850574 70 16 77 16 C 84.5 16 84.5 18 92 18 C 99 18 101.33333333333333 17.804597701149426 106 17 C 111 16.137931034482758 116 14.379310344827587 121 13 C 125.66666666666667 11.712643678160921 130.33333333333334 9.96551724137931 135 9 C 140 7.96551724137931 145 7.517241379310345 150 7 C 154.66666666666666 6.517241379310345 164 6 164 6"></path></g><g fill="#ffffff" stroke="#ffffff" stroke-width="2" r="3" visibility="hidden" class="dxc-markers" opacity="1"><circle cx="0" cy="0" r="3" fill="#ffffff" stroke="#00b19d" stroke-width="2" visibility="visible" transform="translate(19,24)"></circle><circle cx="0" cy="0" r="3" fill="#ffffff" stroke="#7c38bc" stroke-width="2" visibility="visible" transform="translate(164,6)"></circle></g></g></g></svg><div style="position: relative"><svg width="169" height="30" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" stroke="none" stroke-width="0" fill="none" class="dxsl dxsl-tooltip" direction="ltr" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); display: block; overflow: hidden; left: 0px; top: -30px; position: absolute;"><g class="dxsl-tooltip-group" style="z-index: 1;"></g><g class="dxsl-tooltip-tracker-group"><rect x="0" y="0" width="169" height="30" rx="0" ry="0" fill="grey" opacity="0"></rect></g></svg></div></div>
+									</td>
+								</tr>
+								<tr>
+									<td>نمایش صفحات</td>
+									<td>107,221</td>
+									<td>
+										<div class="sparkline stepline2010 dx-visibility-change-handler"><svg width="169" height="30" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" stroke="none" stroke-width="0" fill="none" class="dxsl dxsl-sparkline" direction="ltr" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); display: block; overflow: hidden;"><g class="dxc-labels" visibility="hidden"></g><g class="dxsl-series"><g class="dxc-series"><g class="dxc-elements" stroke="#7c38bc" stroke-width="2"><path stroke-width="2" d="M 5 24 L 19 24 L 19 17 L 34 17 L 34 14 L 48 14 L 48 12 L 63 12 L 63 6 L 77 6 L 77 12 L 92 12 L 92 14 L 106 14 L 106 10 L 121 10 L 121 9 L 135 9 L 135 16 L 150 16 L 150 14 L 164 14 L 164 15"></path></g><g fill="#333" stroke="#333" stroke-width="2" r="4" visibility="hidden" class="dxc-markers" opacity="1"><path fill="#333" stroke="#ccc" stroke-width="2" r="4" visibility="visible" d="M -4 -4 L 4 -4 L 4 4 L -4 4 L -4 -4 Z" transform="translate(5,24)"></path><path fill="#333" stroke="#ccc" stroke-width="2" r="4" visibility="visible" d="M -4 -4 L 4 -4 L 4 4 L -4 4 L -4 -4 Z" transform="translate(164,15)"></path></g></g></g></svg><div style="position: relative"><svg width="169" height="30" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" stroke="none" stroke-width="0" fill="none" class="dxsl dxsl-tooltip" direction="ltr" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); display: block; overflow: hidden; left: 0px; top: -30px; position: absolute;"><g class="dxsl-tooltip-group" transform="translate(0,0) scale(1,1)" style="z-index: 1;"><path d="M 85 120 L 95 110.5 L 132.5 110.5 L 132.5 16.5 L 38.5 16.5 L 38.5 110.5 L 75 110.5 Z" filter="url(#DevExpress_28)" stroke-width="1" stroke="#d3d3d3" visibility="hidden" fill="#ffffff"></path><g text-anchor="middle" visibility="hidden" style="fill: rgb(35, 35, 35); font-family: &quot;Segoe UI&quot;, &quot;Helvetica Neue&quot;, &quot;Trebuchet MS&quot;, Verdana; font-size: 12px; font-weight: 400;"><text x="57" y="44" text-anchor="start"><tspan x="57" dy="0">Start:</tspan></text><text x="114" y="44" text-anchor="end"><tspan x="114" dy="0">17</tspan></text><text x="57" y="60" text-anchor="start"><tspan x="57" dy="0">End:</tspan></text><text x="114" y="60" text-anchor="end"><tspan x="114" dy="0">32</tspan></text><text x="57" y="76" text-anchor="start"><tspan x="57" dy="0">Min:</tspan></text><text x="114" y="76" text-anchor="end"><tspan x="114" dy="0">17</tspan></text><text x="57" y="92" text-anchor="start"><tspan x="57" dy="0">Max:</tspan></text><text x="114" y="92" text-anchor="end"><tspan x="114" dy="0">47</tspan></text></g></g><g class="dxsl-tooltip-tracker-group"><rect x="0" y="0" width="169" height="30" rx="0" ry="0" fill="grey" opacity="0"></rect></g><defs><filter id="DevExpress_28" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur in="SourceGraphic" result="gaussianBlurResult" stdDeviation="2"></feGaussianBlur><feOffset in="gaussianBlurResult" result="offsetResult" dx="0" dy="4"></feOffset><feFlood result="floodResult" flood-color="#000000" flood-opacity="0.4"></feFlood><feComposite in="floodResult" in2="offsetResult" operator="in" result="compositeResult"></feComposite><feComposite in="SourceGraphic" in2="compositeResult" operator="over"></feComposite></filter></defs></svg></div></div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+				</div>
+
+
+
+
+							<div class="chart-item-bg-2">
+						<div class="chart-item-num" data-count="this" data-from="0" data-to="98" data-suffix="%" data-duration="2">98%</div>
+						<div class="chart-item-desc">
+							<p class="col-lg-7">نرخ رشد افزایش تعداد کاربران حاضر در سایت</p>
+						</div>
+						<div class="chart-item-env">
+							<div id="doughnut-1" style="width: 200px; user-select: none;" class="dx-visibility-change-handler"><svg width="200" height="130" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" stroke="none" stroke-width="0" fill="none" class="dxc dxc-chart" direction="ltr" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); display: block; overflow: hidden;"><defs><clipPath id="DevExpress_1"><rect x="0" y="0" width="200" height="130" rx="0" ry="0" fill="none" stroke="none" stroke-width="0"></rect></clipPath><pattern id="DevExpress_2" width="10" height="10" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="10" height="10" rx="0" ry="0" fill="#68b828" opacity="0.75"></rect><path stroke-width="4" stroke="#68b828" d="M 5 -5 L -5 5M 0 10 L 10 0 M 15 5 L 5 15"></path></pattern><pattern id="DevExpress_3" width="10" height="10" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="10" height="10" rx="0" ry="0" fill="#68b828" opacity="0.5"></rect><path stroke-width="4" stroke="#68b828" d="M 5 -5 L -5 5M 0 10 L 10 0 M 15 5 L 5 15"></path></pattern><pattern id="DevExpress_4" width="10" height="10" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="10" height="10" rx="0" ry="0" fill="#7c38bc" opacity="0.75"></rect><path stroke-width="4" stroke="#7c38bc" d="M 5 -5 L -5 5M 0 10 L 10 0 M 15 5 L 5 15"></path></pattern><pattern id="DevExpress_5" width="10" height="10" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="10" height="10" rx="0" ry="0" fill="#7c38bc" opacity="0.5"></rect><path stroke-width="4" stroke="#7c38bc" d="M 5 -5 L -5 5M 0 10 L 10 0 M 15 5 L 5 15"></path></pattern><pattern id="DevExpress_6" width="10" height="10" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="10" height="10" rx="0" ry="0" fill="#0e62c7" opacity="0.75"></rect><path stroke-width="4" stroke="#0e62c7" d="M 5 -5 L -5 5M 0 10 L 10 0 M 15 5 L 5 15"></path></pattern><pattern id="DevExpress_7" width="10" height="10" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="10" height="10" rx="0" ry="0" fill="#0e62c7" opacity="0.5"></rect><path stroke-width="4" stroke="#0e62c7" d="M 5 -5 L -5 5M 0 10 L 10 0 M 15 5 L 5 15"></path></pattern><pattern id="DevExpress_8" width="10" height="10" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="10" height="10" rx="0" ry="0" fill="#fcd036" opacity="0.75"></rect><path stroke-width="4" stroke="#fcd036" d="M 5 -5 L -5 5M 0 10 L 10 0 M 15 5 L 5 15"></path></pattern><pattern id="DevExpress_9" width="10" height="10" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="10" height="10" rx="0" ry="0" fill="#fcd036" opacity="0.5"></rect><path stroke-width="4" stroke="#fcd036" d="M 5 -5 L -5 5M 0 10 L 10 0 M 15 5 L 5 15"></path></pattern><pattern id="DevExpress_10" width="10" height="10" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="10" height="10" rx="0" ry="0" fill="#4fcdfc" opacity="0.75"></rect><path stroke-width="4" stroke="#4fcdfc" d="M 5 -5 L -5 5M 0 10 L 10 0 M 15 5 L 5 15"></path></pattern><pattern id="DevExpress_11" width="10" height="10" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="10" height="10" rx="0" ry="0" fill="#4fcdfc" opacity="0.5"></rect><path stroke-width="4" stroke="#4fcdfc" d="M 5 -5 L -5 5M 0 10 L 10 0 M 15 5 L 5 15"></path></pattern><pattern id="DevExpress_12" width="10" height="10" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="10" height="10" rx="0" ry="0" fill="#00b19d" opacity="0.75"></rect><path stroke-width="4" stroke="#00b19d" d="M 5 -5 L -5 5M 0 10 L 10 0 M 15 5 L 5 15"></path></pattern><pattern id="DevExpress_13" width="10" height="10" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="10" height="10" rx="0" ry="0" fill="#00b19d" opacity="0.5"></rect><path stroke-width="4" stroke="#00b19d" d="M 5 -5 L -5 5M 0 10 L 10 0 M 15 5 L 5 15"></path></pattern><pattern id="DevExpress_14" width="10" height="10" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="10" height="10" rx="0" ry="0" fill="#ff6264" opacity="0.75"></rect><path stroke-width="4" stroke="#ff6264" d="M 5 -5 L -5 5M 0 10 L 10 0 M 15 5 L 5 15"></path></pattern><pattern id="DevExpress_15" width="10" height="10" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="10" height="10" rx="0" ry="0" fill="#ff6264" opacity="0.5"></rect><path stroke-width="4" stroke="#ff6264" d="M 5 -5 L -5 5M 0 10 L 10 0 M 15 5 L 5 15"></path></pattern><pattern id="DevExpress_16" width="10" height="10" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="10" height="10" rx="0" ry="0" fill="#f7aa47" opacity="0.75"></rect><path stroke-width="4" stroke="#f7aa47" d="M 5 -5 L -5 5M 0 10 L 10 0 M 15 5 L 5 15"></path></pattern><pattern id="DevExpress_17" width="10" height="10" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="10" height="10" rx="0" ry="0" fill="#f7aa47" opacity="0.5"></rect><path stroke-width="4" stroke="#f7aa47" d="M 5 -5 L -5 5M 0 10 L 10 0 M 15 5 L 5 15"></path></pattern><pattern id="DevExpress_18" width="10" height="10" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="10" height="10" rx="0" ry="0" fill="#9aea5a" opacity="0.75"></rect><path stroke-width="4" stroke="#9aea5a" d="M 5 -5 L -5 5M 0 10 L 10 0 M 15 5 L 5 15"></path></pattern><pattern id="DevExpress_19" width="10" height="10" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="10" height="10" rx="0" ry="0" fill="#9aea5a" opacity="0.5"></rect><path stroke-width="4" stroke="#9aea5a" d="M 5 -5 L -5 5M 0 10 L 10 0 M 15 5 L 5 15"></path></pattern><pattern id="DevExpress_20" width="10" height="10" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="10" height="10" rx="0" ry="0" fill="#ae6aee" opacity="0.75"></rect><path stroke-width="4" stroke="#ae6aee" d="M 5 -5 L -5 5M 0 10 L 10 0 M 15 5 L 5 15"></path></pattern><pattern id="DevExpress_21" width="10" height="10" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="10" height="10" rx="0" ry="0" fill="#ae6aee" opacity="0.5"></rect><path stroke-width="4" stroke="#ae6aee" d="M 5 -5 L -5 5M 0 10 L 10 0 M 15 5 L 5 15"></path></pattern><filter id="DevExpress_22" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur in="SourceGraphic" result="gaussianBlurResult" stdDeviation="2"></feGaussianBlur><feOffset in="gaussianBlurResult" result="offsetResult" dx="0" dy="4"></feOffset><feFlood result="floodResult" flood-color="#000000" flood-opacity="0.4"></feFlood><feComposite in="floodResult" in2="offsetResult" operator="in" result="compositeResult"></feComposite><feComposite in="SourceGraphic" in2="compositeResult" operator="over"></feComposite></filter></defs><g class="dxc-legend" clip-path="url(#DevExpress_1)"></g><g class="dxc-series-group"><g class="dxc-series"><g class="dxc-markers"><path stroke-linejoin="round" fill="#68b828" stroke="#ffffff" stroke-width="0" d="M 42.45253929419554 95.22068441173845 A 65 65 0 0 0 165 65.00000000000001 L 132 65.00000000000001 A 32 32 0 0 1 71.6689424217578 79.877875402702 Z"></path><path stroke-linejoin="round" fill="#7c38bc" stroke="#ffffff" stroke-width="0" d="M 35.9371217445065 54.00238072936612 A 65 65 0 0 0 42.45253929419554 95.22068441173845 L 71.6689424217578 79.877875402702 A 32 32 0 0 1 68.46135224344935 59.585787435995634 Z"></path><path stroke-linejoin="round" fill="#0e62c7" stroke="#ffffff" stroke-width="0" d="M 39.931580671694995 40.16484347947625 A 65 65 0 0 0 35.9371217445065 54.00238072936612 L 68.46135224344935 59.585787435995634 A 32 32 0 0 1 70.42785509991138 52.773461405280614 Z"></path><path stroke-linejoin="round" fill="#fcd036" stroke="#ffffff" stroke-width="0" d="M 53.48679482995417 19.596016201117095 A 65 65 0 0 0 39.931580671694995 40.16484347947625 L 70.42785509991138 52.773461405280614 A 32 32 0 0 1 77.10119130090051 42.64726951439611 Z"></path><path stroke-linejoin="round" fill="#4fcdfc" stroke="#ffffff" stroke-width="0" d="M 79.03913209598424 3.472428808619455 A 65 65 0 0 0 53.48679482995417 19.596016201117095 L 77.10119130090051 42.64726951439611 A 32 32 0 0 1 89.68080349340762 34.709503413474195 Z"></path><path stroke-linejoin="round" fill="#00b19d" stroke="#ffffff" stroke-width="0" d="M 80.43798988447506 3.0134872715031733 A 65 65 0 0 0 79.03913209598424 3.472428808619455 L 89.68080349340762 34.709503413474195 A 32 32 0 0 1 90.36947194312619 34.48356296443233 Z"></path><path stroke-linejoin="round" fill="#ff6264" stroke="#ffffff" stroke-width="0" d="M 110.57568745559664 0.8661178873324786 A 65 65 0 0 0 80.43798988447506 3.0134872715031733 L 90.36947194312619 34.48356296443233 A 32 32 0 0 1 105.2064922858322 33.42639649837906 Z"></path><path stroke-linejoin="round" fill="#f7aa47" stroke="#ffffff" stroke-width="0" d="M 138.42830559945935 12.5760996419137 A 65 65 0 0 0 110.57568745559664 0.8661178873324786 L 105.2064922858322 33.42639649837906 A 32 32 0 0 1 118.91855044896461 39.19131059294213 Z"></path><path stroke-linejoin="round" fill="#9aea5a" stroke="#ffffff" stroke-width="0" d="M 157.97775376799646 35.613267142848755 A 65 65 0 0 0 138.42830559945935 12.5760996419137 L 118.91855044896461 39.19131059294213 A 32 32 0 0 1 128.54289416270595 50.53268536263323 Z"></path><path stroke-linejoin="round" fill="#ae6aee" stroke="#ffffff" stroke-width="0" d="M 165 65 A 65 65 0 0 0 157.97775376799646 35.613267142848755 L 128.54289416270595 50.53268536263323 A 32 32 0 0 1 132 65 Z"></path></g></g></g><g class="dxc-labels-group"></g><g class="dxc-labels" visibility="hidden" opacity="1"></g><g class="dxc-tooltip"><path d="M 0 0 Z" filter="url(#DevExpress_22)" stroke-width="1" stroke="#d3d3d3" visibility="hidden"></path><g text-anchor="middle" visibility="hidden" style="font-family: &quot;Segoe UI&quot;, &quot;Helvetica Neue&quot;, &quot;Trebuchet MS&quot;, Verdana; font-weight: 400; font-size: 12px; fill: rgb(35, 35, 35); cursor: default;"><text x="0" y="0" style="font-size: 12px;"></text></g></g><g class="dxc-trackers" opacity="0.0001" stroke="gray" fill="gray"><g class="dxc-crosshair-trackers" stroke="none" fill="grey"></g><g class="dxc-series-trackers"></g><g class="dxc-markers-trackers" stroke="none" fill="grey"><g><path stroke-linejoin="round" d="M 42.45253929419554 95.22068441173845 A 65 65 0 0 0 165 65.00000000000001 L 132 65.00000000000001 A 32 32 0 0 1 71.6689424217578 79.877875402702 Z"></path><path stroke-linejoin="round" d="M 35.9371217445065 54.00238072936612 A 65 65 0 0 0 42.45253929419554 95.22068441173845 L 71.6689424217578 79.877875402702 A 32 32 0 0 1 68.46135224344935 59.585787435995634 Z"></path><path stroke-linejoin="round" d="M 39.931580671694995 40.16484347947625 A 65 65 0 0 0 35.9371217445065 54.00238072936612 L 68.46135224344935 59.585787435995634 A 32 32 0 0 1 70.42785509991138 52.773461405280614 Z"></path><path stroke-linejoin="round" d="M 53.48679482995417 19.596016201117095 A 65 65 0 0 0 39.931580671694995 40.16484347947625 L 70.42785509991138 52.773461405280614 A 32 32 0 0 1 77.10119130090051 42.64726951439611 Z"></path><path stroke-linejoin="round" d="M 79.03913209598424 3.472428808619455 A 65 65 0 0 0 53.48679482995417 19.596016201117095 L 77.10119130090051 42.64726951439611 A 32 32 0 0 1 89.68080349340762 34.709503413474195 Z"></path><path stroke-linejoin="round" d="M 80.43798988447506 3.0134872715031733 A 65 65 0 0 0 79.03913209598424 3.472428808619455 L 89.68080349340762 34.709503413474195 A 32 32 0 0 1 90.36947194312619 34.48356296443233 Z"></path><path stroke-linejoin="round" d="M 110.57568745559664 0.8661178873324786 A 65 65 0 0 0 80.43798988447506 3.0134872715031733 L 90.36947194312619 34.48356296443233 A 32 32 0 0 1 105.2064922858322 33.42639649837906 Z"></path><path stroke-linejoin="round" d="M 138.42830559945935 12.5760996419137 A 65 65 0 0 0 110.57568745559664 0.8661178873324786 L 105.2064922858322 33.42639649837906 A 32 32 0 0 1 118.91855044896461 39.19131059294213 Z"></path><path stroke-linejoin="round" d="M 157.97775376799646 35.613267142848755 A 65 65 0 0 0 138.42830559945935 12.5760996419137 L 118.91855044896461 39.19131059294213 A 32 32 0 0 1 128.54289416270595 50.53268536263323 Z"></path><path stroke-linejoin="round" d="M 165 65 A 65 65 0 0 0 157.97775376799646 35.613267142848755 L 128.54289416270595 50.53268536263323 A 32 32 0 0 1 132 65 Z"></path></g></g></g><g></g></svg></div>
+						</div>
+					</div>
+
+
+
+
+
+
+
+			<!-- Basic Setup -->
+
+
+
+			<!-- Removing search and results count filter -->
+
+
+
+			<!-- Custom column filtering -->
+
+
+
+			<!-- Table exporting -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title DefinedFonts">جدول کاربران</h3>
+
+					<div class="panel-options">
+						<a href="#" data-toggle="panel">
+							<span class="collapse-icon">&ndash;</span>
+							<span class="expand-icon">+</span>
+						</a>
+						<a href="#" data-toggle="remove">
+							&times;
+						</a>
+					</div>
+				</div>
+				<div class="panel-body">
+
+					<script type="text/javascript">
+					jQuery(document).ready(function($)
+					{
+						$("#example-4").dataTable({
+							dom: "<'row'<'col-sm-5'l><'col-sm-7'Tf>r>"+
+								 "t"+
+								 "<'row'<'col-xs-6'i><'col-xs-6'p>>",
+							tableTools: {
+								sSwfPath: "../../../js/datatables/tabletools/copy_csv_xls_pdf.swf"
+							}
+						});
+					});
+					</script>
+
+					<table class="table table-bordered table-striped" id="example-4">
+						<thead>
+							<tr>
+								<th>ردیف</th>
+								<th>نام</th>
+								<th>نام خانوادگی</th>
+								<th>نام کاربری</th>
+								<th>نوع کاربر</th>
+								<th>تاریخ انقضا</th>
+							</tr>
+						</thead>
+
+						<tfoot>
+							<tr>
+                                <th>ردیف</th>
+                                <th>نام</th>
+                                <th>نام خانوادگی</th>
+                                <th>نام کاربری</th>
+                                <th>نوع کاربر</th>
+                                <th>تاریخ انقضا</th>
+							</tr>
+						</tfoot>
+
+						<tbody>
+                        <?php foreach($Values->All() as $Value): ?>
+
+							<tr>
+								<td><?php echo $Row; $Row++ ?></td>
+								<td><?php echo $Value['user_Firstname']; ?></td>
+								<td><?php echo $Value['user_Lastname']; ?></td>
+								<td><?php echo $Value['user_Username']; ?></td>
+								<td><?php if($Value['user_Type']=="Admin"){echo "مدیر";}else if($Value['user_Type']=="Student"){echo "دانشجو";}else{echo "کاربر عمومی";} ?></td>
+								<td><?php list($Year,$Month,$Day)=explode("-",$Value['user_ExpiredAt']);
+                                    if($Year=="0000"){echo "نا محدود";}else{echo $Year;}?></td>
+							</tr>
+
+                        <?php endforeach; ?>
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+			<!-- Main Footer -->
+			<!-- Choose between footer styles: "footer-type-1" or "footer-type-2" -->
+			<!-- Add class "sticky" to  always stick the footer to the end of page (if page contents is small) -->
+			<!-- Or class "fixed" to  always fix the footer to the end of page -->
+			<footer class="main-footer sticky footer-type-1">
+
+				<div class="footer-inner">
+
+					<!-- Add your copyright text here -->
+					<div class="footer-text">
+						&copy; 2014
+						<strong>Xenon</strong>
+						theme by <a href="http://laborator.co" target="_blank">Laborator</a>
+					</div>
+
+
+					<!-- Go to Top Link, just add rel="go-top" to any link to add this functionality -->
+					<div class="go-up">
+
+						<a href="#" rel="go-top">
+							<i class="fa-angle-up"></i>
+						</a>
+
+					</div>
+
+				</div>
+
+			</footer>
+		</div>
+
+
+    <div id="chat" class="fixed">
+
+        <div class="chat-inner">
+
+
+            <h2 class="chat-header DefinedFonts">
+                <a href="#" class="chat-close" data-toggle="chat">
+                    <i class="fa-plus-circle rotate-45deg"></i>
+                </a>
+                چت
+                <span class="badge badge-success is-hidden">0</span>
+            </h2>
+
+            <script type="text/javascript">
+                // Here is just a sample how to open chat conversation box
+                jQuery(document).ready(function($)
+                {
+                    var $chat_conversation = $(".chat-conversation");
+
+                    $(".chat-group a").on('click', function(ev)
+                    {
+                        ev.preventDefault();
+
+                        $chat_conversation.toggleClass('is-open');
+
+                        $(".chat-conversation textarea").trigger('autosize.resize').focus();
+                    });
+
+                    $(".conversation-close").on('click', function(ev)
+                    {
+                        ev.preventDefault();
+                        $chat_conversation.removeClass('is-open');
+                    });
+                });
+            </script>
+
+
+            <div class="chat-group">
+                <strong class="DefinedFonts">رؤسا</strong>
+
+                <a href="#"><span class="user-status is-online DefinedFonts"></span> <em class="DefinedFonts">فرماندار - جناب مهندس رضایی</em></a>
+                <a href="#"><span class="user-status is-online DefinedFonts"></span> <em class="DefinedFonts">معاونت فرماندار - جناب مهندس بهرامی</em></a>
+                <a href="#"><span class="user-status is-busy DefinedFonts"></span> <em class="DefinedFonts">رئیس واحد - سرکار خانم مهندس خاتمی</em></a>
+                <a href="#"><span class="user-status is-idle DefinedFonts"></span> <em class="DefinedFonts">معاونت واحد - سرکار خانم مهندس مقصودی</em></a>
+            </div>
+
+
+            <div class="chat-group">
+                <strong class="DefinedFonts">همکاران</strong>
+
+                <a href="#"><span class="user-status is-busy DefinedFonts"></span> <em class="DefinedFonts">مدیر دفتر - جناب آقای وفایی</em></a>
+                <a href="#"><span class="user-status is-offline DefinedFonts"></span> <em class="DefinedFonts">دهیاری ارژن - سرکار خانم قصر فخری</em></a>
+                <a href="#"><span class="user-status is-offline DefinedFonts"></span> <em class="DefinedFonts">بایگانی - جناب آقای دعوت</em></a>
+            </div>
+
+
+            <div class="chat-group">
+                <strong>کاربران</strong>
+
+                <a href="#"><span class="user-status is-onlin"></span <em class="DefinedFonts">رامین شریفی</em></a>
+                <a href="#"><span class="user-status is-onlin"></span> <em class="DefinedFonts">اسماء اوژن</em></a>
+                <a href="#"><span class="user-status is-onlin"></span> <em class="DefinedFonts">روژینا بنیادی</em></a>
+                <a href="#"><span class="user-status is-onlin"></span> <em class="DefinedFonts">سیروس فرامرزی</em></a>
+                <a href="#"><span class="user-status is-busy"></span> <em class="DefinedFonts">لیلا ماهر</em></a>
+                <a href="#"><span class="user-status is-busy"></span> <em class="DefinedFonts">داود شاهیاری</em></a>
+                <a href="#"><span class="user-status is-busy"></span> <em class="DefinedFonts">شیدا زمانی</em></a>
+                <a href="#"><span class="user-status is-busy"></span> <em class="DefinedFonts">مینا آقاجانی</em></a>
+                <a href="#"><span class="user-status is-idle"></span> <em class="DefinedFonts">ملیکا شاهرخ</em></a>
+                <a href="#"><span class="user-status is-offline"></span> <em class="DefinedFonts">رضا کرود</em></a>
+                <a href="#"><span class="user-status is-offline"></span> <em class="DefinedFonts">بهرام ایزدی</em></a>
+                <a href="#"><span class="user-status is-offline"></span> <em class="DefinedFonts">دنیا شاهسون</em></a>
+                <a href="#"><span class="user-status is-offline"></span> <em class="DefinedFonts">دینا شاهسون</em></a>
+                <a href="#"><span class="user-status is-offline"></span> <em class="DefinedFonts">کامران ابوطالبی</em></a>
+                <a href="#"><span class="user-status is-offline"></span> <em class="DefinedFonts">فریبا رجب زاده</em></a>
+                <a href="#"><span class="user-status is-offline"></span> <em class="DefinedFonts">پریا غفاری</em></a>
+            </div>
+
+        </div>
+
+        <!-- conversation template -->
+        <div class="chat-conversation">
+
+            <div class="conversation-header">
+                <a href="#" class="conversation-close">
+                    &times;
+                </a>
+
+                <span class="user-status is-online"></span>
+                <span class="display-name DefinedFonts"><?php echo "جناب آقای ".$_COOKIE['Username']." ".$_COOKIE['Userlname']; ?></span>
+                <small class="DefinedFonts"> آنلاین </small>
+            </div>
+
+            <ul class="conversation-body">
+                <li>
+                    <span class="user DefinedFonts">فرماندار - جناب مهندس رضایی</span>
+                    <span class="time">09:00</span>
+                    <p class="DefinedFonts">هستید؟</p>
+                </li>
+                <li class="odd">
+                    <span class="user DefinedFonts">فرماندار - جناب مهندس رضایی</span>
+                    <span class="time">09:25</span>
+                    <p class="DefinedFonts">لطفا، پرونده های دفتر مرکزی را بفرستید</p>
+                </li>
+                <li>
+                    <span class="user DefinedFonts">فرماندار - جناب مهندس رضایی</span>
+                    <span class="time">09:26</span>
+                    <p class="DefinedFonts">بنده برای جلسه امروز نیاز به مستندات دارم.</p>
+                </li>
+                <li class="odd">
+                    <span class="user DefinedFonts">فرماندار - جناب مهندس رضایی</span>
+                    <span class="time">09:27</span>
+                    <p class="DefinedFonts">سلام جناب زندی</p>
+                </li>
+            </ul>
+
+            <div class="chat-textarea">
+                <textarea class="form-control autogrow DefinedFonts" placeholder="پیام خود را بنویسید..."></textarea>
+            </div>
+
+        </div>
+
+    </div>
+
+
+	</div>
+
+
+
+
+
+    <?php
+    $Adder->Loader("js","datatables/dataTables.bootstrap");
+    $Adder->Loader("js","bootstrap.min");
+    $Adder->Loader("js","TweenMax.min");
+    $Adder->Loader("js","resizeable");
+    $Adder->Loader("js","joinable");
+    $Adder->Loader("js","xenon-api");
+    $Adder->Loader("js","xenon-toggles");
+    $Adder->Loader("js","jquery-validate/jquery.validate.min");
+    $Adder->Loader("js","toastr/toastr.min");
+    $Adder->Loader("js","jvectormap/jquery-jvectormap-1.2.2.min");
+    $Adder->Loader("js","jvectormap/regions/jquery-jvectormap-world-mill-en");
+    $Adder->Loader("js","xenon-widgets");
+    $Adder->Loader("js","datatables/js/jquery.dataTables.min");
+    $Adder->Loader("js","datatables/dataTables.bootstrap");
+    $Adder->Loader("js","datatables/yadcf/jquery.dataTables.yadcf");
+    $Adder->Loader("js","datatables/tabletools/dataTables.tableTools.min");
+    $Adder->Loader("js","xenon-custom");
+    ?>
+</body>
+</html>

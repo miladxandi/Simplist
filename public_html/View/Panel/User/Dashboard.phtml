@@ -7,9 +7,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="description" content="Xenon Boostrap Admin Panel" />
 	<meta name="author" content="" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../../../Content/Shared/Logo.png" id="favicon">
-    <link rel="apple-touch-icon" type="image/x-icon" href="../../../../Content/Shared/Logo.png">
-    <link rel="apple-touch-icon" type="image/x-icon" href="../../../../Content/Shared/Logo.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../../../Content/Shared/Logo.png" id="favicon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="../../../Content/Shared/Logo.png">
+    <link rel="apple-touch-icon" type="image/x-icon" href="../../../Content/Shared/Logo.png">
 	<title>SIMPLIST - Panel</title>
 
     <?php
@@ -149,12 +149,9 @@
 		
 	</div>
 	
-	<div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
-			
-		<!-- Add "fixed" class to make the sidebar fixed always to the browser viewport. -->
-		<!-- Adding class "toggle-others" will keep only one menu item open at a time. -->
-		<!-- Adding class "collapsed" collapse sidebar root elements and show only icons. -->
-		<div class="sidebar-menu toggle-others fixed">
+	<div class="page-container">
+
+        <div class="sidebar-menu toggle-others fixed">
 			
 			<div class="sidebar-menu-inner">	
 				
@@ -1299,8 +1296,7 @@
 			</footer>
 		</div>
 		
-			
-		<!-- start: Chat Section -->
+
 		<div id="chat" class="fixed">
 			
 			<div class="chat-inner">
@@ -1351,8 +1347,8 @@
 				<div class="chat-group">
 					<strong class="DefinedFonts">همکاران</strong>
 					
-					<a href="#"><span class="user-status is-busy DefinedFonts"></span> <em class="DefinedFonts">>مدیر دفتر - جناب آقای وفایی</em></a>
-					<a href="#"><span class="user-status is-offline DefinedFonts"></span> <em class="DefinedFonts">>دهیاری ارژن - سرکار خانم قصر فخری</em></a>
+					<a href="#"><span class="user-status is-busy DefinedFonts"></span> <em class="DefinedFonts">مدیر دفتر - جناب آقای وفایی</em></a>
+					<a href="#"><span class="user-status is-offline DefinedFonts"></span> <em class="DefinedFonts">دهیاری ارژن - سرکار خانم قصر فخری</em></a>
 					<a href="#"><span class="user-status is-offline DefinedFonts"></span> <em class="DefinedFonts">بایگانی - جناب آقای دعوت</em></a>
 				</div>
 				
@@ -1389,7 +1385,7 @@
 					</a>
 					
 					<span class="user-status is-online"></span>
-					<span class="display-name DefinedFonts">فرماندار - جناب مهندس رضایی</span>
+                    <span class="display-name DefinedFonts"><?php echo "جناب آقای ".$_COOKIE['Username']." ".$_COOKIE['Userlname']; ?></span>
 					<small class="DefinedFonts"> آنلاین </small>
 				</div>
 				
@@ -1423,7 +1419,6 @@
 			</div>
 			
 		</div>
-		<!-- end: Chat Section -->
 		
 		
 	</div>
