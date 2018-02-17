@@ -11,6 +11,7 @@ class Database
     {
         Try {
             $this->ConnectionString = new \PDO("mysql:host=localhost;dbname=simplist_simplist;charset=utf8", "root", "");
+            //$this->ConnectionString = new \PDO("mysql:host=localhost;dbname=simplist_simplist;charset=utf8", "simplist_simple", "Milad&0937");
         }
         catch (\PDOException $exception)
         {
