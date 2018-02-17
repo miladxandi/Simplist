@@ -32,7 +32,7 @@
 
             $Username = $_COOKIE['Username'];
 
-            $Password = $_POST['password'];
+            $Password = addslashes($_POST['password']);
             $Data = new Model\Repository\MainFunction\UserRepository();
             $Val = $Data->FindByUser($Username);
             $uResult = $Data->Username($Username);

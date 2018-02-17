@@ -1,0 +1,168 @@
+<footer class="main-footer sticky footer-type-1">
+
+    <div class="footer-inner">
+
+        <!-- Add your copyright text here -->
+        <div class="footer-text">
+            &copy; 2018
+            <strong class="DefinedFonts">پنل کاربری</strong>
+            طراح <a href="/Team?=Amini" class="DefinedFonts" target="_blank">سارا امینی</a>
+            توسعه دهنده <a href="/Team?=Xandi" class="DefinedFonts" target="_blank">میلاد زندی</a>
+        </div>
+
+
+        <!-- Go to Top Link, just add rel="go-top" to any link to add this functionality -->
+        <div class="go-up">
+
+            <a href="#" rel="go-top">
+                <i class="fa-angle-up"></i>
+            </a>
+
+        </div>
+
+    </div>
+
+</footer>
+</div>
+<div id="chat" class="fixed">
+
+    <div class="chat-inner">
+
+
+        <h2 class="chat-header DefinedFonts">
+            <a href="#" class="chat-close" data-toggle="chat">
+                <i class="fa-plus-circle rotate-45deg"></i>
+            </a>
+            چت
+            <span class="badge badge-success is-hidden">0</span>
+        </h2>
+
+        <script type="text/javascript">
+            // Here is just a sample how to open chat conversation box
+            jQuery(document).ready(function($)
+            {
+                var $chat_conversation = $(".chat-conversation");
+
+                $(".chat-group a").on('click', function(ev)
+                {
+                    ev.preventDefault();
+
+                    $chat_conversation.toggleClass('is-open');
+
+                    $(".chat-conversation textarea").trigger('autosize.resize').focus();
+                });
+
+                $(".conversation-close").on('click', function(ev)
+                {
+                    ev.preventDefault();
+                    $chat_conversation.removeClass('is-open');
+                });
+            });
+        </script>
+
+
+        <div class="chat-group">
+            <strong class="DefinedFonts">رؤسا</strong>
+
+            <a href="#"><span class="user-status is-online DefinedFonts"></span> <em class="DefinedFonts">فرماندار - جناب مهندس رضایی</em></a>
+            <a href="#"><span class="user-status is-online DefinedFonts"></span> <em class="DefinedFonts">معاونت فرماندار - جناب مهندس بهرامی</em></a>
+            <a href="#"><span class="user-status is-busy DefinedFonts"></span> <em class="DefinedFonts">رئیس واحد - سرکار خانم مهندس خاتمی</em></a>
+            <a href="#"><span class="user-status is-idle DefinedFonts"></span> <em class="DefinedFonts">معاونت واحد - سرکار خانم مهندس مقصودی</em></a>
+        </div>
+
+
+        <div class="chat-group">
+            <strong class="DefinedFonts">همکاران</strong>
+
+            <a href="#"><span class="user-status is-busy DefinedFonts"></span> <em class="DefinedFonts">مدیر دفتر - جناب آقای وفایی</em></a>
+            <a href="#"><span class="user-status is-offline DefinedFonts"></span> <em class="DefinedFonts">دهیاری ارژن - سرکار خانم قصر فخری</em></a>
+            <a href="#"><span class="user-status is-offline DefinedFonts"></span> <em class="DefinedFonts">بایگانی - جناب آقای دعوت</em></a>
+        </div>
+
+
+        <div class="chat-group">
+            <strong>کاربران</strong>
+
+            <a href="#"><span class="user-status is-onlin"></span <em class="DefinedFonts">رامین شریفی</em></a>
+            <a href="#"><span class="user-status is-onlin"></span> <em class="DefinedFonts">اسماء اوژن</em></a>
+            <a href="#"><span class="user-status is-onlin"></span> <em class="DefinedFonts">روژینا بنیادی</em></a>
+            <a href="#"><span class="user-status is-onlin"></span> <em class="DefinedFonts">سیروس فرامرزی</em></a>
+            <a href="#"><span class="user-status is-busy"></span> <em class="DefinedFonts">لیلا ماهر</em></a>
+            <a href="#"><span class="user-status is-busy"></span> <em class="DefinedFonts">داود شاهیاری</em></a>
+            <a href="#"><span class="user-status is-busy"></span> <em class="DefinedFonts">شیدا زمانی</em></a>
+            <a href="#"><span class="user-status is-busy"></span> <em class="DefinedFonts">مینا آقاجانی</em></a>
+            <a href="#"><span class="user-status is-idle"></span> <em class="DefinedFonts">ملیکا شاهرخ</em></a>
+            <a href="#"><span class="user-status is-offline"></span> <em class="DefinedFonts">رضا کرود</em></a>
+            <a href="#"><span class="user-status is-offline"></span> <em class="DefinedFonts">بهرام ایزدی</em></a>
+            <a href="#"><span class="user-status is-offline"></span> <em class="DefinedFonts">دنیا شاهسون</em></a>
+            <a href="#"><span class="user-status is-offline"></span> <em class="DefinedFonts">دینا شاهسون</em></a>
+            <a href="#"><span class="user-status is-offline"></span> <em class="DefinedFonts">کامران ابوطالبی</em></a>
+            <a href="#"><span class="user-status is-offline"></span> <em class="DefinedFonts">فریبا رجب زاده</em></a>
+            <a href="#"><span class="user-status is-offline"></span> <em class="DefinedFonts">پریا غفاری</em></a>
+        </div>
+
+    </div>
+
+    <!-- conversation template -->
+    <div class="chat-conversation">
+
+        <div class="conversation-header">
+            <a href="#" class="conversation-close">
+                &times;
+            </a>
+
+            <span class="user-status is-online"></span>
+            <span class="display-name DefinedFonts"><?php echo "جناب آقای ".$_COOKIE['Username']." ".$_COOKIE['Userlname']; ?></span>
+            <small class="DefinedFonts"> آنلاین </small>
+        </div>
+
+        <ul class="conversation-body">
+            <li>
+                <span class="user DefinedFonts">فرماندار - جناب مهندس رضایی</span>
+                <span class="time">09:00</span>
+                <p class="DefinedFonts">هستید؟</p>
+            </li>
+            <li class="odd">
+                <span class="user DefinedFonts">فرماندار - جناب مهندس رضایی</span>
+                <span class="time">09:25</span>
+                <p class="DefinedFonts">لطفا، پرونده های دفتر مرکزی را بفرستید</p>
+            </li>
+            <li>
+                <span class="user DefinedFonts">فرماندار - جناب مهندس رضایی</span>
+                <span class="time">09:26</span>
+                <p class="DefinedFonts">بنده برای جلسه امروز نیاز به مستندات دارم.</p>
+            </li>
+            <li class="odd">
+                <span class="user DefinedFonts">فرماندار - جناب مهندس رضایی</span>
+                <span class="time">09:27</span>
+                <p class="DefinedFonts">سلام جناب زندی</p>
+            </li>
+        </ul>
+
+        <div class="chat-textarea">
+            <textarea class="form-control autogrow DefinedFonts" placeholder="پیام خود را بنویسید..."></textarea>
+        </div>
+
+    </div>
+
+</div>
+</div>
+<?php
+$Adder = new Core\Requirement\oLoad("../../..","Style/Panel","Script/Panel","Content/");
+$Adder->Loader("css","fonts/meteocons/css/meteocons");
+$Adder->Loader("js","bootstrap.min");
+$Adder->Loader("js","TweenMax.min");
+$Adder->Loader("js","resizeable");
+$Adder->Loader("js","joinable");
+$Adder->Loader("js","xenon-api");
+$Adder->Loader("js","xenon-toggles");
+$Adder->Loader("js","jquery-validate/jquery.validate.min");
+$Adder->Loader("js","toastr/toastr.min");
+$Adder->Loader("js","jvectormap/jquery-jvectormap-1.2.2.min");
+$Adder->Loader("js","jvectormap/regions/jquery-jvectormap-world-mill-en");
+$Adder->Loader("js","xenon-widgets");
+$Adder->Loader("js","xenon-custom");
+?>
+
+</body>
+</html>

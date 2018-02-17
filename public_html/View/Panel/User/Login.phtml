@@ -24,8 +24,8 @@
         else
         {
 
-            $Username = $_POST['username'];
-            $Password = $_POST['password'];
+            $Username = addslashes($_POST['username']);
+            $Password = addslashes($_POST['password']);
             $Data = new Model\Repository\MainFunction\UserRepository();
             $Val = $Data->FindByUser($Username);
             $uResult = $Data->Username($Username);

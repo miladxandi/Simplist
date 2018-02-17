@@ -9,11 +9,37 @@
 namespace View\View\Shared;
 
 
-class Layouts
+class MainLayouts
 {
-
-    public function __construct($Value)
+    public static function _Header()
     {
-        include "../../"."$Value".".php";
+        include "Main/_HeaderLayout.phtml";
+    }
+    public static function _Menu()
+    {
+        include "Main/_MenuLayout.phtml";
+    }
+    public static function _Footer()
+    {
+        include "Main/_FooterLayout.phtml";
+    }
+}
+class PanelLayouts
+{
+    public static function _Header()
+    {
+        include "Panel/_HeaderLayout.phtml";
+    }
+    public static function _Setting()
+    {
+        include "Panel/_SettingLayout.phtml";
+    }
+    public static function _Siderbar()
+    {
+        include "Panel/_SidebarLayout.phtml";
+    }
+    public static function _Footer()
+    {
+        include "Panel/_FooterLayout.phtml";
     }
 }

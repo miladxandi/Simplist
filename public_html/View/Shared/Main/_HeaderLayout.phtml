@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="object" property="og:type">
+    <meta content="Simplist is a free & open-source framework for developing, creating & designing online blogs simply." name="description">
+    <meta content="origin-when-cross-origin" name="referrer">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+    <link rel="shortcut icon" type="image/x-icon" href="../../../Content/Shared/Logo.png" id="favicon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="../../../Content/Shared/Logo.png">
+    <link rel="apple-touch-icon" type="image/x-icon" href="../../../Content/Shared/Logo.png">
+    <title>SIMPLIST</title>
+    <?php
+    $Add = new Core\Requirement\oLoad("../../..","Style","Script","Content");
+    $Add->Loader("css","Main/main");
+    $Add->Loader("css","Shared/Logos");
+    $Add->Loader("css","bootstrap.min","https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css");
+    $Add->Loader("cs","product","http://getbootstrap.com/docs/4.0/examples/product");
+    $Add->Loader("js","Main/main");
+    $Add->Loader("js","jquery-3.2.1.slim.min","https://code.jquery.com");
+    $Add->Loader("js","popper.min","https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd");
+    $Add->Loader("js","bootstrap.min","https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js");
+    ?>

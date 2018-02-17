@@ -1,0 +1,337 @@
+<div class="page-container">
+
+    <div class="sidebar-menu toggle-others fixed">
+
+        <div class="sidebar-menu-inner">
+
+            <header class="logo-env">
+
+                <!-- logo -->
+                <div class="logo">
+                    <a href="/Panel" class="logo-expanded">
+                        <?php
+                        $Adder = new Core\Requirement\oLoad("../../..","Style/Panel","Script/Panel","Content/");
+                        $Adder->Loader("png","Logo","Shared",true,"","Simplist",40)
+                        ?>
+                    </a>
+
+                    <a href="dashboard-1.html" class="logo-collapsed">
+                        <img src="assets/images/logo-collapsed@2x.png" width="40" alt="" />
+                    </a>
+                </div>
+
+                <!-- This will toggle the mobile menu and will be visible only on mobile devices -->
+                <div class="mobile-menu-toggle visible-xs">
+                    <a href="#" data-toggle="user-info-menu">
+                        <i class="fa-bell-o"></i>
+                        <span class="badge badge-success">7</span>
+                    </a>
+
+                    <a href="#" data-toggle="mobile-menu">
+                        <i class="fa-bars"></i>
+                    </a>
+                </div>
+
+                <!-- This will open the popup with user profile settings, you can use for any purpose, just be creative -->
+                <div class="settings-icon">
+                    <a href="#" data-toggle="settings-pane" data-animate="true">
+                        <i class="linecons-cog"></i>
+                    </a>
+                </div>
+
+
+            </header>
+
+
+
+            <ul id="main-menu" class="main-menu" dir="rtl">
+                <!-- add class "multiple-expanded" to allow multiple submenus to open -->
+                <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+                <li class="opened active">
+                    <a href="/Panel">
+                        <i class="fa-home"></i>
+                        <span class="title">خانه</span>
+                    </a>
+
+
+                </li>
+                <li>
+                    <a href="layout-variants.html">
+                        <i class="fa-list-ul"></i>
+                        <span class="title">لیست مناطق تحت پوشش</span>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="layout-variants.html">
+                                <span class="title">روستا ها</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="layout-collapsed-sidebar.html">
+                                <span class="title">آثار تاریخی</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="layout-static-sidebar.html">
+                                <span class="title">مزارع</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="layout-horizontal-menu.html">
+                                <span class="title">دهیاری ها</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="ui-panels.html">
+                        <i class="fa-bar-chart"></i>
+                        <span class="title">داده های آماری</span>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="ui-panels.html">
+                                <span class="title">آمار روستاها</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="ui-buttons.html">
+                                <span class="title">محصولات روستا</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="ui-tabs-accordions.html">
+                                <span class="title">سوغاتی و صنایع دستی</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="ui-modals.html">
+                                <span class="title">شناسنامه روستا</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="ui-panels.html">
+                        <i class="fa-bus"></i>
+                        <span class="title">خدمات روستایی</span>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="ui-panels.html">
+                                <span class="title">مکاتبات و نامه نگاری</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="ui-buttons.html">
+                                <span class="title">دریافت وارسال مدارک</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="ui-tabs-accordions.html">
+                                <span class="title">شکایات</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="ui-modals.html">
+                                <span class="title"> صدای روستا</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="ui-modals.html">
+                                <span class="title">امور تحصیل واختراعات</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="ui-modals.html">
+                                <span class="title"> روستای هوشمند</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                <li class="opened active">
+                    <a href="dashboard-1.html">
+                        <i class="fa-laptop"></i>
+                        <span class="title">دسترسی ها</span>
+                    </a>
+
+
+                </li>
+                <li class="opened active">
+                    <a href="dashboard-1.html">
+                        <i class="fa-folder-open-o"></i>
+                        <span class="title">پرونده های آزاد</span>
+                    </a>
+
+
+                </li>
+
+
+                <li>
+                    <a href="mailbox-main.html">
+                        <i class="fa-file-text-o"></i>
+                        <span class="title">اطلاعیه ها</span>
+                        <span class="label label-success pull-right">5</span>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="mailbox-main.html">
+                                <span class="title">سخنرانی ها</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailbox-compose.html">
+                                <span class="title">پویش ها</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailbox-message.html">
+                                <span class="title">همایش ها</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailbox-message.html">
+                                <span class="title"> رخدادها</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailbox-message.html">
+                                <span class="title">اعلان های عمومی</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="opened active">
+                    <a href="/Panel/Sleep">
+                        <i class="fa-lock"></i>
+                        <span class="title">قفل</span>
+                    </a>
+                <li class="opened active">
+                    <a href="/Login">
+                        <i class="fa-power-off"></i>
+                        <span class="title">خروج</span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="main-content">
+
+        <!-- User Info, Notifications and Menu Bar -->
+        <nav class="navbar user-info-navbar" role="navigation" >
+
+            <!-- Left links for user info navbar -->
+            <ul class="user-info-menu left-links list-inline list-unstyled">
+
+                <!--<li class="hidden-sm hidden-xs">
+                    <a href="#" data-toggle="sidebar">
+                        <i class="fa-bars"></i>
+                    </a>
+                </li>-->
+
+                <li class="dropdown hover-line">
+                    <a data-toggle="dropdown">
+                        <i class="fa-envelope-o"></i>
+                        <span class="badge badge-green DefinedFonts">4</span>
+                    </a>
+
+                    <!--<ul class="dropdown-menu messages">
+
+
+                        <li class="external">
+                            <a href="blank-sidebar.html">
+                                <span class="DefinedFonts">همه ی پیام ها</span>
+                                <i class="fa-link-ext"></i>
+                            </a>
+                        </li>
+                    </ul>-->
+                </li>
+                <li>
+                    <a href="#" data-toggle="chat">
+                        <i class="fa-comments-o"></i>
+                    </a>
+                </li>
+            </ul>
+
+
+            <!-- Right links for user info navbar -->
+            <ul class="user-info-menu right-links list-inline list-unstyled" dir="rtl">
+
+                <li class="search-form"><!-- You can add "always-visible" to show make the search input visible -->
+
+                    <form method="get" action="extra-search.html">
+                        <input type="text" name="s" class="form-control search-field DefinedFonts" placeholder="جستجو..." />
+
+                        <button type="submit" class="btn btn-link">
+                            <i class="linecons-search"></i>
+                        </button>
+                    </form>
+
+                </li>
+
+                <li class="dropdown user-profile" dir="rtl" >
+                    <a href="#" data-toggle="dropdown">
+                        <img src="../../../Content/Shared/Profile/میلاد.png" alt="user-image" class="img-circle img-inline userpic-32" width="28" />
+                        <span class="DefinedFonts">
+								میلاد زندی
+								<i class="fa-angle-down"></i>
+							</span>
+                    </a>
+
+                    <ul class="dropdown-menu pull-right user-profile-menu list-unstyled" style="direction: rtl">
+                        <li>
+                            <a href="#edit-profile" class="DefinedFonts  pull-right">
+                                <i class="fa-edit"></i>
+                                پست جدید
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#settings" class="DefinedFonts pull-right">
+                                <i class="fa-wrench"></i>
+                                تنظیمات
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#profile" class="DefinedFonts pull-right">
+                                <i class="fa-user"></i>
+                                پروفایل
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#help" class="DefinedFonts pull-right">
+                                <i class="fa-info"></i>
+                                راهنما
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Panel/Sleep" class="DefinedFonts pull-right">
+                                <i class="fa-lock"></i>
+                                قفل
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Login" class="last DefinedFonts pull-right">
+                                <i class="fa-lock"></i>
+                                خروج
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="hidden-sm hidden-xs">
+                    <a href="#" data-toggle="sidebar">
+                        <i class="fa-bars"></i>
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>

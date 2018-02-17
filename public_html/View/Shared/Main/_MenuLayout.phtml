@@ -1,0 +1,77 @@
+
+</head>
+<body>
+
+
+<!--  Menu -->
+<div>
+    <?php
+    $Add = new Core\Requirement\oLoad("../../..","Style","Script","Content");
+    if (isset($_COOKIE['Username']) &&($_COOKIE['Username']!=null||$_COOKIE['Username']!=""))
+
+    {
+        $Is_User_LoggedIn=true;
+    }
+
+    else
+
+    {
+        $Is_User_LoggedIn=false;
+    }
+    ?>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <?php if ($Is_User_LoggedIn): ?>
+                <?php $Add->Loader("png",$_COOKIE['Username'],"Shared/Profile",true,false,"",30,30,null,"d-inline-block align-top"); ?>
+            <?php else: ?>
+                <?php $Add->Loader("png","Logo","Shared",true,false,"eastCloud",30,30,null,"d-inline-block align-top"); ?>
+            <?php endif; ?>
+        </a>
+        <?php if ($Is_User_LoggedIn): ?>
+            <a class="navbar-brand" href="#">Hello <?php echo $_COOKIE['Username']; ?></a>
+
+        <?php else: ?>
+            <a class="navbar-brand" href="/Login">Login</a>
+        <?php endif; ?>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Aboutus">Aboutus</a>
+                </li>
+                <?php if ($Is_User_LoggedIn): ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Links
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/Panel" >Panel</a>
+                            <a class="dropdown-item" href="/Panel/Profile" >Profile</a>
+                            <a class="dropdown-item" href="<?php unset($_COOKIE['Username']);  ?>">Logout</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="https://gitlab.com/miladxandi/Simplist" target="_blank">Direct Download</a>
+                            <a class="dropdown-item" href="https://gitlab.com/miladxandi/Simplist" target="_blank">GITLAB</a>
+
+                        </div>
+                    </li>
+                <?php else: ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Links
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="https://gitlab.com/miladxandi/Simplist" target="_blank">Direct Download</a>
+                            <a class="dropdown-item" href="https://gitlab.com/miladxandi/Simplist" target="_blank">GITLAB</a>
+                        </div>
+                    </li>
+                <?php endif; ?>
+            </ul>
+        </div>
+    </nav>
+</div>
