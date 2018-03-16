@@ -34,7 +34,31 @@ return[
         'middleware'=>''
     ],
     '/NotFound' => [
-        'target'=>'Helper.ErrorController.NotFound',
+        'target'=>'Helper.ErrorController.Error404',
+        'gverb'=> 'GET',
+        'pverb'=> '',
+        'middleware'=>''
+    ],
+    '/InternalError' => [
+        'target'=>'Helper.ErrorController.Error500',
+        'gverb'=> 'GET',
+        'pverb'=> '',
+        'middleware'=>''
+    ],
+    '/Badrequest' => [
+        'target'=>'Helper.ErrorController.Error402',
+        'gverb'=> 'GET',
+        'pverb'=> '',
+        'middleware'=>''
+    ],
+    '/Forbidden' => [
+        'target'=>'Helper.ErrorController.Error403',
+        'gverb'=> 'GET',
+        'pverb'=> '',
+        'middleware'=>''
+    ],
+    '/MethodNotAllowed' => [
+        'target'=>'Helper.ErrorController.Error405',
         'gverb'=> 'GET',
         'pverb'=> '',
         'middleware'=>''

@@ -8,6 +8,7 @@ class Router
 {
 
     protected static $BaseController="Controller\\";
+    protected static $BaseMiddleware="Middleware\\";
     public static function Register()
     {
         $CurrentRoute= self::getCurrentRoute();
@@ -21,16 +22,29 @@ class Router
             list($Folder,$Controller,$Method)=explode(".",$Routes['target']);
             $ControllerClass= self::$BaseController.$Folder."\\".$Controller;
             $ControllerInstance = new $ControllerClass;
-            if (method_exists($ControllerInstance,"$Method"))
+            if ($Routes['middleware']!="")
+            {
+                list($Way,$Series,$Check)=explode(".",$Routes['middleware']);
+                $MiddlewareClass = self::$BaseMiddleware.$Way."\\".$Series;
+                $MiddlewareInstance= new $MiddlewareClass;
+                if (method_exists($ControllerInstance,"$Method")&& method_exists($MiddlewareInstance,"$Check"))
+                {
+                    if($MiddlewareInstance->$Check())
+                    {
+                        $ControllerInstance->$Method();
+                    }
+                    else
+                    {
+                        header("Location: /Badrequest");
+                    }
+                }
+            }
+            else if (method_exists($ControllerInstance,"$Method"))
             {
                 $ControllerInstance->$Method();
             }
             else
             {
-                //print '<div class="Container" style="text-align: center;vertical-align: middle;padding-top: 300px;">';
-                //print '<div class="MainText" style="text-align: center;vertical-align: middle;font-size: 100px;font-family: '.'Calibri Light'.';">NOT FOUND</div>';
-                //print '<div class="SubText" style="text-align: center;vertical-align: middle;font-size: 25px;padding-top: 0px;font-family: '.'Calibri Light'.';">Or the area is restricted.</div>';
-                //print '</div>';
                 return $Routes['/NotFound'];
             }
         }
@@ -38,24 +52,16 @@ class Router
         {
             if ($CurrentRouteVerb!=$gRequestVerb)
             {
-                print '<div class="Container" style="text-align: center;vertical-align: middle;padding-top: 300px;">';
-                print '<div class="MainText" style="text-align: center;vertical-align: middle;font-size: 100px;font-family: '.'Calibri Light'.';">Bad Request</div>';
-                print '<div class="SubText" style="text-align: center;vertical-align: middle;font-size: 25px;padding-top: 0px;font-family: '.'Calibri Light'.';">This page wont accept any '.$gRequestVerb.' request from outside!</div>';
-                print '</div>';
+                header("Location: /MethodNotAllowed");
             }
             else if($CurrentRouteVerb!=$pRequestVerb)
             {
-                print '<div class="Container" style="text-align: center;vertical-align: middle;padding-top: 300px;">';
-                print '<div class="MainText" style="text-align: center;vertical-align: middle;font-size: 100px;font-family: '.'Calibri Light'.';">Bad Request</div>';
-                print '<div class="SubText" style="text-align: center;vertical-align: middle;font-size: 25px;padding-top: 0px;font-family: '.'Calibri Light'.';">This page wont accept any '.$pRequestVerb.' request from outside!</div>';
-                print '</div>';
+                header("Location: /MethodNotAllowed");
             }
             else
             {
-                print '<div class="Container" style="text-align: center;vertical-align: middle;padding-top: 300px;">';
-                print '<div class="MainText" style="text-align: center;vertical-align: middle;font-size: 100px;font-family: '.'Calibri Light'.';">Area restrited</div>';
-                print '<div class="SubText" style="text-align: center;vertical-align: middle;font-size: 25px;padding-top: 0px;font-family: '.'Calibri Light'.';">This page wont accept '.$CurrentRouteVerb.' request types!</div>';
-                print '</div>';
+                header("Location: /MethodNotAllowed");
+
             }
 
         }
