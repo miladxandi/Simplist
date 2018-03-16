@@ -1,211 +1,80 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta name="description" content="Xenon Boostrap Admin Panel" />
-	<meta name="author" content="" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Xenon Boostrap Admin Panel"/>
+    <meta name="author" content=""/>
     <link rel="shortcut icon" type="image/x-icon" href="../../../Content/Shared/Logo.png" id="favicon">
     <link rel="apple-touch-icon" type="image/x-icon" href="../../../Content/Shared/Logo.png">
     <link rel="apple-touch-icon" type="image/x-icon" href="../../../Content/Shared/Logo.png">
-	<title>SIMPLIST - SIGNUP</title>
+    <title>SIMPLIST - SIGNUP</title>
 
     <?php
     session_start();
-    $error=''; // Variable To Store Error Message
-    /*
-    setcookie("Username","",Time()-36000);
-    if (isset($_POST['submit']))
-    {
-    if (empty($_POST['username']) || empty($_POST['password']))
-    {
-    $error = "Username or Password is invalid";
-    }
-    else
-    {
+    $error = ''; // Variable To Store Error Message
 
-    $Username = $_POST['username'];
-    $Password = $_POST['password'];
-    $Data = new Model\Repository\MainFunction\UserRepository();
-    $Val = $Data->FindByUser($Username);
-    $uResult = $Data->Username($Username);
-    $pResult = $Data->Password($Password);
-    if ($uResult == 1 && $pResult==1)
-    {
-    header("Location: /Panel");
-    setcookie("Username",$Val['Values']['user_Firstname'],0);
+    setcookie("Username", "", Time() - 36000);
+    if (isset($_POST['submit'])) {
+        if (empty($_POST['username']) || empty($_POST['password'])) {
+            $error = "Username or Password is invalid";
+        } else {
 
+            $Username = $_POST['username'];
+            $Password = $_POST['password'];
+            $Data = new Model\Repository\MainFunction\UserRepository();
+            $Val = $Data->FindByUser($Username);
+            $uResult = $Data->Username($Username);
+            $pResult = $Data->Password($Password);
+            if ($uResult == 1 && $pResult == 1) {
+                header("Location: /Panel");
+                setcookie("Username", $Val['Values']['user_Firstname'], 0);
+
+            } else {
+                $error = "Username or Password is invalid";
+                header("Location: /Login");
+            }
+        }
     }
-    else
-    {
-    $error = "Username or Password is invalid";
-    header("Location: /Login");
-    }
-    }
-    }*/
-    $Adder = new Core\Requirement\oLoad("../../..","Style/Panel","Script/Panel","Style/Panel");
-    $Adder->Loader("css","fonts/fontawesome/css/font-awesome.min");
-    $Adder->Loader("css","fonts/linecons/css/linecons");
-    $Adder->Loader("css","bootstrap");
-    $Adder->Loader("css","xenon-core");
-    $Adder->Loader("css","xenon-forms");
-    $Adder->Loader("css","xenon-components");
-    $Adder->Loader("css","xenon-skins");
-    $Adder->Loader("css","custom");
-    $Adder->Loader("css","mytest");
-    $Adder->Loader("js","jquery-1.11.1.min");
-    $Adder->Loader("js","html5shiv.min","https://oss.maxcdn.com/html5shiv/3.7.2/",false);
-    $Adder->Loader("js","respond.min","https://oss.maxcdn.com/respond/1.4.2/");
+    $Add = new Core\Requirement\oLoad("../../..", "Style/Panel", "Script/Panel", "Style/Panel");
+    $Add->Loader("css", "fonts/fontawesome/css/font-awesome.min");
+    $Add->Loader("css", "fonts/linecons/css/linecons");
+    $Add->Loader("css", "bootstrap.min", "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css", false);
+    $Add->Loader("css", "mytest");
     ?>
-	
-	
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+
 </head>
-<body class="page-body login-page" dir="rtl">
-
-	
-	<div class="login-container" dir="rtl" >
-	
-		<div class="row" dir="rtl">
-		
-			<div class="col-sm-6">
-			
-
-				
-				<!-- Errors container -->
-				<div class="errors-container">
-				
-									
-				</div>
-				
-				<!-- Add class "fade-in-effect" for login form effect -->
-				<form method="post" action="/Val" role="form" id="login" class="login-form ">
-					
-					<div class="login-header text-right" dir="rtl">
-						<a href="/" class="logo" >
-							<img src="" alt="" width="80" />
-							<span>ثبت نام</span>
-						</a>
-						
-						<p>هم اکنون میتوانید ثبت نام نماید.</p>
-					</div>
-                    <input type="hidden" name="id" value="NULL" id="id">
-
-                    <div class="form-group">
-						<label class="control-label" for="name">نام</label>
-						<input type="text" class="form-control input-dark" name="name" id="name" autocomplete="on" />
-					</div>
-
-                    <div class="form-group">
-						<label class="control-label" for="lastname">نام خانوادگی</label>
-						<input type="text" required class="form-control input-dark" name="lastname" id="lastname" autocomplete="on" />
-					</div>
-
-                    <div class="form-group">
-                        <label class="control-label" for="nickname">نام نمایشی</label>
-                        <input type="text" required class="form-control input-dark" name="nickname" id="nickname" autocomplete="on" />
-                    </div>
-
-                    <div class="form-group">
-						<label class="control-label" for="username">نام کاربری ( شماره ملی )</label>
-						<input type="number" required class="form-control input-dark" name="username" id="username" autocomplete="on" />
-					</div>
-					
-					<div class="form-group">
-						<label class="control-label" for="password">رمزعبور</label>
-						<input type="password" required class="form-control input-dark" name="password" id="password" autocomplete="off" />
-					</div>
-					
-					<div class="form-group">
-						<label class="control-label" for="repassword">تکرار رمز عبور</label>
-						<input type="password" required class="form-control input-dark" autocomplete="off" />
-					</div>
-
-                    <input type="hidden" name="type" value="Visitor" id="type">
-
-                    <div class="form-group">
-                        <label class="control-label" for="email">پست الکترونیک</label>
-                        <input type="email" required class="form-control input-dark" name="email" id="email" autocomplete="off" />
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="phone">شماره تماس</label>
-                        <input type="tel" class="form-control input-dark" required name="phone" id="phone" autocomplete="on" />
-                    </div>
-
-                    <input type="hidden" name="created" value="CURRENT_TIMESTAMP" id="created">
-
-                    <input type="hidden" name="expired" value="2020-00-00 00:00:00" id="expired">
-
-                    <input type="hidden" name="status" value="1" id="status">
-
-                    <div class="form-group">
-                        <label class="control-label" for="image">تصویر</label>
-                        <input type="file" class="form-control input-dark" name="image" id="image" autocomplete="on" />
-                    </div>
-
-                    <input type="hidden" name="bio" value="NULL" id="bio">
-
-                    <input type="hidden" name="ispaid" value="0" id="ispaid">
-
-                    <div class="form-group">
-						<button type="submit" class="btn btn-dark  btn-block text-right">
-							ثبت نام
-							<i class="fa-lock"></i>
-						</button>
-					</div>
-					
-					<div class="login-footer">
-						<a href="#">رمز خود را فراموش کردید؟</a>
-						
-						<div class="info-links">
-							<a href="#">قوانین</a> -
-							<a href="#">حریم شخصی</a>
-						</div>
-						
-					</div>
-					
-				</form>
-				
-				<!-- External login -->
-				<div class="external-login" dir="rtl">
-					<a href="#" class="facebook">
-						<i class="fa-facebook"></i>
-                        ثبت نام با فیس بوک
-					</a>
-					
-					
-					<a href="#" class="twitter">
-						<i class="fa-twitter"></i>
-                        ثبت نام با توییتر
-					</a>
-					
-					<a href="#" class="gplus">
-						<i class="fa-google-plus"></i>
-                        ثبت نام با گوگل پلاس
-					</a>
-				</div>
-				
-			</div>
-			
-		</div>
-		
-	</div>
-
-
-
-    <?php
-    $Adder->Loader("js","bootstrap.min");
-    $Adder->Loader("js","TweenMax.min");
-    $Adder->Loader("js","resizeable");
-    $Adder->Loader("js","joinable");
-    $Adder->Loader("js","xenon-api");
-    $Adder->Loader("js","xenon-toggles");
-    $Adder->Loader("js","jquery-validate/jquery.validate.min");
-    $Adder->Loader("js","toastr/toastr.min");
-    $Adder->Loader("js","xenon-custom");
-    $Adder->Loader("js","bootstrap.min");
-    ?>
-
+</head>
+<body>
+<div style="margin-top:100px;margin-left:100px;margin-right:100px;">
+    <form method="Post" role="form" action="">
+        <div class="form-group">
+            <label for="username">Email address</label>
+            <input type="email" class="form-control" name="email" id="email" required placeholder="Enter email address">
+        </div>
+        <div class="form-group">
+            <label for="username">National Code</label>
+            <input type="number" class="form-control" name="username" id="username" required placeholder="Enter national code">
+        </div>
+        <div class="form-group">
+            <label for="username">Full Name</label>
+            <input type="text" class="form-control" name="name" id="name" required placeholder="Enter full name">
+        </div>
+        <div class="form-group">
+            <label for="username">Phone Number</label>
+            <input type="tel" class="form-control" name="phone" id="phone" required placeholder="Enter phone number">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" required id="password" placeholder="Password">
+        </div>
+        <button type="submit" name="submit" id="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
 </body>
 </html>

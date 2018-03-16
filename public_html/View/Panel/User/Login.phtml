@@ -1,28 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta name="description" content="Xenon Boostrap Admin Panel" />
-	<meta name="author" content="" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Xenon Boostrap Admin Panel"/>
+    <meta name="author" content=""/>
     <link rel="shortcut icon" type="image/x-icon" href="../../../Content/Shared/Logo.png" id="favicon">
     <link rel="apple-touch-icon" type="image/x-icon" href="../../../Content/Shared/Logo.png">
     <link rel="apple-touch-icon" type="image/x-icon" href="../../../Content/Shared/Logo.png">
-	<title>SIMPLIST - LOGIN</title>
+    <title>SIMPLIST - LOGIN</title>
     <?php
     session_start();
-    $error=''; // Variable To Store Error Message
-    setcookie("Username","",Time()-36000);
-    if (isset($_POST['submit']))
-    {
-        if (empty($_POST['username']) || empty($_POST['password']))
-        {
+    $error = ''; // Variable To Store Error Message
+    setcookie("Username", "", Time() - 36000);
+    if (isset($_POST['submit'])) {
+        if (empty($_POST['username']) || empty($_POST['password'])) {
             $error = "Username or Password is invalid";
-        }
-        else
-        {
+        } else {
 
             $Username = addslashes($_POST['username']);
             $Password = addslashes($_POST['password']);
@@ -30,136 +26,41 @@
             $Val = $Data->FindByUser($Username);
             $uResult = $Data->Username($Username);
             $pResult = $Data->Password($Password);
-            if ($uResult == 1 && $pResult==1)
-            {
-                header("Location: /Panel");
-                setcookie("Username",$Val['Values']['user_Firstname'],0);
-                setcookie("Userlname",$Val['Values']['user_Lastname'],0);
+            if ($uResult == 1 && $pResult == 1) {
+                header("Location: /");
+                setcookie("Username", $Val['Values']['user_Firstname'], 0);
+                setcookie("Userlname", $Val['Values']['user_Lastname'], 0);
 
-            }
-            else
-            {
+            } else {
                 $error = "Username or Password is invalid";
                 header("Location: /Login");
             }
         }
     }
-    $Adder = new Core\Requirement\oLoad("../../..","Style/Panel","Script/Panel","Style/Panel");
-    $Adder->Loader("css","fonts/fontawesome/css/font-awesome.min");
-    $Adder->Loader("css","fonts/linecons/css/linecons");
-    $Adder->Loader("css","bootstrap");
-    $Adder->Loader("css","xenon-core");
-    $Adder->Loader("css","xenon-forms");
-    $Adder->Loader("css","xenon-components");
-    $Adder->Loader("css","xenon-skins");
-    $Adder->Loader("css","custom");
-    $Adder->Loader("css","mytest");
-    $Adder->Loader("js","jquery-1.11.1.min");
-    $Adder->Loader("js","html5shiv.min","https://oss.maxcdn.com/html5shiv/3.7.2/",false);
-    $Adder->Loader("js","respond.min","https://oss.maxcdn.com/respond/1.4.2/");
+    $Add = new Core\Requirement\oLoad("../../..", "Style/Panel", "Script/Panel", "Style/Panel");
+    $Add->Loader("css", "fonts/fontawesome/css/font-awesome.min");
+    $Add->Loader("css", "fonts/linecons/css/linecons");
+    $Add->Loader("css", "bootstrap.min", "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css", false);
+    $Add->Loader("css", "mytest");
     ?>
 
-	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	
-	
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+
 </head>
-<body class="page-body login-page" dir="rtl">
-
-	
-	<div class="login-container" dir="rtl" >
-	
-		<div class="row" dir="rtl">
-		
-			<div class="col-sm-6">
-
-				<!-- Errors container -->
-				<div class="errors-container">
-				
-									
-				</div>
-				
-				<!-- Add class "fade-in-effect" for login form effect -->
-				<form method="Post" role="form" action="" class="login-form">
-					
-					<div class="login-header text-right" dir="rtl">
-						<a href="/" class="logo" >
-							<img src="" alt="" width="80" />
-							<span>ورود</span>
-						</a>
-						
-						<p>کاربر گرامی, برای دسترسی به منطقه مدیریت وارد شوید!</p>
-					</div>
-	
-					
-					<div class="form-group">
-						<label class="control-label" for="username">نام کاربری</label>
-						<input type="text" class="form-control input-dark" name="username" id="username" autocomplete="off" />
-					</div>
-					
-					<div class="form-group">
-						<label class="control-label" for="passwd">رمزینه</label>
-						<input type="password" class="form-control input-dark" name="password" id="password" autocomplete="off" />
-					</div>
-					
-					<div class="form-group">
-						<button type="submit" name="submit" id="submit" class="btn btn-dark  btn-block text-right">
-							ورود
-							<i class="fa-lock"></i>
-						</button>
-					</div>
-                    <span><?php echo $error!=""? '<div class="alert alert-danger" role="alert">This is a danger alert—check it out!</div>' : ""  ;   ?></span>
-                    <div class="login-footer">
-						<a href="#">رمز خود را فراموش کردید؟</a>
-						
-						<div class="info-links">
-							<a href="#">قوانین</a> -
-							<a href="#">حریم خصوصی</a>
-						</div>
-						
-					</div>
-					
-				</form>
-				
-				<!-- External login -->
-				<div class="external-login" dir="rtl">
-					<a href="#" class="facebook">
-						<i class="fa-facebook"></i>
-						ورود با فیس بوک
-					</a>
-					
-					
-					<a href="#" class="twitter">
-						<i class="fa-twitter"></i>
-						ورود با توییتر
-					</a>
-					
-					<a href="#" class="gplus">
-						<i class="fa-google-plus"></i>
-						ورود با گوگل پلاس
-					</a>
-				</div>
-				
-			</div>
-			
-		</div>
-		
-	</div>
-
-
-
-	<!-- Bottom Scripts -->
-    <?php
-    $Adder->Loader("js","bootstrap.min");
-    $Adder->Loader("js","TweenMax.min");
-    $Adder->Loader("js","resizeable");
-    $Adder->Loader("js","joinable");
-    $Adder->Loader("js","xenon-api");
-    $Adder->Loader("js","xenon-toggles");
-    $Adder->Loader("js","jquery-validate/jquery.validate.min");
-    $Adder->Loader("js","toastr/toastr.min");
-    $Adder->Loader("js","xenon-custom");
-    $Adder->Loader("js","bootstrap.min");
-    ?>
-
+<body>
+<div style="margin-top:100px;margin-left:100px;margin-right:100px;">
+    <form method="Post" role="form" action="">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="number" class="form-control" name="username" id="username" placeholder="Enter national code">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+        </div>
+        <button type="submit" name="submit" id="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
 </body>
 </html>
