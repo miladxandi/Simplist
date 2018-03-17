@@ -21,18 +21,6 @@ return[
         'middleware'=>'Main.Home.Aboutus'
 
     ],
-    '/Panel' => [
-        'target'=>'Panel.User.Dashboard',
-        'gverb'=> 'GET',
-        'pverb'=> 'POST',
-        'middleware'=>''
-    ],
-    '/panel' => [
-        'target'=>'Panel.User.Dashboard',
-        'gverb'=> 'GET',
-        'pverb'=> 'POST',
-        'middleware'=>''
-    ],
     '/NotFound' => [
         'target'=>'Helper.Error.Error404',
         'gverb'=> 'GET',
@@ -99,4 +87,10 @@ return[
         'pverb'=> 'POST',
         'middleware'=>''
     ],
+    '/Documentation'=>[
+        'target'=>'Main.Home.Documentation',
+        'gverb'=>'GET',
+        'pverb'=>'POST',
+        'middleware'=>''
+    ]
 ];

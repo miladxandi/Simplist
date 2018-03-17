@@ -17,7 +17,7 @@ class Router
         $pRequestVerb = $Routes['pverb'];
         $CurrentRouteVerb = self::currentRequestVerb();
 
-        if ($CurrentRouteVerb==$gRequestVerb||$CurrentRouteVerb==$pRequestVerb)
+        if (($CurrentRouteVerb==$gRequestVerb && $gRequestVerb!="")||($CurrentRouteVerb==$pRequestVerb && $pRequestVerb!=""))
         {
             list($Folder,$Controller,$Method)=explode(".",$Routes['target']);
             $ControllerClass= self::$BaseController.$Folder."\\".$Controller."Controller";
@@ -50,11 +50,11 @@ class Router
         }
         else
         {
-            if ($CurrentRouteVerb!=$gRequestVerb)
+            if ($CurrentRouteVerb==$gRequestVerb && $gRequestVerb=="")
             {
                 header("Location: /MethodNotAllowed");
             }
-            else if($CurrentRouteVerb!=$pRequestVerb)
+            else if($CurrentRouteVerb==$pRequestVerb && $pRequestVerb=="")
             {
                 header("Location: /MethodNotAllowed");
             }
