@@ -23,17 +23,19 @@
         } else {
 
             $Username = $_POST['username'];
+            $Email = $_POST['email'];
+            $Name = $_POST['name'];
+            $Phone = $_POST['phone'];
             $Password = $_POST['password'];
             $Data = new Model\Repository\MainFunction\UserRepository();
-            $Val = $Data->FindByUser($Username);
-            $uResult = $Data->Username($Username);
-            $pResult = $Data->Password($Password);
-            if ($uResult == 1 && $pResult == 1) {
-                header("Location: /Panel");
-                setcookie("Username", $Val['Values']['user_Firstname'], 0);
+            $Val1 = $Data->FindByUser($Username);
+            $Val2 = $Data->FindByEmail($Email);
+
+            if ($Val2 == 1 && $Val1 == 1) {
+                header("Location: /Signup");
 
             } else {
-                $error = "Username or Password is invalid";
+
                 header("Location: /Login");
             }
         }
