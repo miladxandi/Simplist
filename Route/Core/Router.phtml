@@ -20,12 +20,12 @@ class Router
         if ($CurrentRouteVerb==$gRequestVerb||$CurrentRouteVerb==$pRequestVerb)
         {
             list($Folder,$Controller,$Method)=explode(".",$Routes['target']);
-            $ControllerClass= self::$BaseController.$Folder."\\".$Controller;
+            $ControllerClass= self::$BaseController.$Folder."\\".$Controller."Controller";
             $ControllerInstance = new $ControllerClass;
             if ($Routes['middleware']!="")
             {
                 list($Way,$Series,$Check)=explode(".",$Routes['middleware']);
-                $MiddlewareClass = self::$BaseMiddleware.$Way."\\".$Series;
+                $MiddlewareClass = self::$BaseMiddleware.$Way."\\".$Series."Middleware";
                 $MiddlewareInstance= new $MiddlewareClass;
                 if (method_exists($ControllerInstance,"$Method")&& method_exists($MiddlewareInstance,"$Check"))
                 {

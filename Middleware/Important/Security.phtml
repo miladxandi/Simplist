@@ -1,0 +1,25 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: farva
+ * Date: 17/03/2018
+ * Time: 02:55 PM
+ */
+
+namespace Middleware\Important;
+use Core\Security\Check;
+use Core\Watcher\Configurations;
+
+
+class Security
+{
+    protected $CoreSecurity;
+    protected $Configurations;
+    public function __construct()
+    {
+        $this->CoreSecurity= new Check();
+        $this->Configurations= new Configurations();
+        $this->Configurations->MinVersion();
+        $this->CoreSecurity->SecureProtocol(false);
+    }
+}

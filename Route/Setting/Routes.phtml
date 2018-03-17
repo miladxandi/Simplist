@@ -1,142 +1,100 @@
 <?php
 return[
     '/' => [
-        'target' => 'Main.HomeController.Index',
+        'target' => 'Main.Home.Index',
         'gverb'=> 'GET',
         'pverb'=> '',
-        'middleware'=>''
+        'middleware'=>'Main.Home.Index'
 
     ],
     '/Aboutus' => [
-        'target'=>'Main.HomeController.Aboutus',
+        'target'=>'Main.Home.Aboutus',
         'gverb'=> 'GET',
         'pverb'=> '',
-        'middleware'=>''
+        'middleware'=>'Main.Home.Aboutus'
 
     ],
     '/aboutus' => [
-        'target'=>'Main.HomeController.Aboutus',
+        'target'=>'Main.Home.Aboutus',
         'gverb'=> 'GET',
         'pverb'=> '',
-        'middleware'=>''
+        'middleware'=>'Main.Home.Aboutus'
 
     ],
     '/Panel' => [
-        'target'=>'Panel.UserController.Dashboard',
+        'target'=>'Panel.User.Dashboard',
         'gverb'=> 'GET',
         'pverb'=> 'POST',
         'middleware'=>''
     ],
     '/panel' => [
-        'target'=>'Panel.UserController.Dashboard',
+        'target'=>'Panel.User.Dashboard',
         'gverb'=> 'GET',
         'pverb'=> 'POST',
         'middleware'=>''
     ],
     '/NotFound' => [
-        'target'=>'Helper.ErrorController.Error404',
+        'target'=>'Helper.Error.Error404',
         'gverb'=> 'GET',
         'pverb'=> '',
         'middleware'=>''
     ],
     '/InternalError' => [
-        'target'=>'Helper.ErrorController.Error500',
+        'target'=>'Helper.Error.Error500',
         'gverb'=> 'GET',
         'pverb'=> '',
         'middleware'=>''
     ],
     '/Badrequest' => [
-        'target'=>'Helper.ErrorController.Error402',
+        'target'=>'Helper.Error.Error402',
         'gverb'=> 'GET',
         'pverb'=> '',
         'middleware'=>''
     ],
     '/Forbidden' => [
-        'target'=>'Helper.ErrorController.Error403',
+        'target'=>'Helper.Error.Error403',
         'gverb'=> 'GET',
         'pverb'=> '',
         'middleware'=>''
     ],
     '/MethodNotAllowed' => [
-        'target'=>'Helper.ErrorController.Error405',
+        'target'=>'Helper.Error.Error405',
         'gverb'=> 'GET',
         'pverb'=> '',
         'middleware'=>''
     ],
     '/Content' => [
-        'target'=>'Helper.ErrorController.NotFound',
+        'target'=>'Helper.Error.NotFound',
         'gverb'=> 'GET',
         'pverb'=> '',
         'middleware'=>''
     ],
     '/content' => [
-        'target'=>'Helper.ErrorController.NotFound',
+        'target'=>'Helper.Error.NotFound',
         'gverb'=> 'GET',
         'pverb'=> '',
         'middleware'=>''
     ],
     '/login' => [
-        'target'=>'Panel.UserController.Login',
+        'target'=>'Panel.User.Login',
         'gverb'=> 'GET',
         'pverb'=> 'POST',
         'middleware'=>''
     ],
     '/Login' => [
-        'target'=>'Panel.UserController.Login',
+        'target'=>'Panel.User.Login',
         'gverb'=> 'GET',
         'pverb'=> 'POST',
         'middleware'=>''
     ],
     '/Signup' => [
-        'target'=>'Panel.UserController.Signup',
+        'target'=>'Panel.User.Signup',
         'gverb'=> 'GET',
         'pverb'=> 'POST',
         'middleware'=>''
     ],
     '/signup' => [
-        'target'=>'Panel.UserController.Signup',
-        'gverb'=> 'GET',
-        'pverb'=> 'POST',
-        'middleware'=>''
-    ],
-    '/Panel/Maps' => [
-        'target'=>'Panel.UserController.Maps',
-        'gverb'=> 'GET',
-        'pverb'=> '',
-        'middleware'=>''
-    ],
-    '/Panel/maps' => [
-        'target'=>'Panel.UserController.Maps',
-        'gverb'=> 'GET',
-        'pverb'=> '',
-        'middleware'=>''
-    ],
-    '/Panel/Sleep' => [
-        'target'=>'Panel.UserController.Sleep',
-        'gverb'=> 'GET',
-        'pverb'=> 'POST',
-        'middleware'=>''
-    ],
-    '/Panel/sleep' => [
-        'target'=>'Panel.UserController.Sleep',
-        'gverb'=> 'GET',
-        'pverb'=> 'POST',
-        'middleware'=>''
-    ],
-    '/Val' => [
-        'target'=>'Panel.UserController.Val',
-        'gverb'=> '',
-        'pverb'=> 'POST',
-        'middleware'=>''
-    ],
-    '/Panel/Tables' => [
-        'target'=>'Panel.UserController.Tables',
-        'gverb'=> 'GET',
-        'pverb'=> 'POST',
-        'middleware'=>''
-    ],
-    '/Panel/tables' => [
-        'target'=>'Panel.UserController.Tables',
+        'target'=>'Panel.User.Signup',
         'gverb'=> 'GET',
         'pverb'=> 'POST',
         'middleware'=>''
