@@ -1,0 +1,47 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: farva
+ * Date: 21/03/2018
+ * Time: 03:07 AM
+ */
+
+namespace Model\Repository\MainFunction;
+
+
+use Model\Repository\BaseRepository;
+
+class PostRepository extends BaseRepository
+{
+    Private $Value;
+    public $Fields;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->Table = "posts";
+        $this->PrimaryKey = "Post_Id";
+        $this->pName = "Post_Name";
+        $this->pUrl = "Post_Url";
+        $this->pContent = "Post_Content";
+        $this->pAuthor = "Post_Author";
+    }
+    public function Insert($Name,$URL,$Content,$Author,$Image)
+    {
+        $Result = $this->rStatement->Commander("INSERT INTO {$this->Table} (Post_Name, Post_Url, Post_Content, Post_Author) VALUES ('".$Name."','".$URL."','".$Content."','".$Author."')");
+        $Result->fetch(\PDO::FETCH_COLUMN);
+        return $Result->rowCount();
+    }
+    public function Update($Id,$Name,$URL,$Content,$Author)
+    {
+        $Result = $this->rStatement->Commander("UPDATE {$this->Table} SET {$this->pName}='".$Name."', {$this->pUrl}='".$URL."', {$this->pContent}='".$Content."', {$this->pAuthor}='".$Author."' WHERE {$this->PrimaryKey}={$Id}");
+        $Result->fetch(\PDO::FETCH_COLUMN);
+        return $Result->rowCount();
+    }
+
+    public function GetPost()
+    {
+        $Result = $this->rStatement->Commander("SELECT * FROM {$this->Table}");
+        return $Result->fetchAll(\PDO::FETCH_ASSOC);
+    }
+}

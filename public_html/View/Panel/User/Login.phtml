@@ -14,7 +14,7 @@
     <?php
     session_start();
     $error = ''; // Variable To Store Error Message
-    setcookie("Username", "", Time() - 36000);
+    setcookie("Firstname", "", Time() - 36000);
     if (isset($_POST['submit'])) {
         if (empty($_POST['username']) || empty($_POST['password'])) {
             $error = "Username or Password is invalid";
@@ -23,13 +23,14 @@
             $Username = addslashes($_POST['username']);
             $Password = addslashes($_POST['password']);
             $Data = new Model\Repository\MainFunction\UserRepository();
-            $Val = $Data->FindByUser($Username);
-            $uResult = $Data->Username($Username);
-            $pResult = $Data->Password($Password);
-            if ($uResult == 1 && $pResult == 1) {
+
+            $Login = $Data->Login($Username,$Password);
+            if ($Login==1) {
+                $Val = $Data->FindByUser($Username);
+                setcookie("Firstname", $Val['Values']['user_Firstname'], time()+(60*60*24*30));
+                setcookie("Username", $Val['Values']['user_Username'], time()+(60*60*24*30));
                 header("Location: /");
-                setcookie("Username", $Val['Values']['user_Firstname'], 0);
-                setcookie("Userlname", $Val['Values']['user_Lastname'], 0);
+
 
             } else {
                 $error = "Username or Password is invalid";

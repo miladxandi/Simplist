@@ -29,7 +29,7 @@ class Router
                 $MiddlewareInstance= new $MiddlewareClass;
                 if (method_exists($ControllerInstance,"$Method")&& method_exists($MiddlewareInstance,"$Check"))
                 {
-                    if($MiddlewareInstance->$Check())
+                    if($MiddlewareInstance->$Check()['Status'])
                     {
                         $ControllerInstance->$Method();
                     }

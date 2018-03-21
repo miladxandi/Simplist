@@ -45,14 +45,14 @@ a.PurpStyle:hover {
     text-align: center;
     vertical-align: middle;
     font-size: 6.5vw;
-    font-family: Calibri Light;
+    font-family: "IR Roya","Calibri Light";
 }
 .SubText
 {
     text-align: center;
     vertical-align: middle;
     font-size: 20px;
-    font-family: Calibri Light;
+    font-family: "IR Roya","Calibri Light";
 }
 .Code
 {
@@ -62,4 +62,13 @@ a.PurpStyle:hover {
 {
     margin-left: 100px;
     margin-right: 100px;
+}
+.PostTitle{
+    font-family: IRRoya;
+}
+.PostContent{
+    font-family: IRRoya;
+    white-space: pre;
+    direction: rtl;
+    text-align: right;
 }

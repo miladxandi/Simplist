@@ -28,14 +28,17 @@ class PanelLayouts
 {
     public static function _Header()
     {
+        include "Panel/_HeaderLayout.phtml";
+
     }
-    public static function _Setting()
+    public static function _Menu()
     {
-    }
-    public static function _Siderbar()
-    {
+        include "Panel/_MenuLayout.phtml";
+
     }
     public static function _Footer()
     {
+        include "Panel/_FooterLayout.phtml";
+
     }
 }

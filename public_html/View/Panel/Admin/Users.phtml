@@ -1,0 +1,55 @@
+<?php \View\View\Shared\PanelLayouts::_Header(); ?>
+    <title>SIMPLIST - PANEL</title>
+    </head>
+
+<?php \View\View\Shared\PanelLayouts::_Menu(); ?>
+    <div class="col-sm SubText PurpText">
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Nickname</th>
+                <th scope="col">Username</th>
+                <th scope="col">Type</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Created</th>
+                <th scope="col">Expired</th>
+                <th scope="col">Status</th>
+                <th scope="col">Image</th>
+                <th scope="col">Ispaid</th>
+                <th scope="col">Actions</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            $Data = new \Model\Repository\MainFunction\UserRepository();
+            $Users = $Data->GetUsers();
+            $Id = 1;
+            foreach ($Users as $user): ?>
+                <tr>
+
+                    <th scope="col"><?php echo $Id ?></th>
+                    <th scope="col"><?php echo $user['user_Firstname'] ?></th>
+                    <th scope="col"><?php echo $user['user_Lastname'] ?></th>
+                    <th scope="col"><?php echo $user['user_Nickname'] ?></th>
+                    <th scope="col"><?php echo $user['user_Username'] ?></th>
+                    <th scope="col"><?php echo $user['user_Type'] ?></th>
+                    <th scope="col"><?php echo $user['user_Email'] ?></th>
+                    <th scope="col"><?php echo $user['user_Phone'] ?></th>
+                    <th scope="col"><?php echo $user['user_CreatedAt'] ?></th>
+                    <th scope="col"><?php echo $user['user_ExpiredAt'] ?></th>
+                    <th scope="col"><?php echo $user['user_Status'] ?></th>
+                    <th scope="col"><?php echo $user['user_Image'] ?></th>
+                    <th scope="col"><?php echo $user['user_IsPaid'] ?></th>
+                    <th scope="col"><a href="#">Update</a> </br> <a href="#">Delete</a> </br> <a href="#">Orders</a></th>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+
+<?php \View\View\Shared\PanelLayouts::_Footer(); ?>

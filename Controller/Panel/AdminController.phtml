@@ -1,0 +1,28 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: farva
+ * Date: 20/03/2018
+ * Time: 02:13 AM
+ */
+
+namespace Controller\Panel;
+
+
+use Route\Show\View;
+
+class AdminController
+{
+    public function Index()
+    {
+        View::Process("Panel.Admin.Panel");
+    }
+    public function NewPost()
+    {
+        View::Process("Panel.Admin.NewPost");
+    }
+    public function Users()
+    {
+        View::Process("Panel.Admin.Users");
+    }
+}

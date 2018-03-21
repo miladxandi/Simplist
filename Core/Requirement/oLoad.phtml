@@ -40,14 +40,14 @@ class oLoad
             {
                 if ($Local==true )
                 {
-                    echo ''.$this->BaseUrl."/".$UniqueUrl."/".$Name.".".$Extension.'';
+                    echo '../../../'.$UniqueUrl."/".$Name.".".$Extension.'';
                 }
                 else if ($Local==false)
                 {
                     echo ''.$UniqueUrl."/".$Name.".".$Extension.'';
                 }
             }
-            else if($UniqueType!=true&&$UniqueUrl!=null)
+            else if($UniqueType!=true && ($UniqueUrl!=null || $UniqueUrl!=""))
             {
                 if ($Local==false || $Local=="")
                 {
@@ -68,15 +68,15 @@ class oLoad
                 {
                     if ($Extension=="js")
                     {
-                        echo '<script src="'.$this->BaseUrl."/".$this->Js."/".$UniqueUrl."/".$Name.".".$Extension.'"></script>';
+                        echo '<script src="'."../../../Script/".$UniqueUrl."/".$Name.".".$Extension.'"></script>';
                     }
                     else if($Extension=="css")
                     {
-                        echo '<link rel="stylesheet" type="text/css" href="'.$this->BaseUrl."/".$this->Css."/".$UniqueUrl."/".$Name.".".$Extension.'">';
+                        echo '<link rel="stylesheet" type="text/css" href="'."../../../Style/".$UniqueUrl."/".$Name.".".$Extension.'">';
                     }
                     else if($Extension=="png"||$Extension=="jpg"||$Extension=="jpeg"||$Extension=="ico")
                     {
-                        echo '<img src="'.$this->BaseUrl."/".$this->Image."/".$UniqueUrl."/".$Name.".".$Extension.'" Width="'.$ImageWidth.'px" Height="'.$ImageHeight.'px" Class="'.$ImageClass.'" Style="'.$ImageStyle.'" alt="'.$ImageAlt.'">';
+                        echo '<img src="'."../../../Content/".$UniqueUrl."/".$Name.".".$Extension.'" Width="'.$ImageWidth.'px" Height="'.$ImageHeight.'px" Class="'.$ImageClass.'" Style="'.$ImageStyle.'" alt="'.$ImageAlt.'">';
                     }
                 }
                 else

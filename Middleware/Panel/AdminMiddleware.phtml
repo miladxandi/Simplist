@@ -1,0 +1,95 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: farva
+ * Date: 20/03/2018
+ * Time: 02:17 AM
+ */
+
+namespace Middleware\Panel;
+
+
+use Model\Repository\MainFunction\UserRepository;
+
+class AdminMiddleware
+{
+    public $Db;
+    public function __construct()
+    {
+        $this->DB = new UserRepository();
+    }
+    public function Index()
+    {
+        return $this->PanelCookieS();
+    }
+    public function NewPost()
+    {
+        return $this->EditorCookieS();
+    }
+    public function Users()
+    {
+        return $this->AdminCookieS();
+    }
+    private function PanelCookieS()
+    {
+        if(isset($_COOKIE['Username']) && $this->DB->FindByUser($_COOKIE['Username'])['Rows']==1)
+        {
+            header("Location: /Panel");
+            return ['Status'=> true,'Info'=>$this->DB->FindByUser($_COOKIE['Username'])['Values']];
+        }
+        elseif(isset($_COOKIE['Username'])==false || $this->DB->FindByUser($_COOKIE['Username'])['Rows']==0)
+        {
+            header("Location: /");
+            return ['Status'=> true];
+        }
+        else
+        {
+            return ['Status'=>false];
+        }
+    }
+    private function EditorCookieS()
+    {
+        if(isset($_COOKIE['Username']) && $this->DB->FindByUser($_COOKIE['Username'])['Rows']==1 && ($this->DB->FindByUser($_COOKIE['Username'])['Values']['user_Type']=="Admin" || $this->DB->FindByUser($_COOKIE['Username'])['Values']['user_Type']=="Editor"))
+        {
+            //header("Location: /Panel/NewPost");
+            return ['Status'=> true,'Info'=>""];
+        }
+        elseif(isset($_COOKIE['Username'])==true || $this->DB->FindByUser($_COOKIE['Username'])['Rows']==1 && ($this->DB->FindByUser($_COOKIE['Username'])['Values']['user_Type']!="Admin" || $this->DB->FindByUser($_COOKIE['Username'])['Values']['user_Type']!="Editor"))
+        {
+            header("Location: /Forbidden");
+            return ['Status'=> true];
+        }
+        elseif(isset($_COOKIE['Username'])==false || $this->DB->FindByUser($_COOKIE['Username'])['Rows']==0)
+        {
+            header("Location: /Login");
+            return ['Status'=> true];
+        }
+        else
+        {
+            return ['Status'=>false];
+        }
+    }
+    private function AdminCookieS()
+    {
+        if(isset($_COOKIE['Username']) && $this->DB->FindByUser($_COOKIE['Username'])['Rows']==1 && $this->DB->FindByUser($_COOKIE['Username'])['Values']['user_Type']=="Admin")
+        {
+            //header("Location: /Panel/Users");
+            return ['Status'=> true,'Info'=>""];
+        }
+        elseif(isset($_COOKIE['Username'])==true || $this->DB->FindByUser($_COOKIE['Username'])['Rows']==1 && ($this->DB->FindByUser($_COOKIE['Username'])['Values']['user_Type']!="Admin"))
+        {
+            header("Location: /Forbidden");
+            return ['Status'=> true];
+        }
+        elseif(isset($_COOKIE['Username'])==false || $this->DB->FindByUser($_COOKIE['Username'])['Rows']==0)
+        {
+            header("Location: /Login");
+            return ['Status'=> true];
+        }
+        else
+        {
+            return ['Status'=>false];
+        }
+    }
+
+}

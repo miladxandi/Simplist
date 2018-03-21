@@ -3,10 +3,10 @@
 
 <!--  Menu -->
 <div>
-    <?php
-    $Add = new Core\Requirement\oLoad("../../..","Style","Script","Content");
-    if (isset($_COOKIE['Username']) &&($_COOKIE['Username']!=null||$_COOKIE['Username']!=""))
 
+    <?php
+    $Add = new Core\Requirement\oLoad("../../..","Style/Main","Script/Main","Content/Main");
+    if (isset($_COOKIE['Firstname']) &&($_COOKIE['Firstname']!=null||$_COOKIE['Firstname']!=""))
     {
         $Is_User_LoggedIn=true;
     }
@@ -20,13 +20,21 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">
             <?php if ($Is_User_LoggedIn): ?>
-                <?php $Add->Loader("png",$_COOKIE['Username'],"Shared/Profile",true,false,"",30,30,null,"d-inline-block align-top"); ?>
+                <?php if(file_exists("../../Content/Shared/Profile/".$_COOKIE['Firstname'].".png")==1 ||file_exists("../../Content/Shared/Profile/".$_COOKIE['Firstname'].".png")==true)
+                {
+                    $Add->Loader("png",$_COOKIE['Firstname'],"Shared/Profile",true,false,"",30,30,null,"d-inline-block align-top");
+                }
+                else
+                {
+                    $Add->Loader("png","Avatar","Shared/Profile",true,false,"",30,30,null,"d-inline-block align-top");
+                }
+                ?>
             <?php else: ?>
                 <?php $Add->Loader("png","Logo","Shared",true,false,"eastCloud",30,30,null,"d-inline-block align-top"); ?>
             <?php endif; ?>
         </a>
         <?php if ($Is_User_LoggedIn): ?>
-            <a class="navbar-brand" href="#">Hello <?php echo $_COOKIE['Username']; ?></a>
+            <a class="navbar-brand" href="#">Hello <?php echo $_COOKIE['Firstname']; ?></a>
 
         <?php else: ?>
             <a class="navbar-brand" href="/Login">Login</a>
@@ -51,6 +59,10 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="/Panel" >Panel</a>
                             <a class="dropdown-item" href="/Panel/Profile" >Profile</a>
+                            <a class="dropdown-item" href="/Panel/NewPost" >New Post</a>
+                            <?php if ($_COOKIE['Username']=="0017856701"): ?>
+                            <a class="dropdown-item" href="/Panel/Users" >Users</a>
+                            <?php endif; ?>
                             <a class="dropdown-item" href="/Login">Logout</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="https://gitlab.com/miladxandi/Simplist" target="_blank">Direct Download</a>

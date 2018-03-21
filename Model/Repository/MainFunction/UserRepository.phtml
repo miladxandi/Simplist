@@ -10,18 +10,21 @@ namespace Model\Repository\MainFunction;
 
 
 use Model\Repository\BaseRepository;
+
 //use Model\Eloquent\Panel;
 class UserRepository extends BaseRepository
 {
     Private $Value;
+    public $Fields;
+
     public function __construct()
     {
         parent::__construct();
-        $this->Table="users";
-        $this->PrimaryKey="user_Id";
-        $this->uName="user_Username";
-        $this->uMail="user_Email";
-        $this->uPass="user_Password";
+        $this->Table = "users";
+        $this->PrimaryKey = "user_Id";
+        $this->uName = "user_Username";
+        $this->uMail = "user_Email";
+        $this->uPass = "user_Password";
     }
 
     public function Username($Username)
@@ -30,34 +33,44 @@ class UserRepository extends BaseRepository
         $Result->fetch(\PDO::FETCH_COLUMN);
         return $Result->rowCount();
     }
+
     public function Email($Email)
     {
         $Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->uMail}={$Email}");
         $Result->fetch(\PDO::FETCH_COLUMN);
         return $Result->rowCount();
     }
+
     public function Password($Password)
     {
         $Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->uPass}={$Password}");
         $Result->fetch(\PDO::FETCH_COLUMN);
         return $Result->rowCount();
     }
-    public function Insert($Values)
+
+    public function Login($Username, $Password)
     {
-        foreach ($Values as $Value)
-        {
-            if ($Value=="NULL" || $Value=="CURRENT_TIMESTAMP")
-            {
-                $this->Value = $this->Value.' '.$Value.',';
-            }
-            else
-            {
-                $this->Value = $this->Value." '".$Value."',";
-            }
-        }
-        echo $this->Value;
-        $Result = $this->rStatement->Commander("INSERT INTO {$this->Table} ( user_Id, user_Firstname, user_Lastname, user_Nickname, user_Username, user_Password, user_Type, user_Email, user_Phone, user_CreatedAt, user_ExpiredAt, user_Status, user_Image, user_Bio, user_IsPaid ) VALUES ( {$this->Value} )");
+        $Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->uName}={$Username} AND {$this->uPass}={$Password}");
         $Result->fetch(\PDO::FETCH_COLUMN);
         return $Result->rowCount();
+    }
+
+    public function Insert($Firstname,$Lastname,$Username,$Password,$Email,$Phone)
+    {
+        $this->Table="users";
+        var_dump($this->Value);
+        $Val1='Visitor';
+        $Val2= $Val1;
+        $Val3= '2020-01-01';
+        $Val4= '1';
+        $Val5= '0';
+        $Result = $this->rStatement->Commander("INSERT INTO {$this->Table} (user_Firstname, user_Lastname, user_Nickname, user_Username, user_Password, user_Type, user_Email, user_Phone, user_ExpiredAt, user_Status, user_IsPaid) VALUES ('".$Firstname."','".$Lastname."','".$Val1."','".$Username."','".$Password."','".$Val2."' ,'".$Email."','".$Phone."','".$Val3."', '".$Val4."','".$Val5."')");
+        $Result->fetch(\PDO::FETCH_COLUMN);
+        return $Result->rowCount();
+    }
+    public function GetUsers()
+    {
+        $Result = $this->rStatement->Commander("SELECT * FROM {$this->Table}");
+        return $Result->fetchAll(\PDO::FETCH_ASSOC);
     }
 }

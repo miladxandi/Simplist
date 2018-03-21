@@ -22,21 +22,27 @@
             $error = "Username or Password is invalid";
         } else {
 
-            $Username = $_POST['username'];
-            $Email = $_POST['email'];
-            $Name = $_POST['name'];
-            $Phone = $_POST['phone'];
-            $Password = $_POST['password'];
+            $Firstname = $_POST['Firstname'];
+            $Lastname = $_POST['Lastname'];
+            $Username = $_POST['NationalCode'];
+            $Password = $_POST['Password'];
+            $Email = $_POST['Email'];
+            $Phone = $_POST['Phone'];
             $Data = new Model\Repository\MainFunction\UserRepository();
-            $Val1 = $Data->FindByUser($Username);
-            $Val2 = $Data->FindByEmail($Email);
-
-            if ($Val2 == 1 && $Val1 == 1) {
+            $UsernameCheck = $Data->FindByUser($Username);
+            $EmailCheck = $Data->FindByEmail($Email);
+            $Values = array();
+            if ($UsernameCheck == 1 && $EmailCheck == 1) {
                 header("Location: /Signup");
-
-            } else {
-
-                header("Location: /Login");
+            }
+            else {
+                $Insert = $Data->Insert($Firstname, $Lastname, $Username, $Password, $Email, $Phone);
+                var_dump($_POST);
+                if ($Insert == 1) {
+                    header("Location: /Login");
+                } else {
+                    header("Location: /Signup");
+                }
             }
         }
     }
@@ -51,31 +57,42 @@
 
 
 </head>
-</head>
 <body>
+<?php var_dump($_POST);?>
 <div style="margin-top:100px;margin-left:100px;margin-right:100px;">
     <form method="Post" role="form" action="">
+
         <div class="form-group">
-            <label for="username">Email address</label>
-            <input type="email" class="form-control" name="email" id="email" required placeholder="Enter email address">
+            <label for="Email">Email address</label>
+            <input type="email" class="form-control" name="Email" id="Email" required
+                   placeholder="Enter email address">
         </div>
         <div class="form-group">
-            <label for="username">National Code</label>
-            <input type="number" class="form-control" name="username" id="username" required placeholder="Enter national code">
+            <label for="Firstname">First name</label>
+            <input type="text" class="form-control" name="Firstname" id="Firstname" required
+                   placeholder="Enter first name">
         </div>
         <div class="form-group">
-            <label for="username">Full Name</label>
-            <input type="text" class="form-control" name="name" id="name" required placeholder="Enter full name">
+            <label for="Lastname">Last Name</label>
+            <input type="text" class="form-control" name="Lastname" id="Lastname" required
+                   placeholder="Enter last name">
         </div>
         <div class="form-group">
-            <label for="username">Phone Number</label>
-            <input type="tel" class="form-control" name="phone" id="phone" required placeholder="Enter phone number">
+            <label for="NationalCode">National Code</label>
+            <input type="number" class="form-control" name="NationalCode" id="NationalCode" required
+                   placeholder="Enter national code">
         </div>
         <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" required id="password" placeholder="Password">
+            <label for="Phone">Phone Number</label>
+            <input type="tel" class="form-control" name="Phone" id="Phone" required placeholder="Enter phone number">
         </div>
+        <div class="form-group">
+            <label for="Password">Password</label>
+            <input type="password" class="form-control" name="Password" required id="Password" placeholder="Password">
+        </div>
+
         <button type="submit" name="submit" id="submit" class="btn btn-primary">Sign up</button>
+
     </form>
 </div>
 </body>
