@@ -1,6 +1,9 @@
-![Simplist Logo](https://simplist.ir/Content/Shared/Logo.png)
+<img src="https://simplist.ir/Content/Shared/Logo.png" width="100px" height="100px">
+
 ![Simplist Logo](https://poser.pugx.org/laravel/framework/d/total.svg)
+
 ##Simplist
+
 ###Simplist is a mini framework based on PHP language for small projects.
 We strongly suggest our framework for personal blogs, news agencies & human resource management.
 
