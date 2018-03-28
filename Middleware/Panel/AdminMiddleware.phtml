@@ -26,9 +26,21 @@ class AdminMiddleware
     {
         return $this->EditorCookieS();
     }
+    public function Post()
+    {
+        return $this->EditorCookieS();
+    }
     public function Users()
     {
         return $this->AdminCookieS();
+    }
+    public function PostDelete()
+    {
+        return $this->EditorCookieS();
+    }
+    public function PostUpdate()
+    {
+        return $this->EditorCookieS();
     }
     private function PanelCookieS()
     {

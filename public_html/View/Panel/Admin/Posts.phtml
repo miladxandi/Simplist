@@ -1,0 +1,38 @@
+<?php \View\View\Shared\PanelLayouts::_Header(); ?>
+    <title>SIMPLIST - PANEL</title>
+    </head>
+
+<?php \View\View\Shared\PanelLayouts::_Menu(); ?>
+</br>
+    <div class="col-sm SubText PurpText">
+        <table class="table table-sm">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Url</th>
+                <th scope="col">Summary</th>
+                <th scope="col">Publisher</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            $Data = new \Model\Repository\MainFunction\PostRepository();
+            $Posts = $Data->GetPost();
+            $Id = 1;
+            foreach ($Posts as $Post): ?>
+                <tr>
+                    <th scope="col"><?php echo $Post['Post_Id'] ?></th>
+                    <th scope="col"><?php echo $Post['Post_Name'] ?></th>
+                    <th scope="col"><?php echo $Post['Post_Url'] ?></th>
+                    <th scope="col"><?php echo substr($Post['Post_Summary'],0,50).'...';  ?></th>
+                    <th scope="col"><?php echo $Post['Post_Author'] ?></th>
+                    <th scope="col"><a href="/Panel/Posts/Update/?pid=<?php echo $Post['Post_Id']; ?>">Update</a> </br> <a href="/Panel/Posts/Delete/?pid=<?php echo $Post['Post_Id']; ?>">Delete</a></th>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+
+<?php \View\View\Shared\PanelLayouts::_Footer(); ?>

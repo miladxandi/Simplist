@@ -59,14 +59,15 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="/Panel" >Panel</a>
                             <a class="dropdown-item" href="/Panel/Profile" >Profile</a>
-                            <a class="dropdown-item" href="/Panel/NewPost" >New Post</a>
                             <?php if ($_COOKIE['Username']=="0017856701"): ?>
+                            <a class="dropdown-item" href="/Panel/NewPost" >New Post</a>
+                            <a class="dropdown-item" href="/Panel/Posts" >Posts</a>
                             <a class="dropdown-item" href="/Panel/Users" >Users</a>
                             <?php endif; ?>
                             <a class="dropdown-item" href="/Login">Logout</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="https://gitlab.com/miladxandi/Simplist" target="_blank">Direct Download</a>
-                            <a class="dropdown-item" href="https://gitlab.com/miladxandi/Simplist" target="_blank">GITLAB</a>
+                            <a class="dropdown-item" href="/Simplist.zip" target="_blank">Direct Download</a>
+                            <a class="dropdown-item" href="https://github.com/miladxandi/Simplist" target="_blank">GitHub</a>
 
                         </div>
                     </li>
@@ -76,8 +77,8 @@
                             Links
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="https://gitlab.com/miladxandi/Simplist" target="_blank">Direct Download</a>
-                            <a class="dropdown-item" href="https://gitlab.com/miladxandi/Simplist" target="_blank">GITLAB</a>
+                            <a class="dropdown-item" href="/Simplist.zip" target="_blank">Direct Download</a>
+                            <a class="dropdown-item" href="https://github.com/miladxandi/Simplist" target="_blank">GitHub</a>
                         </div>
                     </li>
                 <?php endif; ?>

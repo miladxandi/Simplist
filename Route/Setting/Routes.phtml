@@ -165,4 +165,22 @@ return[
         'pverb'=>'',
         'middleware'=>'Main.Home.Post'
     ],
+    '/Panel/Posts'=>[
+        'target'=>'Panel.Admin.Post',
+        'gverb'=>'GET',
+        'pverb'=>'',
+        'middleware'=>'Panel.Admin.Post'
+    ],
+    '/Panel/Posts/Delete/'=>[
+        'target'=>'Panel.Admin.PostDelete',
+        'gverb'=>'GET',
+        'pverb'=>'POST',
+        'middleware'=>'Panel.Admin.PostDelete'
+    ],
+    '/Panel/Posts/Update/'=>[
+        'target'=>'Panel.Admin.PostUpdate',
+        'gverb'=>'GET',
+        'pverb'=>'POST',
+        'middleware'=>'Panel.Admin.PostUpdate'
+    ],
 ];

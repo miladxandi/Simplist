@@ -1,6 +1,5 @@
 <?php \View\View\Shared\PanelLayouts::_Header(); ?>
 <title>SIMPLIST - New Post</title>
-
 <?php
 
 
@@ -12,7 +11,7 @@ if (isset($_POST['submit'])) {
     $Summary = substr($_POST["PostContent"], 0,150)." ...";
     $Content = $_POST["PostContent"];
     $Author = $_POST["PostAuthor"];
-    $Insert = $Data->Insert($Name,$Url,$Summary,$Content,$Author,$Image);
+    $Insert = $Data->Insert($Name,$Url,$Summary,$Content,$Author);
     if ($Insert == 1) {
         header("Location: /Panel/NewPost");
     } else {
@@ -43,7 +42,7 @@ if (isset($_POST['submit'])) {
         </div>
         <div class="form-group">
             <label for="PostContent">Content</label>
-            <textarea class="form-control" name="PostContent" id="PostContent" required placeholder="Content"></textarea>
+            <textarea class="form-control" name="PostContent" id="PostContent" required ></textarea>
         </div>
         <div class="form-group">
             <label for="PostAuthor">Author</label>
@@ -51,7 +50,6 @@ if (isset($_POST['submit'])) {
                    placeholder="Enter author name">
         </div>
         <button type="submit" name="submit" id="submit" class="btn btn-primary">Post</button>
-
 
 </form>
 </div>

@@ -1,0 +1,71 @@
+<?php \View\View\Shared\PanelLayouts::_Header(); ?>
+<title>SIMPLIST - Post Update</title>
+<?php
+$Add = new Core\Requirement\oLoad("../../..", "Style/Panel", "Script/Panel", "Style/Panel");
+$Add->Loader("css","sample");
+$Add->Loader("js","ckeditor");
+$Add->Loader("js","sample");
+$Add->Loader("js","build-config");
+$Add->Loader("js","config");
+$Add->Loader("js","sf");
+$Add->Loader("js","styles");
+
+$PostInfo = $Viewbag['PostInfo'][0];
+
+if (isset($_POST['submit'])) {
+
+    $Data = new \Model\Repository\MainFunction\PostRepository();
+    $Id = $PostInfo['Post_Id'];
+    $Name = $_POST["PostName"];
+    $Url = $_POST["PostUrl"];
+    $Summary = substr($_POST["PostContent"], 0,150)." ...";
+    $Content = $_POST["PostContent"];
+    $Author = $_POST["PostAuthor"];
+    $Update = $Data->Update($Id,$Name,$Url,$Summary,$Content,$Author);
+    if ($Update['Rows'] == 1) {
+        header("Location: /Panel/Posts");
+    } else {
+        header("Location: /Panel/Posts/Update/?pid=".$PostInfo['Post_Id']);
+
+    }
+}
+
+?>
+</head>
+<?php \View\View\Shared\PanelLayouts::_Menu(); ?>
+
+
+
+
+<div style="margin-top:100px;margin-left:100px;margin-right:100px;">
+    <form method="Post" role="form" action="" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="PostId">Id</label>
+            <input type="text" class="form-control" name="PostId" id="PostId" readonly value="<?php echo $PostInfo['Post_Id']; ?>"  required >
+        </div>
+        <div class="form-group">
+            <label for="PostName">Post Name</label>
+            <input type="text" class="form-control" name="PostName" id="PostName" value="<?php echo $PostInfo['Post_Name']; ?>" required
+                   placeholder="Title">
+        </div>
+        <div class="form-group">
+            <label for="PostUrl">Post Url</label>
+            <input type="text" class="form-control" name="PostUrl" id="PostUrl" value="<?php echo $PostInfo['Post_Url']; ?>" required
+                   placeholder="Specified URL">
+        </div>
+        <div class="form-group">
+            <label for="PostContent">Content</label>
+            <textarea name="PostContent" class="form-control" id="PostContent"  required ><?php echo $PostInfo['Post_Content']; ?></textarea>
+        </div>
+        <div class="form-group">
+            <label for="PostAuthor">Author</label>
+            <input type="text" class="form-control" name="PostAuthor" id="PostAuthor" readonly value="<?php echo $PostInfo['Post_Author']; ?>"  required >
+        </div>
+        <button type="submit" name="submit" id="submit" class="btn btn-primary">Update</button>
+        <script>
+            initSample();
+        </script>
+
+    </form>
+</div>
+<?php \View\View\Shared\PanelLayouts::_Footer(); ?>

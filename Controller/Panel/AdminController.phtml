@@ -9,10 +9,16 @@
 namespace Controller\Panel;
 
 
+use Model\Repository\MainFunction\PostRepository;
 use Route\Show\View;
 
 class AdminController
 {
+    public function __construct()
+    {
+        $this->Post= new PostRepository();
+    }
+
     public function Index()
     {
         View::Process("Panel.Admin.Panel");
@@ -24,5 +30,37 @@ class AdminController
     public function Users()
     {
         View::Process("Panel.Admin.Users");
+    }
+    public function Post()
+    {
+        View::Process("Panel.Admin.Posts");
+    }
+    public function PostDelete($QuerryString)
+    {
+
+        $Querry= substr($QuerryString,29);
+
+        if ($this->Post->GetPostById($Querry)['Rows']==1)
+        {
+            $Viewbag = ['PostInfo'=>$this->Post->GetPostById($Querry)['Values']];
+            View::Process("Panel.Admin.PostDelete",$Viewbag);
+        }
+        else
+        {
+            View::Process("Helper.Home.Error404");
+        }    }
+    public function PostUpdate($QuerryString)
+    {
+        $Querry= substr($QuerryString,29);
+
+        if ($this->Post->GetPostById($Querry)['Rows']==1)
+        {
+            $Viewbag = ['PostInfo'=>$this->Post->GetPostById($Querry)['Values']];
+            View::Process("Panel.Admin.PostUpdate",$Viewbag);
+        }
+        else
+        {
+            View::Process("Helper.Home.Error404");
+        }
     }
 }

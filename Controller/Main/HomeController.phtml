@@ -33,9 +33,9 @@ class HomeController
     {
         $Querry= substr($QuerryString,16);
 
-        if ($this->Post->GetPostById($Querry)['Rows']==1)
+        if ($this->Post->GetPostByUrl($Querry)['Rows']==1)
         {
-            $Viewbag = ['PostInfo'=>$this->Post->GetPostById($Querry)['Values']];
+            $Viewbag = ['PostInfo'=>$this->Post->GetPostByUrl($Querry)['Values']];
             View::Process("Main.Home.Post",$Viewbag);
         }
         else

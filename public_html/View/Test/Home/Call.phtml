@@ -1,5 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="object" property="og:type">
+    <meta content="Simplist is a free & open-source framework for developing, creating & designing online blogs simply." name="description">
+    <meta name="keywords" content="PHP
+     Simplist
+     Framework
+     PHP Framework
+     Simplist Framework
+     Simplist PHP Framework
+     Simplist PHP
+     Simplist Site
+     Simple
+     Simple Site
+     Web Designer
+     سیمپلیست
+     فریمورک PHP
+     فریمورک پی اچ پی
+     فریمورک سیمپلیست
+     طراحی وب
+     طراحی وب بدون دانش برنامه نویسی">
+    <meta content="origin-when-cross-origin" name="referrer">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+    <link rel="shortcut icon" type="image/x-icon" href="../../../Content/Shared/Logo.png" id="favicon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="../../../Content/Shared/Logo.png">
+    <link rel="apple-touch-icon" type="image/x-icon" href="../../../Content/Shared/Logo.png"><title>SIMPLIST - New Post</title>
 <?php
-list($URI,$PId)= explode("&",$Viewbag['QuerryString']);
-echo $PId;
+$Add = new Core\Requirement\oLoad("../../..", "Style/Panel", "Script/Panel", "Style/Panel");
+$Add->Loader("css","main");
+$Add->Loader("css","Logos","Shared",true);
+$Add->Loader("css","bootstrap.min","https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css");
+$Add->Loader("js","main");
+$Add->Loader("js","jquery-3.2.1.slim.min","https://code.jquery.com");
+$Add->Loader("js","popper.min","https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd");
+$Add->Loader("js","bootstrap.min","https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js");
+$Add->Loader("css","sample");
+$Add->Loader("js","ckeditor");
+$Add->Loader("js","sample");
+$Add->Loader("js","build-config");
+$Add->Loader("js","config");
+$Add->Loader("js","sf");
+$Add->Loader("js","styles");
+?>
+<?php
+
+
+if (isset($_POST['submit'])) {
+
+    $Data = new \Model\Repository\MainFunction\PostRepository();
+    $Name = $_POST["PostName"];
+    $Url = $_POST["PostUrl"];
+    $Summary = substr($_POST["PostContent"], 0,150)." ...";
+    $Content = $_POST["PostContent"];
+    $Author = $_POST["PostAuthor"];
+    $Insert = $Data->Insert($Name,$Url,$Summary,$Content,$Author,$Image);
+    if ($Insert == 1) {
+        header("Location: /Panel/NewPost");
+    } else {
+        header("Location: /Panel/NewPost");
+
+    }
+}
 
 ?>
+</head>
+
+
+
+<div style="margin-top:100px;margin-left:100px;margin-right:100px;">
+    <form method="Post" role="form" action="" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <label for="PostName">Post Name</label>
+            <input type="text" class="form-control" name="PostName" id="PostName" required
+                   placeholder="Title">
+        </div>
+        <div class="form-group">
+            <label for="PostUrl">Post Url</label>
+            <input type="text" class="form-control" name="PostUrl" id="PostUrl" required
+                   placeholder="Specified URL">
+        </div>
+        <div class="form-group">
+            <label for="PostContent">Content</label>
+            <textarea name="PostContent" id="editor1"  rows="10" cols="80" required >This is my textarea to be replaced with CKEditor.</textarea>
+        </div>
+        <div class="form-group">
+            <label for="PostAuthor">Author</label>
+            <input type="text" class="form-control" name="PostAuthor" id="PostAuthor" readonly value="<?php echo $_COOKIE['Firstname']; ?>"  required
+                   placeholder="Enter author name">
+        </div>
+        <button type="submit" name="submit" id="submit" class="btn btn-primary">Post</button>
+        <script>
+            initSample();
+        </script>
+
+    </form>
+</div>
+<?php \View\View\Shared\PanelLayouts::_Footer(); ?>
