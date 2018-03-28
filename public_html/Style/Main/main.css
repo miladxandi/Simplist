@@ -45,14 +45,14 @@ a.PurpStyle:hover {
     text-align: center;
     vertical-align: middle;
     font-size: 6.5vw;
-    font-family: "IR Roya","Calibri Light";
+    font-family: "Calibri Light";
 }
 .SubText
 {
     text-align: center;
     vertical-align: middle;
     font-size: 20px;
-    font-family: "IR Roya","Calibri Light";
+    font-family: "Calibri Light";
 }
 .Code
 {
@@ -65,10 +65,18 @@ a.PurpStyle:hover {
 }
 .PostTitle{
     font-family: IRRoya;
+    font-size: 40px;
 }
 .PostContent{
     font-family: IRRoya;
+    font-size: 30px;
     white-space: pre;
+    direction: rtl;
+    text-align: right;
+}
+.PostAuthor{
+    font-family: IRRoya;
+    font-size: 15px;
     direction: rtl;
     text-align: right;
 }

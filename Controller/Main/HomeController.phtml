@@ -3,15 +3,18 @@
 namespace Controller\Main;
 
 
+use Model\Repository\MainFunction\PostRepository;
 use Route\Show\View;
 
 class HomeController
 {
     private $Username;
+    private $Post;
 
     public function __construct()
     {
         //$this->Username=new UserRepository();
+        $this->Post= new PostRepository();
     }
     public function Index()
     {
@@ -25,6 +28,20 @@ class HomeController
     public function Documentation()
     {
         View::Process("Main.Home.Documentation");
+    }
+    public function Post($QuerryString)
+    {
+        $Querry= substr($QuerryString,16);
+
+        if ($this->Post->GetPostById($Querry)['Rows']==1)
+        {
+            $Viewbag = ['PostInfo'=>$this->Post->GetPostById($Querry)['Values']];
+            View::Process("Main.Home.Post",$Viewbag);
+        }
+        else
+        {
+            View::Process("Helper.Home.Error404");
+        }
     }
 
 }

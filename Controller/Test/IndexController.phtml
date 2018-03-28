@@ -13,9 +13,10 @@ use Route\Show\View;
 
 class IndexController
 {
-    public function Call()
+    public function Call($Querry_String)
     {
-        View::Process("Test.Home.Call");
+        $Viewbag=['QuerryString'=>$Querry_String];
+        View::Process("Test.Home.Call",$Viewbag);
     }
     public function Response()
     {

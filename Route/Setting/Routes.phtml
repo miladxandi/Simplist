@@ -153,4 +153,16 @@ return[
         'pverb'=>'POST',
         'middleware'=>''
     ],
+    '/Posts/'=>[
+        'target'=>'Main.Home.Post',
+        'gverb'=>'GET',
+        'pverb'=>'',
+        'middleware'=>'Main.Home.Post'
+    ],
+    '/posts/'=>[
+        'target'=>'Main.Home.Post',
+        'gverb'=>'GET',
+        'pverb'=>'',
+        'middleware'=>'Main.Home.Post'
+    ],
 ];

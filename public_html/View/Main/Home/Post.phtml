@@ -1,0 +1,31 @@
+<?php \View\View\Shared\MainLayouts::_Header(); ?>
+<?php $PostInfo = $Viewbag['PostInfo'][0]; ?>
+    <title>SIMPLIST - <?php echo $PostInfo['Post_Name']; ?></title>
+    </head>
+<?php \View\View\Shared\MainLayouts::_Menu(); ?>
+    <!--  Content -->
+        <div class="Container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="jumbotron">
+                        <?php
+                        $Add = new Core\Requirement\oLoad("../../..", "Style/Main", "Script/Main", "Content/Main"); ?>
+                        <?php if (isset($PostInfo['Post_Image']) && ($PostInfo['Post_Image'] != null || $PostInfo['Post_Image'] != "")) {
+                            $Add->Loader("png", $PostInfo['Post_Image'], "Shared", true, false, $PostInfo['Post_Name'], 300, 200);
+                        } else {
+                            $Add->Loader("png", "SimplistV2", "Shared", true, false, $PostInfo['Post_Name'], 300, 200);
+                        }
+
+                        ?>
+                        <h1 class="display-4 PostTitle"><?php echo $PostInfo['Post_Name']; ?></h1>
+                        <p class="lead PostContent"><?php echo $PostInfo['Post_Content']; ?></p>
+                        <hr class="my-4 ">
+                        <p class="PostAuthor"> نویسنده: <?php echo $PostInfo['Post_Author']; ?></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<?php \View\View\Shared\MainLayouts::_Footer(); ?>

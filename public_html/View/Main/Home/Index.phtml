@@ -31,30 +31,43 @@
             <button type="button" class="btn btn-outline-secondary">Get Strated</button>
         </a>
     </div>
-    </div>
+
     </br>
+
     <div class="SubText PurpText FitLayout">
+        <div class="Container">
+            <div class="row">
+                <?php
+                $Data = new \Model\Repository\MainFunction\PostRepository();
+                $IMG = 1;
+                $Posts = $Data->GetPost();
+                $Add = new Core\Requirement\oLoad("../../..", "Style/Main", "Script/Main", "Content/Main");
+                foreach ($Posts as $Post): ?>
+                    <div class="col-12">
+                        <div class="jumbotron">
+                            <a href="/Posts/?pId=<?php echo $Post['Post_Id'] ?>">
+                                <?php if (isset($Post['Post_Image']) && ($Post['Post_Image'] != null || $Post['Post_Image'] != "")) {
+                                    $Add->Loader("png", $Post['Post_Image'], "Shared", true, false, $Post['Post_Name'], 300, 200);
+                                } else {
+                                    $Add->Loader("png", "SimplistV2", "Shared", true, false, $Post['Post_Name'], 300, 200);
+                                }
 
-    <div class="container">
-    <div class="row">
-        <?php
-        $Data = new \Model\Repository\MainFunction\PostRepository();
-        $IMG= 1;
-        $Posts = $Data->GetPost();
-        foreach ($Posts as $Post):
-            ?>
-            <div class="card col-sm" style="">
-                <img class="card-img-top" src="<?php if(isset($Post['Post_Image']) && ($Post['Post_Image']!=null || $Post['Post_Image']!="")){echo $Post['Post_Image'];} else{ echo "../../../Content/Shared/SimplistV2.png";}  ?>" alt="<?php echo $Post['Post_Name'] ?>">
-                <div class="card-body">
-                    <h5 class="card-title PostTitle"><?php echo $Post['Post_Name'] ?></h5>
-                    <pre class="card-text PostContent"><?php echo $Post['Post_Content'] ?></pre>
-                    <p class="card-text PostContent" style="font-size: small"><?php echo $Post['Post_Author'] ?></p>
-                    <a href="/Posts/<?php echo $Post['Post_Url'] ?>" class="btn btn-primary">READ MORE</a>
-                </div>
+                                ?>
+                            </a>
+
+                            <h1 class="display-4 PostTitle"><?php echo $Post['Post_Name'] ?></h1>
+                            <p class="lead PostContent"><?php echo $Post['Post_Summary'] ?></p>
+                            <hr class="my-4 ">
+                            <p class="PostAuthor">نویسنده: <?php echo $Post['Post_Author'] ?></p>
+                            <p class="lead">
+                                <a class="btn btn-primary btn-lg" href="/Posts/?pId=<?php echo $Post['Post_Id'] ?>"
+                                   role="button">Learn more</a>
+                            </p>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
-
-        <?php
-        endforeach; ?>
-
+        </div>
     </div>
+
 <?php \View\View\Shared\MainLayouts::_Footer(); ?>

@@ -2,7 +2,6 @@
 
 namespace Route\Core;
 
-use Controller\Panel\UserController;
 
 class Router
 {
@@ -11,7 +10,8 @@ class Router
     protected static $BaseMiddleware="Middleware\\";
     public static function Register()
     {
-        $CurrentRoute= self::getCurrentRoute();
+        $CurrentRoute= self::getCurrentRoute()['URI'];
+        $QuerryString= self::getCurrentRoute()['QuerryString'];
         $Routes = self::isRouteDefined("$CurrentRoute");
         $gRequestVerb = $Routes['gverb'];
         $pRequestVerb = $Routes['pverb'];
@@ -29,19 +29,57 @@ class Router
                 $MiddlewareInstance= new $MiddlewareClass;
                 if (method_exists($ControllerInstance,"$Method")&& method_exists($MiddlewareInstance,"$Check"))
                 {
-                    if($MiddlewareInstance->$Check()['Status'])
+                    if ($QuerryString!=null)
                     {
-                        $ControllerInstance->$Method();
+                        if($MiddlewareInstance->$Check($QuerryString)['Status'])
+                        {
+
+                            if($QuerryString!=null)
+                            {
+                                $ControllerInstance->$Method($QuerryString);
+                            }
+                            else
+                            {
+                                $ControllerInstance->$Method();
+                            }
+                        }
+                        else
+                        {
+                            header("Location: /Badrequest");
+                        }
                     }
                     else
                     {
-                        header("Location: /Badrequest");
+                        if($MiddlewareInstance->$Check()['Status'])
+                        {
+
+                            if($QuerryString!=null)
+                            {
+                                $ControllerInstance->$Method($QuerryString);
+                            }
+                            else
+                            {
+                                $ControllerInstance->$Method();
+                            }
+                        }
+                        else
+                        {
+                            header("Location: /Badrequest");
+                        }
                     }
                 }
             }
             else if (method_exists($ControllerInstance,"$Method"))
             {
-                $ControllerInstance->$Method();
+                if($QuerryString!=null)
+                {
+                    $ControllerInstance->$Method($QuerryString);
+
+                }
+                else
+                {
+                    $ControllerInstance->$Method();
+                }
             }
             else
             {
@@ -69,11 +107,31 @@ class Router
 
     public static function getCurrentRoute()
     {
-        return $_SERVER['REQUEST_URI'];
+        $WithoutSlashes= substr($_SERVER['REQUEST_URI'], 1);
+        $QuerryString=$_SERVER['QUERY_STRING'];
+        $URI=$_SERVER['REQUEST_URI'];
+        if($QuerryString=="path=$WithoutSlashes")
+        {
+            $QuerryString=null;
+            return ['QuerryString'=>$QuerryString,'URI'=>$URI];
+
+        }
+        else if ($QuerryString!="path=$WithoutSlashes")
+        {
+            return ['QuerryString'=>$QuerryString,'URI'=>$URI];
+        }
     }
 
-    public static function isRouteDefined(string $Route)
+    public static function isRouteDefined(string $FullRoute)
     {
+        if (strpos($FullRoute, "?"))
+        {
+            $Route = substr($FullRoute, 0, strpos($FullRoute, "?"));
+        }
+        else
+        {
+            $Route = $FullRoute;
+        }
         $Routes = self::getRoutes();
         if (array_key_exists($Route,$Routes))
         {
