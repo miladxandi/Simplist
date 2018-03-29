@@ -46,12 +46,11 @@ class AdminMiddleware
     {
         if(isset($_COOKIE['Username']) && $this->DB->FindByUser($_COOKIE['Username'])['Rows']==1)
         {
-            header("Location: /Panel");
             return ['Status'=> true,'Info'=>$this->DB->FindByUser($_COOKIE['Username'])['Values']];
         }
         elseif(isset($_COOKIE['Username'])==false || $this->DB->FindByUser($_COOKIE['Username'])['Rows']==0)
         {
-            header("Location: /");
+            header("Location: /Login");
             return ['Status'=> true];
         }
         else

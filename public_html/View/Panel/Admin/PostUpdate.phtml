@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
     $Id = $PostInfo['Post_Id'];
     $Name = $_POST["PostName"];
     $Url = $_POST["PostUrl"];
-    $Summary = substr($_POST["PostContent"], 0,150)." ...";
+    $Summary = substr($_POST["PostContent"], 0,150);
     $Content = $_POST["PostContent"];
     $Author = $_POST["PostAuthor"];
     $Update = $Data->Update($Id,$Name,$Url,$Summary,$Content,$Author);

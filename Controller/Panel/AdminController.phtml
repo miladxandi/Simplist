@@ -1,27 +1,26 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: farva
- * Date: 20/03/2018
- * Time: 02:13 AM
- */
 
 namespace Controller\Panel;
 
 
 use Model\Repository\MainFunction\PostRepository;
+use Model\Repository\MainFunction\UserRepository;
 use Route\Show\View;
 
 class AdminController
 {
+    private $Post;
+    private $User;
     public function __construct()
     {
         $this->Post= new PostRepository();
+        $this->User= new UserRepository();
     }
 
     public function Index()
     {
-        View::Process("Panel.Admin.Panel");
+        $Viewbag=['UserInfo'=>$this->User->FindByUser($_COOKIE['Username'])['Values'],];
+        View::Process("Panel.Admin.Panel",$Viewbag);
     }
     public function NewPost()
     {

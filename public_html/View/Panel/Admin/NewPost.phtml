@@ -8,7 +8,7 @@ if (isset($_POST['submit'])) {
     $Data = new \Model\Repository\MainFunction\PostRepository();
     $Name = $_POST["PostName"];
     $Url = $_POST["PostUrl"];
-    $Summary = substr($_POST["PostContent"], 0,150)." ...";
+    $Summary = substr($_POST["PostContent"], 0,150);
     $Content = $_POST["PostContent"];
     $Author = $_POST["PostAuthor"];
     $Insert = $Data->Insert($Name,$Url,$Summary,$Content,$Author);

@@ -1,8 +1,24 @@
 <?php \View\View\Shared\PanelLayouts::_Header(); ?>
+<?php $UserInfo = $Viewbag['UserInfo']; ?>
     <title>SIMPLIST - PANEL</title>
     </head>
 <?php \View\View\Shared\PanelLayouts::_Menu(); ?>
 
-
+<div class="card text-center">
+    <div class="card-header">
+        USER INFO
+    </div>
+    <div class="card-body">
+        <h5 class="card-title"><?php echo $UserInfo['user_Firstname'].' '.$UserInfo['user_Lastname']; ?></h5>
+        <p class="card-text"><?php echo $UserInfo['user_Email'] ?></p>
+        <p class="card-text"><?php echo $UserInfo['user_Phone'] ?></p>
+        <p class="card-text"><?php echo $UserInfo['user_Type'] ?></p>
+        <p class="card-text"><?php echo $UserInfo['user_Username'] ?></p>
+        <a href="/Login" class="btn btn-primary">Logout</a>
+    </div>
+    <div class="card-footer text-muted">
+        Created: <?php echo $UserInfo['user_CreatedAt'] ?>
+    </div>
+</div>
 
 <?php \View\View\Shared\PanelLayouts::_Footer(); ?>
