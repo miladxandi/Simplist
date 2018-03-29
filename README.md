@@ -14,7 +14,7 @@ Everything in Simplist is as simple as installing it on your server!
 Want to help in development?
 
 ## Documentation
-Remember your PHP code should be upper than 7 and the local request address should be set on:
+Remember your PHP version should be upper than 7 and the local request address should be set on:
 >public_html/
 
 After that, you have to set the username & table of your Database!
