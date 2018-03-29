@@ -39,10 +39,10 @@ You can change the `$this->CoreSecurity->SecureProtocol(false);` to `$this->Core
 
 It\`s completely installed and ready for use.
 
-To define your own routes, got to this address:
+To define your own routes, go to this address:
 >Route/Setting/Routes.phtml
 
-There is just an array returner that returns the url as an array key and configurations as it\`s values.
+There is just an array returner that returns the url as an array key and configurations as its values.
 Every new route should exactly create from this template:
 ```
 '/Aboutus' => [
