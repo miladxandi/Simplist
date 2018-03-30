@@ -82,6 +82,8 @@ Middleware also can process on a `Querry String` by getting it, in its function 
 
 - [x] Starters Documentation
 - [ ] Complete Documentations
+- [ ] Login Authentication Bugs
+- [ ] Hash Password
 - [ ] Handle the requested URl with regex
 - [ ] Make a development environment for Database connection, Secure protocol & etc
 - [ ] Make a user registration form
