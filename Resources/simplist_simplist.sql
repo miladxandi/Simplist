@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2018 at 06:58 AM
+-- Generation Time: Mar 30, 2018 at 09:19 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -54,6 +54,25 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`Post_Id`, `Post_Name`, `Post_Url`, `Post_Summary`, `Post_Content`, `Post_Author`) VALUES
+(1, 'نسخه 2.5 Simplist', 'simplistv2', 'نسخه 2.5 فریمورک Simplist منتشر شد.\r\nاطلاعات بیشتر در وب سایت Simplist:\r\nhttps://simplist.ir/\r\n\r\nدریافت ا ...', 'نسخه 2.5 فریمورک Simplist منتشر شد.\r\nاطلاعات بیشتر در وب سایت Simplist:\r\nhttps://simplist.ir/\r\n\r\nدریافت از Github:\r\nhttps://github.com/miladxandi/Simplist', 'میلاد');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `urls`
+--
+
+CREATE TABLE `urls` (
+  `url` varchar(250) COLLATE utf8_persian_ci NOT NULL,
+  `target` varchar(500) COLLATE utf8_persian_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+--
+-- Dumping data for table `urls`
+--
+
+INSERT INTO `urls` (`url`, `target`) VALUES
+('Developer', 'https://miladzandi.ir');
 
 -- --------------------------------------------------------
 
@@ -84,6 +103,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_Id`, `user_Firstname`, `user_Lastname`, `user_Nickname`, `user_Username`, `user_Password`, `user_Type`, `user_Email`, `user_Phone`, `user_CreatedAt`, `user_ExpiredAt`, `user_Status`, `user_Image`, `user_Bio`, `user_IsPaid`) VALUES
+(1, 'Milad', 'Zandi', 'Admin', 'miladzandi', 'miladzandi', 'Admin', 'info@miladzandi.ir', '09201007320', '2018-03-30 23:40:10', '0000-00-00', 1, '', 'من مدیر سایت هستم.', 1),
 
 --
 -- Indexes for dumped tables
@@ -101,6 +121,12 @@ ALTER TABLE `migrations`
 ALTER TABLE `posts`
   ADD PRIMARY KEY (`Post_Id`),
   ADD UNIQUE KEY `Post_Url` (`Post_Url`);
+
+--
+-- Indexes for table `urls`
+--
+ALTER TABLE `urls`
+  ADD PRIMARY KEY (`url`);
 
 --
 -- Indexes for table `users`
@@ -124,7 +150,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `Post_Id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `Post_Id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`

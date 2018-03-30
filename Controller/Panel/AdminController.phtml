@@ -4,6 +4,7 @@ namespace Controller\Panel;
 
 
 use Model\Repository\MainFunction\PostRepository;
+use Model\Repository\MainFunction\UrlRepository;
 use Model\Repository\MainFunction\UserRepository;
 use Route\Show\View;
 
@@ -11,10 +12,12 @@ class AdminController
 {
     private $Post;
     private $User;
+    private $Url;
     public function __construct()
     {
         $this->Post= new PostRepository();
         $this->User= new UserRepository();
+        $this->Url= new UrlRepository();
     }
 
     public function Index()
@@ -22,13 +25,15 @@ class AdminController
         $Viewbag=['UserInfo'=>$this->User->FindByUser($_COOKIE['Username'])['Values'],];
         View::Process("Panel.Admin.Panel",$Viewbag);
     }
-    public function NewPost()
-    {
-        View::Process("Panel.Admin.NewPost");
-    }
+
     public function Users()
     {
         View::Process("Panel.Admin.Users");
+    }
+
+    public function NewPost()
+    {
+        View::Process("Panel.Admin.NewPost");
     }
     public function Post()
     {
@@ -56,6 +61,43 @@ class AdminController
         {
             $Viewbag = ['PostInfo'=>$this->Post->GetPostById($Querry)['Values']];
             View::Process("Panel.Admin.PostUpdate",$Viewbag);
+        }
+        else
+        {
+            View::Process("Helper.Home.Error404");
+        }
+    }
+
+    public function NewUrl()
+    {
+        View::Process("Panel.Admin.NewUrl");
+    }
+    public function Url()
+    {
+        View::Process("Panel.Admin.Url");
+    }
+    public function UrlDelete($QuerryString)
+    {
+        $Url= substr($QuerryString,27);
+
+        if ($this->Url->FindByUrl($Url)['Rows']==1)
+        {
+            $Viewbag = ['UrlInfo'=>$this->Url->FindByUrl($Url)['Values']];
+            View::Process("Panel.Admin.UrlDelete",$Viewbag);
+        }
+        else
+        {
+            View::Process("Helper.Home.Error404");
+        }
+    }
+    public function UrlUpdate($QuerryString)
+    {
+        $Url = substr($QuerryString,27);
+
+        if ($this->Url->FindByUrl($Url)['Rows']==1)
+        {
+            $Viewbag = ['UrlInfo'=>$this->Url->FindByUrl($Url)['Values']];
+            View::Process("Panel.Admin.UrlUpdate",$Viewbag);
         }
         else
         {

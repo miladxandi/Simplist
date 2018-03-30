@@ -1,0 +1,52 @@
+<?php \View\View\Shared\PanelLayouts::_Header(); ?>
+<title>SIMPLIST - Url Update</title>
+<?php
+$Add = new Core\Requirement\oLoad("../../..", "Style/Panel", "Script/Panel", "Style/Panel");
+$Add->Loader("css","sample");
+$Add->Loader("js","ckeditor");
+$Add->Loader("js","sample");
+$Add->Loader("js","build-config");
+$Add->Loader("js","config");
+$Add->Loader("js","sf");
+$Add->Loader("js","styles");
+
+$UrlInfo = $Viewbag['UrlInfo'][0];
+
+if (isset($_POST['submit'])) {
+
+    $Data = new \Model\Repository\MainFunction\UrlRepository();
+    $Url = $_POST["Url"];
+    $Target = $_POST["Target"];
+
+    $Update = $Data->Update($Id,$Target);
+    if ($Update['Rows'] == 1) {
+        header("Location: /Panel/Url");
+    } else {
+        header("Location: /Panel/Url/Update/?url=".$UrlInfo['url']);
+
+    }
+}
+
+?>
+</head>
+<?php \View\View\Shared\PanelLayouts::_Menu(); ?>
+
+
+
+
+<div style="margin-top:100px;margin-left:100px;margin-right:100px;">
+    <form method="Post" role="form" action="" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="Url">Url</label>
+            <input type="text" class="form-control" name="Url" id="Url" value="<?php echo $UrlInfo['url']; ?>" >
+        </div>
+        <div class="form-group">
+            <label for="Target">Target</label>
+            <input type="text" class="form-control" name="Target" id="Target" value="<?php echo $UrlInfo['target']; ?>" required
+                   placeholder="Title">
+        </div>
+        <button type="submit" name="submit" id="submit" class="btn btn-primary">Update</button>
+
+    </form>
+</div>
+<?php \View\View\Shared\PanelLayouts::_Footer(); ?>

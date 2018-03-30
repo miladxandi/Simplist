@@ -1,0 +1,44 @@
+<?php \View\View\Shared\PanelLayouts::_Header(); ?>
+<title>SIMPLIST - New Url</title>
+<?php
+
+
+if (isset($_POST['submit'])) {
+
+    $Data = new \Model\Repository\MainFunction\UrlRepository();
+    $Url = $_POST['Url'];
+    $Target = $_POST['Target'];
+    $Insert = $Data->Insert($Url,$Target);
+    if ($Insert == 1) {
+        header("Location: /Panel/NewUrl");
+    } else {
+        header("Location: /Panel/NewUrl");
+
+    }
+}
+
+?>
+</head>
+<?php \View\View\Shared\PanelLayouts::_Menu(); ?>
+
+
+
+
+<div style="margin-top:100px;margin-left:100px;margin-right:100px;">
+    <form method="Post" role="form" action="" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <label for="Url">Url</label>
+            <input type="text" class="form-control" name="Url" id="Url"
+                   placeholder="Specified Url (optional)">
+        </div>
+        <div class="form-group">
+            <label for="Target">Target</label>
+            <input type="text" class="form-control" name="Target" id="Target" required
+                   placeholder="Target Url">
+        </div>
+        <button type="submit" name="submit" id="submit" class="btn btn-primary">Add Url</button>
+
+</form>
+</div>
+<?php \View\View\Shared\PanelLayouts::_Footer(); ?>

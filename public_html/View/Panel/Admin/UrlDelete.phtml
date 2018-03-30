@@ -1,0 +1,10 @@
+<?php
+$UrlInfo = $Viewbag['UrlInfo'][0];
+$Data = new \Model\Repository\MainFunction\UrlRepository();
+$Url = $UrlInfo['url'];
+$Delete = $Data->Delete($Url);
+if ($Delete['Rows'] == 1) {
+    header("Location: /Panel/Url");
+} else {
+    header("Location: /Panel/Url/Update/?url=0");
+}

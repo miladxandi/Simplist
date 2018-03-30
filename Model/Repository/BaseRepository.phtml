@@ -25,7 +25,7 @@ abstract class BaseRepository
     }
     public function FindByUser(string $Username)
     {
-        $Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->uName}={$Username}");
+        $Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->uName}='".$Username."'");
         return ['Values'=>$Result->fetch(\PDO::FETCH_ASSOC),'Rows'=>$Result->rowCount()];
     }
     public function FindByEmail(string $Email)

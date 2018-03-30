@@ -59,9 +59,11 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="/Panel" >Panel</a>
                             <a class="dropdown-item" href="/Panel/Profile" >Profile</a>
-                            <?php if ($_COOKIE['Username']=="0017856701"): ?>
+                            <?php if ($_COOKIE['Username']=="miladzandi"): ?>
                             <a class="dropdown-item" href="/Panel/NewPost" >New Post</a>
                             <a class="dropdown-item" href="/Panel/Posts" >Posts</a>
+                                <a class="dropdown-item" href="/Panel/NewUrl" >New Links</a>
+                                <a class="dropdown-item" href="/Panel/Url" >Links</a>
                             <a class="dropdown-item" href="/Panel/Users" >Users</a>
                             <?php endif; ?>
                             <a class="dropdown-item" href="/Login">Logout</a>

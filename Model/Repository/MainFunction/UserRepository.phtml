@@ -29,28 +29,28 @@ class UserRepository extends BaseRepository
 
     public function Username($Username)
     {
-        $Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->uName}={$Username}");
+        $Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->uName}='".$Username."'");
         $Result->fetch(\PDO::FETCH_COLUMN);
         return $Result->rowCount();
     }
 
     public function Email($Email)
     {
-        $Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->uMail}={$Email}");
+        $Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->uMail}='".$Email."'");
         $Result->fetch(\PDO::FETCH_COLUMN);
         return $Result->rowCount();
     }
 
     public function Password($Password)
     {
-        $Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->uPass}={$Password}");
+        $Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->uPass}='".$Password."'");
         $Result->fetch(\PDO::FETCH_COLUMN);
         return $Result->rowCount();
     }
 
     public function Login($Username, $Password)
     {
-        $Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->uName}={$Username} AND {$this->uPass}={$Password}");
+        $Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->uName}='".$Username."' AND {$this->uPass}='".$Password."'");
         $Result->fetch(\PDO::FETCH_COLUMN);
         return $Result->rowCount();
     }

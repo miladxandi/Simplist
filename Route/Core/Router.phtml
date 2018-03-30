@@ -3,6 +3,8 @@
 namespace Route\Core;
 
 
+use Model\Repository\MainFunction\UrlRepository;
+
 class Router
 {
 
@@ -16,7 +18,6 @@ class Router
         $gRequestVerb = $Routes['gverb'];
         $pRequestVerb = $Routes['pverb'];
         $CurrentRouteVerb = self::currentRequestVerb();
-
         if (($CurrentRouteVerb==$gRequestVerb && $gRequestVerb!="")||($CurrentRouteVerb==$pRequestVerb && $pRequestVerb!=""))
         {
             list($Folder,$Controller,$Method)=explode(".",$Routes['target']);
@@ -86,6 +87,15 @@ class Router
                 return $Routes['/NotFound'];
             }
         }
+        else if ($Routes==1)
+        {
+            $Url = new UrlRepository();
+
+            foreach ($Url->FindByUrl(substr(self::getCurrentRoute()['URI'],7))['Values'] as $UrlAddress )
+            {
+                header("Location: ".$UrlAddress['target']);
+            }
+        }
         else
         {
             if ($CurrentRouteVerb==$gRequestVerb && $gRequestVerb=="")
@@ -124,6 +134,8 @@ class Router
 
     public static function isRouteDefined(string $FullRoute)
     {
+        $Url = new UrlRepository();
+
         if (strpos($FullRoute, "?"))
         {
             $Route = substr($FullRoute, 0, strpos($FullRoute, "?"));
@@ -133,9 +145,14 @@ class Router
             $Route = $FullRoute;
         }
         $Routes = self::getRoutes();
+
         if (array_key_exists($Route,$Routes))
         {
             return $Routes[$Route];
+        }
+        else if ($Url->FindByUrl(substr(self::getCurrentRoute()['URI'],7))['Rows']==1)
+        {
+            return 1;
         }
         else
         {
@@ -148,9 +165,9 @@ class Router
         $Routes = include PATH . DIRECTORY_SEPARATOR . 'Setting/Routes.phtml';
         return $Routes;
     }
+
     public static function currentRequestVerb()
     {
         return $_SERVER['REQUEST_METHOD'];
     }
 }
-?>

@@ -183,4 +183,28 @@ return[
         'pverb'=>'POST',
         'middleware'=>'Panel.Admin.PostUpdate'
     ],
+    '/Panel/Url'=>[
+        'target'=>'Panel.Admin.Url',
+        'gverb'=>'GET',
+        'pverb'=>'POST',
+        'middleware'=>'Panel.Admin.Post'
+    ],
+    '/Panel/NewUrl'=>[
+        'target'=>'Panel.Admin.NewUrl',
+        'gverb'=>'GET',
+        'pverb'=>'POST',
+        'middleware'=>'Panel.Admin.NewPost'
+    ],
+    '/Panel/Url/Delete/'=>[
+        'target'=>'Panel.Admin.UrlDelete',
+        'gverb'=>'GET',
+        'pverb'=>'POST',
+        'middleware'=>'Panel.Admin.PostDelete'
+    ],
+    '/Panel/Url/Update/'=>[
+        'target'=>'Panel.Admin.UrlUpdate',
+        'gverb'=>'GET',
+        'pverb'=>'POST',
+        'middleware'=>'Panel.Admin.PostUpdate'
+    ],
 ];
