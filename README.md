@@ -49,7 +49,7 @@ Every new route should exactly create from this template:
  'target'=>'Main.Home.Aboutus',
  'gverb'=> 'GET',
  'pverb'=> 'POST',
- 'middleware'=>'Main.Home.Aboutus' ],'
+ 'middleware'=>'Main.Home.Aboutus' ],
 ```
 Let me describe it line by line:
 
