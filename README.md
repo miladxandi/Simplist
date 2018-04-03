@@ -62,12 +62,14 @@ Let me describe it line by line:
 Controller also can process on a `Querry String` by getting it, in its function parameters.
 You can also make some request to Database in Controller files.
 The given `Querry String` or Database values should insert into an array with `$Viewbag` name.
-You can send them to your web page by this code:
+You can send them into your web page by this code:
 `View::Process("Main.Home.Post",$Viewbag);`
-It\`s now accessible in the request "View" file in "public_html/View/...".
+It\`s now accessible from the requested "View" file in "public_html/View/...".
 
-Note: Controllers and Middlewares have to create with `Controller.phtml` or `Middleware.phtml` but should be written here without these extensions.
-For example, we have "HomeController" but we can access it with writing just its name.
+Note: Controllers and Middlewares have to create with exactly `Controller.phtml` or `Middleware.phtml` extensions, but should be written here without these extensions.
+For example, we have "HomeController" but we can access it by writing just its name without the "Controller" extension: "Home"
+
+
 `'gverb'=> 'GET' `  or `'pverb'=> 'POST' `
 >These are the general server request methods that we can define here.
 if you want to deny any post request, you just need to delete the `POST` word and leave it empty.
@@ -75,10 +77,11 @@ Then you can see every request with the `POST` request method will show you a "R
 
 
 `'middleware'=>'Main.Home.Aboutus'`
->When there was no conflict with the requested URL & its defined request method, before launching Controllers, we have some middleware to check some information.
+>When there was no conflict with the requested URL & its defined request method, before launching Controllers, we have some middleware to do some validations.
 It can use to check security cookies or website language options and etc.
 Every Middleware should return `true` in its "Status" key to pass its examination.
-Middleware also can process on a `Querry String` by getting it, in its function parameters.
+Middlewares also can process on a `Querry String` by getting it, in their function parameters.
+Just like Controllers, we need their pure name without the "Middleware" extensions.
 
 - [x] Starters Documentation
 - [ ] Complete Documentations
