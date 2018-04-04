@@ -46,7 +46,7 @@ class Router
                         }
                         else
                         {
-                            header("Location: /Badrequest");
+                            header("Location: /badrequest");
                         }
                     }
                     else
@@ -65,7 +65,7 @@ class Router
                         }
                         else
                         {
-                            header("Location: /Badrequest");
+                            header("Location: /badrequest");
                         }
                     }
                 }
@@ -84,7 +84,7 @@ class Router
             }
             else
             {
-                return $Routes['/NotFound'];
+                return $Routes['/notfound'];
             }
         }
         else if ($Routes==1)
@@ -100,15 +100,15 @@ class Router
         {
             if ($CurrentRouteVerb==$gRequestVerb && $gRequestVerb=="")
             {
-                header("Location: /MethodNotAllowed");
+                header("Location: /methodnotallowed");
             }
             else if($CurrentRouteVerb==$pRequestVerb && $pRequestVerb=="")
             {
-                header("Location: /MethodNotAllowed");
+                header("Location: /methodnotallowed");
             }
             else
             {
-                header("Location: /MethodNotAllowed");
+                header("Location: /methodnotallowed");
 
             }
 
@@ -145,10 +145,9 @@ class Router
             $Route = $FullRoute;
         }
         $Routes = self::getRoutes();
-
-        if (array_key_exists($Route,$Routes))
+        if (array_key_exists(preg_replace('/[A-Z]/',strtolower($Route),strtolower($Route)),$Routes))
         {
-            return $Routes[$Route];
+            return $Routes[preg_replace('/[A-Z]/',strtolower($Route),strtolower($Route))];
         }
         else if ($Url->FindByUrl(substr(self::getCurrentRoute()['URI'],7))['Rows']==1)
         {
@@ -156,7 +155,7 @@ class Router
         }
         else
         {
-            return $Routes['/NotFound'];
+            return $Routes['/notfound'];
         }
     }
 

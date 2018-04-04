@@ -87,7 +87,7 @@ Just like Controllers, we need their pure name without the "Middleware" extensio
 - [ ] Complete Documentations
 - [ ] Login Authentication Bugs
 - [ ] Hash Password
-- [ ] Handle the requested URl with regex
+- [x] Handle the requested URl with regex
 - [ ] Make a development environment for Database connection, Secure protocol & etc
 - [ ] Make a user registration form
 - [ ] RESTFUL API support
