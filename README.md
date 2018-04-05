@@ -15,7 +15,7 @@ Want to help in development?
 
 # Documentation
 
-###Installation
+##Installation
 
 Remember your PHP version should be upper than 7 and the local request address should be set on:
 >public_html/
@@ -89,9 +89,11 @@ Every Middleware should return `true` in its "Status" key to pass its examinatio
 Middlewares also can process on a `Querry String` by getting it, in their function parameters.
 Just like Controllers, we need their pure name without the "Middleware" extensions.
 
-###Features
+##Features
 
-####oLoad
+###oLoad
+
+
 The `oLoad` library is name of a *Simplist* service and defined to help you html `head` section be more clean.
 if you need to use this library, you have to use this code at first:
 
@@ -130,7 +132,9 @@ The `UniqueType` argument must be `true` if the extension were everything except
 The `js` extension will create complete `<script src="../../../Script/Main/main.js"></script>` code everywhere you call it.
 The `css` extension will create complete `<link rel="stylesheet" type="text/css" href="../../../Style/Shared/File.css">` code everywhere you call it.
 
-####SharedLayouts
+###SharedLayouts
+
+
 *SharedLayouts* is name of a *Simplist* service that is in the Shared folder in View Folder(`public_html/View/Shared`).
 
 It contains 2 folders and a .phtml file with "Layouts" name by default.
@@ -159,7 +163,9 @@ The Layouts file can contains one or more classes for each part of project. for 
 It includes some methods to load some other view files as header, menu and footer.
 There s no complex concept.
 
+
 ###Tasks
+
 
 - [x] Starters Documentation
 - [x] Complete Documentations
