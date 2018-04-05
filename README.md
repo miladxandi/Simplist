@@ -1,9 +1,9 @@
 ![eastCloud User Download](http://simplist.ir/Content/Shared/SimplistV2.png)
 
-## Simplist  ![eastCloud User Download](http://eastcloud.ir/Content/Shared/Official-Badges.png) ![eastCloud User Download](http://eastcloud.ir/Content/Shared/Users-Badges.png)
+# Simplist  ![eastCloud User Download](http://eastcloud.ir/Content/Shared/Official-Badges.png) ![eastCloud User Download](http://eastcloud.ir/Content/Shared/Users-Badges.png)
 
 
-### Simplist is a mini framework based on PHP language for small projects.
+## Simplist is a mini framework based on PHP language for small projects.
 We strongly suggest our framework for personal blogs, news agencies & human resource management.
 
 
@@ -13,7 +13,10 @@ Just like any other PHP framework we started this project based on MVC architect
 Everything in Simplist is as simple as installing it on your server!
 Want to help in development?
 
-## Documentation
+# Documentation
+
+###Installation
+
 Remember your PHP version should be upper than 7 and the local request address should be set on:
 >public_html/
 
@@ -39,13 +42,15 @@ You can change the `$this->CoreSecurity->SecureProtocol(false);` to `$this->Core
 
 It\`s completely installed and ready for use.
 
+###Routing
+
 To define your own routes, go to this address:
 >Route/Setting/Routes.phtml
 
 There is just an array returner that returns the url as an array key and configurations as its values.
 Every new route should exactly create from this template:
 ```
-'/Aboutus' => [
+'/aboutus' => [
  'target'=>'Main.Home.Aboutus',
  'gverb'=> 'GET',
  'pverb'=> 'POST',
@@ -54,8 +59,9 @@ Every new route should exactly create from this template:
 Let me describe it line by line:
 
 
-`'/Aboutus' ` 
+`'/aboutus' ` 
 >This is a web address that will process the requested address by Controllers and Middlewares and is a key of an array.
+Note: Our router system is not case sensitive, but you`ve to define lowercase routes.
 
 `'target'=>'Main.Home.Aboutus'`
 >It means the target Controller is "HomeController" in the "Main" folder of Controllers folder and after requesting this address "Aboutus" method will be called as it wrote at the end of `'target'=>'Main.Home.Aboutus'`
@@ -83,11 +89,83 @@ Every Middleware should return `true` in its "Status" key to pass its examinatio
 Middlewares also can process on a `Querry String` by getting it, in their function parameters.
 Just like Controllers, we need their pure name without the "Middleware" extensions.
 
+###Features
+
+####oLoad
+The `oLoad` library is name of a *Simplist* service and defined to help you html `head` section be more clean.
+if you need to use this library, you have to use this code at first:
+
+>`<?php $Add = new Core\Requirement\oLoad("../../..","Style/Main","Script/Main","Content/Main"); ?>
+`
+
+In this code, you can define different locations for you JS, CSS, Images and etc.
+As we let you customize your app, the `../../..` will show you the default root of these contents, but you can change it in every page that you`re creating it.
+
+This code can import external JS or CSS libraries or Images.
+
+Also, it can add unique types of files to your project.
+
+This is a complete code to show how can you show an image on your html:
+
+>`<?php $Add->Loader("png","eastCloud","Shared",true,false,"eastCloud",24,24,"Style","Class"); ?>`
+
+This Code means:
+
+>`<?php $Add->Loader(Extension: "png",Name: "eastCloud",UniqueUrl: "Shared",Local: true,UniqueType: false,ImageAlt: "eastCloud",ImageWidth: 24,ImageHeight: 24,ImageStyle: "Style",ImageClass: "Class"); ?>`
+
+And will create a complete `<img>` tag anywhere it used.
+
+You can add JS and CSS libraries just like this; But except everything after the `Local` argument in that method and their own extensions like this:
+
+>`<?php $Add->Loader("css","Style",null,true); ?>`
+
+>`<?php $Add->Loader("js","Script",null,true); ?>`
+
+The `UniqueUrl` argument let you define internal or external libraries or images. if there is no need to define `UniqueUrl`, just leave an empty double quotation (`""`) or pass null as its argument.It\`s null by default.
+
+The `Local` argument means the library or image is a local file or not, The system will use the default root with the given argument to find that file if the `Local` was `true`.
+
+The `UniqueType` argument must be `true` if the extension were everything except js, CSS, png, jpeg, jpg, and ico. It\`s `false` by default.
+
+The `js` extension will create complete `<script src="../../../Script/Main/main.js"></script>` code everywhere you call it.
+The `css` extension will create complete `<link rel="stylesheet" type="text/css" href="../../../Style/Shared/File.css">` code everywhere you call it.
+
+####SharedLayouts
+*SharedLayouts* is name of a *Simplist* service that is in the Shared folder in View Folder(`public_html/View/Shared`).
+
+It contains 2 folders and a .phtml file with "Layouts" name by default.
+The Layouts file can contains one or more classes for each part of project. for example there is a class just like this:
+
+
+>```
+>  class MainLayouts
+>  {
+>      public static function _Header()
+>      {
+>          include "Main/_HeaderLayout.phtml";
+>      }
+>      public static function _Menu()
+>      {
+>          include "Main/_MenuLayout.phtml";
+>      }
+>      public static function _Footer()
+>      {
+>          include "Main/_FooterLayout.phtml";
+>      }
+>  }
+>```
+
+
+It includes some methods to load some other view files as header, menu and footer.
+There s no complex concept.
+
+###Tasks
+
 - [x] Starters Documentation
-- [ ] Complete Documentations
-- [ ] Login Authentication Bugs
+- [x] Complete Documentations
+- [ ] Fix Authentication & Authorization Bugs
+- [ ] Make a user registration form
 - [ ] Hash Password
 - [x] Handle the requested URl with regex
 - [ ] Make a development environment for Database connection, Secure protocol & etc
-- [ ] Make a user registration form
 - [ ] RESTFUL API support

@@ -46,7 +46,7 @@ class Router
                         }
                         else
                         {
-                            header("Location: /badrequest");
+                            header("Location: /BadRequest");
                         }
                     }
                     else
@@ -65,7 +65,7 @@ class Router
                         }
                         else
                         {
-                            header("Location: /badrequest");
+                            header("Location: /BadRequest");
                         }
                     }
                 }
@@ -84,7 +84,7 @@ class Router
             }
             else
             {
-                return $Routes['/notfound'];
+                return $Routes['/NotFound'];
             }
         }
         else if ($Routes==1)
@@ -100,15 +100,15 @@ class Router
         {
             if ($CurrentRouteVerb==$gRequestVerb && $gRequestVerb=="")
             {
-                header("Location: /methodnotallowed");
+                header("Location: /MethodNotAllowed");
             }
             else if($CurrentRouteVerb==$pRequestVerb && $pRequestVerb=="")
             {
-                header("Location: /methodnotallowed");
+                header("Location: /MethodNotAllowed");
             }
             else
             {
-                header("Location: /methodnotallowed");
+                header("Location: /MethodNotAllowed");
 
             }
 
@@ -155,7 +155,7 @@ class Router
         }
         else
         {
-            return $Routes['/notfound'];
+            return $Routes['/NotFound'];
         }
     }
 
