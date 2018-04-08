@@ -94,13 +94,13 @@ Just like Controllers, we need their pure name without the "Middleware" extensio
 #### oLoad
 
 
-The `oLoad` library is name of a *Simplist* service and defined to help you html `head` section be more clean.
-if you need to use this library, you have to use this code at first:
+The `oLoad` library is a *Simplist* service and defined to help your html `head` section be more clean.
+if you need to use this library, you have to use this code in your view file at first:
 
 >`<?php $Add = new Core\Requirement\oLoad("../../..","Style/Main","Script/Main","Content/Main"); ?>
 `
 
-In this code, you can define different locations for you JS, CSS, Images and etc.
+In this code, you can define different locations for your JS, CSS, Images and etc.
 As we let you customize your app, the `../../..` will show you the default root of these contents, but you can change it in every page that you`re creating it.
 
 This code can import external JS or CSS libraries or Images.
