@@ -1,8 +1,8 @@
 <?php
 $UrlInfo = $Viewbag['UrlInfo'][0];
 $Data = new \Model\Repository\MainFunction\UrlRepository();
-$Url = $UrlInfo['url'];
-$Delete = $Data->Delete($Url);
+$Id = $UrlInfo['Id'];
+$Delete = $Data->Delete($Id);
 if ($Delete['Rows'] == 1) {
     header("Location: /Panel/Url");
 } else {
