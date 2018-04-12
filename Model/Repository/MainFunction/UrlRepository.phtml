@@ -19,7 +19,7 @@ class UrlRepository extends BaseRepository
     {
         parent::__construct();
         $this->Table = "urls";
-        $this->PrimaryKey = "url";
+        $this->PrimaryKey = "Id";
     }
     public function Insert($Url,$Target)
     {
@@ -28,15 +28,16 @@ class UrlRepository extends BaseRepository
         $Result->fetch(\PDO::FETCH_COLUMN);
         return $Result->rowCount();
     }
-    public function Update($Url,$Target)
+    public function Update($Id,$Url,$Target)
     {
-        $Result = $this->rStatement->Commander("UPDATE {$this->Table} SET url='".$Url."', target='".$Target."' WHERE {$this->PrimaryKey}='".$Url."'");
+
+        $Result = $this->rStatement->Commander("UPDATE {$this->Table} SET url='".$Url."', target='".$Target."' WHERE {$this->PrimaryKey}='".$Id."'");
         return ['Values'=>$Result->fetchAll(\PDO::FETCH_ASSOC),'Rows'=>$Result->rowCount()];
 
     }
-    public function Delete($Url)
+    public function Delete($Id)
     {
-        $Result = $this->rStatement->Commander("DELETE FROM {$this->Table} WHERE {$this->PrimaryKey}='".$Url."'");
+        $Result = $this->rStatement->Commander("DELETE FROM {$this->Table} WHERE {$this->PrimaryKey}='".$Id."'");
         return ['Values'=>$Result->fetchAll(\PDO::FETCH_ASSOC),'Rows'=>$Result->rowCount()];
 
     }
@@ -45,6 +46,11 @@ class UrlRepository extends BaseRepository
         $Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE url='".$Url."'");
         return ['Values'=>$Result->fetchAll(\PDO::FETCH_ASSOC),'Rows'=>$Result->rowCount()];
     }
+	public function FindById($Id)
+	{
+		$Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE Id='".$Id."'");
+		return ['Values'=>$Result->fetchAll(\PDO::FETCH_ASSOC),'Rows'=>$Result->rowCount()];
+	}
     public function FindUrl()
     {
         $Result = $this->rStatement->Commander("SELECT * FROM {$this->Table}");

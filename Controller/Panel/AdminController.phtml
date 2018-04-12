@@ -78,11 +78,11 @@ class AdminController
     }
     public function UrlDelete($QuerryString)
     {
-        $Url= substr($QuerryString,27);
+        $Id= substr($QuerryString,27);
 
-        if ($this->Url->FindByUrl($Url)['Rows']==1)
+        if ($this->Url->FindById($Id)['Rows']==1)
         {
-            $Viewbag = ['UrlInfo'=>$this->Url->FindByUrl($Url)['Values']];
+            $Viewbag = ['UrlInfo'=>$this->Url->FindById($Id)['Values']];
             View::Process("Panel.Admin.UrlDelete",$Viewbag);
         }
         else
@@ -92,11 +92,11 @@ class AdminController
     }
     public function UrlUpdate($QuerryString)
     {
-        $Url = substr($QuerryString,27);
+		$Id = substr($QuerryString,27);
 
-        if ($this->Url->FindByUrl($Url)['Rows']==1)
+        if ($this->Url->FindById($Id)['Rows']==1)
         {
-            $Viewbag = ['UrlInfo'=>$this->Url->FindByUrl($Url)['Values']];
+            $Viewbag = ['UrlInfo'=>$this->Url->FindById($Id)['Values']];
             View::Process("Panel.Admin.UrlUpdate",$Viewbag);
         }
         else
