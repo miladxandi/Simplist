@@ -20,13 +20,12 @@
             <?php
             $Data = new \Model\Repository\MainFunction\PostRepository();
             $Posts = $Data->GetPost();
-            $Id = 1;
             foreach ($Posts as $Post): ?>
                 <tr>
                     <th scope="col"><?php echo $Post['Post_Id'] ?></th>
                     <th scope="col"><?php echo $Post['Post_Name'] ?></th>
                     <th scope="col"><a href="/Posts/?url=<?php echo $Post['Post_Url'] ?>" target="_blank"><?php echo $Post['Post_Url'] ?></a></th>
-                    <th scope="col"><?php echo substr($Post['Post_Summary'],0,50).'...';  ?></th>
+                    <th scope="col"><?php echo $Post['Post_Summary'];  ?></th>
                     <th scope="col"><?php echo $Post['Post_Author'] ?></th>
                     <th scope="col"><a href="/Panel/Posts/Update/?pid=<?php echo $Post['Post_Id']; ?>">Update</a> </br> <a href="/Panel/Posts/Delete/?pid=<?php echo $Post['Post_Id']; ?>">Delete</a></th>
                 </tr>
