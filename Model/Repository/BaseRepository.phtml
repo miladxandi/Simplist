@@ -23,16 +23,6 @@ abstract class BaseRepository
         $Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->PrimaryKey}={$ID}");
         return $Result->fetch(\PDO::FETCH_ASSOC);
     }
-    public function FindByUser(string $Username)
-    {
-        $Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->uName}='".$Username."'");
-        return ['Values'=>$Result->fetch(\PDO::FETCH_ASSOC),'Rows'=>$Result->rowCount()];
-    }
-    public function FindByEmail(string $Email)
-    {
-        $Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->uMail}={$Email}");
-        return ['Values'=>$Result->fetch(\PDO::FETCH_ASSOC),'Rows'=>$Result->rowCount()];
-    }
     public function All()
     {
         $Result = $this->rStatement->Commander("SELECT * FROM {$this->Table}");

@@ -3,8 +3,8 @@
 namespace Controller\Panel;
 
 
-use Model\Repository\MainFunction\PostRepository;
-use Model\Repository\MainFunction\UrlRepository;
+use Model\Logic\MainLogic\PostFunction;
+use Model\Logic\MainLogic\UrlFunction;
 use Model\Repository\MainFunction\UserRepository;
 use Route\Show\View;
 
@@ -15,9 +15,7 @@ class AdminController
     private $Url;
     public function __construct()
     {
-        $this->Post= new PostRepository();
         $this->User= new UserRepository();
-        $this->Url= new UrlRepository();
     }
 
     public function Index()
@@ -28,80 +26,47 @@ class AdminController
 
     public function Users()
     {
-        View::Process("Panel.Admin.Users");
+    	$Data = new \Model\Repository\MainFunction\UserRepository();
+		$Viewbag = ['UserInfo'=>$Data->GetUsers()];
+
+		View::Process("Panel.Admin.Users",$Viewbag);
     }
 
     public function NewPost()
     {
+		PostFunction::New();
         View::Process("Panel.Admin.NewPost");
     }
     public function Post()
     {
-        View::Process("Panel.Admin.Posts");
+		$Viewbag = ['PostInfo'=>PostFunction::Show()];
+		View::Process("Panel.Admin.Posts",$Viewbag);
     }
     public function PostDelete($QuerryString)
     {
-
-        $Querry= substr($QuerryString,29);
-
-        if ($this->Post->GetPostById($Querry)['Rows']==1)
-        {
-            $Viewbag = ['PostInfo'=>$this->Post->GetPostById($Querry)['Values']];
-            View::Process("Panel.Admin.PostDelete",$Viewbag);
-        }
-        else
-        {
-            View::Process("Helper.Home.Error404");
-        }    }
+		PostFunction::Delete($QuerryString);
+    }
     public function PostUpdate($QuerryString)
     {
-        $Querry= substr($QuerryString,29);
-
-        if ($this->Post->GetPostById($Querry)['Rows']==1)
-        {
-            $Viewbag = ['PostInfo'=>$this->Post->GetPostById($Querry)['Values']];
-            View::Process("Panel.Admin.PostUpdate",$Viewbag);
-        }
-        else
-        {
-            View::Process("Helper.Home.Error404");
-        }
+        PostFunction::Update($QuerryString);
     }
 
     public function NewUrl()
     {
-        View::Process("Panel.Admin.NewUrl");
+		UrlFunction::New();
+		View::Process("Panel.Admin.NewUrl");
     }
     public function Url()
     {
-        View::Process("Panel.Admin.Url");
+		$Viewbag = ['UrlInfo'=>UrlFunction::Show()];
+        View::Process("Panel.Admin.Url",$Viewbag);
     }
     public function UrlDelete($QuerryString)
     {
-        $Id= substr($QuerryString,27);
-
-        if ($this->Url->FindById($Id)['Rows']==1)
-        {
-            $Viewbag = ['UrlInfo'=>$this->Url->FindById($Id)['Values']];
-            View::Process("Panel.Admin.UrlDelete",$Viewbag);
-        }
-        else
-        {
-            View::Process("Helper.Home.Error404");
-        }
+		UrlFunction::Delete($QuerryString);
     }
     public function UrlUpdate($QuerryString)
     {
-		$Id = substr($QuerryString,27);
 
-        if ($this->Url->FindById($Id)['Rows']==1)
-        {
-            $Viewbag = ['UrlInfo'=>$this->Url->FindById($Id)['Values']];
-            View::Process("Panel.Admin.UrlUpdate",$Viewbag);
-        }
-        else
-        {
-            View::Process("Helper.Home.Error404");
-        }
     }
 }

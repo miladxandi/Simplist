@@ -26,9 +26,9 @@ class PostRepository extends BaseRepository
         $this->Table = "posts";
         $this->PrimaryKey = "Post_Id";
     }
-    public function Insert($Name,$URL,$Summary,$Content,$Author)
+    public function Insert($Name,$URL,$Summary,$Content,$Author,$Date)
     {
-        $Result = $this->rStatement->Commander("INSERT INTO {$this->Table} (Post_Name, Post_Url,Post_Summary, Post_Content, Post_Author) VALUES ('".$Name."','".$URL."','".$Summary."','".$Content."','".$Author."')");
+        $Result = $this->rStatement->Commander("INSERT INTO {$this->Table} (Post_Name, Post_Url,Post_Summary, Post_Content, Post_Author, Post_Date) VALUES ('".$Name."','".$URL."','".$Summary."','".$Content."','".$Author."','".$Date."')");
         $Result->fetch(\PDO::FETCH_COLUMN);
         return $Result->rowCount();
     }

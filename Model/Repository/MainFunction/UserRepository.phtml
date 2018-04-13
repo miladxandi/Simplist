@@ -20,11 +20,11 @@ class UserRepository extends BaseRepository
     public function __construct()
     {
         parent::__construct();
-        $this->Table = "users";
-        $this->PrimaryKey = "user_Id";
-        $this->uName = "user_Username";
-        $this->uMail = "user_Email";
-        $this->uPass = "user_Password";
+        $this->Table = "user";
+        $this->PrimaryKey = "u_Id";
+        $this->uName = "u_Username";
+        $this->uMail = "u_Email";
+        $this->uPass = "u_Password";
     }
 
     public function Username($Username)
@@ -57,14 +57,13 @@ class UserRepository extends BaseRepository
 
     public function Insert($Firstname,$Lastname,$Username,$Password,$Email,$Phone)
     {
-        $this->Table="users";
-        var_dump($this->Value);
-        $Val1='Visitor';
-        $Val2= $Val1;
-        $Val3= '2020-01-01';
-        $Val4= '1';
-        $Val5= '0';
-        $Result = $this->rStatement->Commander("INSERT INTO {$this->Table} (user_Firstname, user_Lastname, user_Nickname, user_Username, user_Password, user_Type, user_Email, user_Phone, user_ExpiredAt, user_Status, user_IsPaid) VALUES ('".$Firstname."','".$Lastname."','".$Val1."','".$Username."','".$Password."','".$Val2."' ,'".$Email."','".$Phone."','".$Val3."', '".$Val4."','".$Val5."')");
+    	//password_hash($Password, PASSWORD_BCRYPT)
+    	$Type= "Visitor";
+    	$Expired= "2020-00-00";
+    	$Status= "1";
+    	$Image= "Avatar";
+    	$IsPaid= "0";
+        $Result = $this->rStatement->Commander("INSERT INTO {$this->Table} (u_FName, u_LName, u_Username, u_Password, u_Type, u_Email, u_Phone, u_Expired, u_Status, u_Image, u_IsPaid) VALUES ('".$Firstname."','".$Lastname."','".$Username."','".$Password."','".$Type."','".$Email."','".$Phone."','".$Expired."','".$Status."','".$Image."','".$IsPaid."')");
         $Result->fetch(\PDO::FETCH_COLUMN);
         return $Result->rowCount();
     }
@@ -73,4 +72,14 @@ class UserRepository extends BaseRepository
         $Result = $this->rStatement->Commander("SELECT * FROM {$this->Table}");
         return $Result->fetchAll(\PDO::FETCH_ASSOC);
     }
+	public function FindByUser(string $Username)
+	{
+		$Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->uName}='".$Username."'");
+		return ['Values'=>$Result->fetch(\PDO::FETCH_ASSOC),'Rows'=>$Result->rowCount()];
+	}
+	public function FindByEmail(string $Email)
+	{
+		$Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->uMail}='".$Email."'");
+		return ['Values'=>$Result->fetch(\PDO::FETCH_ASSOC),'Rows'=>$Result->rowCount()];
+	}
 }

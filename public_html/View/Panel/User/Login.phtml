@@ -27,8 +27,8 @@
             $Login = $Data->Login($Username,$Password);
             if ($Login==1) {
                 $Val = $Data->FindByUser($Username);
-                setcookie("Firstname", $Val['Values']['user_Firstname'], time()+(60*60*24*30));
-                setcookie("Username", $Val['Values']['user_Username'], time()+(60*60*24*30));
+                setcookie("Firstname", $Val['Values']['u_FName'], time()+(60*60*24*30));
+                setcookie("Username", $Val['Values']['u_Username'], time()+(60*60*24*30));
                 header("Location: /");
 
 

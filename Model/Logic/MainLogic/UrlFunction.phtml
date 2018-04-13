@@ -1,0 +1,105 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: farva
+ * Date: 13/04/2018
+ * Time: 06:35 PM
+ */
+
+namespace Model\Logic\MainLogic;
+
+
+use Model\Logic\DataContract;
+use Model\Repository\MainFunction\UrlRepository;
+use Route\Show\View;
+
+final class UrlFunction implements DataContract
+{
+	private static $Url;
+
+	public function __construct()
+	{
+		self::$Url = new UrlRepository();
+	}
+
+	public static function New()
+	{
+		self::$Url = new UrlRepository();
+
+		if (isset($_POST['submit'])) {
+
+			$Url = $_POST['Url'];
+			$Target = $_POST['Target'];
+			$Insert = self::$Url->Insert($Url,$Target);
+			if ($Insert == 1) {
+				header("Location: /Panel/NewUrl");
+			} else {
+				header("Location: /Panel/NewUrl");
+
+			}
+		}
+	}
+
+	public static function Update($QuerryString)
+	{
+		self::$Url = new UrlRepository();
+
+		$Id = substr($QuerryString,27);
+
+		if (self::$Url->FindById($Id)['Rows']==1)
+		{
+			$Viewbag = ['UrlInfo'=>self::$Url->FindById($Id)['Values']];
+			$UrlInfo = $Viewbag['UrlInfo'][0];
+
+			if (isset($_POST['submit'])) {
+
+				$Id = $_POST['Id'];
+				$Url = $_POST['Url'];
+				$Target = $_POST['Target'];
+
+				$Update = self::$Url->Update($Id,$Url,$Target);
+				if ($Update['Rows'] == 1) {
+					header("Location: /Panel/Url");
+				} else {
+					header("Location: /Panel/Url/Update/?url=".$UrlInfo['Id']);
+				}
+			}
+			View::Process("Panel.Admin.UrlUpdate",$Viewbag);
+		}
+		else
+		{
+			View::Process("Helper.Home.Error404");
+		}
+	}
+
+	public static function Delete($QuerryString)
+	{
+		self::$Url = new UrlRepository();
+
+		$Id= substr($QuerryString,27);
+
+		if (self::$Url->FindById($Id)['Rows']==1)
+		{
+			$Viewbag = ['UrlInfo'=>self::$Url->FindById($Id)['Values']];
+			$UrlInfo = $Viewbag['UrlInfo'][0];
+			$Id = $UrlInfo['Id'];
+			$Delete = self::$Url->Delete($Id);
+			if ($Delete['Rows'] == 1) {
+				header("Location: /Panel/Url");
+			} else {
+				header("Location: /Panel/Url/Update/?url=0");
+			}
+		}
+		else
+		{
+			View::Process("Helper.Home.Error404");
+		}
+
+	}
+
+	public static function Show()
+	{
+		self::$Url= new UrlRepository();
+		return self::$Url->FindUrl();
+	}
+}

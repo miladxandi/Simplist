@@ -1,25 +1,6 @@
 <?php \View\View\Shared\PanelLayouts::_Header(); ?>
 <title>SIMPLIST - Url Update</title>
-<?php
-var_dump($_POST);
-$UrlInfo = $Viewbag['UrlInfo'][0];
-
-if (isset($_POST['submit'])) {
-
-    $Data = new \Model\Repository\MainFunction\UrlRepository();
-    $Id = $_POST['Id'];
-    $Url = $_POST['Url'];
-    $Target = $_POST['Target'];
-
-    $Update = $Data->Update($Id,$Url,$Target);
-    if ($Update['Rows'] == 1) {
-        header("Location: /Panel/Url");
-    } else {
-        header("Location: /Panel/Url/Update/?url=".$UrlInfo['Id']);
-    }
-}
-
-?>
+<?php $UrlInfo = $Viewbag['UrlInfo'][0]; ?>
 </head>
 <?php \View\View\Shared\PanelLayouts::_Menu(); ?>
 
@@ -27,7 +8,7 @@ if (isset($_POST['submit'])) {
 
 
 <div style="margin-top:200px;margin-bottom:200px;margin-left:100px;margin-right:100px;">
-    <form method="POST" role="form" id="" action="" enctype="multipart/form-data">
+    <form method="POST" role="form" id="ajax-form" action="" enctype="multipart/form-data">
         <div class="form-group">
             <label for="Id">Id</label>
             <input type="text" class="form-control" name="Id" id="Id" value="<?php echo $UrlInfo['Id']; ?>" readonly >

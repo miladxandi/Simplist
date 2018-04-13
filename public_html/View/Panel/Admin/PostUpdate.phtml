@@ -1,52 +1,14 @@
 <?php \View\View\Shared\PanelLayouts::_Header(); ?>
 <title>SIMPLIST - Post Update</title>
-<?php
-$Add = new Core\Requirement\oLoad("../../..", "Style/Panel", "Script/Panel", "Style/Panel");
-$Add->Loader("css","sample");
-$Add->Loader("js","ckeditor");
-$Add->Loader("js","sample");
-$Add->Loader("js","build-config");
-$Add->Loader("js","config");
-$Add->Loader("js","sf");
-$Add->Loader("js","styles");
-
-$PostInfo = $Viewbag['PostInfo'][0];
-
-if (isset($_POST['submit'])) {
-
-    $Data = new \Model\Repository\MainFunction\PostRepository();
-    $Id = $PostInfo['Post_Id'];
-    $Name = $_POST["PostName"];
-    $Url = $_POST["PostUrl"];
-    if (count_chars($_POST['PostContent'])<=150)
-    {
-        $Summary = $_POST["PostContent"];
-
-    }
-    else
-    {
-        $Summary = substr($_POST["PostContent"], 0,150);
-    }
-    $Content = $_POST["PostContent"];
-    $Author = $_POST["PostAuthor"];
-    $Update = $Data->Update($Id,$Name,$Url,$Summary,$Content,$Author);
-    if ($Update['Rows'] == 1) {
-        header("Location: /Panel/Posts");
-    } else {
-        header("Location: /Panel/Posts/Update/?pid=".$PostInfo['Post_Id']);
-
-    }
-}
-
-?>
+<?php $PostInfo = $Viewbag['PostInfo'][0]; ?>
 </head>
 <?php \View\View\Shared\PanelLayouts::_Menu(); ?>
 
 
 
 
-<div style="margin-top:100px;margin-left:100px;margin-right:100px;">
-    <form method="Post" role="form" action="" enctype="multipart/form-data">
+<div style="margin-top:200px;margin-bottom:200px;margin-left:100px;margin-right:100px;">
+    <form method="Post" id="ajax-form" role="form" action="" enctype="multipart/form-data">
         <div class="form-group">
             <label for="PostId">Id</label>
             <input type="text" class="form-control" name="PostId" id="PostId" readonly value="<?php echo $PostInfo['Post_Id']; ?>"  required >
@@ -69,11 +31,27 @@ if (isset($_POST['submit'])) {
             <label for="PostAuthor">Author</label>
             <input type="text" class="form-control" name="PostAuthor" id="PostAuthor" readonly value="<?php echo $PostInfo['Post_Author']; ?>"  required >
         </div>
+        <div class="form-group">
+            <label for="Postdate">Date</label>
+            <input type="text" class="form-control" name="Postdate" id="Postdate" readonly value="<?php echo date('d F, Y') ?>"  required
+                   placeholder="Enter author name">
+        </div>
         <button type="submit" name="submit" id="submit" class="btn btn-primary">Update</button>
         <script>
             initSample();
         </script>
 
     </form>
+</div>
+<div class="project-nav-wrap">
+    <?php if ($PostInfo['Post_Id']==1): ?>
+        <div class="left-nav" data-scroll-reveal="enter left move 60px over 0.9s after 0.1s" data-scroll-reveal-id="10" data-scroll-reveal-initialized="false" data-scroll-reveal-complete="false"><div class=""></div></div>
+        <a href="?pid=<?php echo $PostInfo['Post_Id']+1; ?>"><div class="right-nav" data-scroll-reveal="enter right move 60px over 0.9s after 0.1s" data-scroll-reveal-id="11" data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">next<div class="text-on-hover"></div></div></a>
+    <br>
+    <?php else:   ?>
+     <a href="?pid=<?php echo $PostInfo['Post_Id']-1; ?>"><div class="left-nav" data-scroll-reveal="enter left move 60px over 0.9s after 0.1s" data-scroll-reveal-id="10" data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">prev<div class="text-on-hover"></div></div></a>
+     <a href="?pid=<?php echo $PostInfo['Post_Id']+1; ?>"><div class="right-nav" data-scroll-reveal="enter right move 60px over 0.9s after 0.1s" data-scroll-reveal-id="11" data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">next<div class="text-on-hover"></div></div></a>
+    <br>
+    <?php endif; ?>
 </div>
 <?php \View\View\Shared\PanelLayouts::_Footer(); ?>

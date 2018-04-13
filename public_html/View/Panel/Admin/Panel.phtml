@@ -3,22 +3,22 @@
     <title>SIMPLIST - PANEL</title>
     </head>
 <?php \View\View\Shared\PanelLayouts::_Menu(); ?>
-
+<div style="margin-top:200px;margin-bottom:200px;margin-left:100px;margin-right:100px;">
 <div class="card text-center">
     <div class="card-header">
         USER INFO
     </div>
     <div class="card-body">
-        <h5 class="card-title"><?php echo $UserInfo['user_Firstname'].' '.$UserInfo['user_Lastname']; ?></h5>
-        <p class="card-text"><?php echo $UserInfo['user_Email'] ?></p>
-        <p class="card-text"><?php echo $UserInfo['user_Phone'] ?></p>
-        <p class="card-text"><?php echo $UserInfo['user_Type'] ?></p>
-        <p class="card-text"><?php echo $UserInfo['user_Username'] ?></p>
+        <h5 class="card-title"><?php echo $UserInfo['u_FName'].' '.$UserInfo['u_LName']; ?></h5>
+        <p class="card-text"><?php echo $UserInfo['u_Email'] ?></p>
+        <p class="card-text"><?php echo $UserInfo['u_Phone'] ?></p>
+        <p class="card-text"><?php echo $UserInfo['u_Type'] ?></p>
+        <p class="card-text"><?php echo $UserInfo['u_Username'] ?></p>
         <a href="/Login" class="btn btn-primary">Logout</a>
     </div>
     <div class="card-footer text-muted">
-        Created: <?php echo $UserInfo['user_CreatedAt'] ?>
+        Created: <?php echo $UserInfo['u_Created']; ?>
     </div>
 </div>
-
+</div>
 <?php \View\View\Shared\PanelLayouts::_Footer(); ?>

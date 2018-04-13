@@ -60,12 +60,12 @@ class AdminMiddleware
     }
     private function EditorCookieS()
     {
-        if(isset($_COOKIE['Username']) && $this->DB->FindByUser($_COOKIE['Username'])['Rows']==1 && ($this->DB->FindByUser($_COOKIE['Username'])['Values']['user_Type']=="Admin" || $this->DB->FindByUser($_COOKIE['Username'])['Values']['user_Type']=="Editor"))
+        if(isset($_COOKIE['Username']) && $this->DB->FindByUser($_COOKIE['Username'])['Rows']==1 && ($this->DB->FindByUser($_COOKIE['Username'])['Values']['u_Type']=="Admin" || $this->DB->FindByUser($_COOKIE['Username'])['Values']['u_Type']=="Editor"))
         {
             //header("Location: /Panel/NewPost");
             return ['Status'=> true,'Info'=>""];
         }
-        elseif(isset($_COOKIE['Username'])==true || $this->DB->FindByUser($_COOKIE['Username'])['Rows']==1 && ($this->DB->FindByUser($_COOKIE['Username'])['Values']['user_Type']!="Admin" || $this->DB->FindByUser($_COOKIE['Username'])['Values']['user_Type']!="Editor"))
+        elseif(isset($_COOKIE['Username'])==true || $this->DB->FindByUser($_COOKIE['Username'])['Rows']==1 && ($this->DB->FindByUser($_COOKIE['Username'])['Values']['u_Type']!="Admin" || $this->DB->FindByUser($_COOKIE['Username'])['Values']['u_Type']!="Editor"))
         {
             header("Location: /Forbidden");
             return ['Status'=> true];
@@ -82,12 +82,12 @@ class AdminMiddleware
     }
     private function AdminCookieS()
     {
-        if(isset($_COOKIE['Username']) && $this->DB->FindByUser($_COOKIE['Username'])['Rows']==1 && $this->DB->FindByUser($_COOKIE['Username'])['Values']['user_Type']=="Admin")
+        if(isset($_COOKIE['Username']) && $this->DB->FindByUser($_COOKIE['Username'])['Rows']==1 && $this->DB->FindByUser($_COOKIE['Username'])['Values']['u_Type']=="Admin")
         {
             //header("Location: /Panel/Users");
             return ['Status'=> true,'Info'=>""];
         }
-        elseif(isset($_COOKIE['Username'])==true || $this->DB->FindByUser($_COOKIE['Username'])['Rows']==1 && ($this->DB->FindByUser($_COOKIE['Username'])['Values']['user_Type']!="Admin"))
+        elseif(isset($_COOKIE['Username'])==true || $this->DB->FindByUser($_COOKIE['Username'])['Rows']==1 && ($this->DB->FindByUser($_COOKIE['Username'])['Values']['u_Type']!="Admin"))
         {
             header("Location: /Forbidden");
             return ['Status'=> true];

@@ -16,11 +16,10 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php
-                $Data = new \Model\Repository\MainFunction\UrlRepository();
-                $Urls = $Data->FindUrl();
-                $Id = 1;
-                foreach ($Urls as $Url): ?>
+				<?php
+				$Urls=$Viewbag['UrlInfo'];
+				$Id = 1;
+				foreach ($Urls as $Url): ?>
                     <tr>
                         <th scope="col"><?php echo $Id ?></th>
                         <th scope="col"><?php echo $Url['url']; ?></th>
@@ -32,8 +31,8 @@
                             <br>
                             <a href="/Panel/Url/Delete/?url=<?php echo $Url['Id']; ?>">Delete</a></th>
                     </tr>
-                    <?php $Id++; ?>
-                <?php endforeach; ?>
+					<?php $Id++; ?>
+				<?php endforeach; ?>
                 </tbody>
             </table>
         </div>
