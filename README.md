@@ -71,8 +71,8 @@ The given `Querry String` or Database values should insert into an array with `$
 You can send them into your web page by this code:
 `View::Process("Main.Home.Post",$Viewbag);`
 It\`s now accessible from the requested "View" file in "public_html/View/...".
-Instead of writting your logic codes into the Controllers, we encourage you to put them in Logics in Model folder.
-There are some great Contracts to help you develop your business better than ever.
+Instead of writing your logic codes into the Controllers, we encourage you to put them in Logics in the Model folder.
+There are some great Contracts in this folder to help you develop your business better than ever.
 
 Note: Controllers and Middlewares have to create with exactly `Controller.phtml` or `Middleware.phtml` extensions, but should be written here without these extensions.
 For example, we have "HomeController" but we can access it by writing just its name without the "Controller" extension: "Home"
