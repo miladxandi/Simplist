@@ -1,99 +1,95 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description" content="Xenon Boostrap Admin Panel"/>
-    <meta name="author" content=""/>
-    <link rel="shortcut icon" type="image/x-icon" href="../../../Content/Shared/Logo.png" id="favicon">
-    <link rel="apple-touch-icon" type="image/x-icon" href="../../../Content/Shared/Logo.png">
-    <link rel="apple-touch-icon" type="image/x-icon" href="../../../Content/Shared/Logo.png">
+<?php \View\View\Shared\MainLayouts::_Header(); ?>
     <title>SIMPLIST - SIGNUP</title>
 
-    <?php
-    session_start();
-    $error = ''; // Variable To Store Error Message
+<?php
+session_start();
+$error = ''; // Variable To Store Error Message
 
-    setcookie("Username", "", Time() - 36000);
-    if (isset($_POST['submit'])) {
-        if (empty($_POST['username']) || empty($_POST['password'])) {
-            $error = "Username or Password is invalid";
-        } else {
+setcookie("Username", "", Time() - 36000);
+if (isset($_POST['submit'])) {
+	if (empty($_POST['Username']) || empty($_POST['Password'])) {
+		$error = "Username or Password is invalid";
+	} else {
 
-            $Firstname = $_POST['Firstname'];
-            $Lastname = $_POST['Lastname'];
-            $Username = $_POST['NationalCode'];
-            $Password = $_POST['Password'];
-            $Email = $_POST['Email'];
-            $Phone = $_POST['Phone'];
-            $Data = new Model\Repository\MainFunction\UserRepository();
-            $UsernameCheck = $Data->FindByUser($Username);
-            $EmailCheck = $Data->FindByEmail($Email);
-            $Values = array();
-            if ($UsernameCheck == 1 && $EmailCheck == 1) {
-                header("Location: /Signup");
-            }
-            else {
-                $Insert = $Data->Insert($Firstname, $Lastname, $Username, $Password, $Email, $Phone);
-                var_dump($_POST);
-                if ($Insert == 1) {
-                    header("Location: /Login");
-                } else {
-                    header("Location: /Signup");
-                }
-            }
-        }
-    }
-    $Add = new Core\Requirement\oLoad("../../..", "Style/Panel", "Script/Panel", "Style/Panel");
-    $Add->Loader("css", "fonts/fontawesome/css/font-awesome.min");
-    $Add->Loader("css", "fonts/linecons/css/linecons");
-    $Add->Loader("css", "bootstrap.min", "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css", false);
-    $Add->Loader("css", "mytest");
-    ?>
+		if ($_POST['Password'] === $_POST['CnfPassword']) {
+			$Firstname = addslashes($_POST['Firstname']);
+			$Lastname = addslashes($_POST['Lastname']);
+			$Username = addslashes($_POST['Username']);
+			$Password = addslashes($_POST['Password']);
+			$Email = addslashes($_POST['Email']);
+			$Phone = addslashes($_POST['Phone']);
+			$Data = new Model\Repository\MainFunction\UserRepository();
+			$UsernameCheck = $Data->FindByUser($Username);
+			$EmailCheck = $Data->FindByEmail($Email);
+			$Values = array();
+			if ($UsernameCheck == 1 || $EmailCheck == 1) {
+				var_dump("Another user with this username or email were found.");
+				header("Location: /Test");
+			} else {
+				$Insert = $Data->Insert($Firstname, $Lastname, $Username, $Password, $Email, $Phone);
+				if ($Insert == 1) {
+					header("Location: /Login");
+				} else {
+					header("Location: /Signup");
+				}
+			}
+		} else {
+			header("Location: /Signup");
+		}
+	}
+}
+?>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
 
-</head>
-<body>
-<?php var_dump($_POST);?>
-<div style="margin-top:100px;margin-left:100px;margin-right:100px;">
-    <form method="Post" role="form" action="">
+    </head>
 
-        <div class="form-group">
-            <label for="Email">Email address</label>
-            <input type="email" class="form-control" name="Email" id="Email" required
-                   placeholder="Enter email address">
-        </div>
-        <div class="form-group">
-            <label for="Firstname">First name</label>
-            <input type="text" class="form-control" name="Firstname" id="Firstname" required
-                   placeholder="Enter first name">
-        </div>
-        <div class="form-group">
-            <label for="Lastname">Last Name</label>
-            <input type="text" class="form-control" name="Lastname" id="Lastname" required
-                   placeholder="Enter last name">
-        </div>
-        <div class="form-group">
-            <label for="NationalCode">National Code</label>
-            <input type="number" class="form-control" name="NationalCode" id="NationalCode" required
-                   placeholder="Enter national code">
-        </div>
-        <div class="form-group">
-            <label for="Phone">Phone Number</label>
-            <input type="tel" class="form-control" name="Phone" id="Phone" required placeholder="Enter phone number">
-        </div>
-        <div class="form-group">
-            <label for="Password">Password</label>
-            <input type="password" class="form-control" name="Password" required id="Password" placeholder="Password">
-        </div>
+<?php \View\View\Shared\MainLayouts::_Menu(); ?>
 
-        <button type="submit" name="submit" id="submit" class="btn btn-primary">Sign up</button>
+    <div style="margin-top:200px;margin-bottom:200px;margin-left:100px;margin-right:100px;">
+        <form method="Post" role="form" action="" enctype="multipart/form-data">
 
-    </form>
-</div>
-</body>
-</html>
+            <div class="form-group">
+                <label for="Email">Email address</label>
+                <input type="email" class="form-control" name="Email" id="Email" required
+                       placeholder="Enter email address" maxlength="80">
+            </div>
+            <div class="form-group">
+                <label for="Firstname">First name</label>
+                <input type="text" class="form-control" name="Firstname" id="Firstname" required
+                       placeholder="Enter first name" maxlength="80">
+            </div>
+            <div class="form-group">
+                <label for="Lastname">Last Name</label>
+                <input type="text" class="form-control" name="Lastname" id="Lastname" required
+                       placeholder="Enter last name" maxlength="80">
+            </div>
+            <div class="form-group">
+                <label for="Username">Username</label>
+                <input type="text" class="form-control" name="Username" id="Username" required
+                       placeholder="Enter username" maxlength="80">
+            </div>
+            <div class="form-group">
+                <label for="Phone">Phone Number</label>
+                <input type="tel" class="form-control" name="Phone" id="Phone" required placeholder="Enter phone number"
+                       maxlength="25">
+            </div>
+            <div class="form-group">
+                <label for="Password">Password</label>
+                <input type="password" class="form-control" name="Password" required id="Password"
+                       placeholder="Password" maxlength="80">
+            </div>
+            <div class="form-group">
+                <label for="CnfPassword">Confirm Password</label>
+                <input type="password" class="form-control" name="CnfPassword" required id="CnfPassword"
+                       placeholder="Confirm Password" maxlength="80">
+            </div>
+
+            <button type="submit" name="submit" id="submit" class="btn btn-primary">Sign up</button>
+
+        </form>
+        <div style="margin-top:100px;"><a href="/Login" style="font-size: large">Back to login</a></div>
+
+    </div>
+<?php \View\View\Shared\PanelLayouts::_Footer(); ?>

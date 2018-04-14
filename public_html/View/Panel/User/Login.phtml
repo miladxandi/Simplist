@@ -1,67 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<?php \View\View\Shared\MainLayouts::_Header(); ?>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description" content="Xenon Boostrap Admin Panel"/>
-    <meta name="author" content=""/>
-    <link rel="shortcut icon" type="image/x-icon" href="../../../Content/Shared/Logo.png" id="favicon">
-    <link rel="apple-touch-icon" type="image/x-icon" href="../../../Content/Shared/Logo.png">
-    <link rel="apple-touch-icon" type="image/x-icon" href="../../../Content/Shared/Logo.png">
     <title>SIMPLIST - LOGIN</title>
-    <?php
-    session_start();
-    $error = ''; // Variable To Store Error Message
-    setcookie("Firstname", "", Time() - 36000);
-    if (isset($_POST['submit'])) {
-        if (empty($_POST['username']) || empty($_POST['password'])) {
-            $error = "Username or Password is invalid";
-        } else {
+<?php
+session_start();
+$error = ''; // Variable To Store Error Message
+setcookie("Firstname", "", Time() - 36000);
+if (isset($_POST['submit'])) {
+	if (empty($_POST['username']) || empty($_POST['password'])) {
+		$error = "Username or Password is invalid";
+	} else {
 
-            $Username = addslashes($_POST['username']);
-            $Password = addslashes($_POST['password']);
-            $Data = new Model\Repository\MainFunction\UserRepository();
+		$Username = addslashes($_POST['username']);
+		$Password = addslashes($_POST['password']);
+		$Data = new Model\Repository\MainFunction\UserRepository();
 
-            $Login = $Data->Login($Username,$Password);
-            if ($Login==1) {
-                $Val = $Data->FindByUser($Username);
-                setcookie("Firstname", $Val['Values']['u_FName'], time()+(60*60*24*30));
-                setcookie("Username", $Val['Values']['u_Username'], time()+(60*60*24*30));
-                header("Location: /");
+		$Login = $Data->Login($Username, $Password);
+		if ($Login == 1) {
+			$Val = $Data->FindByUser($Username);
+			setcookie("Firstname", $Val['Values']['u_FName'], time() + (60 * 60 * 24 * 30));
+			setcookie("Username", $Val['Values']['u_Username'], time() + (60 * 60 * 24 * 30));
+			header("Location: /");
 
 
-            } else {
-                $error = "Username or Password is invalid";
-                header("Location: /Login");
-            }
-        }
-    }
-    $Add = new Core\Requirement\oLoad("../../..", "Style/Panel", "Script/Panel", "Style/Panel");
-    $Add->Loader("css", "fonts/fontawesome/css/font-awesome.min");
-    $Add->Loader("css", "fonts/linecons/css/linecons");
-    $Add->Loader("css", "bootstrap.min", "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css", false);
-    $Add->Loader("css", "mytest");
-    ?>
+		} else {
+			$error = "Username or Password is invalid";
+			header("Location: /Login");
+		}
+	}
+}
+$Add = new Core\Requirement\oLoad("../../..", "Style/Panel", "Script/Panel", "Style/Panel");
+$Add->Loader("css", "fonts/fontawesome/css/font-awesome.min");
+$Add->Loader("css", "fonts/linecons/css/linecons");
+$Add->Loader("css", "bootstrap.min", "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css", false);
+$Add->Loader("css", "mytest");
+?>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
 
-</head>
-<body>
-<div style="margin-top:100px;margin-left:100px;margin-right:100px;">
-    <form method="Post" role="form" action="">
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" class="form-control" name="username" id="username" placeholder="Enter your username">
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" id="password" placeholder="Password">
-        </div>
-        <button type="submit" name="submit" id="submit" class="btn btn-primary">Login</button>
-    </form>
-</div>
-</body>
-</html>
+    </head>
+<?php \View\View\Shared\MainLayouts::_Menu(); ?>
+
+    <div style="margin-top:100px;margin-left:100px;margin-right:100px;">
+        <form method="Post" role="form" action="">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" name="username" id="username" placeholder="Enter your username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+            </div>
+            <button type="submit" name="submit" id="submit" class="btn btn-primary">Login</button>
+        </form>
+        <div style="margin-top:100px;"><a href="/Signup" style="font-size: large">Register new account</a> - <a
+                    href="/FortgetPass" style="font-size: large">Forget your password?</a></div>
+    </div>
+
+<?php \View\View\Shared\MainLayouts::_Footer(); ?>
