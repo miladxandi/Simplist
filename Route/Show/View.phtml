@@ -9,12 +9,14 @@
 namespace Route\Show;
 
 
+use Core\Configurations\Routing;
+
 class View
 {
     public static function Process(string $ViewPath,array $Viewbag = array())
     {
         $ViewPath=str_replace('.',DIRECTORY_SEPARATOR,"$ViewPath");
-        $FullViewPath=VIEW.$ViewPath.".phtml";
+        $FullViewPath=VIEW.$ViewPath.Routing::$FileExtension;
         if (file_exists($FullViewPath)&&is_readable($FullViewPath))
         {
             extract($Viewbag);
@@ -22,7 +24,7 @@ class View
         }
         else
         {
-            include "../../public_html/View/Helper/Home/NotFound.phtml";
+            header("Location: /NotFound");
         }
 
     }

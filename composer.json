@@ -1,0 +1,13 @@
+{
+    "name": "miladxandi/simplist",
+    "description": "A PHP project for creating online blogs in the most easiest way.",
+    "type": "projects",
+    "license": "Apache 2",
+    "authors": [
+        {
+            "name": "Milad Xandi",
+            "email": "farvahar.milad@hotmail.com"
+        }
+    ],
+    "require": {}
+}
