@@ -8,15 +8,9 @@
             <div class="row">
                 <div class="col-12">
                     <div class="jumbotron">
-                        <?php
-                        $Add = new Core\Requirement\oLoad("../../..", "Style/Main", "Script/Main", "Content/Main"); ?>
-                        <?php if (isset($PostInfo['Post_Image']) && ($PostInfo['Post_Image'] != null || $PostInfo['Post_Image'] != "")) {
-                            $Add->Loader("png", $PostInfo['Post_Image'], "Shared", true, false, $PostInfo['Post_Name'], 300, 200);
-                        } else {
-                            $Add->Loader("png", "SimplistV2", "Shared", true, false, $PostInfo['Post_Name'], 300, 200);
-                        }
-
-                        ?>
+                        <img src="<?php
+                                echo "../../../".$PostInfo['Post_Image'];
+                                ?>" alt="<?php echo $PostInfo['Post_Name'] ?>" width="300px" height="200px">
                         <h1 class="display-4 PostTitle"><?php echo $PostInfo['Post_Name']; ?></h1>
                         <p class="lead PostContent"><?php echo $PostInfo['Post_Content']; ?></p>
                         <hr class="my-4 ">

@@ -16,6 +16,7 @@ use Route\Show\View;
 final class PostFunction implements DataContract
 {
 	private static $Post;
+	private $String;
 
 	public function __construct()
 	{
@@ -29,7 +30,7 @@ final class PostFunction implements DataContract
 		if (isset($_POST['submit'])) {
 
 			$Name = addslashes($_POST["PostName"]);
-			$Url = addslashes($_POST["PostUrl"]);
+			$Url = addslashes(preg_replace('/\s+/','-',$_POST["PostUrl"]));
 			if (count_chars($_POST['PostContent'])<=58)
 			{
 				$Summary = $_POST["PostContent"];
@@ -39,16 +40,74 @@ final class PostFunction implements DataContract
 			{
 				$Summary = substr($_POST["PostContent"], 0,58);
 			}
+			$DefaultDirectory= "Content/Shared/Posts/";
+			$FileType= ".".substr($_FILES["PostImage"]["type"],6);
 			$Content = addslashes($_POST["PostContent"]);
 			$Author = addslashes($_POST["PostAuthor"]);
 			$Date = addslashes($_POST["PostDate"]);
-			$Insert = self::$Post->Insert($Name,$Url,$Summary,$Content,$Author,$Date);
-			if ($Insert == 1) {
-				header("Location: /Panel/NewPost");
-			} else {
-				header("Location: /Panel/NewPost");
+			$Image = $_FILES["PostImage"]["name"];
+			if ($Image!=null)
+			{
+				$TargetFile = $DefaultDirectory . basename($_FILES["PostImage"]["name"]);
+				if (file_exists($TargetFile))
+				{
+					$NewTargetFile= $DefaultDirectory.rand(0,500000).$FileType;
+					if (move_uploaded_file($_FILES["PostImage"]['tmp_name'],$NewTargetFile))
+					{
+						$Insert = self::$Post->Insert($Name,$Url,$Summary,$Content,$Author,$Date,$NewTargetFile);
+						if ($Insert == 1) {
+							header("Location: /Panel/Posts");
+						} else {
+							header("Location: /Panel/NewPost");
 
+						}
+
+					}
+					else
+					{
+						echo "Image did not upload!";
+						header("Location: /Panel/NewPost");
+
+					}
+				}
+				else
+				{
+					if (move_uploaded_file($_FILES["PostImage"]['tmp_name'],$TargetFile))
+					{
+						$Insert = self::$Post->Insert($Name,$Url,$Summary,$Content,$Author,$Date,$TargetFile);
+						if ($Insert == 1) {
+							header("Location: /Panel/Posts");
+						}
+						else
+						{
+							header("Location: /Panel/NewPost");
+
+						}
+
+					}
+					else
+					{
+						echo "Image did not upload!";
+						header("Location: /Panel/NewPost");
+
+					}
+				}
 			}
+			else
+			{
+				$Insert = self::$Post->Insert($Name,$Url,$Summary,$Content,$Author,$Date,"Content/Shared/SimplistV2.png");
+				if ($Insert == 1)
+				{
+					header("Location: /Panel/Posts");
+				}
+				else
+				{
+					header("Location: /Panel/NewPost");
+
+				}
+			}
+
+
 		}
 	}
 
@@ -64,9 +123,12 @@ final class PostFunction implements DataContract
 			if (isset($_POST['submit'])) {
 
 				$PostInfo = $Viewbag['PostInfo'][0];
+				$PrevImage = $PostInfo['Post_Image'];
+				$DefaultDirectory= "Content/Shared/Posts/";
+				$FileType= ".".substr($_FILES["PostImage"]["type"],6);
 				$Id = $PostInfo['Post_Id'];
 				$Name = $_POST["PostName"];
-				$Url = $_POST["PostUrl"];
+				$Url = preg_replace('/\s+/','-',$_POST["PostUrl"]);
 				if (count_chars($_POST['PostContent'])<=58)
 				{
 					$Summary = $_POST["PostContent"];
@@ -78,13 +140,73 @@ final class PostFunction implements DataContract
 				}
 				$Content = $_POST["PostContent"];
 				$Author = $_POST["PostAuthor"];
-				$Update = self::$Post->Update($Id,$Name,$Url,$Summary,$Content,$Author);
-				if ($Update['Rows'] == 1) {
-					header("Location: /Panel/Posts");
-				} else {
-					header("Location: /Panel/Posts/Update/?pid=".$PostInfo['Post_Id']);
+				$Image = $_FILES["PostImage"]["name"];
 
+				if ($Image!=null)
+				{
+					$TargetFile = $DefaultDirectory . basename($_FILES["PostImage"]["name"]);
+					if (file_exists($TargetFile))
+					{
+						$NewTargetFile= $DefaultDirectory.rand(0,500000).$FileType;
+						if (move_uploaded_file($_FILES["PostImage"]['tmp_name'],$NewTargetFile))
+						{
+							$Update = self::$Post->Update($Id,$Name,$Url,$Summary,$Content,$Author,$NewTargetFile);
+							if ($Update['Rows'] == 1) {
+								unlink($PostInfo['Post_Image']);
+								header("Location: /Panel/Posts");
+							}
+							else
+							{
+								header("Location: /Panel/Posts/Update/?pid=".$PostInfo['Post_Id']);
+
+							}
+
+						}
+						else
+						{
+							echo "Image did not upload!";
+							header("Location: /Panel/Posts/Update/?pid=".$PostInfo['Post_Id']);
+
+						}
+					}
+					else
+					{
+						if (move_uploaded_file($_FILES["PostImage"]['tmp_name'],$TargetFile))
+						{
+							$Update = self::$Post->Update($Id,$Name,$Url,$Summary,$Content,$Author,$TargetFile);
+							if ($Update['Rows'] == 1) {
+
+								unlink($PostInfo['Post_Image']);
+								header("Location: /Panel/Posts");
+							}
+							else
+							{
+								header("Location: /Panel/Posts/Update/?pid=".$PostInfo['Post_Id']);
+
+							}
+
+						}
+						else
+						{
+							echo "Image did not upload!";
+							header("Location: /Panel/Posts/Update/?pid=".$PostInfo['Post_Id']);
+
+						}
+					}
 				}
+				else
+				{
+					$Update = self::$Post->Update($Id,$Name,$Url,$Summary,$Content,$Author,$PrevImage);
+					if ($Update['Rows'] == 1) {
+						header("Location: /Panel/Posts");
+					}
+					else
+					{
+						header("Location: /Panel/Posts/Update/?pid=".$PostInfo['Post_Id']);
+
+					}
+				}
+
 			}
 			View::Process("Panel.Admin.PostUpdate",$Viewbag);
 		}
@@ -103,7 +225,10 @@ final class PostFunction implements DataContract
 		if (self::$Post->GetPostById($Id)['Rows']==1)
 		{
 			$Delete = self::$Post->Delete($Id);
+			$Viewbag = ['PostInfo'=>self::$Post->GetPostById($Id)['Values']];
+			$PostInfo = $Viewbag['PostInfo'][0];
 			if ($Delete['Rows'] == 1) {
+				unlink($PostInfo['Post_Image']);
 				header("Location: /Panel/Posts");
 			} else {
 				header("Location: /Panel/Posts/Update/?pid=0");

@@ -13,28 +13,22 @@ use Model\Repository\BaseRepository;
 
 class PostRepository extends BaseRepository
 {
-    Private $Value;
     public $Fields;
-    private $pName = "Post_Name";
-    private $pUrl = "Post_Url";
-    private $pSummary = "Post_Summry";
-    private $pContent = "Post_Content";
-    private $pAuthor = "Post_Author";
     public function __construct()
     {
         parent::__construct();
         $this->Table = "posts";
         $this->PrimaryKey = "Post_Id";
     }
-    public function Insert($Name,$URL,$Summary,$Content,$Author,$Date)
+    public function Insert($Name,$URL,$Summary,$Content,$Author,$Date,$Image)
     {
-        $Result = $this->rStatement->Commander("INSERT INTO {$this->Table} (Post_Name, Post_Url,Post_Summary, Post_Content, Post_Author, Post_Date) VALUES ('".$Name."','".$URL."','".$Summary."','".$Content."','".$Author."','".$Date."')");
+        $Result = $this->rStatement->Commander("INSERT INTO {$this->Table} (Post_Name, Post_Url,Post_Summary, Post_Content, Post_Author, Post_Date, Post_Image) VALUES ('".$Name."','".$URL."','".$Summary."','".$Content."','".$Author."','".$Date."','".$Image."')");
         $Result->fetch(\PDO::FETCH_COLUMN);
         return $Result->rowCount();
     }
-    public function Update($Id,$Name,$URL,$Summary,$Content,$Author )
+    public function Update($Id,$Name,$URL,$Summary,$Content,$Author,$Image)
     {
-        $Result = $this->rStatement->Commander("UPDATE {$this->Table} SET Post_Name='".$Name."', Post_Url='".$URL."', Post_Summary='".$Summary."', Post_Content='".$Content."', Post_Author='".$Author."' WHERE {$this->PrimaryKey}={$Id}");
+        $Result = $this->rStatement->Commander("UPDATE {$this->Table} SET Post_Name='".$Name."', Post_Url='".$URL."', Post_Summary='".$Summary."', Post_Content='".$Content."', Post_Author='".$Author."', Post_Image='".$Image."' WHERE {$this->PrimaryKey}={$Id}");
         return ['Values'=>$Result->fetchAll(\PDO::FETCH_ASSOC),'Rows'=>$Result->rowCount()];
 
     }

@@ -53,13 +53,9 @@
                             <div class="col">
                                 <div class="jumbotron">
                                     <a href="/Posts/?url=<?php echo $Post['Post_Url'] ?>">
-                                        <?php if (isset($Post['Post_Image']) && ($Post['Post_Image'] != null || $Post['Post_Image'] != "")) {
-                                            $Add->Loader("png", $Post['Post_Image'], "Shared", true, false, $Post['Post_Name'], 300, 200);
-                                        } else {
-                                            $Add->Loader("png", "SimplistV2", "Shared", true, false, $Post['Post_Name'], 300, 200);
-                                        }
-
-                                        ?>
+                                        <img src="<?php
+                                echo "../../../".$Post['Post_Image'];
+                                ?>" alt="<?php echo $Post['Post_Name'] ?>" width="300px" height="200px">
                                     </a>
 
                                     <h1 class="display-4 PostTitle"><?php echo $Post['Post_Name'] ?></h1>
