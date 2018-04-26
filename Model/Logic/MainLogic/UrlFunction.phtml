@@ -26,7 +26,8 @@ final class UrlFunction implements DataContract
 	{
 		self::$Url = new UrlRepository();
 
-		if (isset($_POST['submit'])) {
+		if (isset($_POST['submit']))
+		{
 
 			$Url = $_POST['Url'];
 			$Target = $_POST['Target'];
@@ -45,7 +46,6 @@ final class UrlFunction implements DataContract
 		self::$Url = new UrlRepository();
 
 		$Id = substr($QuerryString,27);
-
 		if (self::$Url->FindById($Id)['Rows']==1)
 		{
 			$Viewbag = ['UrlInfo'=>self::$Url->FindById($Id)['Values']];

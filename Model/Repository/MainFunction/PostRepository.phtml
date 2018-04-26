@@ -38,9 +38,9 @@ class PostRepository extends BaseRepository
         return ['Values'=>$Result->fetchAll(\PDO::FETCH_ASSOC),'Rows'=>$Result->rowCount()];
 
     }
-    public function Delete($Id )
+    public function Delete($Id)
     {
-        $Result = $this->rStatement->Commander("DELETE FROM {$this->Table} WHERE {$this->PrimaryKey}={$Id}");
+        $Result = $this->rStatement->Commander("DELETE FROM {$this->Table} WHERE {$this->PrimaryKey}='".$Id."'");
         return ['Values'=>$Result->fetchAll(\PDO::FETCH_ASSOC),'Rows'=>$Result->rowCount()];
 
     }

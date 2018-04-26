@@ -98,11 +98,11 @@ final class PostFunction implements DataContract
 	{
 		self::$Post= new PostRepository();
 
-		$Querry= substr($QuerryString,29);
+		$Id= substr($QuerryString,29);
 
-		if (self::$Post->GetPostById($Querry)['Rows']==1)
+		if (self::$Post->GetPostById($Id)['Rows']==1)
 		{
-			$Delete = self::$Post->Delete($QuerryString);
+			$Delete = self::$Post->Delete($Id);
 			if ($Delete['Rows'] == 1) {
 				header("Location: /Panel/Posts");
 			} else {
