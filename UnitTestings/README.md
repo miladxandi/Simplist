@@ -2,9 +2,9 @@
 #How to Install PHPUnit
 
 
-1. Make sure you have xampp with PHP 7.x installed (or other version required to your version of phpunit)
+1.Make sure you have xampp with PHP 7.x installed (or other version required to your version of phpunit)
 
-2. Go to folder xampp\php (wherever you installed your xampp) We will be working in this folder during entire installation. So if I say edit file etc it means in this folder.
+2.Go to folder xampp\php (wherever you installed your xampp) We will be working in this folder during entire installation. So if I say edit file etc it means in this folder.
 
 there you should find files:
 
@@ -12,17 +12,17 @@ there you should find files:
 
 > phpunit.bat
 
-3. Download newest version of phpunit from [here](https://phpunit.de/) At the time of writing this I get version phpunit 6.2 and PHP 7.1.4.
+3.Download newest version of phpunit from [here](https://phpunit.de/) At the time of writing this I get version phpunit 6.2 and PHP 7.1.4.
 
-4. Copy downloaded file to xampp\php folder For me it's: phpunit-6.2.2.phar for you it might be different version.
+4.Copy downloaded file to xampp\php folder For me it's: phpunit-6.2.2.phar for you it might be different version.
 
-5. Now **change** name of the **phpunit-6.2.2.phar** to **phpunit.phar**
+5.Now **change** name of the **phpunit-6.2.2.phar** to **phpunit.phar**
 
 I also renamed file phpunit to phpunit-org just in case.
 
-6. Edit file phpunit.bat
+6.Edit file phpunit.bat
 
-7. Find line that says:
+7.Find line that says:
 
     >`""%PHPBIN%" "C:\AnyFolderYouInsalledWampTo\xampp\php\phpunit" %*`
 
@@ -32,7 +32,7 @@ I also renamed file phpunit to phpunit-org just in case.
 
 Yes at the end of phpunit we **add .phar**
 
-8. Now make sure you have added your php to PATH in Environment Variables To do this on Windows 10 and Windows 8
+8.Now make sure you have added your php to PATH in Environment Variables To do this on Windows 10 and Windows 8
 
     8a. In Search, search for and then select: System (Control Panel)
     
@@ -44,7 +44,7 @@ Yes at the end of phpunit we **add .phar**
 
     8e. Click OK. Close all remaining windows by clicking OK.
 
-9. In cmd (to run cmd go to search in Windows and type cmd.exe and click Enter) go to drive you have xampp installed, then type this command
+9.In cmd (to run cmd go to search in Windows and type cmd.exe and click Enter) go to drive you have xampp installed, then type this command
 
  >`phpunit`
 
@@ -56,7 +56,7 @@ now type:
 
 you will get info what phpunit version you have and if you are using the newest version.
 
-10. in case this won't work go to your \xampp\php folder in cmd and then write/paste and run this command:
+10.in case this won't work go to your \xampp\php folder in cmd and then write/paste and run this command:
 
  >`echo @php "%~dp0phpunit.phar" %* > phpunit.cmd`
 
@@ -71,3 +71,7 @@ for you it would be your path of xampp\php but make sure you are on drive where 
  >`cd C:\AnyFolderYouInsalledWampTo\xampp\php`
 
 Repeat step 9.
+
+11.At the end run this command on your terminal:
+
+>`composer require phpunit/phpunit`
