@@ -28,17 +28,17 @@ in a local project for first use, these values should be just like this:
 
 >Password: Empty ( without value or an empty string)
 
-You can change these values by going to Model layer and change them in Database.phtml in Connection folder, or go to this address:
+You can change these values by going to Model layer and change them in Connection.phtml in Core/Configurations folder, or go to this address:
 
->Model/Connection/Database.phtml
+>Core/Configurations/Connection.phtml
 
 Note: There is a SQL Table file in "Resources" folder that you can easily import it to your local or online MySQL database
 
 
-Until you\`re working on local a working directory, the HTTPS protocol is turned off, but if you want to upload it on your server, the HTTPS protocol can be turned on by making the "SecureProtocol" `true` in the Middleware list, at the Important Folder you can find a Security file, or go to this address:
->Middleware/Important/Security.phtml
+Until you\`re working on a local working directory, the HTTPS protocol is turned off, but if you want to upload it on your server, the HTTPS protocol can be turned on by making the "SecureProtocol" `true` in the Core Folder, at the Configurations Folder you can find a Routing file, or go to this address:
+>Core/Configurations/Routing.phtml
 
-You can change the `$this->CoreSecurity->SecureProtocol(false);` to `$this->CoreSecurity->SecureProtocol(true);`
+You can change the `$SecureProtocol = false;` to `$SecureProtocol = true;`
 
 It\`s completely installed and ready for use.
 
@@ -174,5 +174,5 @@ There s no complex concept.
 - [ ] Make a user registration form
 - [ ] Hash Password
 - [x] Handle the requested URl with regex
-- [ ] Make a development environment for Database connection, Secure protocol & etc
+- [x] Make a development environment for Database connection, Secure protocol & etc
 - [ ] RESTFUL API support

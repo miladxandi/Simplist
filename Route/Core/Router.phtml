@@ -106,9 +106,13 @@ class Router
             {
                 header("Location: /MethodNotAllowed");
             }
+			else if($gRequestVerb=="" && $pRequestVerb=="")
+			{
+				header("Location: /MethodNotAllowed");
+			}
             else
             {
-                header("Location: /MethodNotAllowed");
+                header("Location: /NotFound");
 
             }
 

@@ -9,36 +9,38 @@
 namespace View\View\Shared;
 
 
+use Core\Configurations\Routing;
+
 class MainLayouts
 {
     public static function _Header()
     {
-        include "Main/_HeaderLayout.phtml";
+        include "Main/_HeaderLayout".Routing::$FileExtension;
     }
     public static function _Menu()
     {
-        include "Main/_MenuLayout.phtml";
+        include "Main/_MenuLayout".Routing::$FileExtension;
     }
     public static function _Footer()
     {
-        include "Main/_FooterLayout.phtml";
+        include "Main/_FooterLayout".Routing::$FileExtension;
     }
 }
 class PanelLayouts
 {
     public static function _Header()
     {
-        include "Panel/_HeaderLayout.phtml";
+        include "Panel/_HeaderLayout".Routing::$FileExtension;
 
     }
     public static function _Menu()
     {
-        include "Panel/_MenuLayout.phtml";
+        include "Panel/_MenuLayout".Routing::$FileExtension;
 
     }
     public static function _Footer()
     {
-        include "Panel/_FooterLayout.phtml";
+        include "Panel/_FooterLayout".Routing::$FileExtension;
 
     }
 }

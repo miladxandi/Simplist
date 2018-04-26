@@ -2,11 +2,9 @@
 
 namespace Core\Security;
 
-use Core\Watcher\Configurations;
-
 class Check
 {
-    public function SecureProtocol(bool $Https = false)
+    public static function SecureProtocol(bool $Https = false)
     {
         if ($Https == true)
         {

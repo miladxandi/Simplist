@@ -7,8 +7,9 @@
  */
 
 namespace Middleware\Important;
+use Core\Configurations\Routing;
 use Core\Security\Check;
-use Core\Watcher\Configurations;
+use Core\Watcher\Basement;
 
 
 class Security
@@ -17,10 +18,8 @@ class Security
     protected $Configurations;
     public function __construct()
     {
-        $this->CoreSecurity= new Check();
-        $this->Configurations= new Configurations();
-        $this->Configurations->MinVersion();
-        $this->CoreSecurity->SecureProtocol(false);
+        Basement::MinVersion();
+        Check::SecureProtocol(Routing::$SecureProtocol);
     }
 
 }

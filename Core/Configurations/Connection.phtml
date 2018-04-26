@@ -1,0 +1,20 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: farva
+ * Date: 26/04/2018
+ * Time: 03:47 AM
+ */
+
+namespace Core\Configurations;
+
+
+class Connection
+{
+	public static $Host= "localhost";
+	public static $DatabaseName= "simplist_simplist";
+	public static $Collation= "utf8";
+	public static $Username= "root";
+	public static $Password= "";
+	public static $Drivers= ['First'=>'PDO', 'Second'=>'MYSQL', 'Third'=>'Microsoft_SQL'];
+}
