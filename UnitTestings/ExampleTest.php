@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 
 class ExampleTest extends TestCase
 {
-	public function Is_Model_Defined()
+	public function testIs_Public_Html_Defined()
 	{
 		$this->assertDirectoryExists("public_html","It`s exists");
 	}
