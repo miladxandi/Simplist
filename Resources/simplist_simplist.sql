@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 13, 2018 at 04:57 PM
+-- Generation Time: Apr 26, 2018 at 02:53 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -35,15 +35,14 @@ CREATE TABLE `posts` (
   `Post_Summary` varchar(150) COLLATE utf8_persian_ci NOT NULL,
   `Post_Content` text COLLATE utf8_persian_ci NOT NULL,
   `Post_Author` varchar(150) COLLATE utf8_persian_ci NOT NULL,
-  `Post_Date` varchar(30) COLLATE utf8_persian_ci NOT NULL
+  `Post_Date` varchar(30) COLLATE utf8_persian_ci NOT NULL,
+  `Post_Image` varchar(200) COLLATE utf8_persian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
 --
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`Post_Id`, `Post_Name`, `Post_Url`, `Post_Summary`, `Post_Content`, `Post_Author`, `Post_Date`) VALUES
-(2, 'Simplist Documentations', 'simplist-connection-documentation', 'Documentation\r\n\r\nRemember your PHP version should be upper', 'Documentation\r\n\r\nRemember your PHP version should be upper than 7 and the local request address should be set on:\r\n<code> \r\n    public_html/ \r\n</code>\r\n\r\nAfter that, you have to set the username & table of your Database! in a local project for first use, these values should be just like this:\r\n<code>\r\n    Table: simplist_simplist\r\n\r\n    Username: root\r\n\r\n    Password: Empty ( without value or an empty string)\r\n</code>\r\nYou can change these values by going to Model layer and change them in Database.phtml in Connection folder, or go to this address:\r\n<code>\r\n    Model/Connection/Database.phtml\r\n</code>\r\nNote: There is a SQL Table file in “<Strong> Resources </Strong>” folder that you can easily import it to your local or online MySQL database\r\n\r\nUntil you`re working on local a working directory, the HTTPS protocol is turned off,\r\nbut if you want to upload it on your server, the HTTPS protocol can be turned on by making the “<code> SecureProtocol </code>” true in the Middleware list,\r\n at the Important Folder you can find a Security file, or go to this address:\r\n<code>\r\n    Middleware/Important/Security.phtml \r\n</code>\r\n\r\nYou can change the <code> $this->CoreSecurity->SecureProtocol(false); </code> to <code> $this->CoreSecurity->SecureProtocol(true); </code>\r\n\r\nIt`s completely installed and ready for use.', 'Milad', '13 April, 2018');
 
 -- --------------------------------------------------------
 
@@ -53,16 +52,14 @@ INSERT INTO `posts` (`Post_Id`, `Post_Name`, `Post_Url`, `Post_Summary`, `Post_C
 
 CREATE TABLE `urls` (
   `Id` int(50) NOT NULL,
-  `url` varchar(250) COLLATE utf8_persian_ci NOT NULL,
-  `target` varchar(500) COLLATE utf8_persian_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+  `url` varchar(250) NOT NULL,
+  `target` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `urls`
 --
 
-INSERT INTO `urls` (`Id`, `url`, `target`) VALUES
-(5, 'CH5eW', 'https://miladzandi.ir');
 
 -- --------------------------------------------------------
 
@@ -92,8 +89,7 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`u_Id`, `u_FName`, `u_LName`, `u_Nickname`, `u_Username`, `u_Password`, `u_Type`, `u_Email`, `u_Phone`, `u_Created`, `u_Expired`, `u_Status`, `u_Image`, `u_Bio`, `u_IsPaid`) VALUES
-(0, 'Milad', 'Xandi', 'Admin', 'miladxandi', 'Milad&zandi&0937', 'Admin', 'info@miladzandi.ir', NULL, '2018-04-12 18:09:57', '2020-00-00', 1, 'Avatar', NULL, 0);
+
 
 --
 -- Indexes for dumped tables
@@ -136,7 +132,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `urls`
 --
 ALTER TABLE `urls`
-  MODIFY `Id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `Id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
