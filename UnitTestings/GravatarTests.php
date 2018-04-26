@@ -12,8 +12,10 @@ use PHPUnit\Framework\TestCase;
 
 class ExampleTest extends TestCase
 {
-	public function testIs_Public_Html_Defined()
+
+	public function test_GravatarFileExist()
 	{
-		$this->assertDirectoryExists("public_html","It`s exists");
+		$this->assertFileExists("../Plugins/GravatarPlugin/GravatarClass.phtml");
 	}
+
 }

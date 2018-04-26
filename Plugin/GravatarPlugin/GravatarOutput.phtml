@@ -1,0 +1,21 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: farva
+ * Date: 26/04/2018
+ * Time: 08:17 AM
+ */
+
+namespace Plugin\GravatarPlugin;
+
+class GravatarOutput extends GravatarClass
+{
+	public function ProfilePicture()
+	{
+		$gravatar = new GravatarClass();
+		$gravatar->setDefaultImage('../public_html/Content/Shared/Profile/Avatar.png')->setAvatarSize(30);
+		$gravatar->setMaxRating('g');
+		$avatar = $gravatar->buildGravatarURL('info@miladzandi.ir');
+		return $avatar;
+	}
+}

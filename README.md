@@ -165,6 +165,8 @@ The Layouts file can contains one or more classes for each part of project. for 
 It includes some methods to load some other view files as header, menu and footer.
 There s no complex concept.
 
+We put some Mark down files with ".md" extensions as our detailed guide files.
+We strongly suggest your to download and install a mark down viewer for your brower to view this files with better experience.
 ### Tasks
 
 
