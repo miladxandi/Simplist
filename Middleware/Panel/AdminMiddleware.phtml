@@ -9,98 +9,126 @@
 namespace Middleware\Panel;
 
 
+use Middleware\Important\Security;
 use Model\Repository\MainFunction\UserRepository;
+use Route\Show\View;
 
 class AdminMiddleware
 {
-    public $Db;
-    public function __construct()
-    {
-        $this->DB = new UserRepository();
-    }
-    public function Index()
-    {
-        return $this->PanelCookieS();
-    }
-    public function NewPost()
-    {
-        return $this->EditorCookieS();
-    }
-    public function Post()
-    {
-        return $this->EditorCookieS();
-    }
-    public function Users()
-    {
-        return $this->AdminCookieS();
-    }
-    public function PostDelete()
-    {
-        return $this->EditorCookieS();
-    }
-    public function PostUpdate()
-    {
-        return $this->EditorCookieS();
-    }
-    private function PanelCookieS()
-    {
-        if(isset($_COOKIE['Username']) && $this->DB->FindByUser($_COOKIE['Username'])['Rows']==1)
-        {
-            return ['Status'=> true,'Info'=>$this->DB->FindByUser($_COOKIE['Username'])['Values']];
-        }
-        elseif(isset($_COOKIE['Username'])==false || $this->DB->FindByUser($_COOKIE['Username'])['Rows']==0)
-        {
-            header("Location: /Login");
-            return ['Status'=> true];
-        }
-        else
-        {
-            return ['Status'=>false];
-        }
-    }
-    private function EditorCookieS()
-    {
-        if(isset($_COOKIE['Username']) && $this->DB->FindByUser($_COOKIE['Username'])['Rows']==1 && ($this->DB->FindByUser($_COOKIE['Username'])['Values']['u_Type']=="Admin" || $this->DB->FindByUser($_COOKIE['Username'])['Values']['u_Type']=="Editor"))
-        {
-            //header("Location: /Panel/NewPost");
-            return ['Status'=> true,'Info'=>""];
-        }
-        elseif(isset($_COOKIE['Username'])==true || $this->DB->FindByUser($_COOKIE['Username'])['Rows']==1 && ($this->DB->FindByUser($_COOKIE['Username'])['Values']['u_Type']!="Admin" || $this->DB->FindByUser($_COOKIE['Username'])['Values']['u_Type']!="Editor"))
-        {
-            header("Location: /Forbidden");
-            return ['Status'=> true];
-        }
-        elseif(isset($_COOKIE['Username'])==false || $this->DB->FindByUser($_COOKIE['Username'])['Rows']==0)
-        {
-            header("Location: /Login");
-            return ['Status'=> true];
-        }
-        else
-        {
-            return ['Status'=>false];
-        }
-    }
-    private function AdminCookieS()
-    {
-        if(isset($_COOKIE['Username']) && $this->DB->FindByUser($_COOKIE['Username'])['Rows']==1 && $this->DB->FindByUser($_COOKIE['Username'])['Values']['u_Type']=="Admin")
-        {
-            //header("Location: /Panel/Users");
-            return ['Status'=> true,'Info'=>""];
-        }
-        elseif(isset($_COOKIE['Username'])==true || $this->DB->FindByUser($_COOKIE['Username'])['Rows']==1 && ($this->DB->FindByUser($_COOKIE['Username'])['Values']['u_Type']!="Admin"))
-        {
-            header("Location: /Forbidden");
-            return ['Status'=> true];
-        }
-        elseif(isset($_COOKIE['Username'])==false || $this->DB->FindByUser($_COOKIE['Username'])['Rows']==0)
-        {
-            header("Location: /Login");
-            return ['Status'=> true];
-        }
-        else
-        {
-            return ['Status'=>false];
-        }
-    }
+	public $Db;
+	public function __construct()
+	{
+		$this->DB = new UserRepository();
+		$this->Security= new Security();
+
+	}
+	public function Index()
+	{
+		return $this->PanelCookieS();
+	}
+	public function Profile()
+	{
+		return $this->PanelCookieS();
+	}
+	public function Login()
+	{
+
+		if(isset($_COOKIE['Firstname'])|| isset($_COOKIE['Username']))
+		{
+			setcookie("Firstname", "", Time() - 36000,"","eastcloud.ir",true,true);
+			setcookie("Username", "Logout",0,"","eastcloud.ir",true,true);
+			setcookie("LoginToken", "Logout",Time() - 36000,"","eastcloud.ir",true,true);
+			return ['Status'=> true];
+		}
+		else
+		{
+			return ['Status'=> true];
+		}
+
+	}
+	public function Lock()
+	{
+
+		if(isset($_COOKIE['Username']))
+		{
+			setcookie("lcsrn_Validation",password_hash("false",1),time()+60*60*24*365,"","eastcloud.ir",true,true);
+			setcookie("LoginToken", "Logout",Time() - 36000,"","eastcloud.ir",true,true);
+			return ['Status'=> true];
+		}
+		else
+		{
+			setcookie("lcsrn_Validation",password_hash("false",1),time()+60*60*24*365,"","eastcloud.ir",true,true);
+			setcookie("LoginToken", "Logout",Time() - 36000,"","eastcloud.ir",true,true);
+			return ['Status'=> false,'Route'=>'/Login'];
+		}
+
+	}
+	public function NewPost()
+	{
+		return $this->EditorCookieS();
+	}
+	public function Post()
+	{
+		return $this->EditorCookieS();
+	}
+	public function Users()
+	{
+		return $this->AdminCookieS();
+	}
+	public function PostDelete()
+	{
+		return $this->EditorCookieS();
+	}
+	public function PostUpdate()
+	{
+		return $this->EditorCookieS();
+	}
+	private function PanelCookieS()
+	{
+		if(isset($_COOKIE['Username']) && isset($_COOKIE['lcsrn_Validation']) && $this->DB->FindByUser($_COOKIE['Username'])['Rows']==1 && password_verify("true",$_COOKIE['lcsrn_Validation']) && password_verify($this->DB->FindByUser($_COOKIE['Username'])['Values']['u_LoginToken'],$_COOKIE['LoginToken']))
+		{
+			return ['Status'=> true];
+		}
+		elseif(isset($_COOKIE['Username'])==false || isset($_COOKIE['lcsrn_Validation'])==false || $this->DB->FindByUser($_COOKIE['Username'])['Rows']==0 || password_verify("true",$_COOKIE['lcsrn_Validation'])==false || password_verify($this->DB->FindByUser($_COOKIE['Username'])['Values']['u_LoginToken'],$_COOKIE['LoginToken'])==false)
+		{
+			return ['Status'=> false,'Route'=>'/Login'];
+		}
+		else
+		{
+			return ['Status'=> false,'Route'=>'/Forbidden'];
+		}
+	}
+	private function EditorCookieS()
+	{
+		if(isset($_COOKIE['Username'])==true && isset($_COOKIE['lcsrn_Validation'])==true && $this->DB->FindByUser($_COOKIE['Username'])['Rows']==1 && ($this->DB->FindByUser($_COOKIE['Username'])['Values']['u_Type']=="Admin" || $this->DB->FindByUser($_COOKIE['Username'])['Values']['u_Type']=="Editor") && password_verify("true",$_COOKIE['lcsrn_Validation']) && password_verify($this->DB->FindByUser($_COOKIE['Username'])['Values']['u_LoginToken'],$_COOKIE['LoginToken']))
+		{
+			return ['Status'=> true,'Info'=>""];
+		}
+		elseif(isset($_COOKIE['Username'])==false ||isset($_COOKIE['lcsrn_Validation']) || $this->DB->FindByUser($_COOKIE['Username'])['Rows']==0 || password_verify("true",$_COOKIE['lcsrn_Validation'])==false || password_verify($this->DB->FindByUser($_COOKIE['Username'])['Values']['u_LoginToken'],$_COOKIE['LoginToken']))
+		{
+
+			return ['Status'=> false,'Route'=>'/Login'];
+		}
+		else
+		{
+			return ['Status'=> false,'Route'=>'/Forbidden'];
+		}
+	}
+	private function AdminCookieS()
+	{
+		if(isset($_COOKIE['Username'])==true && isset($_COOKIE['lcsrn_Validation'])==true && $this->DB->FindByUser($_COOKIE['Username'])['Rows']==1 && $this->DB->FindByUser($_COOKIE['Username'])['Values']['u_Type']=="Admin" && password_verify("true",$_COOKIE['lcsrn_Validation'])==false && password_verify($this->DB->FindByUser($_COOKIE['Username'])['Values']['u_LoginToken'],$_COOKIE['LoginToken']))
+		{
+			//header("Location: /Panel/Users");
+			return ['Status'=> true,'Info'=>""];
+		}
+		elseif(isset($_COOKIE['Username'])==false ||isset($_COOKIE['lcsrn_Validation'])==false || $this->DB->FindByUser($_COOKIE['Username'])['Rows']==0 || password_verify("true",$_COOKIE['lcsrn_Validation'])==false || password_verify($this->DB->FindByUser($_COOKIE['Username'])['Values']['u_LoginToken'],$_COOKIE['LoginToken'])==false)
+		{
+			return ['Status'=> false,'Route'=>'/Login'];
+		}
+		else
+		{
+			return ['Status'=> false,'Route'=>'/Forbidden'];
+		}
+	}
 
 }

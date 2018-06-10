@@ -172,7 +172,7 @@ We strongly suggest your to download and install a mark down viewer for your bro
 
 - [x] Starters Documentation
 - [x] Complete Documentations
-- [ ] Fix Authentication & Authorization Bugs
+- [x] Fix Authentication & Authorization Bugs
 - [ ] Make a user registration form
 - [ ] Hash Password
 - [x] Handle the requested URl with regex

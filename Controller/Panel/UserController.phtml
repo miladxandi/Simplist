@@ -4,7 +4,7 @@
 namespace Controller\Panel;
 
 
-use Model\Repository\MainFunction\UserRepository;
+use Model\Logic\MainLogic\UserFunction;
 use Route\Show\View;
 
 class UserController
@@ -12,36 +12,29 @@ class UserController
     private $Data;
     public function __construct()
     {
-       $this->Data= new UserRepository();
+       $this->Data= new UserFunction();
+
     }
     public function Login()
     {
-        $Item= $this->Data->Find(1);
-        View::Process("Panel.User.Login",compact('Item'));
+    	$this->Data::Login();
+		View::Process("Panel.User.Login");
     }
     public function Signup()
     {
         View::Process("Panel.User.Signup");
     }
-    public function Sleep()
-    {
-        View::Process("Panel.User.Lockscreen");
-    }
-    public function ForgetPassword()
-    {
-        View::Process("Panel.User.ForgetPassword");
-    }
-    public function Dashboard()
-    {
-        $Item= $this->Data->Find(1);
-        View::Process("Panel.User.Dashboard",compact('Item'));
-    }
-    public function Tables()
-    {
-        View::Process("Panel.User.Tables");
-    }
-    public function Val()
-    {
-        View::Process("Panel.User.Val");
-    }
+	public function Lock()
+	{
+		$this->Data::LockScreen();
+		View::Process("Panel.User.Lockscreen");
+	}
+	public function NewSubs()
+	{
+		UserFunction::New();
+	}
+	public function Subs()
+	{
+		UserFunction::Show();
+	}
 }

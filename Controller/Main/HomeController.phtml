@@ -3,45 +3,76 @@
 namespace Controller\Main;
 
 
+use Model\Logic\MainLogic\PostFunction;
 use Model\Repository\MainFunction\PostRepository;
 use Route\Show\View;
 
 class HomeController
 {
-    private $Username;
-    private $Post;
+	private $Username;
 
-    public function __construct()
-    {
-        //$this->Username=new UserRepository();
-        $this->Post= new PostRepository();
-    }
-    public function Index()
-    {
-        //$Viewbag="SIMPLIST";
-        View::Process("Main.Home.Index");
-    }
-    public function Aboutus()
-    {
-        View::Process("Main.Home.Aboutus");
-    }
-    public function Documentation()
-    {
-        View::Process("Main.Home.Documentation");
-    }
-    public function Post($QuerryString)
-    {
-        $Querry= substr($QuerryString,16);
+	public function __construct()
+	{
+		$this->Posts = new PostFunction();
+		$this->PostCon = new PostRepository();
+	}
 
-        if ($this->Post->GetPostByUrl($Querry)['Rows']==1)
-        {
-            $Viewbag = ['PostInfo'=>$this->Post->GetPostByUrl($Querry)['Values']];
-            View::Process("Main.Home.Post",$Viewbag);
-        }
-        else
-        {
-            View::Process("Helper.Home.Error404");
-        }
-    }
+	public function Index()
+	{
+		//$Viewbag="SIMPLIST";
+		View::Process("Main.Home.Index");
+	}
 
+	public function En()
+	{
+		$Viewbag = ['Posts' => $this->Posts::Show()];
+		View::Process("Main.Home.English", $Viewbag);
+	}
+
+	public function Certification()
+	{
+		View::Process("Main.Home.Certification");
+	}
+
+	public function Fa()
+	{
+		$Viewbag = ['Posts' => $this->Posts::Show()];
+		View::Process("Main.Home.Farsi", $Viewbag);
+	}
+
+	public function Astronomy()
+	{
+		View::Process("Main.Astronomy.Index");
+	}
+
+	public function Solarsystem()
+	{
+		View::Process("Main.Astronomy.Solarsystem");
+	}
+
+	public function Privacy()
+	{
+		View::Process("Main.Home.Privacy");
+	}
+
+	public function Blog($QuerryString = 0)
+	{
+		$Querry = substr($QuerryString, 11);
+		if ($this->PostCon->GetPostByUrl($Querry)['Rows'] == 1) {
+			$Viewbag = ['PostInfo' => $this->PostCon->GetPostByUrl($Querry)['Values']];
+			View::Process("Main.Home.Post", $Viewbag);
+		} else {
+			View::Process("Main.Home.Blog");
+		}
+	}
+
+	public function Mailer()
+	{
+		View::Process("Main.Home.Mailer");
+	}
+
+	public function Success()
+	{
+		View::Process("Main.Home.Success");
+	}
 }

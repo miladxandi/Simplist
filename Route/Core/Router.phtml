@@ -8,169 +8,150 @@ use Model\Repository\MainFunction\UrlRepository;
 class Router
 {
 
-    protected static $BaseController="Controller\\";
-    protected static $BaseMiddleware="Middleware\\";
-    public static function Register()
-    {
-        $CurrentRoute= self::getCurrentRoute()['URI'];
-        $QuerryString= self::getCurrentRoute()['QuerryString'];
-        $Routes = self::isRouteDefined("$CurrentRoute");
-        $gRequestVerb = $Routes['gverb'];
-        $pRequestVerb = $Routes['pverb'];
-        $CurrentRouteVerb = self::currentRequestVerb();
-        if (($CurrentRouteVerb==$gRequestVerb && $gRequestVerb!="")||($CurrentRouteVerb==$pRequestVerb && $pRequestVerb!=""))
-        {
-            list($Folder,$Controller,$Method)=explode(".",$Routes['target']);
-            $ControllerClass= self::$BaseController.$Folder."\\".$Controller."Controller";
-            $ControllerInstance = new $ControllerClass;
-            if ($Routes['middleware']!="")
-            {
-                list($Way,$Series,$Check)=explode(".",$Routes['middleware']);
-                $MiddlewareClass = self::$BaseMiddleware.$Way."\\".$Series."Middleware";
-                $MiddlewareInstance= new $MiddlewareClass;
-                if (method_exists($ControllerInstance,"$Method")&& method_exists($MiddlewareInstance,"$Check"))
-                {
-                    if ($QuerryString!=null)
-                    {
-                        if($MiddlewareInstance->$Check($QuerryString)['Status'])
-                        {
+	protected static $BaseController="Controller\\";
+	protected static $BaseMiddleware="Middleware\\";
+	public static function Register()
+	{
+		$CurrentRoute= self::getCurrentRoute()['URI'];
+		$QuerryString= self::getCurrentRoute()['QuerryString'];
+		$Routes = self::isRouteDefined("$CurrentRoute");
+		$gRequestVerb = $Routes['gverb'];
+		$pRequestVerb = $Routes['pverb'];
+		$CurrentRouteVerb = self::currentRequestVerb();
+		if (($CurrentRouteVerb==$gRequestVerb && $gRequestVerb!="")||($CurrentRouteVerb==$pRequestVerb && $pRequestVerb!=""))
+		{
+			list($Folder,$Controller,$Method)=explode(".",$Routes['target']);
+			$ControllerClass= self::$BaseController.$Folder."\\".$Controller."Controller";
+			$ControllerInstance = new $ControllerClass;
+			if ($Routes['middleware']!="")
+			{
+				list($Way,$Series,$Check)=explode(".",$Routes['middleware']);
+				$MiddlewareClass = self::$BaseMiddleware.$Way."\\".$Series."Middleware";
+				$MiddlewareInstance= new $MiddlewareClass;
+				if (method_exists($ControllerInstance,"$Method")&& method_exists($MiddlewareInstance,"$Check"))
+				{
+					if ($QuerryString!=null)
+					{
+						if($MiddlewareInstance->$Check($QuerryString)['Status']==true)
+						{
+							$ControllerInstance->$Method($QuerryString);
+						}
+						else
+						{
 
-                            if($QuerryString!=null)
-                            {
-                                $ControllerInstance->$Method($QuerryString);
-                            }
-                            else
-                            {
-                                $ControllerInstance->$Method();
-                            }
-                        }
-                        else
-                        {
-                            header("Location: /BadRequest");
-                        }
-                    }
-                    else
-                    {
-                        if($MiddlewareInstance->$Check()['Status'])
-                        {
+							header("Location: ".$MiddlewareInstance->$Check($QuerryString)['Route']."");
+						}
+					}
+					else
+					{
+						if($MiddlewareInstance->$Check()['Status']==true)
+						{
+								$ControllerInstance->$Method();
+						}
+						else
+						{
+							header("Location: ".$MiddlewareInstance->$Check()['Route']."");
+						}
+					}
+				}
+			}
+			else if (method_exists($ControllerInstance,"$Method"))
+			{
+				if($QuerryString!=null)
+				{
+					$ControllerInstance->$Method($QuerryString);
 
-                            if($QuerryString!=null)
-                            {
-                                $ControllerInstance->$Method($QuerryString);
-                            }
-                            else
-                            {
-                                $ControllerInstance->$Method();
-                            }
-                        }
-                        else
-                        {
-                            header("Location: /BadRequest");
-                        }
-                    }
-                }
-            }
-            else if (method_exists($ControllerInstance,"$Method"))
-            {
-                if($QuerryString!=null)
-                {
-                    $ControllerInstance->$Method($QuerryString);
+				}
+				else
+				{
+					$ControllerInstance->$Method();
+				}
+			}
+			else
+			{
+				header("Location: /notfound");
+			}
+		}
+		else if ($Routes==1)
+		{
+			$Url = new UrlRepository();
 
-                }
-                else
-                {
-                    $ControllerInstance->$Method();
-                }
-            }
-            else
-            {
-                return $Routes['/NotFound'];
-            }
-        }
-        else if ($Routes==1)
-        {
-            $Url = new UrlRepository();
-
-            foreach ($Url->FindByUrl(substr(self::getCurrentRoute()['URI'],7))['Values'] as $UrlAddress )
-            {
-                header("Location: ".$UrlAddress['target']);
-            }
-        }
-        else
-        {
-            if ($CurrentRouteVerb==$gRequestVerb && $gRequestVerb=="")
-            {
-                header("Location: /MethodNotAllowed");
-            }
-            else if($CurrentRouteVerb==$pRequestVerb && $pRequestVerb=="")
-            {
-                header("Location: /MethodNotAllowed");
-            }
-			else if($gRequestVerb=="" && $pRequestVerb=="")
+			foreach ($Url->FindByUrl(substr(self::getCurrentRoute()['URI'],7))['Values'] as $UrlAddress )
+			{
+				header("Location: ".$UrlAddress['target']);
+			}
+		}
+		else
+		{
+			if ($CurrentRouteVerb==$gRequestVerb && $gRequestVerb=="")
 			{
 				header("Location: /MethodNotAllowed");
 			}
-            else
-            {
-                header("Location: /NotFound");
+			else if($CurrentRouteVerb==$pRequestVerb && $pRequestVerb=="")
+			{
+				header("Location: /MethodNotAllowed");
+			}
+			else
+			{
+				header("Location: /notfound");
 
-            }
+			}
 
-        }
-    }
+		}
+	}
 
-    public static function getCurrentRoute()
-    {
-        $WithoutSlashes= substr($_SERVER['REQUEST_URI'], 1);
-        $QuerryString=$_SERVER['QUERY_STRING'];
-        $URI=$_SERVER['REQUEST_URI'];
-        if($QuerryString=="path=$WithoutSlashes")
-        {
-            $QuerryString=null;
-            return ['QuerryString'=>$QuerryString,'URI'=>$URI];
+	public static function getCurrentRoute()
+	{
+		$WithoutSlashes= substr($_SERVER['REQUEST_URI'], 1);
+		$QuerryString=$_SERVER['QUERY_STRING'];
+		$URI=$_SERVER['REQUEST_URI'];
+		if($QuerryString=="path=$WithoutSlashes")
+		{
+			$QuerryString=null;
+			return ['QuerryString'=>$QuerryString,'URI'=>$URI];
 
-        }
-        else if ($QuerryString!="path=$WithoutSlashes")
-        {
-            return ['QuerryString'=>$QuerryString,'URI'=>$URI];
-        }
-    }
+		}
+		else if ($QuerryString!="path=$WithoutSlashes")
+		{
+			return ['QuerryString'=>$QuerryString,'URI'=>$URI];
+		}
+	}
 
-    public static function isRouteDefined(string $FullRoute)
-    {
-        $Url = new UrlRepository();
+	public static function isRouteDefined(string $FullRoute)
+	{
+		$Url = new UrlRepository();
 
-        if (strpos($FullRoute, "?"))
-        {
-            $Route = substr($FullRoute, 0, strpos($FullRoute, "?"));
-        }
-        else
-        {
-            $Route = $FullRoute;
-        }
-        $Routes = self::getRoutes();
-        if (array_key_exists(preg_replace('/[A-Z]/',strtolower($Route),strtolower($Route)),$Routes))
-        {
-            return $Routes[preg_replace('/[A-Z]/',strtolower($Route),strtolower($Route))];
-        }
-        else if ($Url->FindByUrl(substr(self::getCurrentRoute()['URI'],7))['Rows']==1)
-        {
-            return 1;
-        }
-        else
-        {
-            return $Routes['/NotFound'];
-        }
-    }
+		if (strpos($FullRoute, "?"))
+		{
+			$Route = substr($FullRoute, 0, strpos($FullRoute, "?"));
+		}
+		else
+		{
+			$Route = $FullRoute;
+		}
+		$Routes = self::getRoutes();
+		if (array_key_exists(preg_replace('/[A-Z]/',strtolower($Route),strtolower($Route)),$Routes))
+		{
+			return $Routes[preg_replace('/[A-Z]/',strtolower($Route),strtolower($Route))];
+		}
+		else if ($Url->FindByUrl(substr(self::getCurrentRoute()['URI'],7))['Rows']==1)
+		{
+			return 1;
+		}
+		else
+		{
+			header("Location: /notfound");
+		}
+	}
 
-    public static function getRoutes()
-    {
-        $Routes = include PATH . DIRECTORY_SEPARATOR . 'Setting/Routes.phtml';
-        return $Routes;
-    }
+	public static function getRoutes()
+	{
+		$Routes = include PATH . DIRECTORY_SEPARATOR . 'Setting/Routes.phtml';
+		return $Routes;
+	}
 
-    public static function currentRequestVerb()
-    {
-        return $_SERVER['REQUEST_METHOD'];
-    }
+	public static function currentRequestVerb()
+	{
+		return $_SERVER['REQUEST_METHOD'];
+	}
 }

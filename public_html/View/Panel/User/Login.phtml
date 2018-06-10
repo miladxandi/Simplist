@@ -2,37 +2,14 @@
 
     <title>SIMPLIST - LOGIN</title>
 <?php
-session_start();
-$error = ''; // Variable To Store Error Message
-setcookie("Firstname", "", Time() - 36000);
-if (isset($_POST['submit'])) {
-	if (empty($_POST['username']) || empty($_POST['password'])) {
-		$error = "Username or Password is invalid";
-	} else {
-
-		$Username = addslashes($_POST['username']);
-		$Password = addslashes($_POST['password']);
-		$Data = new Model\Repository\MainFunction\UserRepository();
-
-		$Login = $Data->Login($Username, $Password);
-		if ($Login == 1) {
-			$Val = $Data->FindByUser($Username);
-			setcookie("Firstname", $Val['Values']['u_FName'], time() + (60 * 60 * 24 * 30));
-			setcookie("Username", $Val['Values']['u_Username'], time() + (60 * 60 * 24 * 30));
-			header("Location: /");
-
-
-		} else {
-			$error = "Username or Password is invalid";
-			header("Location: /Login");
-		}
-	}
-}
 $Add = new Core\Requirement\oLoad("../../..", "Style/Panel", "Script/Panel", "Style/Panel");
 $Add->Loader("css", "fonts/fontawesome/css/font-awesome.min");
 $Add->Loader("css", "fonts/linecons/css/linecons");
 $Add->Loader("css", "bootstrap.min", "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css", false);
 $Add->Loader("css", "mytest");
+
+    if ($Viewbag==null || $Viewbag=="" || $Viewbag['Error']==null ||$Viewbag['Error']== "")
+        $Viewbag==null;
 ?>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -51,6 +28,25 @@ $Add->Loader("css", "mytest");
                 <label for="password">Password</label>
                 <input type="password" class="form-control" name="password" id="password" placeholder="Password">
             </div>
+            <?php if ($Viewbag['Error']!=null ||$Viewbag['Error']!= ""): ?>
+                    <span>
+                        <div class="alert alert-danger" role="alert"><?php echo $Viewbag['Error']; ?></div>
+                    </span>
+                    <?php elseif(isset($_COOKIE['Username']) == true ||$_COOKIE['Username']=="Logout"): ?>
+                        <span>
+                            <div class="success alert-success" role="alert">شما با موفقیت خارج شدید!</div>
+                        </span>
+                    <?php elseif($Viewbag['Result'] == ""): ?>
+                        <span>
+                            <div class="success alert-success" role="alert"><?php echo $Viewbag['Result']; ?></div>
+                        </span>
+                    <?php
+                        if (isset($_COOKIE['Username']) && $_COOKIE['Username']=="Logout")
+                        {
+                            setcookie("Username","",time()-3600,"","eastcloud.ir",true,true);
+                        }
+                        endif;
+                    ?>
             <button type="submit" name="submit" id="submit" class="btn btn-primary">Login</button>
         </form>
         <div style="margin-top:100px;"><a href="/Signup" style="font-size: large">Register new account</a> - <a

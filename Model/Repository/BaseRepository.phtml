@@ -14,6 +14,7 @@ abstract class BaseRepository
     protected $uName;
     protected $uPass;
     protected $uMail;
+    protected $uToken;
     public function __construct()
     {
         $this->rStatement=new Connection\Statement();

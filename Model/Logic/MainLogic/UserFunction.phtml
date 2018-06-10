@@ -1,0 +1,251 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: farva
+ * Date: 13/04/2018
+ * Time: 06:33 PM
+ */
+
+namespace Model\Logic\MainLogic;
+
+
+//use MailerLiteApi\Api\Subscribers;
+//use MailerLiteDocs\cMailerLite;
+use Model\Logic\DataContract;
+use Model\Repository\MainFunction\UserRepository;
+use Route\Show\View;
+
+final class UserFunction implements DataContract
+{
+	private static $User;
+	//private static $Subscriber;
+	private static $Viewbag;
+	private static $ID = 0;
+
+	public function __construct()
+	{
+		self::$User = new UserRepository();
+		//self::$Subscriber = new cMailerLite();
+	}
+
+	public static function New()
+	{
+		/*self::$Subscriber = new cMailerLite();
+		if (isset($_POST) && isset($_POST['submit']))
+		{
+			$response = self::$Subscriber::NewSubscriber($_POST['Email'],$_POST['Firstname'],$_POST['Lastname'],$_POST['Company']);
+			if ($response->date_created!=null && $response->date_created!="")
+			{
+				view::Process('Panel.Admin.Subs');
+			}
+			else
+			{
+				view::Process('Panel.Admin.NewSubs');
+			}
+		}
+		else
+		{
+			view::Process('Panel.Admin.NewSubs');
+		}*/
+
+		/*setcookie("Username","",Time()-36000);
+		if (isset($_POST['submit']))
+		{
+			if (empty($_POST['username']) || empty($_POST['password']))
+			{
+				$error = "Username or Password is invalid";
+			}
+			else
+			{
+
+				$Username = $_POST['username'];
+				$Password = $_POST['password'];
+				$Val = self::$User->FindByUser($Username);
+				$uResult = self::$User->Username($Username);
+				$pResult = self::$User->Password($Password);
+				if ($uResult == 1 && $pResult==1)
+				{
+					header("Location: /Panel");
+					setcookie("Username",$Val['Values']['user_Firstname'],0);
+
+				}
+				else
+				{
+					$error = "Username or Password is invalid";
+					header("Location: /Login");
+				}
+			}
+		}*/
+	}
+
+	public static function Update($QuerryString)
+	{
+
+	}
+
+	public static function Profile()
+	{
+		if (isset($_POST['submit']) == true) {
+			$DefaultDirectory = "Content/Shared/Profile/Dp";
+			$FileType = "." . substr($_FILES["Image"]["type"], 6);
+			$Firstname = $_POST['Firstname'];
+			$Lastname = $_POST['Lastname'];
+			$Nickname = $_POST['Nickname'];
+			$Username = $_POST['Username'];
+			$Password = $_POST['Password'] == $_POST['Password-Verf'] && $_POST['Password'] != "" ? password_hash($_POST['Password'], 1) : "";
+			$Email = $_POST['Email'];
+			$Phone = $_POST['Phone'];
+			$Image = $_FILES['Image']['name'];
+			$Bio = $_POST['Bio'];
+			if ($Image != null) {
+				$TargetFile = $DefaultDirectory . basename($_POST['Firstname'] . $FileType);
+				if (file_exists($TargetFile)) {
+					unlink($TargetFile);
+					$NewTargetFile = $DefaultDirectory . basename($_POST['Firstname'] . $FileType);
+					if (move_uploaded_file($_FILES["Image"]['tmp_name'], $NewTargetFile)) {
+						$Update = self::$User->Update($Firstname, $Lastname, $Nickname, $Username, $Password, $Email, $Phone, $NewTargetFile, $Bio);
+						if ($Update['Rows'] == 1) {
+							header("Location: /Panel");
+						} else {
+							header("Location: /Panel/Profile");
+
+						}
+
+					} else {
+						header("Location: /Panel/Profile");
+
+					}
+				} else {
+					if (move_uploaded_file($_FILES["PostImage"]['tmp_name'], $TargetFile)) {
+						$Update = self::$User->Update($Firstname, $Lastname, $Nickname, $Username, $Password, $Email, $Phone, $TargetFile, $Bio);
+						if ($Update['Rows'] == 1) {
+							header("Location: /Panel");
+						} else {
+							header("Location: /Panel/Profile");
+
+						}
+
+					} else {
+						echo "Image did not upload!";
+						header("Location: /Panel/Profile");
+
+					}
+				}
+			} else {
+				$Update = self::$User->Update($Firstname, $Lastname, $Nickname,$Username, $Password, $Email, $Phone, "Content/Shared/Profile/Dp/Avatar.png", $Bio);
+				if ($Update['Rows'] == 1) {
+					header("Location: /Panel");
+				} else {
+					header("Location: /Panel/Profile");
+
+				}
+			}
+		}
+		else
+		{
+			header("Location: /Panel/Profile");
+		}
+	}
+
+	public static function Delete($QuerryString)
+	{
+
+	}
+
+	public static function Show()
+	{
+		/*self::$Subscriber= new cMailerLite();
+
+
+		self::$Subscriber::Subscribers();
+		if (self::$Subscriber::Subscribers()!=null)
+		{
+			foreach (self::$Subscriber::Subscribers() as $Subscriber)
+			{
+				$email= get_object_vars($Subscriber->fields['0']);
+				$fname = get_object_vars($Subscriber->fields['1']);
+				$lname= get_object_vars($Subscriber->fields['2']);
+				$phone= get_object_vars($Subscriber->fields['6']);
+				//var_dump($fname['value']);
+				self::$Viewbag = ['UserInfo'=>[
+					'fname'=> $fname['value'],
+					'lname'=>$lname['value'],
+					'email'=>$email['value'],
+					'phone'=>$phone['value']
+				]];
+				self::$ID++;
+				var_dump(self::$Viewbag['UserInfo']);
+
+			}
+			view::Process('Panel.Admin.Subs',self::$Viewbag);
+
+		}
+		else
+		{
+			view::Process('Panel.Admin.Subs');
+		}*/
+	}
+
+	public static function Login()
+	{
+		if (isset($_POST['submit'])) {
+			if (empty($_POST['username']) || empty($_POST['password'])) {
+				$Viewbag = ['Error' => 'یک نام کاربری و رمزینه صحیح وارد نمایید'];
+				View::Process("Panel.User.Login", $Viewbag);
+			} else {
+				$Token = rand(5000, 1000000) . "-" . rand(5000, 1000000) . "-" . rand(5000, 1000000);
+				$Username = addslashes($_POST['username']);
+				$Password = addslashes($_POST['password']);
+				$Login = self::$User->Login($Username, $Password, $Token);
+				if ($Login['Rows'] == "11") {
+					setcookie("Username", $Login['Values']['u_Username'], time() + 60 * 60 * 24 * 365, "", "eastcloud.ir", true, true);
+					setcookie("Firstname", $Login['Values']['u_FName'], time() + 60 * 60 * 24 * 365, "", "eastcloud.ir", true, true);
+					setcookie("LoginToken", password_hash($Token,1), time() + 60 * 60 * 24 * 365, "", "eastcloud.ir", true, true);
+					setcookie("lcsrn_Validation", password_hash("true", 1), time() + 60 * 60 * 24 * 365, "", "eastcloud.ir", true, true);
+					header("Location: /Panel");
+				} else {
+					setcookie("lcsrn_Validation", password_hash("false", 1), time() * 60 * 60 * 24 * 365 * 365, "", "eastcloud.ir", true, true);
+					$Viewbag = ['Error' => 'نام کاربری یا گذرواژه اشتباه است.', 'Result' => $Login['Values']];
+					View::Process("Panel.User.Login", $Viewbag);
+				}
+			}
+		}
+	}
+
+	public static function LockScreen()
+	{
+		if (!isset($_COOKIE['Username']) && !($_COOKIE['Username'] != null || $_COOKIE['Username'] != "")) {
+			header("Location: /Login");
+
+		} else {
+			if (isset($_POST['submit'])) {
+				if (empty($_POST['password'])) {
+					setcookie("Error", "گذرواژه نباید خالی باشد", 0);
+					setcookie("lcsrn_Validation", password_hash("false", 1), time() + 60 * 60 * 24 * 365, "", "eastcloud.ir", true, true);
+					header("Location: /Lock");
+				} else {
+
+					$Username = $_COOKIE['Username'];
+					$Token = rand(5000, 1000000) . "-" . rand(5000, 1000000) . "-" . rand(5000, 1000000);
+					$Password = addslashes($_POST['password']);
+					$Data = new UserRepository();
+					$Login = $Data->Login($Username, $Password, $Token);
+					if ($Login['Rows'] == "11") {
+						setcookie("Username", $Login['Values']['u_Username'], time() + 60 * 60 * 24 * 365, "", "eastcloud.ir", true, true);
+						setcookie("LoginToken", password_hash($Token,1), time() + 60 * 60 * 24 * 365, "", "eastcloud.ir", true, true);
+						if (password_verify("false", $_COOKIE['lcsrn_Validation'])) {
+							setcookie("lcsrn_Validation", password_hash("true", 1), time() + 60 * 60 * 24 * 365, "", "eastcloud.ir", true, true);
+							header("Location: /Panel");
+						} else {
+							header("Location: /Login");
+						}
+					} else {
+						setcookie("Error", "گذرواژه اشتباه است.", 0);
+						setcookie("lcsrn_Validation", password_hash("false", 1), time() + 60 * 60 * 24 * 365, "", "eastcloud.ir", true, true);
+						header("Location: /Lock");
+					}
+				}
+			}
+		}
+	}
+}

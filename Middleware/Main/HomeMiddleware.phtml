@@ -30,4 +30,26 @@ class HomeMiddleware
     {
         return ['Status'=>true];
     }
+	public function Mailer()
+	{
+		if(($_SERVER['HTTP_REFERER'] == "https://eastcloud.ir/fa-ir" ||$_SERVER['HTTP_REFERER'] == "https://eastcloud.ir/en-us" || $_SERVER['HTTP_REFERER'] == "https://eastcloud.ir/contactus") && isset($_POST))
+		{
+			return ['Status'=>true];
+		}
+		else
+		{
+			return ['Status'=>false,"Route"=>"/Forbidden"];
+		}
+	}
+	public function Success()
+	{
+		/*if($_SERVER['HTTP_REFERER'] == "https://eastcloud.ir/Mailer" )
+		{*/
+			return ['Status'=>true];
+		/*}
+		else
+		{
+			return ['Status'=>false,"Route"=>"/Forbidden"];
+		}*/
+	}
 }

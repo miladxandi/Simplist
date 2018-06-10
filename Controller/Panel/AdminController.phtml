@@ -5,6 +5,7 @@ namespace Controller\Panel;
 
 use Model\Logic\MainLogic\PostFunction;
 use Model\Logic\MainLogic\UrlFunction;
+use Model\Logic\MainLogic\UserFunction;
 use Model\Repository\MainFunction\UserRepository;
 use Route\Show\View;
 
@@ -20,8 +21,21 @@ class AdminController
 
     public function Index()
     {
-        $Viewbag=['UserInfo'=>$this->User->FindByUser($_COOKIE['Username'])['Values'],];
-        View::Process("Panel.Admin.Panel",$Viewbag);
+        $Viewbag=['UserInfo'=>$this->User->FindByUser($_COOKIE['Username'])['Values']];
+        View::Process("Panel.Admin.Dashboard",$Viewbag);
+    }
+    public function Profile()
+    {
+		$Viewbag = ['UserInfo' => $this->User->FindByUser($_COOKIE['Username'])['Values']];
+
+     	if (isset($_POST))
+		{
+			UserFunction::Profile();
+		}
+		else
+		{
+			View::Process("Panel.Admin.Profile", $Viewbag);
+		}
     }
 
     public function Users()
@@ -67,6 +81,7 @@ class AdminController
     }
     public function UrlUpdate($QuerryString)
     {
-        UrlFunction::Update($QuerryString);
+		UrlFunction::Update($QuerryString);
+
     }
 }

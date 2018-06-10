@@ -16,6 +16,7 @@ class UserRepository extends BaseRepository
 {
 	Private $Value;
 	public $Fields;
+	private $Token;
 
 	public function __construct()
 	{
@@ -25,6 +26,7 @@ class UserRepository extends BaseRepository
 		$this->uName = "u_Username";
 		$this->uMail = "u_Email";
 		$this->uPass = "u_Password";
+		$this->uToken = "u_LoginToken";
 	}
 
 	public function Username($Username)
@@ -48,10 +50,27 @@ class UserRepository extends BaseRepository
 		return $Result->rowCount();
 	}
 
-	public function Login($Username, $Password)
+	public function Login($Username, $Password, $Token)
 	{
-		$Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->uName}='".$Username."' AND {$this->uPass}='".$Password."'");
-		$Result->fetch(\PDO::FETCH_COLUMN);
+		$Result = $this->FindByUser($Username);
+		$UserFunc = $this->Username($Username);
+		$PassFunc = $this->Password($Password);
+		$Tokenize=$this->Tokenizer($Token,$Username);
+		if ($Tokenize==1)
+		{
+
+			return ['Values'=>$Result['Values'],'Rows'=>$UserFunc.$PassFunc];
+		}
+		else
+		{
+			return ['Values'=>0,'Rows'=>0];
+		}
+
+	}
+	public function Tokenizer($Token,$Username)
+	{
+		$Result = $this->rStatement->Commander("UPDATE {$this->Table} SET {$this->uToken}='".$Token."' WHERE {$this->uName}='".$Username."'");
+		$Result->fetchAll(\PDO::FETCH_ASSOC);
 		return $Result->rowCount();
 	}
 
@@ -66,6 +85,11 @@ class UserRepository extends BaseRepository
 		$Result = $this->rStatement->Commander("INSERT INTO {$this->Table} (u_FName, u_LName, u_Username, u_Password, u_Type, u_Email, u_Phone, u_Expired, u_Status, u_Image, u_IsPaid) VALUES ('".$Firstname."','".$Lastname."','".$Username."','".$Password."',Visitor,'".$Email."','".$Phone."',2020-00-00,1,Avatar,0)");
 		$Result->fetch(\PDO::FETCH_COLUMN);
 		return $Result->rowCount();
+	}
+	public function Update($Firstname,$Lastname,$Nickname,$Username,$Password,$Email,$Phone,$Image,$Bio)
+	{
+		$Result = $this->rStatement->Commander("UPDATE {$this->Table} SET u_FName='".$Firstname."',u_LName='".$Lastname."',u_Nickname='".$Nickname."',u_Username='".$Username."',u_Password='".$Password."',u_Email='".$Email."',u_Phone='".$Phone."',Image='".$Image."',Bio='".$Bio."', WHERE {$this->uName}={$Username}");
+		return ['Values'=>$Result->fetchAll(\PDO::FETCH_ASSOC),'Rows'=>$Result->rowCount()];
 	}
 	public function GetUsers()
 	{

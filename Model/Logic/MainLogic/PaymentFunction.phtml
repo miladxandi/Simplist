@@ -1,0 +1,80 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: farva
+ * Date: 28/05/2018
+ * Time: 05:31 PM
+ */
+
+namespace Model\Logic\MainLogic;
+
+
+use Model\Logic\DataContract;
+use Route\Show\View;
+
+class PaymentFunction implements DataContract
+{
+
+	public function __construct()
+	{
+
+	}
+
+	public static function New()
+	{
+
+	}
+
+	public static function Update($QuerryString)
+	{
+
+	}
+
+	public static function Delete($QuerryString)
+	{
+
+
+	}
+
+	public static function Show()
+	{
+
+	}
+
+	public static function Zarinpal()
+	{
+		include "Zarin.phtml";
+	}
+	public static function Verify()
+	{
+		$MerchantID = 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX';
+		$Amount = $_GET['Amount']; //Amount will be based on Toman
+		$Authority = $_GET['Authority'];
+
+		if ($_GET['Status'] == 'OK') {
+
+			$client = new \SoapClient('https://sandbox.zarinpal.com/pg/services/WebGate/wsdl', ['encoding' => 'UTF-8']);
+
+			$result = $client->PaymentVerification(
+				[
+					'MerchantID' => $MerchantID,
+					'Authority' => $Authority,
+					'Amount' => $Amount,
+				]
+			);
+
+			if ($result->Status == 100) {
+				echo 'Transaction success. RefID:'.$result->RefID;
+				View::Process("Payment.Zarinpal.Verify");
+			} else {
+				echo 'Transaction failed. Status:'.$result->Status;
+				View::Process("Payment.Zarinpal.Verify");
+			}
+		} else {
+
+			echo 'Transaction canceled by user';
+			View::Process("Payment.Zarinpal.Verify");
+		}
+
+	}
+}
