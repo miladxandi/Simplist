@@ -22,7 +22,7 @@ class AdminController
     public function Index()
     {
         $Viewbag=['UserInfo'=>$this->User->FindByUser($_COOKIE['Username'])['Values']];
-        View::Process("Panel.Admin.Dashboard",$Viewbag);
+        View::Process("Panel.Admin.Panel",$Viewbag);
     }
     public function Profile()
     {

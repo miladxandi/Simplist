@@ -1,9 +1,10 @@
 <?php \View\View\Shared\MainLayouts::_Header(); ?>
-<?php $PostInfo = $Viewbag['PostInfo'][0]; ?>
+<?php $PostInfo = $Viewbag['PostInfo']["Values"][0]; ?>
     <title>SIMPLIST - <?php echo $PostInfo['Post_Name']; ?></title>
     </head>
 <?php \View\View\Shared\MainLayouts::_Menu(); ?>
     <!--  Content -->
+    <div>
         <div class="Container">
             <div class="row">
                 <div class="col-12">

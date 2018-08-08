@@ -28,7 +28,7 @@ $Add->Loader("css", "mytest");
                 <label for="password">Password</label>
                 <input type="password" class="form-control" name="password" id="password" placeholder="Password">
             </div>
-            <?php if ($Viewbag['Error']!=null ||$Viewbag['Error']!= ""): ?>
+            <?php if (isset($Viewbag['Error']) && $Viewbag['Error']!=null ||$Viewbag['Error']!= ""): ?>
                     <span>
                         <div class="alert alert-danger" role="alert"><?php echo $Viewbag['Error']; ?></div>
                     </span>
@@ -43,7 +43,7 @@ $Add->Loader("css", "mytest");
                     <?php
                         if (isset($_COOKIE['Username']) && $_COOKIE['Username']=="Logout")
                         {
-                            setcookie("Username","",time()-3600,"","eastcloud.ir",true,true);
+                            setcookie("Username","",time()-3600);
                         }
                         endif;
                     ?>

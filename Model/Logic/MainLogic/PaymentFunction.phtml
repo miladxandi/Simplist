@@ -11,13 +11,20 @@ namespace Model\Logic\MainLogic;
 
 use Model\Logic\DataContract;
 use Route\Show\View;
+use Plugins\Payment\Zarinpal;
 
-class PaymentFunction implements DataContract
+final class PaymentFunction implements DataContract
 {
+    private $Payment;
+    private $Cost;
+    private $Name;
+    private $Email;
+    private $Product;
+    private $Phone;
 
 	public function __construct()
 	{
-
+        $this->Payment = new Zarinpal();
 	}
 
 	public static function New()
@@ -41,40 +48,19 @@ class PaymentFunction implements DataContract
 
 	}
 
-	public static function Zarinpal()
+	public function Zarinpal()
 	{
-		include "Zarin.phtml";
+        if (isset($_POST['Submit']))
+        {
+            $this->Payment->Transaction();
+        }
+        else
+        {
+            View::Process("Payment.Zarinpal.Pay");
+        }
 	}
-	public static function Verify()
+	public function Verify()
 	{
-		$MerchantID = 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX';
-		$Amount = $_GET['Amount']; //Amount will be based on Toman
-		$Authority = $_GET['Authority'];
-
-		if ($_GET['Status'] == 'OK') {
-
-			$client = new \SoapClient('https://sandbox.zarinpal.com/pg/services/WebGate/wsdl', ['encoding' => 'UTF-8']);
-
-			$result = $client->PaymentVerification(
-				[
-					'MerchantID' => $MerchantID,
-					'Authority' => $Authority,
-					'Amount' => $Amount,
-				]
-			);
-
-			if ($result->Status == 100) {
-				echo 'Transaction success. RefID:'.$result->RefID;
-				View::Process("Payment.Zarinpal.Verify");
-			} else {
-				echo 'Transaction failed. Status:'.$result->Status;
-				View::Process("Payment.Zarinpal.Verify");
-			}
-		} else {
-
-			echo 'Transaction canceled by user';
-			View::Process("Payment.Zarinpal.Verify");
-		}
-
+        View::Process("Payment.Zarinpal.Verify");
 	}
 }

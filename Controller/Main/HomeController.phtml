@@ -3,6 +3,7 @@
 namespace Controller\Main;
 
 
+use http\QueryString;
 use Model\Logic\MainLogic\PostFunction;
 use Model\Repository\MainFunction\PostRepository;
 use Route\Show\View;
@@ -23,56 +24,13 @@ class HomeController
 		View::Process("Main.Home.Index");
 	}
 
-	public function En()
+	public function Aboutus()
 	{
-		$Viewbag = ['Posts' => $this->Posts::Show()];
-		View::Process("Main.Home.English", $Viewbag);
+		View::Process("Main.Home.Aboutus");
 	}
-
-	public function Certification()
-	{
-		View::Process("Main.Home.Certification");
-	}
-
-	public function Fa()
-	{
-		$Viewbag = ['Posts' => $this->Posts::Show()];
-		View::Process("Main.Home.Farsi", $Viewbag);
-	}
-
-	public function Astronomy()
-	{
-		View::Process("Main.Astronomy.Index");
-	}
-
-	public function Solarsystem()
-	{
-		View::Process("Main.Astronomy.Solarsystem");
-	}
-
-	public function Privacy()
-	{
-		View::Process("Main.Home.Privacy");
-	}
-
-	public function Blog($QuerryString = 0)
-	{
-		$Querry = substr($QuerryString, 11);
-		if ($this->PostCon->GetPostByUrl($Querry)['Rows'] == 1) {
-			$Viewbag = ['PostInfo' => $this->PostCon->GetPostByUrl($Querry)['Values']];
-			View::Process("Main.Home.Post", $Viewbag);
-		} else {
-			View::Process("Main.Home.Blog");
-		}
-	}
-
-	public function Mailer()
-	{
-		View::Process("Main.Home.Mailer");
-	}
-
-	public function Success()
-	{
-		View::Process("Main.Home.Success");
-	}
+    public function Post(string $QuerryString)
+    {
+        $Viewbag = ['PostInfo'=>$this->PostCon->GetPostByUrl(substr($QuerryString,16))];
+        View::Process("Main.Home.Post",$Viewbag);
+    }
 }
