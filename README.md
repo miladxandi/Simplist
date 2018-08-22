@@ -11,7 +11,6 @@ We strongly suggest our framework for personal blogs, news agencies & human reso
 
 Just like any other PHP framework we started this project based on MVC architecture with the featured services like `$Add->Loader` , `gVerb` | `pVerb` , SharedLayouts, Middlewares & pre-defined security.
 Everything in Simplist is as simple as installing it on your server!
-Want to help in development?
 
 # Documentation
 
@@ -35,7 +34,7 @@ You can change these values by going to Model layer and change them in Connectio
 Note: There is a SQL Table file in "Resources" folder that you can easily import it to your local or online MySQL database
 
 
-Until you\`re working on a local working directory, the HTTPS protocol is turned off, but if you want to upload it on your server, the HTTPS protocol can be turned on by making the "SecureProtocol" `true` in the Core Folder, at the Configurations Folder you can find a Routing file, or go to this address:
+Until you\`re working on a local working directory, the HTTPS protocol is turned off, but if you want to upload it on your server, the HTTPS protocol can be turn on by making the "SecureProtocol" `true` in the Core Folder, at the Configurations Folder you can find a Routing file, or go to this address:
 >Core/Configurations/Routing.phtml
 
 You can change the `$SecureProtocol = false;` to `$SecureProtocol = true;`
@@ -65,17 +64,17 @@ Note: Our router system is not case sensitive, but you`ve to define lowercase ro
 
 `'target'=>'Main.Home.Aboutus'`
 >It means the target Controller is "HomeController" in the "Main" folder of Controllers folder and after requesting this address "Aboutus" method will be called as it wrote at the end of `'target'=>'Main.Home.Aboutus'`
-Controller also can process on a `Querry String` by getting it, in its function parameters.
+Controller. also you can process on a `Querry String` by getting it, in its function parameters.
 You can also make some request to Database in Controller files.
 The given `Querry String` or Database values should insert into an array with `$Viewbag` name.
 You can send them into your web page by this code:
 `View::Process("Main.Home.Post",$Viewbag);`
 It\`s now accessible from the requested "View" file in "public_html/View/...".
-Instead of writing your logic codes into the Controllers, we encourage you to put them in Logics in the Model folder.
+Instead of writing your logic codes into the Controllers, we encourage you to put them in the "Logics" folder in the Model folder.
 There are some great Contracts in this folder to help you develop your business better than ever.
 
 Note: Controllers and Middlewares have to create with exactly `Controller.phtml` or `Middleware.phtml` extensions, but should be written here without these extensions.
-For example, we have "HomeController" but we can access it by writing just its name without the "Controller" extension: "Home"
+For example, we have "HomeController" but we can access it by writing just its name without the "Controller" word: "Home"
 
 
 `'gverb'=> 'GET' `  or `'pverb'=> 'POST' `
@@ -89,7 +88,7 @@ Then you can see every request with the `POST` request method will show you a "R
 It can use to check security cookies or website language options and etc.
 Every Middleware should return `true` in its "Status" key to pass its examination.
 Middlewares also can process on a `Querry String` by getting it, in their function parameters.
-Just like Controllers, we need their pure name without the "Middleware" extensions.
+Just like Controllers, we need their pure name without the "Middleware" word.
 
 ### Features
 

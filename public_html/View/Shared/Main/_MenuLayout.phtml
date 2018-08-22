@@ -6,7 +6,7 @@
 
     <?php
     $Add = new Core\Requirement\oLoad("../../..","Style/Main","Script/Main","Content/Main");
-    if (isset($_COOKIE['Firstname']) &&($_COOKIE['Firstname']!=null||$_COOKIE['Firstname']!=""))
+    if (isset($_COOKIE['Firstname']) && isset($_COOKIE['Username']) && isset($_COOKIE['LoginToken']) &&($_COOKIE['Firstname']!=null||$_COOKIE['Firstname']!=""))
     {
         $Is_User_LoggedIn=true;
     }

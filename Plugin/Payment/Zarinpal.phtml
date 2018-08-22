@@ -14,7 +14,7 @@ class Zarinpal
 
     public function Transaction()
     {
-        $data = array('MerchantID' => '0c0eadee-6270-11e8-80da-005056a205be',
+        $data = array('MerchantID' => 'Your Zarinpal Merchant ID',
             'Amount' => intval($_POST['Amount']),
             'Name' => $_POST['Name'],
             'Email' => $_POST['Email'],
@@ -52,7 +52,7 @@ class Zarinpal
         if (isset($_COOKIE['COTPF']) == true && password_verify($_GET['Amount'],$_COOKIE['COTPF']) == true)
         {
             $Authority = $_GET['Authority'];
-            $data = array('MerchantID' => '0c0eadee-6270-11e8-80da-005056a205be', 'Authority' => $Authority, 'Amount' => self::$Amount);
+            $data = array('MerchantID' => 'Your Zarinpal Merchant ID', 'Authority' => $Authority, 'Amount' => self::$Amount);
             $jsonData = json_encode($data);
             $ch = curl_init('https://de.zarinpal.com/pg/rest/WebGate/PaymentVerification.json');
             curl_setopt($ch, CURLOPT_USERAGENT, 'ZarinPal Rest Api v1');

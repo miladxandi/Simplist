@@ -53,19 +53,19 @@ class UserRepository extends BaseRepository
 	public function Login($Username, $Password, $Token)
 	{
 		$Result = $this->FindByUser($Username);
-		$UserFunc = $this->Username($Username);
-		$PassFunc = $this->Password($Password);
-		$Tokenize=$this->Tokenizer($Token,$Username);
-		if ($Tokenize==1)
-		{
+		if ($Result['Rows']==1 && $Password == $Result['Values']['u_Password'])
+        {
+		    $Tokenize=$this->Tokenizer($Token,$Username);
+		    if ($Tokenize==1)
+		    {
 
-			return ['Values'=>$Result['Values'],'Rows'=>$UserFunc.$PassFunc];
-		}
-		else
-		{
-			return ['Values'=>0,'Rows'=>0];
-		}
-
+		    	return ['Values'=>$Result['Values'],'Rows'=>11];
+		    }
+		    else
+		    {
+		    	return ['Values'=>0,'Rows'=>0];
+		    }
+        }
 	}
 	public function Tokenizer($Token,$Username)
 	{

@@ -11,10 +11,10 @@ namespace Core\Configurations;
 
 class Connection
 {
-	public static $Host= "localhost";
-	public static $DatabaseName= "eastclo2_users";
-	public static $Collation= "utf8";
-	public static $Username= "root";
-	public static $Password= "";
-	public static $Drivers= ['First'=>'PDO', 'Second'=>'MYSQL', 'Third'=>'Microsoft_SQL'];
+	protected static $Host= "localhost";
+	protected static $DatabaseName= "eastclo2_users";
+	protected static $Collation= "utf8";
+	protected static $Username= "root";
+	protected static $Password= "";
+	protected static $Drivers= ['First'=>'PDO', 'Second'=>'MYSQL', 'Third'=>'Microsoft_SQL'];
 }
