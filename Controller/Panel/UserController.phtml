@@ -17,7 +17,7 @@ class UserController
     }
     public function Login()
     {
-    	$this->Data::Login();
+    	$this->Data->Login();
 		View::Process("Panel.User.Login");
     }
     public function Signup()
@@ -26,15 +26,7 @@ class UserController
     }
 	public function Lock()
 	{
-		$this->Data::LockScreen();
+		$this->Data->LockScreen();
 		View::Process("Panel.User.Lockscreen");
-	}
-	public function NewSubs()
-	{
-		UserFunction::New();
-	}
-	public function Subs()
-	{
-		UserFunction::Show();
 	}
 }

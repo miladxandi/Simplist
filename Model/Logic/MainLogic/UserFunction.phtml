@@ -17,18 +17,18 @@ use Route\Show\View;
 
 final class UserFunction implements DataContract
 {
-	private static $User;
+	private $User;
 	//private static $Subscriber;
-	private static $Viewbag;
-	private static $ID = 0;
+	private $Viewbag;
+	private $ID = 0;
 
 	public function __construct()
 	{
-		self::$User = new UserRepository();
+		$this->User = new UserRepository();
 		//self::$Subscriber = new cMailerLite();
 	}
 
-	public static function New()
+	public function New()
 	{
 		/*self::$Subscriber = new cMailerLite();
 		if (isset($_POST) && isset($_POST['submit']))
@@ -60,9 +60,9 @@ final class UserFunction implements DataContract
 
 				$Username = $_POST['username'];
 				$Password = $_POST['password'];
-				$Val = self::$User->FindByUser($Username);
-				$uResult = self::$User->Username($Username);
-				$pResult = self::$User->Password($Password);
+				$Val = $this->User->FindByUser($Username);
+				$uResult = $this->User->Username($Username);
+				$pResult = $this->User->Password($Password);
 				if ($uResult == 1 && $pResult==1)
 				{
 					header("Location: /Panel");
@@ -78,12 +78,12 @@ final class UserFunction implements DataContract
 		}*/
 	}
 
-	public static function Update($QuerryString)
+	public function Update($QuerryString)
 	{
 
 	}
 
-	public static function Profile()
+	public function Profile()
 	{
 		if (isset($_POST['submit']) == true) {
 			$DefaultDirectory = "Content/Shared/Profile/Dp";
@@ -103,7 +103,7 @@ final class UserFunction implements DataContract
 					unlink($TargetFile);
 					$NewTargetFile = $DefaultDirectory . basename($_POST['Firstname'] . $FileType);
 					if (move_uploaded_file($_FILES["Image"]['tmp_name'], $NewTargetFile)) {
-						$Update = self::$User->Update($Firstname, $Lastname, $Nickname, $Username, $Password, $Email, $Phone, $NewTargetFile, $Bio);
+						$Update = $this->User->Update($Firstname, $Lastname, $Nickname, $Username, $Password, $Email, $Phone, $NewTargetFile, $Bio);
 						if ($Update['Rows'] == 1) {
 							header("Location: /Panel");
 						} else {
@@ -117,7 +117,7 @@ final class UserFunction implements DataContract
 					}
 				} else {
 					if (move_uploaded_file($_FILES["PostImage"]['tmp_name'], $TargetFile)) {
-						$Update = self::$User->Update($Firstname, $Lastname, $Nickname, $Username, $Password, $Email, $Phone, $TargetFile, $Bio);
+						$Update = $this->User->Update($Firstname, $Lastname, $Nickname, $Username, $Password, $Email, $Phone, $TargetFile, $Bio);
 						if ($Update['Rows'] == 1) {
 							header("Location: /Panel");
 						} else {
@@ -132,7 +132,7 @@ final class UserFunction implements DataContract
 					}
 				}
 			} else {
-				$Update = self::$User->Update($Firstname, $Lastname, $Nickname,$Username, $Password, $Email, $Phone, "Content/Shared/Profile/Dp/Avatar.png", $Bio);
+				$Update = $this->User->Update($Firstname, $Lastname, $Nickname,$Username, $Password, $Email, $Phone, "Content/Shared/Profile/Dp/Avatar.png", $Bio);
 				if ($Update['Rows'] == 1) {
 					header("Location: /Panel");
 				} else {
@@ -147,12 +147,12 @@ final class UserFunction implements DataContract
 		}
 	}
 
-	public static function Delete($QuerryString)
+	public function Delete($QuerryString)
 	{
 
 	}
 
-	public static function Show()
+	public function Show()
 	{
 		/*self::$Subscriber= new cMailerLite();
 
@@ -186,7 +186,7 @@ final class UserFunction implements DataContract
 		}*/
 	}
 
-	public static function Login()
+	public function Login()
 	{
 		if (isset($_POST['submit'])) {
 			if (empty($_POST['username']) || empty($_POST['password'])) {
@@ -196,7 +196,7 @@ final class UserFunction implements DataContract
 				$Token = rand(5000, 1000000) . "-" . rand(5000, 1000000) . "-" . rand(5000, 1000000);
 				$Username = addslashes($_POST['username']);
 				$Password = addslashes($_POST['password']);
-				$Login = self::$User->Login($Username, $Password, $Token);
+				$Login = $this->User->Login($Username, $Password, $Token);
 				if ($Login['Rows'] == "11") {
 					setcookie("Username", $Login['Values']['u_Username'], time() + 60 * 60 * 24 * 365);
 					setcookie("Firstname", $Login['Values']['u_FName'], time() + 60 * 60 * 24 * 365);
@@ -212,7 +212,7 @@ final class UserFunction implements DataContract
 		}
 	}
 
-	public static function LockScreen()
+	public function LockScreen()
 	{
 		if (!isset($_COOKIE['Username']) && !($_COOKIE['Username'] != null || $_COOKIE['Username'] != "")) {
 			header("Location: /Login");

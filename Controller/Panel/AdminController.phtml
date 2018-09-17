@@ -16,21 +16,23 @@ class AdminController
     private $Url;
     public function __construct()
     {
-        $this->User= new UserRepository();
+        $this->User= new UserFunction();
+        $this->UserRep= new UserRepository();
+        $this->Post =  new PostFunction();
     }
 
     public function Index()
     {
-        $Viewbag=['UserInfo'=>$this->User->FindByUser($_COOKIE['Username'])['Values']];
+        $Viewbag=['UserInfo'=>$this->UserRep->FindByUser($_COOKIE['Username'])['Values']];
         View::Process("Panel.Admin.Panel",$Viewbag);
     }
     public function Profile()
     {
-		$Viewbag = ['UserInfo' => $this->User->FindByUser($_COOKIE['Username'])['Values']];
+		$Viewbag = ['UserInfo' => $this->UserRep->FindByUser($_COOKIE['Username'])['Values']];
 
      	if (isset($_POST))
 		{
-			UserFunction::Profile();
+            $this->User->Profile();
 		}
 		else
 		{
@@ -48,40 +50,40 @@ class AdminController
 
     public function NewPost()
     {
-		PostFunction::New();
+        $this->Post->New();
         View::Process("Panel.Admin.NewPost");
     }
     public function Post()
     {
-		$Viewbag = ['PostInfo'=>PostFunction::Show()];
+		$Viewbag = ['PostInfo'=>$this->Post->Show()];
 		View::Process("Panel.Admin.Posts",$Viewbag);
     }
     public function PostDelete($QuerryString)
     {
-		PostFunction::Delete($QuerryString);
+        $this->Post->Delete($QuerryString);
     }
     public function PostUpdate($QuerryString)
     {
-        PostFunction::Update($QuerryString);
+        $this->Post->Update($QuerryString);
     }
 
     public function NewUrl()
     {
-		UrlFunction::New();
+        $this->Post->New();
 		View::Process("Panel.Admin.NewUrl");
     }
     public function Url()
     {
-		$Viewbag = ['UrlInfo'=>UrlFunction::Show()];
+		$Viewbag = ['UrlInfo'=>$this->Post->Show()];
         View::Process("Panel.Admin.Url",$Viewbag);
     }
     public function UrlDelete($QuerryString)
     {
-		UrlFunction::Delete($QuerryString);
+        $this->Post->Delete($QuerryString);
     }
     public function UrlUpdate($QuerryString)
     {
-		UrlFunction::Update($QuerryString);
+        $this->Post->Update($QuerryString);
 
     }
 }

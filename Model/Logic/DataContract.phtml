@@ -12,9 +12,9 @@ namespace Model\Logic;
 interface DataContract
 {
 	public function __construct();
-	public static function New();
-	public static function Update($QuerryString);
-	public static function Delete($QuerryString);
-	public static function Show();
+	public function New();
+	public function Update($QuerryString);
+	public function Delete($QuerryString);
+	public function Show();
 
 }

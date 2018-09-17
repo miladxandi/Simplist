@@ -15,17 +15,17 @@ use Route\Show\View;
 
 final class PostFunction implements DataContract
 {
-	private static $Post;
+	private $Post;
 	private $String;
 
 	public function __construct()
 	{
-		self::$Post = new PostRepository();
+		$this->Post = new PostRepository();
 	}
 
-	public static function New()
+	public function New()
 	{
-		self::$Post = new PostRepository();
+		$this->Post = new PostRepository();
 
 		if (isset($_POST['submit'])) {
 
@@ -48,7 +48,7 @@ final class PostFunction implements DataContract
 				if (file_exists($TargetFile)) {
 					$NewTargetFile = $DefaultDirectory . rand(0, 500000) . $FileType;
 					if (move_uploaded_file($_FILES["PostImage"]['tmp_name'], $NewTargetFile)) {
-						$Insert = self::$Post->Insert($Name, $Url, $Summary, $Content, $Author, $Date, $NewTargetFile);
+						$Insert = $this->Post->Insert($Name, $Url, $Summary, $Content, $Author, $Date, $NewTargetFile);
 						if ($Insert == 1) {
 							header("Location: /Panel/Posts");
 						} else {
@@ -63,7 +63,7 @@ final class PostFunction implements DataContract
 					}
 				} else {
 					if (move_uploaded_file($_FILES["PostImage"]['tmp_name'], $TargetFile)) {
-						$Insert = self::$Post->Insert($Name, $Url, $Summary, $Content, $Author, $Date, $TargetFile);
+						$Insert = $this->Post->Insert($Name, $Url, $Summary, $Content, $Author, $Date, $TargetFile);
 						if ($Insert == 1) {
 							header("Location: /Panel/Posts");
 						} else {
@@ -78,7 +78,7 @@ final class PostFunction implements DataContract
 					}
 				}
 			} else {
-				$Insert = self::$Post->Insert($Name, $Url, $Summary, $Content, $Author, $Date, "Content/Shared/SimplistV2.png");
+				$Insert = $this->Post->Insert($Name, $Url, $Summary, $Content, $Author, $Date, "Content/Shared/SimplistV2.png");
 				if ($Insert == 1) {
 					header("Location: /Panel/Posts");
 				} else {
@@ -91,14 +91,14 @@ final class PostFunction implements DataContract
 		}
 	}
 
-	public static function Update($QuerryString)
+	public function Update($QuerryString)
 	{
-		self::$Post = new PostRepository();
+		$this->Post = new PostRepository();
 
 		$Querry = substr($QuerryString, 29);
 
-		if (self::$Post->GetPostById($Querry)['Rows'] == 1) {
-			$Viewbag = ['PostInfo' => self::$Post->GetPostById($Querry)['Values']];
+		if ($this->Post->GetPostById($Querry)['Rows'] == 1) {
+			$Viewbag = ['PostInfo' => $this->Post->GetPostById($Querry)['Values']];
 			if ($Viewbag['PostInfo'][0]['Post_Author'] == $_COOKIE['Firstname'] || $_COOKIE['Username'] == "miladxandi") {
 				if (isset($_POST['submit'])) {
 
@@ -124,7 +124,7 @@ final class PostFunction implements DataContract
 						if (file_exists($TargetFile)) {
 							$NewTargetFile = $DefaultDirectory . rand(0, 500000) . $FileType;
 							if (move_uploaded_file($_FILES["PostImage"]['tmp_name'], $NewTargetFile)) {
-								$Update = self::$Post->Update($Id, $Name, $Url, $Summary, $Content, $Author, $NewTargetFile);
+								$Update = $this->Post->Update($Id, $Name, $Url, $Summary, $Content, $Author, $NewTargetFile);
 								if ($Update['Rows'] == 1) {
 									unlink($PostInfo['Post_Image']);
 									header("Location: /Panel/Posts");
@@ -140,7 +140,7 @@ final class PostFunction implements DataContract
 							}
 						} else {
 							if (move_uploaded_file($_FILES["PostImage"]['tmp_name'], $TargetFile)) {
-								$Update = self::$Post->Update($Id, $Name, $Url, $Summary, $Content, $Author, $TargetFile);
+								$Update = $this->Post->Update($Id, $Name, $Url, $Summary, $Content, $Author, $TargetFile);
 								if ($Update['Rows'] == 1) {
 
 									unlink($PostInfo['Post_Image']);
@@ -157,7 +157,7 @@ final class PostFunction implements DataContract
 							}
 						}
 					} else {
-						$Update = self::$Post->Update($Id, $Name, $Url, $Summary, $Content, $Author, $PrevImage);
+						$Update = $this->Post->Update($Id, $Name, $Url, $Summary, $Content, $Author, $PrevImage);
 						if ($Update['Rows'] == 1) {
 							header("Location: /Panel/Posts");
 						} else {
@@ -176,19 +176,19 @@ final class PostFunction implements DataContract
 		}
 	}
 
-	public static function Delete($QuerryString)
+	public function Delete($QuerryString)
 	{
-		self::$Post = new PostRepository();
+		$this->Post = new PostRepository();
 
 		$Id = substr($QuerryString, 29);
-		if (self::$Post->GetPostById($Id)['Rows'] == 1) {
-			$Viewbag = ['PostInfo' => self::$Post->GetPostById($Id)['Values']];
+		if ($this->Post->GetPostById($Id)['Rows'] == 1) {
+			$Viewbag = ['PostInfo' => $this->Post->GetPostById($Id)['Values']];
 			if ($Viewbag['PostInfo'][0]['Post_Author'] == $_COOKIE['Firstname'] || $_COOKIE['Username'] == "miladxandi") {
 
 
 				$PostInfo = $Viewbag['PostInfo'][0];
 				unlink($PostInfo['Post_Image']);
-				$Delete = self::$Post->Delete($Id);
+				$Delete = $this->Post->Delete($Id);
 
 				if ($Delete['Rows'] == 1) {
 					header("Location: /Panel/Posts");
@@ -204,9 +204,9 @@ final class PostFunction implements DataContract
 
 	}
 
-	public static function Show()
+	public function Show()
 	{
-		self::$Post = new PostRepository();
-		return self::$Post->GetPost();
+		$this->Post = new PostRepository();
+		return $this->Post->GetPost();
 	}
 }
