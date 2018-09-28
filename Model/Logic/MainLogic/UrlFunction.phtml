@@ -24,8 +24,6 @@ final class UrlFunction implements DataContract
 
 	public function New()
 	{
-		$this->Url = new UrlRepository();
-
 		if (isset($_POST['submit']))
 		{
 
@@ -43,9 +41,7 @@ final class UrlFunction implements DataContract
 
 	public function Update($QuerryString)
 	{
-		$this->Url = new UrlRepository();
-
-		$Id = substr($QuerryString,27);
+        $Id = substr($QuerryString, strripos($QuerryString,"=")+1);
 		if ($this->Url->FindById($Id)['Rows']==1)
 		{
 			$Viewbag = ['UrlInfo'=>$this->Url->FindById($Id)['Values']];
@@ -74,9 +70,7 @@ final class UrlFunction implements DataContract
 
 	public function Delete($QuerryString)
 	{
-		$this->Url = new UrlRepository();
-
-		$Id= substr($QuerryString,27);
+        $Id = substr($QuerryString, strripos($QuerryString,"=")+1);
 
 		if ($this->Url->FindById($Id)['Rows']==1)
 		{
@@ -99,7 +93,6 @@ final class UrlFunction implements DataContract
 
 	public function Show()
 	{
-		$this->Url= new UrlRepository();
 		return $this->Url->FindUrl();
 	}
 }
