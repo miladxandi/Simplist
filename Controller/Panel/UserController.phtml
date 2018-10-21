@@ -17,8 +17,14 @@ class UserController
     }
     public function Login()
     {
-    	$this->Data->Login();
-		View::Process("Panel.User.Login");
+        if (isset($_POST['submit']))
+        {
+            $this->Data->Login();
+        }
+        else
+        {
+            View::Process("Panel.User.Login");
+        }
     }
     public function Signup()
     {

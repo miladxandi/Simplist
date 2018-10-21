@@ -1,15 +1,20 @@
 <?php \View\View\Shared\MainLayouts::_Header(); ?>
     <title>SIMPLIST - Home</title>
-
     </head>
+
 <?php \View\View\Shared\MainLayouts::_Menu(); ?>
-    <!--  Content -->
+    <div class="parallax w3-display-container w3-opacity-min" id="home">
+        <div class="w3-display-middle" style="white-space:nowrap;">
+            <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">Welcome to Simplist</span>
+        </div>
+    </div>
+    <div id="Index">
     <div class="Container">
         <div class="row">
             <div class="col">
                 <div style="text-align: center;vertical-align: middle;margin-bottom: 50px;margin-top: 50px;">
-                    <a href="https://simplist.ir">
-                        <img src="../../../../Content/Shared/Logo.png" class="" style="" alt="Simplist" width="100px"
+                    <a href="https://eastcloud.ir/Simplist">
+                        <img src="../../../Content/Shared/Logo.png" class="" style="" alt="Simplist" width="100px"
                              height="100px">
                     </a>
                     <div class="MainText ">WELCOME TO SIMPLIST</div>
@@ -26,7 +31,7 @@
                     made us happy.
                 </div>
                 <div class="SubText PurpText FitLayout">You can download our the project from <a
-                            href="https://github.com/miladxandi/Simplist" class="PurpStyle" target="_blank"> our
+                            href="https://github.com/eastCloudmedia/SimplistFramework" class="PurpStyle" target="_blank"> our
                         Github </a> and
                     stay connected with us.
                 </div>
@@ -34,23 +39,25 @@
                             style="color: #9756B3;font-weight: bold">Simplist</span>?<a
                             href="/Aboutus" class="PurpStyle"> Read More </a></div>
                 </br>
-                <a href="http://documentation.simplist.ir" target="_blank">
-                    <button type="button" class="btn btn-outline-secondary">Get Strated</button>
+                <a href="https://eastcloudmedia.github.io/SimplistFramework/" target="_blank">
+                    <button type="button" class="btn btn-outline-secondary">Get Started</button>
                 </a>
+                <p id="Start"></p>
             </div>
         </div>
         </br>
-        <div class="row FitLayout">
+        <div class="col-xs-12">
+            <div class="row FitLayout">
             <div class="SubText PurpText FitLayout">
                 <div class="Container">
                     <div class="row">
                         <?php
-                        $Data = new \Model\Repository\MainFunction\PostRepository();
+                        $Data = $Viewbag['PostInfo'];
                         $IMG = 1;
-                        $Posts = $Data->GetPost();
                         $Add = new Core\Requirement\oLoad("../../..", "Style/Main", "Script/Main", "Content/Main");
-                        foreach ($Posts as $Post): ?>
-                            <div class="col">
+                        if ($Viewbag['PostInfo']!= null):
+                        foreach ($Data as $Post): ?>
+                            <div class="col-sm-6" style="height: max-content">
                                 <div class="jumbotron">
                                     <a href="/Posts/?url=<?php echo $Post['Post_Url'] ?>">
                                         <img src="<?php
@@ -69,11 +76,15 @@
                                     </p>
                                 </div>
                             </div>
+
                         <?php endforeach; ?>
+                        <?php else: ?>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
         </div>
+        </div>
     </div>
-
+    </div>
 <?php \View\View\Shared\MainLayouts::_Footer(); ?>

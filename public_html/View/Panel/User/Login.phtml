@@ -28,22 +28,22 @@ $Add->Loader("css", "mytest");
                 <label for="password">Password</label>
                 <input type="password" class="form-control" name="password" id="password" placeholder="Password">
             </div>
-            <?php if (isset($Viewbag['Error']) && $Viewbag['Error']!=null ||$Viewbag['Error']!= ""): ?>
+                    <?php if (isset($Viewbag['Error'])): ?>
                     <span>
                         <div class="alert alert-danger" role="alert"><?php echo $Viewbag['Error']; ?></div>
                     </span>
-                    <?php elseif(isset($_COOKIE['Username']) == true ||$_COOKIE['Username']=="Logout"): ?>
+                    <?php elseif(isset($_COOKIE['Username'])): ?>
                         <span>
                             <div class="success alert-success" role="alert">شما با موفقیت خارج شدید!</div>
                         </span>
-                    <?php elseif($Viewbag['Result'] == ""): ?>
+                    <?php elseif(isset($Viewbag['Result'])): ?>
                         <span>
                             <div class="success alert-success" role="alert"><?php echo $Viewbag['Result']; ?></div>
                         </span>
                     <?php
                         if (isset($_COOKIE['Username']) && $_COOKIE['Username']=="Logout")
                         {
-                            setcookie("Username","",time()-3600);
+                            setcookie("Username","",time()-3600,"",$_SERVER['HTTP_HOST']);
                         }
                         endif;
                     ?>

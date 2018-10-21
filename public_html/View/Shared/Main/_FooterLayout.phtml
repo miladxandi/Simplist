@@ -30,7 +30,7 @@
         <div class="col-6 col-md">
             <h5>Develop</h5>
             <ul class="list-unstyled text-small">
-                <li><a class="text-muted" href="https://github.com/miladxandi/Simplist">Github</a></li>
+                <li><a class="text-muted" href="https://github.com/eastCloudmedia/SimplistFramework">Github</a></li>
                 <li><a class="text-muted" href="/Documentation/Education">Education</a></li>
                 <li><a class="text-muted" href="/Documentation">Documentations</a></li>
                 <li><a class="text-muted" href="/Services">Services</a></li>
@@ -47,5 +47,25 @@
         </div>
     </div>
 </footer>
+<script>
+    var myVar;
+
+
+    function showPage() {
+        document.getElementById("loader").style.visibility = 'hidden';
+        document.getElementById("loader").remove();
+        document.getElementById("home").style.visibility = 'visible';
+        document.getElementById("Index").style.visibility = 'visible';
+        document.getElementById("Menu").style.visibility = 'visible';
+        document.getElementById("Networks").style.visibility = 'visible';
+        document.getElementById("Services").style.visibility = 'visible';
+    }
+
+    function Function() {
+        myVar = setTimeout(showPage, 1000);
+    }
+</script>
+<script type="text/javascript" src="https://cdn.ywxi.net/js/1.js" async></script>
+
 </body>
 </html>

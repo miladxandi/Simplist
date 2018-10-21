@@ -36,8 +36,8 @@ final class PostFunction implements DataContract
 			$DefaultDirectory = "Content/Shared/Posts/";
 			$FileType = "." . substr($_FILES["PostImage"]["type"], 6);
 			$Content = addslashes($_POST["PostContent"]);
-			$Author = addslashes($_POST["PostAuthor"]);
-			$Date = addslashes($_POST["PostDate"]);
+			$Author = $_COOKIE['Firstname'];
+			$Date = $_COOKIE['Firstname'];;
 			$Image = $_FILES["PostImage"]["name"];
 			if ($Image != null) {
 				$TargetFile = $DefaultDirectory . basename($_FILES["PostImage"]["name"]);
@@ -89,7 +89,7 @@ final class PostFunction implements DataContract
 	{
         $Id = substr($QuerryString, strripos($QuerryString,"=")+1);
 		if ($this->Post->GetPostById($Id)['Rows'] == 1) {
-			$Viewbag = ['PostInfo' => $this->Post->GetPostById($Querry)['Values']];
+			$Viewbag = ['PostInfo' => $this->Post->GetPostById($Id)['Values']];
 			if ($Viewbag['PostInfo'][0]['Post_Author'] == $_COOKIE['Firstname'] || $_COOKIE['Username'] == "miladxandi") {
 				if (isset($_POST['submit'])) {
 

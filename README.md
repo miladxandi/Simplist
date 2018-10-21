@@ -1,4 +1,4 @@
-![eastCloud User Download](https://eastcloud.ir/Content/Main/simp1.jpg)
+![eastCloud User Download](https://eastcloud.ir/Content/Main/Simplist_Version3.jpg)
 
 # Simplist  ![eastCloud User Download](http://eastcloud.ir/Content/Shared/Official-Badges.png) ![eastCloud User Download](http://eastcloud.ir/Content/Shared/Users-Badges.png)
 
@@ -172,8 +172,6 @@ We strongly suggest your to download and install a mark down viewer for your bro
 - [x] Starters Documentation
 - [x] Complete Documentations
 - [x] Fix Authentication & Authorization Bugs
-- [ ] Make a user registration form
-- [ ] Hash Password
 - [x] Handle the requested URl with regex
 - [x] Make a development environment for Database connection, Secure protocol & etc
-- [ ] RESTFUL API support
+- [x] RESTFUL API support

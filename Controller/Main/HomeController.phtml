@@ -21,7 +21,8 @@ class HomeController
 	public function Index()
 	{
 		//$Viewbag="SIMPLIST";
-		View::Process("Main.Home.Index");
+        $Viewbag = ['PostInfo'=>$this->Posts->Show()];
+		View::Process("Main.Home.Index",$Viewbag);
 	}
 
 	public function Aboutus()

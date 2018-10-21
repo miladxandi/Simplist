@@ -28,6 +28,16 @@
     <link rel="shortcut icon" type="image/x-icon" href="../../../Content/Shared/Logo.png" id="favicon">
     <link rel="apple-touch-icon" type="image/x-icon" href="../../../Content/Shared/Logo.png">
     <link rel="apple-touch-icon" type="image/x-icon" href="../../../Content/Shared/Logo.png">
+    <script src="../../../Script/Main/jquery-3.3.1.slim.min.js" ></script>
+    <script src="../../../Script/Main/jquery.min.js"></script>
+    <script src="../../../Script/Main/popper.min.js" ></script>
+    <script src="../../../Script/Main/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../Style/Main/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../Style/Main/W3CSS.css">
+    <link rel="stylesheet" type="text/css" href="../../../Script/Main/components/button.css">
+    <link rel="stylesheet" type="text/css" href="../../../Script/Main/components/icon.css">
+    <script src="../../../Script/Main/semantic.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../Style/Main/style.css">
     <?php
     $Add = new Core\Requirement\oLoad("../../..","Style/Main","Script/Main","Content/Main");
     $Add->Loader("css","main");
@@ -39,3 +49,100 @@
     $Add->Loader("js","popper.min","https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd");
     $Add->Loader("js","bootstrap.min","https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js");
     ?>
+    <!--    <script>-->
+    <!--        function Change(Value) {-->
+    <!---->
+    <!--            $( "#Index" ).load( "/service/"+Value);-->
+    <!--            document.title = "Neuralion - "+Value-->
+    <!--        }-->
+    <!--    </script>-->
+    <style>
+        #loader {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 1;
+            width: 150px;
+            height: 150px;
+            margin: -75px 0 0 -75px;
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #343a40;
+            width: 120px;
+            height: 120px;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+
+        @-webkit-keyframes spin {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Add animation to "page content" */
+        .animate-bottom {
+            position: relative;
+            -webkit-animation-name: animatebottom;
+            -webkit-animation-duration: 1s;
+            animation-name: animatebottom;
+            animation-duration: 1s
+        }
+
+        @-webkit-keyframes animatebottom {
+            from { bottom:-100px; opacity:0 }
+            to { bottom:0px; opacity:1 }
+        }
+
+        @keyframes animatebottom {
+            from{ bottom:-100px; opacity:0 }
+            to{ bottom:0; opacity:1 }
+        }
+
+        #home, #Index,#Menu,#Networks,#Services {
+            visibility: hidden;
+            text-align: center;
+        }
+    </style>
+    <style>
+        body, html {
+            height: 100%;
+        }
+
+        .parallax {
+            /* The image used */
+            background-image: url('../../../Content/Main/Simplist_Version3.jpg');
+            background-attachment: scroll;
+
+
+            /* Full height */
+            height: 100%;
+
+            /* Create the parallax scrolling effect */
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+
+    </style>
+    <script>
+        function Over(FrontEl,BackEl) {
+            var El1 = document.getElementById(FrontEl);
+            var El2 = document.getElementById(BackEl);
+            El1.style.display ="none" ;
+            El2.style.display ="block" ;
+        }
+
+        function Leave(FrontEl,BackEl) {
+            var El1 = document.getElementById(FrontEl);
+            var El2 = document.getElementById(BackEl);
+            El1.style.display ="block" ;
+            El2.style.display ="none" ;
+        }
+    </script>
