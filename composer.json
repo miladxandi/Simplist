@@ -2,11 +2,11 @@
     "name": "miladxandi/simplist",
     "description": "A PHP project for creating online blogs in the most easiest way.",
     "type": "projects",
-    "license": "Apache 2",
+    "license": "Apache License 2.0",
     "authors": [
         {
             "name": "Milad Xandi",
-            "email": "farvahar.milad@hotmail.com"
+            "email": "milad@eastcloud.ir"
         }
     ],
     "require": {
