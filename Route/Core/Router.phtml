@@ -28,7 +28,7 @@ class Router
                 $Blocked[$BlockedVerb] = $BlockedVerb;
             }
             $CurrentApiVerb = self::currentRequestVerb();
-            if (array_search($CurrentApiVerb,$Allowed)==$CurrentApiVerb && array_search($CurrentApiVerb,$Blocked)!=$CurrentApiVerb && $Api!=0)
+            if (array_search(strtolower($CurrentApiVerb),$Allowed)==strtolower($CurrentApiVerb) && array_search(strtolower($CurrentApiVerb),$Blocked)!=strtolower($CurrentApiVerb) && $Api!=0)
             {
                 list($Folder,$Controller,$Method)=explode(".",$Api['target']);
                 $ControllerClass= self::$BaseController.$Folder."\\".$Controller."Controller";
@@ -88,7 +88,7 @@ class Router
                 {
                     echo json_encode(json_decode('{"Status":{"Code":404,"Text":"Not Found"},"Response":{}}',JSON_PRETTY_PRINT));
                 }
-                elseif (array_search($CurrentApiVerb,$Blocked)==$CurrentApiVerb || array_search($CurrentApiVerb,$Allowed)!=$CurrentApiVerb)
+                elseif (array_search(strtolower($CurrentApiVerb),$Blocked)==strtolower($CurrentApiVerb) || array_search(strtolower($CurrentApiVerb),$Allowed)!=strtolower($CurrentApiVerb))
                 {
                     echo json_encode(json_decode('{"Status":{"Code":405,"Text":"Method Not Allowed"},"Response":{}}'),JSON_PRETTY_PRINT);
                 }
