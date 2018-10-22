@@ -4,6 +4,11 @@
   "homepage": "https://simplist.ir",
   "version": "3.0.0",
   "type": "project",
+  "config": {
+    "sort-packages": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "keywords": [
     "framework","simplist","simplist framework"
   ],
@@ -16,5 +21,10 @@
   ],
   "require": {
     "ext-json": "*"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "3.0"
+    }
   }
 }
