@@ -4,3 +4,5 @@
 /.vagrant
 *.zip
 /public_html/Content/Shared/Posts
+/vendor
+/composer.lock
