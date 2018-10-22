@@ -1,7 +1,6 @@
 {
   "name": "miladxandi/simplist",
   "description": "A project for creating online blogs in the most easiest way. Every CMS at the first step of its development helped the development process and make it faster to easier. They also made some standards in their framework to improve development and usability, But Fate went with the entry of unprofessional people into this arena The software development industry faces many challenges and sabotage by non-developers, with the Simplist we plan to personalize the service for developers.",
-  "type": "projects",
   "homepage": "https://simplist.ir",
   "version": "3.0",
   "keywords": [
