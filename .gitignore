@@ -5,5 +5,5 @@
 *.zip
 /public_html/Content/Shared/Posts
 /vendor
-/composer.lock
-/composer.phar
+composer.lock
+composer.phar
