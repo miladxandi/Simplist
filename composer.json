@@ -21,10 +21,5 @@
   "require": {
     "php": "^7.0",
     "ext-json": "*"
-  },
-  "extra": {
-    "branch-alias": {
-      "3.0.0": "3.0.0"
-    }
   }
 }
