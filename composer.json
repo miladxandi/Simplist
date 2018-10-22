@@ -9,7 +9,5 @@
       "email": "milad@eastcloud.ir"
     }
   ],
-  "require": {
-    "ext-json": "*"
-  }
+  "require": {}
 }
