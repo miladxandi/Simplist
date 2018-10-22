@@ -1,9 +1,6 @@
 /node_modules
-/vendor
 /.idea
 /.vscode
 /.vagrant
 *.zip
 /public_html/Content/Shared/Posts
-composer.phar
-composer.lock
