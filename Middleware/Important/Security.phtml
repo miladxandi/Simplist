@@ -20,6 +20,21 @@ class Security
     {
         Basement::MinVersion();
         Check::SecureProtocol(Routing::$SecureProtocol);
+        self::CleanString($_REQUEST);
+    }
+    private static function CleanString($Request)
+    {
+        $bad = array("content-type","href","'",'"','script','>','<','<script>','</script>');
+
+        foreach ($Request as $Key => $Value)
+        {
+            foreach ($bad as $mis) {
+                if (str_contains($Value, $mis)) {
+
+                    $_REQUEST[$Key] = str_replace($mis, " ", $Value);
+                }
+            }
+        }
     }
 
 }
