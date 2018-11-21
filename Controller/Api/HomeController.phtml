@@ -13,6 +13,9 @@ class HomeController
 {
     public function Index($Method=null)
     {
-        echo $Method."\n";
+        foreach ($_REQUEST as $Key => $Req)
+        {
+            echo  $Key.": ".$Req."\n\n";
+        }
     }
 }

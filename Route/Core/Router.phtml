@@ -21,14 +21,14 @@ class Router
             $Blocked=null;
             foreach (explode(',',$Api['allowed']) as $AllowedVerb)
             {
-                $Allowed[$AllowedVerb] = $AllowedVerb;
+                $Allowed[strtolower($AllowedVerb)] = strtolower($AllowedVerb);
             }
             foreach (explode(',',$Api['blocked']) as $BlockedVerb)
             {
-                $Blocked[$BlockedVerb] = $BlockedVerb;
+                $Blocked[strtolower($BlockedVerb)] = strtolower($BlockedVerb);
             }
             $CurrentApiVerb = self::currentRequestVerb();
-            if (array_search(strtolower($CurrentApiVerb),$Allowed)==strtolower($CurrentApiVerb) && array_search(strtolower($CurrentApiVerb),$Blocked)!=strtolower($CurrentApiVerb) && $Api!=0)
+            if (array_search(strtolower($CurrentApiVerb),($Allowed))==strtolower($CurrentApiVerb) && array_search(strtolower($CurrentApiVerb),$Blocked)!=strtolower($CurrentApiVerb) && $Api!=0)
             {
                 list($Folder,$Controller,$Method)=explode(".",$Api['target']);
                 $ControllerClass= self::$BaseController.$Folder."\\".$Controller."Controller";
@@ -79,22 +79,22 @@ class Router
                 }
                 else
                 {
-                    echo json_encode(json_decode('{"Status":{"Code":404,"Text":"Not Found"},"Response":{}}',JSON_PRETTY_PRINT));
+                    echo \GuzzleHttp\json_decode('{"Status":{"Code":404,"Text":"Not Found"},"Response":{}}');
                 }
             }
             else
             {
                 if ($Api == 0)
                 {
-                    echo json_encode(json_decode('{"Status":{"Code":404,"Text":"Not Found"},"Response":{}}',JSON_PRETTY_PRINT));
+                    echo  \GuzzleHttp\json_decode(\GuzzleHttp\json_encode('{"Status":{"Code":404,"Text":"Not Found"},"Response":{}}'));
                 }
                 elseif (array_search(strtolower($CurrentApiVerb),$Blocked)==strtolower($CurrentApiVerb) || array_search(strtolower($CurrentApiVerb),$Allowed)!=strtolower($CurrentApiVerb))
                 {
-                    echo json_encode(json_decode('{"Status":{"Code":405,"Text":"Method Not Allowed"},"Response":{}}'),JSON_PRETTY_PRINT);
+                    echo  \GuzzleHttp\json_decode(\GuzzleHttp\json_encode('{"Status":{"Code":405,"Text":"Method Not Allowed"},"Response":{}}'));
                 }
                 else
                 {
-                    echo json_encode(json_decode('{"Status":{"Code":402,"Text":"Bad request"},"Response":{}}'),JSON_PRETTY_PRINT);
+                    echo \GuzzleHttp\json_decode(\GuzzleHttp\json_encode('{"Status":{"Code":402,"Text":"Bad request"},"Response":{}}'));
                 }
             }
         }
