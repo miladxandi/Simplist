@@ -18,7 +18,7 @@ $Add->Loader("css", "mytest");
     </head>
 <?php \View\View\Shared\MainLayouts::_Menu(); ?>
 
-    <div style="margin-top:100px;margin-left:100px;margin-right:100px;">
+    <div id="Index" style="margin-top:100px;margin-left:100px;margin-right:100px;">
         <?php if (isset($_GET['Logout']) && $_GET['Logout'] == "True" || isset($_COOKIE['Email']) == false): ?>
             <form method="Post" role="form" action="">
                 <div class="form-group">
