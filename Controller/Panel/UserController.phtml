@@ -4,52 +4,51 @@
 namespace Controller\Panel;
 
 
+use Core\Configurations\Routing;
 use Model\Logic\MainLogic\UserFunction;
 use Route\Show\View;
 
 class UserController
 {
     private $Data;
+
     public function __construct()
     {
-       $this->Data= new UserFunction();
+        $this->Data = new UserFunction();
 
     }
+
     public function Login()
     {
-        if (isset($_POST['submit']))
-        {
+        if (isset($_POST['submit']) && isset($_POST['username']) && isset($_POST['password'])) {
             $this->Data->Login();
-        }
-        else
-        {
-            if  (isset($_GET['Logout']) && $_GET['Logout'] == "True")
-            {
-                if (isset($_COOKIE['Username']))
-                {
-                    setcookie("Username","",time()-3600,"",$_SERVER['HTTP_HOST'],true);
-                    $Viewbag = ['Success'=>'YOu Logged out successfully!!'];
-                    View::Process("Main.Home.Index",$Viewbag);
+        } else {
+            if (isset($_GET['Logout']) && strtolower($_GET['Logout']) == strtolower("True")) {
+                if (isset($_COOKIE['username'])) {
+                    setcookie("username", null, time() - 3600, "", $_SERVER['HTTP_HOST'], Routing::$SecureProtocol, true);
+                    setcookie("Firstname",null,time()-3600,"",$_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
+                    setcookie("LoginToken",null,time()-3600,"",$_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
+                    setcookie("lcsrn_Validation",null,time()-3600,"",$_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
+                    $Viewbag = ['Success' => 'You Logged out successfully!!'];
+                    View::Process("Panel.User.Login", $Viewbag);
 
-                }
-                else
-                {
+                } else {
                     View::Process("Panel.User.Login");
                 }
-            }
-            else
-            {
+            } else {
                 View::Process("Panel.User.Login");
             }
         }
     }
+
     public function Signup()
     {
         View::Process("Panel.User.Signup");
     }
-	public function Lock()
-	{
-		$this->Data->LockScreen();
-		View::Process("Panel.User.Lockscreen");
-	}
+
+    public function Lock()
+    {
+        $this->Data->LockScreen();
+        View::Process("Panel.User.Lockscreen");
+    }
 }

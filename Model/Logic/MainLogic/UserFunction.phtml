@@ -11,6 +11,7 @@ namespace Model\Logic\MainLogic;
 
 //use MailerLiteApi\Api\Subscribers;
 //use MailerLiteDocs\cMailerLite;
+use Core\Configurations\Routing;
 use Model\Logic\DataContract;
 use Model\Repository\MainFunction\UserRepository;
 use Route\Show\View;
@@ -186,26 +187,22 @@ final class UserFunction implements DataContract
 
     public function Login()
     {
-        if (empty($_POST['username']) || empty($_POST['password'])) {
-            $Viewbag = ['Error' => 'یک نام کاربری و رمزینه صحیح وارد نمایید'];
-            View::Process("Panel.User.Login", $Viewbag);
-        } else {
+
             $Token = rand(5000, 1000000) . "-" . rand(5000, 1000000) . "-" . rand(5000, 1000000);
             $Username = addslashes($_POST['username']);
             $Password = addslashes($_POST['password']);
             $Login = $this->User->Login($Username, $Password, $Token);
             if ($Login['Rows'] == "11") {
-                setcookie("Username", $Login['Values']['u_Username'], time() + 60 * 60 * 24 * 365, "", $_SERVER['HTTP_HOST']);
-                setcookie("Firstname", $Login['Values']['u_FName'], time() + 60 * 60 * 24 * 365, "", $_SERVER['HTTP_HOST']);
+                setcookie("Username", $Login['Values']['u_Username'], time() + 60 * 60 * 24 * 365, "", $_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
+                setcookie("Firstname", $Login['Values']['u_FName'], time() + 60 * 60 * 24 * 365, "", $_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
                 setcookie("LoginToken", password_hash($Token, 1), time() + 60 * 60 * 24 * 365, "", $_SERVER['HTTP_HOST']);
-                setcookie("lcsrn_Validation", password_hash("true", 1), time() + 60 * 60 * 24 * 365, "", $_SERVER['HTTP_HOST']);
+                setcookie("lcsrn_Validation", password_hash("true", 1), time() + 60 * 60 * 24 * 365, "", $_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
                 header("Location: /Panel");
             } else {
-                setcookie("lcsrn_Validation", password_hash("false", 1), time() + 60 * 60 * 24 * 365, "", $_SERVER['HTTP_HOST']);
+                setcookie("lcsrn_Validation", password_hash("false", 1), time() + 60 * 60 * 24 * 365, "", $_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
                 $Viewbag = ['Error' => 'نام کاربری یا گذرواژه اشتباه است.', 'Result' => $Login['Values']];
                 View::Process("Panel.User.Login", $Viewbag);
             }
-        }
     }
 
     public function LockScreen()
@@ -217,7 +214,7 @@ final class UserFunction implements DataContract
             if (isset($_POST['submit'])) {
                 if (empty($_POST['password'])) {
                     setcookie("Error", "گذرواژه نباید خالی باشد", 0, "", $_SERVER['HTTP_HOST']);
-                    setcookie("lcsrn_Validation", password_hash("false", 1), time() + 60 * 60 * 24 * 365, "", $_SERVER['HTTP_HOST']);
+                    setcookie("lcsrn_Validation", password_hash("false", 1), time() + 60 * 60 * 24 * 365, "", $_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
                     header("Location: /Lock");
                 } else {
 
@@ -226,17 +223,17 @@ final class UserFunction implements DataContract
                     $Password = addslashes($_POST['password']);
                     $Login = $this->User->Login($Username, $Password, $Token);
                     if ($Login['Rows'] == "11") {
-                        setcookie("Username", $Login['Values']['u_Username'], time() + 60 * 60 * 24 * 365, "", $_SERVER['HTTP_HOST']);
-                        setcookie("LoginToken", password_hash($Token, 1), time() + 60 * 60 * 24 * 365, "", $_SERVER['HTTP_HOST']);
+                        setcookie("Username", $Login['Values']['u_Username'], time() + 60 * 60 * 24 * 365, "", $_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
+                        setcookie("LoginToken", password_hash($Token, 1), time() + 60 * 60 * 24 * 365, "", $_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
                         if (password_verify("false", $_COOKIE['lcsrn_Validation'])) {
-                            setcookie("lcsrn_Validation", password_hash("true", 1), time() + 60 * 60 * 24 * 365, "", $_SERVER['HTTP_HOST']);
+                            setcookie("lcsrn_Validation", password_hash("true", 1), time() + 60 * 60 * 24 * 365, "", $_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
                             header("Location: /Panel");
                         } else {
                             header("Location: /Login");
                         }
                     } else {
                         setcookie("Error", "گذرواژه اشتباه است.", 0);
-                        setcookie("lcsrn_Validation", password_hash("false", 1), time() + 60 * 60 * 24 * 365, "", $_SERVER['HTTP_HOST'], true, true);
+                        setcookie("lcsrn_Validation", password_hash("false", 1), time() + 60 * 60 * 24 * 365, "", $_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
                         header("Location: /Lock");
                     }
                 }

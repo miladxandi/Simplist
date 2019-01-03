@@ -9,6 +9,7 @@
 namespace Middleware\Panel;
 
 
+use Core\Configurations\Routing;
 use Middleware\Important\Security;
 use Model\Repository\MainFunction\UserRepository;
 use Route\Show\View;
@@ -37,9 +38,9 @@ class AdminMiddleware
         {
 		    if(isset($_COOKIE['Firstname'])|| isset($_COOKIE['Username']))
 		    {
-		    	setcookie("Firstname", "", Time() - 36000,"",$_SERVER['HTTP_HOST']);
-		    	setcookie("Username", "Logout",0,"",$_SERVER['HTTP_HOST']);
-		    	setcookie("LoginToken", "Logout",Time() - 36000,"",$_SERVER['HTTP_HOST']);
+		    	setcookie("Firstname", "", Time() - 36000,"",$_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
+		    	setcookie("Username", "Logout",Time() + 36000,"",$_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
+		    	setcookie("LoginToken", "Logout",Time() - 36000,"",$_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
 		    	return ['Status'=> true];
 		    }
 		    else
@@ -58,13 +59,13 @@ class AdminMiddleware
 
 		if(isset($_COOKIE['Username']))
 		{
-			setcookie("lcsrn_Validation",password_hash("false",1),time()+60*60*24*365,"",$_SERVER['HTTP_HOST']);
+			setcookie("lcsrn_Validation",password_hash("false",1),time()+60*60*24*365,"",$_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
 			setcookie("LoginToken", "Logout",Time() - 36000,"",$_SERVER['HTTP_HOST']);
 			return ['Status'=> true];
 		}
 		else
 		{
-			setcookie("lcsrn_Validation",password_hash("false",1),time()+60*60*24*365,"",$_SERVER['HTTP_HOST']);
+			setcookie("lcsrn_Validation",password_hash("false",1),time()+60*60*24*365,"",$_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
 			setcookie("LoginToken", "Logout",Time() - 36000,"",$_SERVER['HTTP_HOST']);
 			return ['Status'=> false,'Route'=>'/Login'];
 		}
