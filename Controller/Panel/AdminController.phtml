@@ -50,7 +50,7 @@ class AdminController
 
     public function NewPost()
     {
-        $this->Post->New();
+        $this->Post->Register();
         View::Process("Panel.Admin.NewPost");
     }
     public function Post()
@@ -69,7 +69,7 @@ class AdminController
 
     public function NewUrl()
     {
-        $this->Post->New();
+        $this->Post->Register();
 		View::Process("Panel.Admin.NewUrl");
     }
     public function Url()

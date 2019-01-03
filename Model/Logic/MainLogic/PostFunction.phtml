@@ -23,7 +23,7 @@ final class PostFunction implements DataContract
 		$this->Post = new PostRepository();
 	}
 
-	public function New()
+	public function Register()
 	{
 		if (isset($_POST['submit'])) {
 			$Name = addslashes($_POST["PostName"]);

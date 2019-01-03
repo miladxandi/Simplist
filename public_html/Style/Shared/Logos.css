@@ -1,5 +1,0 @@
-.Simplistlogo, .Simplisteastcloud
-{ display: inline-block; background: url('http://simplist.dev/phpmyadmin/tbl_get_field.php?db=simplist&table=users&where_clause=%60users%60.%60user_Id%60+%3D+1&transform_key=user_Image&sql_query=SELECT+%2A+FROM+%60users%60') no-repeat; overflow: hidden; text-indent: -9999px; text-align: left; }
-
-.Simplistlogo { background-position: -0px -0px; width: 100px; height: 100px; }
-.Simplisteastcloud { background-position: -0px -100px; width: 100px; height: 100px; }
