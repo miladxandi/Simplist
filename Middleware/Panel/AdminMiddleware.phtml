@@ -33,17 +33,24 @@ class AdminMiddleware
 	public function Login()
 	{
 
-		if(isset($_COOKIE['Firstname'])|| isset($_COOKIE['Username']))
-		{
-			setcookie("Firstname", "", Time() - 36000,"",$_SERVER['HTTP_HOST']);
-			setcookie("Username", "Logout",0,"",$_SERVER['HTTP_HOST']);
-			setcookie("LoginToken", "Logout",Time() - 36000,"",$_SERVER['HTTP_HOST']);
-			return ['Status'=> true];
-		}
-		else
-		{
-			return ['Status'=> true];
-		}
+        if  (isset($_GET['Logout']) && $_GET['Logout'] == "True")
+        {
+		    if(isset($_COOKIE['Firstname'])|| isset($_COOKIE['Username']))
+		    {
+		    	setcookie("Firstname", "", Time() - 36000,"",$_SERVER['HTTP_HOST']);
+		    	setcookie("Username", "Logout",0,"",$_SERVER['HTTP_HOST']);
+		    	setcookie("LoginToken", "Logout",Time() - 36000,"",$_SERVER['HTTP_HOST']);
+		    	return ['Status'=> true];
+		    }
+		    else
+		    {
+		    	return ['Status'=> true];
+		    }
+        }
+        else
+        {
+            return ['Status'=>true];
+        }
 
 	}
 	public function Lock()

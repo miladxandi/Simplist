@@ -19,38 +19,53 @@ $Add->Loader("css", "mytest");
 <?php \View\View\Shared\MainLayouts::_Menu(); ?>
 
     <div style="margin-top:100px;margin-left:100px;margin-right:100px;">
-        <form method="Post" role="form" action="">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" name="username" id="username" placeholder="Enter your username">
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" name="password" id="password" placeholder="Password">
-            </div>
-                    <?php if (isset($Viewbag['Error'])): ?>
+        <?php if (isset($_GET['Logout']) && $_GET['Logout'] == "True" || isset($_COOKIE['Email']) == false): ?>
+            <form method="Post" role="form" action="">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" name="username" id="username" placeholder="Enter your username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                </div>
+                <?php if (isset($Viewbag['Error'])): ?>
                     <span>
                         <div class="alert alert-danger" role="alert"><?php echo $Viewbag['Error']; ?></div>
                     </span>
-                    <?php elseif(isset($_COOKIE['Username'])): ?>
-                        <span>
+                <?php elseif(isset($_COOKIE['Username'])): ?>
+                    <span>
                             <div class="success alert-success" role="alert">شما با موفقیت خارج شدید!</div>
                         </span>
-                    <?php elseif(isset($Viewbag['Result'])): ?>
-                        <span>
+                <?php elseif(isset($Viewbag['Result'])): ?>
+                    <span>
                             <div class="success alert-success" role="alert"><?php echo $Viewbag['Result']; ?></div>
                         </span>
                     <?php
-                        if (isset($_COOKIE['Username']) && $_COOKIE['Username']=="Logout")
-                        {
-                            setcookie("Username","",time()-3600,"",$_SERVER['HTTP_HOST']);
-                        }
-                        endif;
-                    ?>
-            <button type="submit" name="submit" id="submit" class="btn btn-primary">Login</button>
-        </form>
-        <div style="margin-top:100px;"><a href="/Signup" style="font-size: large">Register new account</a> - <a
-                    href="/FortgetPass" style="font-size: large">Forget your password?</a></div>
+                    if (isset($_COOKIE['Username']) && $_COOKIE['Username']=="Logout")
+                    {
+                        setcookie("Username","",time()-3600,"",$_SERVER['HTTP_HOST']);
+                    }
+                endif;
+                ?>
+                <button type="submit" name="submit" id="submit" class="btn btn-primary">Login</button>
+            </form>
+            <div style="margin-top:100px;"><a href="/Signup" style="font-size: large">Register new account</a> - <a href="/FortgetPass" style="font-size: large">Forget your password?</a></div>
+        <?php else: ?>
+            <h3 class="rotate font-normal" style="font-family: Kohinoor">Hi  <?php echo $_COOKIE['Firstname']; ?></h3>
+            <br>
+            <a href="/Panel">
+                <button class="ui button ibtn" tabindex="3"
+                        style="font-family: Kohinoor" type="button">Panel
+                </button>
+            </a>
+            <a href="/?Logout=True">
+                <button class="ui button ibtn" tabindex="3"
+                        style="font-family: Kohinoor" type="button">Logout
+                </button>
+            </a>
+        <?php endif; ?>
+
     </div>
 
 <?php \View\View\Shared\MainLayouts::_Footer(); ?>

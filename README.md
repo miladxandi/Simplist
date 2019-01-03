@@ -1,5 +1,7 @@
 ![eastCloud User Download](https://eastcloud.ir/Content/Main/Simplist_Version3.jpg)
 
+[![ko-fi](https://www.ko-fi.com/img/donate_sm.png)](https://ko-fi.com/U7U6N2NR)
+
 # Simplist  ![eastCloud User Download](http://eastcloud.ir/Content/Shared/Official-Badges.png) ![eastCloud User Download](http://eastcloud.ir/Content/Shared/Users-Badges.png)
 
 

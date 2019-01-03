@@ -16,25 +16,35 @@ class Security
 {
     protected $CoreSecurity;
     protected $Configurations;
+    protected static $BadArray;
+    protected $Address;
     public function __construct()
     {
         Basement::MinVersion();
         Check::SecureProtocol(Routing::$SecureProtocol);
         self::CleanString($_REQUEST);
     }
+    public function Index()
+    {
+        $this->__construct();
+        return ['Status'=>true];
+
+    }
     private static function CleanString($Request)
     {
-        $bad = array("content-type","href","'",'"','script','>','<','<script>','</script>');
+        $BadArray = array('<script>','</script>',';',"content-type","href","'",'"','script','>','<',"{", "}", "|", "\\", "^", "~", "[", "]");
 
         foreach ($Request as $Key => $Value)
         {
-            foreach ($bad as $mis) {
+            foreach ($BadArray as $mis) {
                 if (str_contains($Value, $mis)) {
 
-                    $_REQUEST[$Key] = str_replace($mis, " ", $Value);
+                    $_REQUEST[$Key] = "";
+                    return true;
                 }
             }
         }
+
     }
 
 }

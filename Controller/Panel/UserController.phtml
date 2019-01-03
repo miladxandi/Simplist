@@ -23,7 +23,24 @@ class UserController
         }
         else
         {
-            View::Process("Panel.User.Login");
+            if  (isset($_GET['Logout']) && $_GET['Logout'] == "True")
+            {
+                if (isset($_COOKIE['Username']))
+                {
+                    setcookie("Username","",time()-3600,"",$_SERVER['HTTP_HOST'],true);
+                    $Viewbag = ['Success'=>'YOu Logged out successfully!!'];
+                    View::Process("Main.Home.Index",$Viewbag);
+
+                }
+                else
+                {
+                    View::Process("Panel.User.Login");
+                }
+            }
+            else
+            {
+                View::Process("Panel.User.Login");
+            }
         }
     }
     public function Signup()

@@ -3,6 +3,7 @@
 namespace Route\Core;
 
 
+use Middleware\Important\Security;
 use Model\Repository\MainFunction\UrlRepository;
 
 class Router
@@ -33,6 +34,8 @@ class Router
                 list($Folder,$Controller,$Method)=explode(".",$Api['target']);
                 $ControllerClass= self::$BaseController.$Folder."\\".$Controller."Controller";
                 $ControllerInstance = new $ControllerClass;
+                $MiddlewareInstance= new Security();
+
                 if ($Api['middleware']!="")
                 {
                     list($Way,$Series,$Check)=explode(".",$Api['middleware']);
@@ -65,35 +68,54 @@ class Router
                         }
                     }
                 }
-                else if (method_exists($ControllerInstance,"$Method"))
+                else if (method_exists($ControllerInstance,"$Method") )
                 {
                     if($QueryString!=null)
                     {
-                        $ControllerInstance->$Method($QueryString);
+                        if($MiddlewareInstance->Index()['Status']==true)
+                        {
+                            $ControllerInstance->$Method($CurrentApiVerb,$QueryString);
+                        }
+                        else
+                        {
+
+                            header("Location: ".$MiddlewareInstance->Index()['Route']."");
+                        }
 
                     }
                     else
                     {
-                        $ControllerInstance->$Method();
+                        if($MiddlewareInstance->Index()['Status']==true)
+                        {
+                            $ControllerInstance->$Method();
+                        }
+                        else
+                        {
+
+                            header("Location: ".$MiddlewareInstance->Index()['Route']."");
+                        }
                     }
                 }
                 else
                 {
-                    echo \GuzzleHttp\json_decode('{"Status":{"Code":404,"Text":"Not Found"},"Response":{}}');
+                    echo \GuzzleHttp\json_decode('{"Status":{"Code":402,"Text":"Not Found"},"Response":{}}');
                 }
             }
             else
             {
                 if ($Api == 0)
                 {
+                    http_response_code(404);
                     echo  \GuzzleHttp\json_decode(\GuzzleHttp\json_encode('{"Status":{"Code":404,"Text":"Not Found"},"Response":{}}'));
                 }
                 elseif (array_search(strtolower($CurrentApiVerb),$Blocked)==strtolower($CurrentApiVerb) || array_search(strtolower($CurrentApiVerb),$Allowed)!=strtolower($CurrentApiVerb))
                 {
+                    http_response_code(405);
                     echo  \GuzzleHttp\json_decode(\GuzzleHttp\json_encode('{"Status":{"Code":405,"Text":"Method Not Allowed"},"Response":{}}'));
                 }
                 else
                 {
+                    http_response_code(402);
                     echo \GuzzleHttp\json_decode(\GuzzleHttp\json_encode('{"Status":{"Code":402,"Text":"Bad request"},"Response":{}}'));
                 }
             }
@@ -109,6 +131,8 @@ class Router
                 list($Folder,$Controller,$Method)=explode(".",$Routes['target']);
                 $ControllerClass= self::$BaseController.$Folder."\\".$Controller."Controller";
                 $ControllerInstance = new $ControllerClass;
+                $MiddlewareInstance= new Security();
+
                 if ($Routes['middleware']!="")
                 {
                     list($Way,$Series,$Check)=explode(".",$Routes['middleware']);
@@ -143,14 +167,28 @@ class Router
                 }
                 else if (method_exists($ControllerInstance,"$Method"))
                 {
-                    if($QueryString!=null)
+                    if ($QueryString!=null)
                     {
-                        $ControllerInstance->$Method($QueryString);
+                        if($MiddlewareInstance->Index($QueryString)['Status']==true)
+                        {
+                            $ControllerInstance->$Method($QueryString);
+                        }
+                        else
+                        {
 
+                            header("Location: ".$MiddlewareInstance->Index($QueryString)['Route']."");
+                        }
                     }
                     else
                     {
-                        $ControllerInstance->$Method();
+                        if($MiddlewareInstance->Index()['Status']==true)
+                        {
+                            $ControllerInstance->$Method();
+                        }
+                        else
+                        {
+                            header("Location: ".$MiddlewareInstance->Index()['Route']."");
+                        }
                     }
                 }
                 else
@@ -171,11 +209,11 @@ class Router
             {
                 if ($CurrentRouteVerb==$gRequestVerb && $gRequestVerb=="")
                 {
-                    header("Location: /MethodNotAllowed");
+                    header("Location: /methodnotallowed");
                 }
                 else if($CurrentRouteVerb==$pRequestVerb && $pRequestVerb=="")
                 {
-                    header("Location: /MethodNotAllowed");
+                    header("Location: /methodnotallowed");
                 }
                 else
                 {
@@ -190,18 +228,14 @@ class Router
     public static function getCurrentRoute()
     {
         $WithoutSlashes= substr($_SERVER['REQUEST_URI'], 1);
-        $QueryString=$_SERVER['QUERY_STRING'];
+        $QueryString=null;
         $URI=$_SERVER['REQUEST_URI'];
-        if($QueryString=="path=$WithoutSlashes")
+        $QueryString = null;
+        foreach ($_REQUEST as $Key => $Req)
         {
-            $QueryString=null;
-            return ['QuerryString'=>$QueryString,'URI'=>$URI];
-
+            $QueryString[$Key] = $Req;
         }
-        else if ($QueryString!="path=$WithoutSlashes")
-        {
-            return ['QuerryString'=>$QueryString,'URI'=>$URI];
-        }
+        return ['QuerryString'=>$QueryString,'URI'=>$URI];
     }
 
     public static function isRouteDefined(string $FullRoute)
