@@ -2,7 +2,7 @@
   "name": "miladxandi/simplist",
   "description": "A project for creating online blogs in the most easiest way. Every CMS at the first step of its development helped the development process and make it faster to easier. They also made some standards in their framework to improve development and usability, But Fate went with the entry of unprofessional people into this arena The software development industry faces many challenges and sabotage by non-developers, with the Simplist we plan to personalize the service for developers.",
   "homepage": "https://simplist.ir",
-  "minimum-stability": "stable",
+  "minimum-stability": "dev",
   "type": "project",
   "version": "3.0.0",
   "prefer-stable": true,
@@ -25,7 +25,12 @@
     "symfony/contracts": "v1.0.2"
   },
   "require-dev": {
-    "ext-json": "*"
+    "ext-json": "*",
+    "illuminate/support": "v5.7.11",
+    "illuminate/contracts": "5.7.19",
+    "doctrine/inflector": "v1.3.0",
+    "nesbot/carbon": "1.36.2",
+    "symfony/contracts": "v1.0.2"
   },
   "config": {
     "preferred-install": "dist",
