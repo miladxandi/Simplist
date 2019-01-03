@@ -5,7 +5,7 @@
 # Simplist  ![eastCloud User Download](http://eastcloud.ir/Content/Shared/Official-Badges.png) ![eastCloud User Download](http://eastcloud.ir/Content/Shared/Users-Badges.png)
 
 
-Download it by from [this repository](https://packagist.org/packages/miladxandi/simplist):
+Download it from [this repository](https://packagist.org/packages/miladxandi/simplist):
 
 >```composer create-project miladxandi/simplist```
 
