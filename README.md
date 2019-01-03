@@ -6,7 +6,8 @@
 
 
 Download it by from [this repository](https://packagist.org/packages/miladxandi/simplist):
->composer create-project miladxandi/simplist
+
+>```composer create-project miladxandi/simplist```
 
 ## Simplist is a mini framework based on PHP language for small projects.
 We strongly suggest our framework for personal blogs, news agencies & human resource management.
