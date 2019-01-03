@@ -5,10 +5,6 @@
 # Simplist  ![eastCloud User Download](http://eastcloud.ir/Content/Shared/Official-Badges.png) ![eastCloud User Download](http://eastcloud.ir/Content/Shared/Users-Badges.png)
 
 
-Download it from [this repository](https://packagist.org/packages/miladxandi/simplist):
-
->```composer create-project miladxandi/simplist```
-
 ## Simplist is a mini framework based on PHP language for small projects.
 We strongly suggest our framework for personal blogs, news agencies & human resource management.
 
@@ -21,6 +17,10 @@ Everything in Simplist is as simple as installing it on your server!
 # Documentation
 
 ### Installation
+
+Download it from [this repository](https://packagist.org/packages/miladxandi/simplist):
+
+>```composer create-project miladxandi/simplist```
 
 Remember your PHP version should be upper than 7 and the local request address should be set on:
 >public_html/
