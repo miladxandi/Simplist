@@ -41,7 +41,7 @@ final class UrlFunction implements DataContract
 
 	public function Update($QuerryString)
 	{
-        $Id = substr($QuerryString, strripos($QuerryString,"=")+1);
+        $Id = $QuerryString['url'];
 		if ($this->Url->FindById($Id)['Rows']==1)
 		{
 			$Viewbag = ['UrlInfo'=>$this->Url->FindById($Id)['Values']];
@@ -70,7 +70,7 @@ final class UrlFunction implements DataContract
 
 	public function Delete($QuerryString)
 	{
-        $Id = substr($QuerryString, strripos($QuerryString,"=")+1);
+        $Id = $QuerryString['url'];
 
 		if ($this->Url->FindById($Id)['Rows']==1)
 		{

@@ -19,6 +19,7 @@ class AdminController
         $this->User= new UserFunction();
         $this->UserRep= new UserRepository();
         $this->Post =  new PostFunction();
+        $this->Url = new UrlFunction();
     }
 
     public function Index()
@@ -69,21 +70,21 @@ class AdminController
 
     public function NewUrl()
     {
-        $this->Post->Register();
+        $this->Url->Register();
 		View::Process("Panel.Admin.NewUrl");
     }
     public function Url()
     {
-		$Viewbag = ['UrlInfo'=>$this->Post->Show()];
+		$Viewbag = ['UrlInfo'=>$this->Url->Show()];
         View::Process("Panel.Admin.Url",$Viewbag);
     }
     public function UrlDelete($QuerryString)
     {
-        $this->Post->Delete($QuerryString);
+        $this->Url->Delete($QuerryString);
     }
     public function UrlUpdate($QuerryString)
     {
-        $this->Post->Update($QuerryString);
+        $this->Url->Update($QuerryString);
 
     }
 }

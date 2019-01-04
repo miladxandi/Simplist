@@ -87,7 +87,7 @@ final class PostFunction implements DataContract
 
 	public function Update($QuerryString)
 	{
-        $Id = substr($QuerryString, strripos($QuerryString,"=")+1);
+        $Id = $QuerryString['pid'];
 		if ($this->Post->GetPostById($Id)['Rows'] == 1) {
 			$Viewbag = ['PostInfo' => $this->Post->GetPostById($Id)['Values']];
 			if ($Viewbag['PostInfo'][0]['Post_Author'] == $_COOKIE['Firstname']) {
@@ -169,7 +169,7 @@ final class PostFunction implements DataContract
 
 	public function Delete($QuerryString)
 	{
-		$Id = substr($QuerryString, strripos($QuerryString,"=")+1);
+        $Id = $QuerryString['pid'];
 		if ($this->Post->GetPostById($Id)['Rows'] == 1) {
 			$Viewbag = ['PostInfo' => $this->Post->GetPostById($Id)['Values']];
 			if ($Viewbag['PostInfo'][0]['Post_Author'] == $_COOKIE['Firstname']) {
