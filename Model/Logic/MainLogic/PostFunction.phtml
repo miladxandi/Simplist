@@ -90,7 +90,7 @@ final class PostFunction implements DataContract
         $Id = substr($QuerryString, strripos($QuerryString,"=")+1);
 		if ($this->Post->GetPostById($Id)['Rows'] == 1) {
 			$Viewbag = ['PostInfo' => $this->Post->GetPostById($Id)['Values']];
-			if ($Viewbag['PostInfo'][0]['Post_Author'] == $_COOKIE['Firstname'] || $_COOKIE['Username'] == "miladxandi") {
+			if ($Viewbag['PostInfo'][0]['Post_Author'] == $_COOKIE['Firstname']) {
 				if (isset($_POST['submit'])) {
 
 					$PostInfo = $Viewbag['PostInfo'][0];
@@ -172,7 +172,7 @@ final class PostFunction implements DataContract
 		$Id = substr($QuerryString, strripos($QuerryString,"=")+1);
 		if ($this->Post->GetPostById($Id)['Rows'] == 1) {
 			$Viewbag = ['PostInfo' => $this->Post->GetPostById($Id)['Values']];
-			if ($Viewbag['PostInfo'][0]['Post_Author'] == $_COOKIE['Firstname'] || $_COOKIE['Username'] == "miladxandi") {
+			if ($Viewbag['PostInfo'][0]['Post_Author'] == $_COOKIE['Firstname']) {
 				$PostInfo = $Viewbag['PostInfo'][0];
 				unlink($PostInfo['Post_Image']);
 				$Delete = $this->Post->Delete($Id);

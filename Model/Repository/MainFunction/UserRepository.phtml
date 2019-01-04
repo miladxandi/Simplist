@@ -11,41 +11,38 @@ namespace Model\Repository\MainFunction;
 
 use Model\Repository\BaseRepository;
 
-//use Model\Eloquent\Panel;
 class UserRepository extends BaseRepository
 {
-	Private $Value;
 	public $Fields;
-	private $Token;
 
 	public function __construct()
 	{
 		parent::__construct();
-		$this->Table = "user";
-		$this->PrimaryKey = "u_Id";
-		$this->uName = "u_Username";
-		$this->uMail = "u_Email";
-		$this->uPass = "u_Password";
-		$this->uToken = "u_LoginToken";
+		$this->Table = "users";
+		$this->PrimaryKey = "Id";
+		$this->Name = "Username";
+		$this->Mail = "Email";
+		$this->Pass = "Password";
+		$this->Token = "LoginToken";
 	}
 
 	public function Username($Username)
 	{
-		$Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->uName}='".$Username."'");
+		$Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->Name}='".$Username."'");
 		$Result->fetch(\PDO::FETCH_COLUMN);
 		return $Result->rowCount();
 	}
 
 	public function Email($Email)
 	{
-		$Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->uMail}='".$Email."'");
+		$Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->Mail}='".$Email."'");
 		$Result->fetch(\PDO::FETCH_COLUMN);
 		return $Result->rowCount();
 	}
 
 	public function Password($Password)
 	{
-		$Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->uPass}='".$Password."'");
+		$Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->Pass}='".$Password."'");
 		$Result->fetch(\PDO::FETCH_COLUMN);
 		return $Result->rowCount();
 	}
@@ -53,7 +50,7 @@ class UserRepository extends BaseRepository
 	public function Login($Username, $Password, $Token)
 	{
 		$Result = $this->FindByUser($Username);
-		if ($Result['Rows']==1 && $Password == $Result['Values']['u_Password'])
+		if ($Result['Rows']==1 && password_verify($Password,$Result['Values']['Password']))
         {
 		    $Tokenize=$this->Tokenizer($Token,$Username);
 		    if ($Tokenize==1)
@@ -69,26 +66,20 @@ class UserRepository extends BaseRepository
 	}
 	public function Tokenizer($Token,$Username)
 	{
-		$Result = $this->rStatement->Commander("UPDATE {$this->Table} SET {$this->uToken}='".$Token."' WHERE {$this->uName}='".$Username."'");
+		$Result = $this->rStatement->Commander("UPDATE {$this->Table} SET {$this->Token}='".$Token."' WHERE {$this->Name}='".$Username."'");
 		$Result->fetchAll(\PDO::FETCH_ASSOC);
 		return $Result->rowCount();
 	}
 
-	public function Insert($Firstname,$Lastname,$Username,$Password,$Email,$Phone)
+	public function Insert($Firstname,$Lastname,$Username,$Password,$Email)
 	{
-		//password_hash($Password, PASSWORD_BCRYPT)
-		$Type= "Visitor";
-		$Expired= "2020-00-00";
-		$Status= "1";
-		$Image= "Avatar";
-		$IsPaid= "0";
-		$Result = $this->rStatement->Commander("INSERT INTO {$this->Table} (u_FName, u_LName, u_Username, u_Password, u_Type, u_Email, u_Phone, u_Expired, u_Status, u_Image, u_IsPaid) VALUES ('".$Firstname."','".$Lastname."','".$Username."','".$Password."',Visitor,'".$Email."','".$Phone."',2020-00-00,1,Avatar,0)");
+		$Result = $this->rStatement->Commander("INSERT INTO {$this->Table} (Firstname, Lastname, Username, Password,Email) VALUES ('".$Firstname."','".$Lastname."','".$Username."','".password_hash($Password,1)."','".$Email."')");
 		$Result->fetch(\PDO::FETCH_COLUMN);
 		return $Result->rowCount();
 	}
-	public function Update($Firstname,$Lastname,$Nickname,$Username,$Password,$Email,$Phone,$Image,$Bio)
+	public function Update($Firstname,$Lastname,$Username,$Password,$Email,$Image)
 	{
-		$Result = $this->rStatement->Commander("UPDATE {$this->Table} SET u_FName='".$Firstname."',u_LName='".$Lastname."',u_Nickname='".$Nickname."',u_Username='".$Username."',u_Password='".$Password."',u_Email='".$Email."',u_Phone='".$Phone."',Image='".$Image."',Bio='".$Bio."', WHERE {$this->uName}={$Username}");
+		$Result = $this->rStatement->Commander("UPDATE {$this->Table} SET Firstname='".$Firstname."',Lastname='".$Lastname."',Password='".password_hash($Password,1)."',Email='".$Email."',Image='".$Image."' WHERE {$this->Name}={$Username}");
 		return ['Values'=>$Result->fetchAll(\PDO::FETCH_ASSOC),'Rows'=>$Result->rowCount()];
 	}
 	public function GetUsers()
@@ -98,12 +89,12 @@ class UserRepository extends BaseRepository
 	}
 	public function FindByUser($Username)
 	{
-		$Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->uName}='".$Username."'");
+		$Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->Name}='".$Username."'");
 		return ['Values'=>$Result->fetch(\PDO::FETCH_ASSOC),'Rows'=>$Result->rowCount()];
 	}
 	public function FindByEmail($Email)
 	{
-		$Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->uMail}='".$Email."'");
+		$Result = $this->rStatement->Commander("SELECT * FROM {$this->Table} WHERE {$this->Mail}='".$Email."'");
 		return ['Values'=>$Result->fetch(\PDO::FETCH_ASSOC),'Rows'=>$Result->rowCount()];
 	}
 }

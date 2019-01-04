@@ -93,11 +93,11 @@ class AdminMiddleware
 	}
 	private function PanelCookieS()
 	{
-		if(isset($_COOKIE['Username']) && isset($_COOKIE['lcsrn_Validation']) && $this->DB->FindByUser($_COOKIE['Username'])['Rows']==1 && password_verify("true",$_COOKIE['lcsrn_Validation']) && password_verify($this->DB->FindByUser($_COOKIE['Username'])['Values']['u_LoginToken'],$_COOKIE['LoginToken']))
+		if(isset($_COOKIE['Username']) && isset($_COOKIE['lcsrn_Validation']) && $this->DB->FindByUser($_COOKIE['Username'])['Rows']==1 && password_verify("true",$_COOKIE['lcsrn_Validation']) && password_verify($this->DB->FindByUser($_COOKIE['Username'])['Values']['LoginToken'],$_COOKIE['LoginToken']))
 		{
 			return ['Status'=> true];
 		}
-		elseif(isset($_COOKIE['Username'])==false || isset($_COOKIE['lcsrn_Validation'])==false || $this->DB->FindByUser($_COOKIE['Username'])['Rows']==0 || password_verify("true",$_COOKIE['lcsrn_Validation'])==false || password_verify($this->DB->FindByUser($_COOKIE['Username'])['Values']['u_LoginToken'],$_COOKIE['LoginToken'])==false)
+		elseif(isset($_COOKIE['Username'])==false || isset($_COOKIE['lcsrn_Validation'])==false || $this->DB->FindByUser($_COOKIE['Username'])['Rows']==0 || password_verify("true",$_COOKIE['lcsrn_Validation'])==false || password_verify($this->DB->FindByUser($_COOKIE['Username'])['Values']['LoginToken'],$_COOKIE['LoginToken'])==false)
 		{
 			return ['Status'=> false,'Route'=>'/Login'];
 		}
@@ -108,11 +108,11 @@ class AdminMiddleware
 	}
 	private function EditorCookieS()
 	{
-		if(isset($_COOKIE['Username'])==true && isset($_COOKIE['lcsrn_Validation'])==true && $this->DB->FindByUser($_COOKIE['Username'])['Rows']==1 && ($this->DB->FindByUser($_COOKIE['Username'])['Values']['u_Type']=="Admin" || $this->DB->FindByUser($_COOKIE['Username'])['Values']['u_Type']=="Editor") && password_verify("true",$_COOKIE['lcsrn_Validation']) && password_verify($this->DB->FindByUser($_COOKIE['Username'])['Values']['u_LoginToken'],$_COOKIE['LoginToken']))
+		if(isset($_COOKIE['Username'])==true && isset($_COOKIE['lcsrn_Validation'])==true && $this->DB->FindByUser($_COOKIE['Username'])['Rows']==1 && ($this->DB->FindByUser($_COOKIE['Username'])['Values']['Type']=="Admin" || $this->DB->FindByUser($_COOKIE['Username'])['Values']['Type']=="Editor") && password_verify("true",$_COOKIE['lcsrn_Validation']) && password_verify($this->DB->FindByUser($_COOKIE['Username'])['Values']['LoginToken'],$_COOKIE['LoginToken']))
 		{
 			return ['Status'=> true,'Info'=>""];
 		}
-		elseif(isset($_COOKIE['Username'])==false ||isset($_COOKIE['lcsrn_Validation']) || $this->DB->FindByUser($_COOKIE['Username'])['Rows']==0 || password_verify("true",$_COOKIE['lcsrn_Validation'])==false || password_verify($this->DB->FindByUser($_COOKIE['Username'])['Values']['u_LoginToken'],$_COOKIE['LoginToken']))
+		elseif(isset($_COOKIE['Username'])==false ||isset($_COOKIE['lcsrn_Validation']) || $this->DB->FindByUser($_COOKIE['Username'])['Rows']==0 || password_verify("true",$_COOKIE['lcsrn_Validation'])==false || password_verify($this->DB->FindByUser($_COOKIE['Username'])['Values']['LoginToken'],$_COOKIE['LoginToken']))
 		{
 
 			return ['Status'=> false,'Route'=>'/Login'];
@@ -124,12 +124,11 @@ class AdminMiddleware
 	}
 	private function AdminCookieS()
 	{
-		if(isset($_COOKIE['Username'])==true && isset($_COOKIE['lcsrn_Validation'])==true && $this->DB->FindByUser($_COOKIE['Username'])['Rows']==1 && $this->DB->FindByUser($_COOKIE['Username'])['Values']['u_Type']=="Admin" && password_verify("true",$_COOKIE['lcsrn_Validation'])==false && password_verify($this->DB->FindByUser($_COOKIE['Username'])['Values']['u_LoginToken'],$_COOKIE['LoginToken']))
+		if(isset($_COOKIE['Username'])==true && isset($_COOKIE['lcsrn_Validation'])==true && $this->DB->FindByUser($_COOKIE['Username'])['Rows']==1 && $this->DB->FindByUser($_COOKIE['Username'])['Values']['Type']=="Admin" && password_verify("true",$_COOKIE['lcsrn_Validation'])==false && password_verify($this->DB->FindByUser($_COOKIE['Username'])['Values']['LoginToken'],$_COOKIE['LoginToken']))
 		{
-			//header("Location: /Panel/Users");
 			return ['Status'=> true,'Info'=>""];
 		}
-		elseif(isset($_COOKIE['Username'])==false ||isset($_COOKIE['lcsrn_Validation'])==false || $this->DB->FindByUser($_COOKIE['Username'])['Rows']==0 || password_verify("true",$_COOKIE['lcsrn_Validation'])==false || password_verify($this->DB->FindByUser($_COOKIE['Username'])['Values']['u_LoginToken'],$_COOKIE['LoginToken'])==false)
+		elseif(isset($_COOKIE['Username'])==false ||isset($_COOKIE['lcsrn_Validation'])==false || $this->DB->FindByUser($_COOKIE['Username'])['Rows']==0 || password_verify("true",$_COOKIE['lcsrn_Validation'])==false || password_verify($this->DB->FindByUser($_COOKIE['Username'])['Values']['LoginToken'],$_COOKIE['LoginToken'])==false)
 		{
 			return ['Status'=> false,'Route'=>'/Login'];
 		}

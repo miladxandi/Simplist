@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2018 at 02:53 AM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.2.3
+-- Generation Time: Jan 04, 2019 at 04:03 AM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -39,11 +39,6 @@ CREATE TABLE `posts` (
   `Post_Image` varchar(200) COLLATE utf8_persian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
---
--- Dumping data for table `posts`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -56,40 +51,25 @@ CREATE TABLE `urls` (
   `target` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `urls`
---
-
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `user` (
-  `u_Id` int(11) NOT NULL,
-  `u_FName` varchar(100) COLLATE utf8_persian_ci NOT NULL,
-  `u_LName` varchar(100) COLLATE utf8_persian_ci NOT NULL,
-  `u_Nickname` varchar(100) COLLATE utf8_persian_ci DEFAULT NULL,
-  `u_Username` varchar(100) COLLATE utf8_persian_ci NOT NULL,
-  `u_Password` varchar(100) COLLATE utf8_persian_ci NOT NULL,
-  `u_Type` varchar(10) COLLATE utf8_persian_ci NOT NULL DEFAULT 'Visitor',
-  `u_Email` varchar(100) COLLATE utf8_persian_ci NOT NULL,
-  `u_Phone` varchar(20) COLLATE utf8_persian_ci DEFAULT NULL,
-  `u_Created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `u_Expired` date NOT NULL DEFAULT '2020-00-00',
-  `u_Status` tinyint(4) NOT NULL DEFAULT '1',
-  `u_Image` varchar(100) COLLATE utf8_persian_ci NOT NULL DEFAULT 'Avatar',
-  `u_Bio` text COLLATE utf8_persian_ci,
-  `u_IsPaid` tinyint(4) NOT NULL DEFAULT '0'
+CREATE TABLE `users` (
+  `Id` int(11) NOT NULL,
+  `Firstname` varchar(150) COLLATE utf8_persian_ci NOT NULL,
+  `Lastname` varchar(150) COLLATE utf8_persian_ci NOT NULL,
+  `Username` varchar(150) COLLATE utf8_persian_ci NOT NULL,
+  `Email` varchar(150) COLLATE utf8_persian_ci NOT NULL,
+  `Password` text COLLATE utf8_persian_ci NOT NULL,
+  `LoginToken` varchar(50) COLLATE utf8_persian_ci DEFAULT NULL,
+  `Type` varchar(70) COLLATE utf8_persian_ci NOT NULL DEFAULT 'Visitor',
+  `Status` tinyint(1) NOT NULL DEFAULT '1',
+  `Image` varchar(150) COLLATE utf8_persian_ci NOT NULL DEFAULT 'Avatar',
+  `CreatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
-
---
--- Dumping data for table `user`
---
-
-
 
 --
 -- Indexes for dumped tables
@@ -110,13 +90,11 @@ ALTER TABLE `urls`
   ADD UNIQUE KEY `url` (`url`);
 
 --
--- Indexes for table `user`
+-- Indexes for table `users`
 --
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`u_Id`),
-  ADD UNIQUE KEY `u_Username` (`u_Username`),
-  ADD UNIQUE KEY `u_Email` (`u_Email`),
-  ADD UNIQUE KEY `u_Nickname` (`u_Nickname`);
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`Id`),
+  ADD UNIQUE KEY `Username` (`Username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -133,6 +111,12 @@ ALTER TABLE `posts`
 --
 ALTER TABLE `urls`
   MODIFY `Id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

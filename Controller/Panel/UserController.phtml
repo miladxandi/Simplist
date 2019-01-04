@@ -18,14 +18,14 @@ class UserController
 
     }
 
-    public function Login()
+    public function Login($Input = null)
     {
-        if (isset($_POST['submit']) && isset($_POST['username']) && isset($_POST['password'])) {
+        if (isset($_POST['submit']) && isset($_POST['Username']) && isset($_POST['Password'])) {
             $this->Data->Login();
         } else {
             if (isset($_GET['Logout']) && strtolower($_GET['Logout']) == strtolower("True")) {
-                if (isset($_COOKIE['username'])) {
-                    setcookie("username", null, time() - 3600, "", $_SERVER['HTTP_HOST'], Routing::$SecureProtocol, true);
+                if (isset($_COOKIE['Username'])) {
+                    setcookie("Username", null, time() - 3600, "", $_SERVER['HTTP_HOST'], Routing::$SecureProtocol, true);
                     setcookie("Firstname",null,time()-3600,"",$_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
                     setcookie("LoginToken",null,time()-3600,"",$_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
                     setcookie("lcsrn_Validation",null,time()-3600,"",$_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
@@ -36,14 +36,23 @@ class UserController
                     View::Process("Panel.User.Login");
                 }
             } else {
-                View::Process("Panel.User.Login");
+                $Viewbag = $Input;
+                View::Process("Panel.User.Login",$Viewbag);
             }
         }
     }
 
     public function Signup()
     {
-        View::Process("Panel.User.Signup");
+        if (isset($_POST['submit']) && isset($_POST['Username']) && isset($_POST['Password'])&& isset($_POST['Firstname']) && isset($_POST['Lastname'])&& isset($_POST['Email']))
+        {
+            $this->Data->Register();
+        }
+        else
+        {
+
+            View::Process("Panel.User.Signup");
+        }
     }
 
     public function Lock()

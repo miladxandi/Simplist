@@ -8,9 +8,6 @@
 
 namespace Model\Logic\MainLogic;
 
-
-//use MailerLiteApi\Api\Subscribers;
-//use MailerLiteDocs\cMailerLite;
 use Core\Configurations\Routing;
 use Model\Logic\DataContract;
 use Model\Repository\MainFunction\UserRepository;
@@ -19,64 +16,35 @@ use Route\Show\View;
 final class UserFunction implements DataContract
 {
     private $User;
-    //private static $Subscriber;
     private $Viewbag;
     private $ID = 0;
 
     public function __construct()
     {
         $this->User = new UserRepository();
+
         //self::$Subscriber = new cMailerLite();
     }
 
     public function Register()
     {
-        /*self::$Subscriber = new cMailerLite();
-        if (isset($_POST) && isset($_POST['submit']))
-        {
-            $response = self::$Subscriber::NewSubscriber($_POST['Email'],$_POST['Firstname'],$_POST['Lastname'],$_POST['Company']);
-            if ($response->date_created!=null && $response->date_created!="")
-            {
-                view::Process('Panel.Admin.Subs');
-            }
-            else
-            {
-                view::Process('Panel.Admin.NewSubs');
-            }
+        $Firstname = $_POST['Firstname'];
+        $Lastname = $_POST['Lastname'];
+        $Username = $_POST['Username'];
+        $Email = $_POST['Email'];
+        $Password = $_POST['Password'];
+        $Insert = $this->User->Insert($Firstname,$Lastname,$Username, $Password, $Email);
+        if ($Insert== "1") {
+            setcookie("username", null, time() - 3600, "", $_SERVER['HTTP_HOST'], Routing::$SecureProtocol, true);
+            setcookie("Firstname",null,time()-3600,"",$_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
+            setcookie("LoginToken",null,time()-3600,"",$_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
+            setcookie("lcsrn_Validation",null,time()-3600,"",$_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
+            $Viewbag = ['Success' => 'Your has been created!!'];
+            View::Process("Panel.User.Signup", $Viewbag);
+        } else {
+            $Viewbag = ['Error' => 'Username or email exist!',];
+            View::Process("Panel.User.Signup", $Viewbag);
         }
-        else
-        {
-            view::Process('Panel.Admin.NewSubs');
-        }*/
-
-        /*setcookie("Username","",Time()-36000);
-        if (isset($_POST['submit']))
-        {
-            if (empty($_POST['username']) || empty($_POST['password']))
-            {
-                $error = "Username or Password is invalid";
-            }
-            else
-            {
-
-                $Username = $_POST['username'];
-                $Password = $_POST['password'];
-                $Val = $this->User->FindByUser($Username);
-                $uResult = $this->User->Username($Username);
-                $pResult = $this->User->Password($Password);
-                if ($uResult == 1 && $pResult==1)
-                {
-                    header("Location: /Panel");
-                    setcookie("Username",$Val['Values']['user_Firstname'],0);
-
-                }
-                else
-                {
-                    $error = "Username or Password is invalid";
-                    header("Location: /Login");
-                }
-            }
-        }*/
     }
 
     public function Update($QuerryString)
@@ -162,12 +130,12 @@ final class UserFunction implements DataContract
             foreach (self::$Subscriber::Subscribers() as $Subscriber)
             {
                 $email= get_object_vars($Subscriber->fields['0']);
-                $fname = get_object_vars($Subscriber->fields['1']);
+                $Firstname = get_object_vars($Subscriber->fields['1']);
                 $lname= get_object_vars($Subscriber->fields['2']);
                 $phone= get_object_vars($Subscriber->fields['6']);
-                //var_dump($fname['value']);
+                //var_dump($Firstname['value']);
                 self::$Viewbag = ['UserInfo'=>[
-                    'fname'=> $fname['value'],
+                    'Firstname'=> $Firstname['value'],
                     'lname'=>$lname['value'],
                     'email'=>$email['value'],
                     'phone'=>$phone['value']
@@ -189,18 +157,17 @@ final class UserFunction implements DataContract
     {
 
             $Token = rand(5000, 1000000) . "-" . rand(5000, 1000000) . "-" . rand(5000, 1000000);
-            $Username = addslashes($_POST['username']);
-            $Password = addslashes($_POST['password']);
+            $Username = addslashes($_POST['Username']);
+            $Password = addslashes($_POST['Password']);
             $Login = $this->User->Login($Username, $Password, $Token);
             if ($Login['Rows'] == "11") {
-                setcookie("Username", $Login['Values']['u_Username'], time() + 60 * 60 * 24 * 365, "", $_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
-                setcookie("Firstname", $Login['Values']['u_FName'], time() + 60 * 60 * 24 * 365, "", $_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
-                setcookie("LoginToken", password_hash($Token, 1), time() + 60 * 60 * 24 * 365, "", $_SERVER['HTTP_HOST']);
+                setcookie("Username", $Login['Values']['Username'], time() + 60 * 60 * 24 * 365, "", $_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
+                setcookie("Firstname", $Login['Values']['Firstname'], time() + 60 * 60 * 24 * 365, "", $_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
+                setcookie("LoginToken", password_hash($Token, 1), time() + 60 * 60 * 24 * 365, "", $_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
                 setcookie("lcsrn_Validation", password_hash("true", 1), time() + 60 * 60 * 24 * 365, "", $_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
                 header("Location: /Panel");
             } else {
-                setcookie("lcsrn_Validation", password_hash("false", 1), time() + 60 * 60 * 24 * 365, "", $_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
-                $Viewbag = ['Error' => 'نام کاربری یا گذرواژه اشتباه است.', 'Result' => $Login['Values']];
+                $Viewbag = ['Error' => 'نام کاربری یا گذرواژه اشتباه است.'];
                 View::Process("Panel.User.Login", $Viewbag);
             }
     }
@@ -223,7 +190,7 @@ final class UserFunction implements DataContract
                     $Password = addslashes($_POST['password']);
                     $Login = $this->User->Login($Username, $Password, $Token);
                     if ($Login['Rows'] == "11") {
-                        setcookie("Username", $Login['Values']['u_Username'], time() + 60 * 60 * 24 * 365, "", $_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
+                        setcookie("Username", $Login['Values']['Username'], time() + 60 * 60 * 24 * 365, "", $_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
                         setcookie("LoginToken", password_hash($Token, 1), time() + 60 * 60 * 24 * 365, "", $_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
                         if (password_verify("false", $_COOKIE['lcsrn_Validation'])) {
                             setcookie("lcsrn_Validation", password_hash("true", 1), time() + 60 * 60 * 24 * 365, "", $_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
