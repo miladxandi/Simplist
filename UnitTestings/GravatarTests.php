@@ -15,7 +15,7 @@ class ExampleTest extends TestCase
 
 	public function test_GravatarFileExist()
 	{
-		$this->assertFileExists("../Plugins/GravatarPlugin/GravatarClass.phtml");
+		$this->assertFileExists("../Plugin/Payment/Zarinpal.phtml");
 	}
 
 }

@@ -44,7 +44,7 @@ class UserController
 
     public function Signup()
     {
-        if (isset($_POST['submit']) && isset($_POST['Username']) && isset($_POST['Password'])&& isset($_POST['Firstname']) && isset($_POST['Lastname'])&& isset($_POST['Email']))
+        if (isset($_POST['submit']) && isset($_POST['Username']) && isset($_POST['Password'])  && isset($_POST['rePassword'])&& isset($_POST['Firstname']) && isset($_POST['Lastname'])&& isset($_POST['Email']) && $_POST['Password'] == $_POST['rePassword'])
         {
             $this->Data->Register();
         }

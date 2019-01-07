@@ -26,10 +26,11 @@
   },
   "require-dev": {
     "ext-json": "*",
-    "illuminate/support": "v5.7.11",
-    "illuminate/contracts": "5.7.19",
     "doctrine/inflector": "v1.3.0",
+    "illuminate/contracts": "5.7.19",
+    "illuminate/support": "v5.7.11",
     "nesbot/carbon": "1.36.2",
+    "phpunit/phpunit": "7",
     "symfony/contracts": "v1.0.2"
   },
   "config": {
