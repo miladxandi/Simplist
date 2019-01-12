@@ -67,7 +67,7 @@ class AdminMiddleware
 		{
 			setcookie("lcsrn_Validation",password_hash("false",1),time()+60*60*24*365,"",$_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
 			setcookie("LoginToken", "Logout",Time() - 36000,"",$_SERVER['HTTP_HOST']);
-			return ['Status'=> false,'Route'=>'/Login'];
+			return ['Status'=> false,'Route'=>'/Login?Logout=True'];
 		}
 
 	}
@@ -99,7 +99,7 @@ class AdminMiddleware
 		}
 		elseif(isset($_COOKIE['Username'])==false || isset($_COOKIE['lcsrn_Validation'])==false || $this->DB->FindByUser($_COOKIE['Username'])['Rows']==0 || password_verify("true",$_COOKIE['lcsrn_Validation'])==false || password_verify($this->DB->FindByUser($_COOKIE['Username'])['Values']['LoginToken'],$_COOKIE['LoginToken'])==false)
 		{
-			return ['Status'=> false,'Route'=>'/Login'];
+			return ['Status'=> false,'Route'=>'/Login?Logout=True'];
 		}
 		else
 		{
@@ -115,7 +115,7 @@ class AdminMiddleware
 		elseif(isset($_COOKIE['Username'])==false ||isset($_COOKIE['lcsrn_Validation']) || $this->DB->FindByUser($_COOKIE['Username'])['Rows']==0 || password_verify("true",$_COOKIE['lcsrn_Validation'])==false || password_verify($this->DB->FindByUser($_COOKIE['Username'])['Values']['LoginToken'],$_COOKIE['LoginToken']))
 		{
 
-			return ['Status'=> false,'Route'=>'/Login'];
+			return ['Status'=> false,'Route'=>'/Login?Logout=True'];
 		}
 		else
 		{
@@ -130,7 +130,7 @@ class AdminMiddleware
 		}
 		elseif(isset($_COOKIE['Username'])==false ||isset($_COOKIE['lcsrn_Validation'])==false || $this->DB->FindByUser($_COOKIE['Username'])['Rows']==0 || password_verify("true",$_COOKIE['lcsrn_Validation'])==false || password_verify($this->DB->FindByUser($_COOKIE['Username'])['Values']['LoginToken'],$_COOKIE['LoginToken'])==false)
 		{
-			return ['Status'=> false,'Route'=>'/Login'];
+			return ['Status'=> false,'Route'=>'/Login?Logout=True'];
 		}
 		else
 		{

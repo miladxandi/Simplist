@@ -11,11 +11,8 @@ namespace Controller\Api;
 
 class HomeController
 {
-    public function Index($Method=null)
+    public function Index($QueryString)
     {
-        foreach ($_REQUEST as $Key => $Req)
-        {
-            echo  $Key.": ".$Req."\n\n";
-        }
+        echo $QueryString;
     }
 }
