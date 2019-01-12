@@ -59,7 +59,9 @@ Every new route should exactly create from this template:
  'target'=>'Main.Home.Aboutus',
  'gverb'=> 'GET',
  'pverb'=> 'POST',
- 'middleware'=>'Main.Home.Aboutus' ],
+ 'middleware'=>'Main.Home.Aboutus'
+ 'important'=>false 
+ ],
 ```
 Let me describe it line by line:
 
@@ -76,7 +78,7 @@ The given `Querry String` or Database values should insert into an array with `$
 You can send them into your web page by this code:
 `View::Process("Main.Home.Post",$Viewbag);`
 It\`s now accessible from the requested "View" file in "public_html/View/...".
-Instead of writing your logic codes into the Controllers, we encourage you to put them in the "Logics" folder in the Model folder.
+Instead of writing your logic codes into the Controllers, we encourage you to put them in the "Logic" folder in the Model folder.
 There are some great Contracts in this folder to help you develop your business better than ever.
 
 Note: Controllers and Middlewares have to create with exactly `Controller.phtml` or `Middleware.phtml` extensions, but should be written here without these extensions.
@@ -95,6 +97,68 @@ It can use to check security cookies or website language options and etc.
 Every Middleware should return `true` in its "Status" key to pass its examination.
 Middlewares also can process on a `Querry String` by getting it, in their function parameters.
 Just like Controllers, we need their pure name without the "Middleware" word.
+
+ ```'important'=>false ```
+>As you read before, our system is not case sensitive by default, but sometimes you need to process on a case sensitive url to validate some tokens and sensitive data or any other reason.
+you can change this rule of our Routing system by using  ```'important'=>true ``` or turn it off by  ```'important'=>false ```.
+Note: This key in Routing array is not required.
+
+### API
+
+To define your own routes, go to this address:
+>Route/Setting/Api.phtml
+
+There is just an array returner that returns the url as an array key and configurations as its values.
+Every new route should exactly create from this template:
+```
+'/api' => [
+    'target' => 'Api.Home.Index',
+    'allowed'=> 'get',
+    'blocked'=> 'DELETE',
+    'middleware'=>'Main.Home.Index',
+    'important'=>false
+]
+```
+Let me describe it line by line:
+
+
+`'/api' ` 
+>This is a web address for calling API and  will process the requested service by Controllers and Middlewares and is a key of an array.
+Note: Our router system is not case sensitive, but you`ve to define lowercase routes.
+
+`'target' => 'Api.Home.Index'`
+>It means the target Controller is "HomeController" in the "Api" folder of Controllers folder and after requesting this address "Index" method will be called as it wrote at the end of `'target' => 'Api.Home.Index'`
+Controller. also you can process on a `Querry String` by getting it, in its function parameters.
+You can also make some request to Database in Controller files.
+Instead of writing your logic codes into the Controllers, we encourage you to put them in the "Logic" folder in the Model folder.
+There are some great Contracts in this folder to help you develop your business better than ever.
+
+Note: Controllers and Middlewares have to create with exactly `Controller.phtml` or `Middleware.phtml` extensions, but should be written here without these extensions.
+For example, we have "HomeController" but we can access it by writing just its name without the "Controller" word: "Home"
+
+
+`'allowed'=> 'get'`  or `'blocked'=> 'DELETE' `
+>If you want to let your app work any HTTP Verb, you can define it here and separate them with a comma to let your API use this methods. For example we want our app interact with our server with `POST` and `GET` methods; so we`ve to define both of them here just like this:
+
+`'allowed'=> 'get,post'`
+
+>Then we want to restrict some HTTP verbs from request to our server, we need to write them in the `blocked` part of this section:
+
+`'blocked'=> 'DELETE'`
+
+>We can write as many as verbs we want in these to sections.
+
+`'middleware'=>'Main.Home.Aboutus'`
+>When there was no conflict with the requested URL & its defined request method, before launching Controllers, we have some middleware to do some validations.
+It can use to check security cookies or website language options and etc.
+Every Middleware should return `true` in its "Status" key to pass its examination.
+Middlewares also can process on a `Querry String` by getting it, in their function parameters.
+Just like Controllers, we need their pure name without the "Middleware" word.
+
+ ```'important'=>false ```
+>As you read before, our system is not case sensitive by default, but sometimes you need to process on a case sensitive url to validate some tokens and sensitive data or any other reason.
+you can change this rule of our Routing system by using  ```'important'=>true ``` or turn it off by  ```'important'=>false ```.
+Note: This key in Routing array is not required.
 
 ### Features
 
