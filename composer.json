@@ -4,7 +4,7 @@
   "homepage": "https://simplist.ir",
   "minimum-stability": "dev",
   "type": "project",
-  "version": "3",
+  "version": "4.0.0",
   "prefer-stable": true,
   "keywords": [
     "framework","simplist","simplist framework"
@@ -23,7 +23,9 @@
     "illuminate/contracts": "5.7.19",
     "illuminate/support": "v5.7.11",
     "nesbot/carbon": "1.36.2",
-    "symfony/contracts": "v1.0.2"
+    "symfony/contracts": "v1.0.2",
+    "ext-curl": "*",
+    "ext-json": "*"
   },
   "require-dev": {
     "ext-json": "*",
