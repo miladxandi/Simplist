@@ -5,6 +5,7 @@ namespace Route\Core;
 
 use Middleware\Important\Security;
 use Model\Repository\MainFunction\UrlRepository;
+use Route\Show\View;
 
 class Router
 {
@@ -193,7 +194,7 @@ class Router
                 }
                 else
                 {
-                    header("Location: /notfound");
+                    View::Process('Helper.Home.Error404');
                 }
             }
             else if ($Routes==1)
@@ -207,20 +208,25 @@ class Router
             }
             else
             {
-                if ($CurrentRouteVerb==$gRequestVerb && $gRequestVerb=="")
+                if ($Routes==0)
                 {
-                    header("Location: /methodnotallowed");
-                }
-                else if($CurrentRouteVerb==$pRequestVerb && $pRequestVerb=="")
-                {
-                    header("Location: /methodnotallowed");
+                    View::Process('Helper.Home.Error404');
                 }
                 else
                 {
-                    header("Location: /notfound");
-
+                    if ($CurrentRouteVerb==$gRequestVerb && $gRequestVerb=="")
+                    {
+                        header("Location: /methodnotallowed");
+                    }
+                    else if($CurrentRouteVerb==$pRequestVerb && $pRequestVerb=="")
+                    {
+                        header("Location: /methodnotallowed");
+                    }
+                    else
+                    {
+                        View::Process('Helper.Home.Error404');
+                    }
                 }
-
             }
         }
     }
@@ -265,7 +271,7 @@ class Router
         }
         else
         {
-            header("Location: /notfound");
+            return 0;
         }
     }
     public static function isApiDefined(string $FullApi)
