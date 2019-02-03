@@ -3,7 +3,7 @@ function autoload($Class)
 {
     $ClassNameSpacePath = str_replace("\\","/","$Class");
 
-	$ClassPath= "..".DIRECTORY_SEPARATOR.$ClassNameSpacePath.'.phtml';
+	$ClassPath= "..".DIRECTORY_SEPARATOR.$ClassNameSpacePath.'.php';
     if ((file_exists($ClassPath) && is_readable($ClassPath)))
     {
         include $ClassPath;

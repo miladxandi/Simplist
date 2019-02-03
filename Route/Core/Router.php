@@ -299,12 +299,12 @@ class Router
 
     public static function getRoutes()
     {
-        $Routes = include PATH . DIRECTORY_SEPARATOR . 'Setting/Routes.phtml';
+        $Routes = include PATH . DIRECTORY_SEPARATOR . 'Setting/Routes.php';
         return $Routes;
     }
     public static function getApi()
     {
-        $Routes = include PATH . DIRECTORY_SEPARATOR . 'Setting/Api.phtml';
+        $Routes = include PATH . DIRECTORY_SEPARATOR . 'Setting/Api.php';
         return $Routes;
     }
     public static function currentRequestVerb()

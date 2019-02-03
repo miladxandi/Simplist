@@ -11,7 +11,7 @@ namespace Core\Configurations;
 
 class Routing
 {
-    public static $FileExtension = ".phtml";
+    public static $FileExtension = ".php";
     public static $ViewDirectory = "../public_html/View/";
     public static $SecureProtocol = false;
 }
