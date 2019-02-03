@@ -200,11 +200,9 @@ class Router
             else if ($Routes==1)
             {
                 $Url = new UrlRepository();
-
-                foreach ($Url->FindByUrl(substr(self::getCurrentRoute()['URI'],7))['Values'] as $UrlAddress )
-                {
-                    header("Location: ".$UrlAddress['target']);
-                }
+                $Url->Counter(substr(self::getCurrentRoute()['URI'],3));
+                $UrlAddress = $Url->FindByUrl(substr(self::getCurrentRoute()['URI'],3))['Values'][0];
+                header("Location: ".$UrlAddress['target']);
             }
             else
             {
@@ -261,7 +259,7 @@ class Router
         {
             return $Routes[preg_replace('/[A-Z]/',strtolower($Route),strtolower($Route))];
         }
-        else if ($Url->FindByUrl(substr(self::getCurrentRoute()['URI'],7))['Rows']==1)
+        else if ($Url->FindByUrl(substr(self::getCurrentRoute()['URI'],3))['Rows']==1)
         {
             return 1;
         }
