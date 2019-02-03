@@ -107,16 +107,19 @@ class Router
                 if ($Api == 0)
                 {
                     http_response_code(404);
+                    header('Content-Type: application/json');
                     echo  \GuzzleHttp\json_decode(\GuzzleHttp\json_encode('{"Status":{"Code":404,"Text":"Not Found"},"Response":{}}'));
                 }
                 elseif (array_search(strtolower($CurrentApiVerb),$Blocked)==strtolower($CurrentApiVerb) || array_search(strtolower($CurrentApiVerb),$Allowed)!=strtolower($CurrentApiVerb))
                 {
                     http_response_code(405);
+                    header('Content-Type: application/json');
                     echo  \GuzzleHttp\json_decode(\GuzzleHttp\json_encode('{"Status":{"Code":405,"Text":"Method Not Allowed"},"Response":{}}'));
                 }
                 else
                 {
                     http_response_code(402);
+                    header('Content-Type: application/json');
                     echo \GuzzleHttp\json_decode(\GuzzleHttp\json_encode('{"Status":{"Code":402,"Text":"Bad request"},"Response":{}}'));
                 }
             }
