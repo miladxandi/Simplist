@@ -13,6 +13,8 @@ class HomeController
 {
     public function Index($QueryString)
     {
-        echo $QueryString;
+        http_response_code(200);
+        header('Content-Type: application/json');
+        echo \GuzzleHttp\json_decode(\GuzzleHttp\json_encode('{"Status":{"Code":200,"Text":"Success"},"Response":"'."$QueryString".'"}'));
     }
 }
