@@ -56,6 +56,13 @@ class UrlRepository extends BaseRepository
         $Result = $this->rStatement->Commander("SELECT * FROM {$this->Table}");
         return $Result->fetchAll(\PDO::FETCH_ASSOC);
     }
+    public function Counter($Url)
+    {
+
+        $Result = $this->rStatement->Commander("UPDATE {$this->Table} SET clicks=clicks+1 WHERE url='".$Url."'");
+        return ['Values'=>$Result->fetchAll(\PDO::FETCH_ASSOC),'Rows'=>$Result->rowCount()];
+
+    }
     public function StringGenerator($Url)
     {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyz';

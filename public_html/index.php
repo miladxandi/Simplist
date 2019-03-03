@@ -1,8 +1,8 @@
 <?php
 
-require '../Core/Requirement/Autoloader.phtml';
+require '../Core/Requirement/Autoloader.php';
 require '../vendor/autoload.php';
-require '../Route/Core/Router.phtml';
-require '../Route/Constant/Main.phtml';
-require '../public_html/View/Shared/Layouts.phtml';
+require '../Route/Core/Router.php';
+require '../Route/Constant/Main.php';
+require '../public_html/View/Shared/Layouts.php';
 \Route\Core\Router::Register();

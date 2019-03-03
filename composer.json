@@ -25,7 +25,8 @@
     "nesbot/carbon": "1.36.2",
     "symfony/contracts": "v1.0.2",
     "ext-curl": "*",
-    "ext-json": "*"
+    "ext-json": "*",
+    "ext-pdo": "*"
   },
   "require-dev": {
     "ext-json": "*",
