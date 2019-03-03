@@ -124,10 +124,10 @@ class Router
         else
         {
             $Routes = self::isRouteDefined($CurrentRoute);
-            $gRequestVerb = $Routes['gverb'];
-            $pRequestVerb = $Routes['pverb'];
+            $GetRequestVerb = $Routes['get'];
+            $PostRequestVerb = $Routes['post'];
             $CurrentRouteVerb = self::currentRequestVerb();
-            if (($CurrentRouteVerb==$gRequestVerb && $gRequestVerb!="")||($CurrentRouteVerb==$pRequestVerb && $pRequestVerb!=""))
+            if (($CurrentRouteVerb=='get' && $GetRequestVerb == true)||($CurrentRouteVerb == 'post' && $PostRequestVerb == true))
             {
                 list($Folder,$Controller,$Method)=explode(".",$Routes['target']);
                 $ControllerClass= self::$BaseController.$Folder."\\".$Controller."Controller";
@@ -200,11 +200,16 @@ class Router
             else if ($Routes==1)
             {
                 $Url = new UrlRepository();
-
-                foreach ($Url->FindByUrl(substr(self::getCurrentRoute()['URI'],7))['Values'] as $UrlAddress )
-                {
-                    header("Location: ".$UrlAddress['target']);
-                }
+                $Url->Counter(substr(self::getCurrentRoute()['URI'],3));
+                $UrlAddress = $Url->FindByUrl(substr(self::getCurrentRoute()['URI'],3))['Values'][0];
+                header("Location: ".$UrlAddress['target']);
+            }
+            else if ($Routes==2)
+            {
+                $Url = new UrlRepository();
+                $Url->Counter(substr(self::getCurrentRoute()['URI'],7));
+                $UrlAddress = $Url->FindByUrl(substr(self::getCurrentRoute()['URI'],7))['Values'][0];
+                header("Location: ".$UrlAddress['target']);
             }
             else
             {
@@ -214,11 +219,11 @@ class Router
                 }
                 else
                 {
-                    if ($CurrentRouteVerb==$gRequestVerb && $gRequestVerb=="")
+                    if ($CurrentRouteVerb=='get' && $GetRequestVerb == false)
                     {
                         header("Location: /methodnotallowed");
                     }
-                    else if($CurrentRouteVerb==$pRequestVerb && $pRequestVerb=="")
+                    else if($CurrentRouteVerb=='post' && $PostRequestVerb == true)
                     {
                         header("Location: /methodnotallowed");
                     }
@@ -261,9 +266,13 @@ class Router
         {
             return $Routes[preg_replace('/[A-Z]/',strtolower($Route),strtolower($Route))];
         }
-        else if ($Url->FindByUrl(substr(self::getCurrentRoute()['URI'],7))['Rows']==1)
+        else if ($Url->FindByUrl(substr(self::getCurrentRoute()['URI'],3))['Rows']==1)
         {
             return 1;
+        }
+        else if ($Url->FindByUrl(substr(self::getCurrentRoute()['URI'],7))['Rows']==1)
+        {
+            return 2;
         }
         elseif (array_key_exists($Route,$Routes) && $Routes[$Route]['important'] == true )
         {
@@ -311,6 +320,6 @@ class Router
     }
     public static function currentRequestVerb()
     {
-        return $_SERVER['REQUEST_METHOD'];
+        return strtolower($_SERVER['REQUEST_METHOD']);
     }
 }

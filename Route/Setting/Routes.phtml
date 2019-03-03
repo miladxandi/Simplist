@@ -2,154 +2,154 @@
 return[
     '/' => [
         'target' => 'Main.Home.Index',
-        'gverb'=> 'GET',
-        'pverb'=> '',
+        'get'=> true,
+        'post'=> false,
         'middleware'=>'Main.Home.Index',
         'important'=>false
     ],
     '/aboutus' => [
         'target'=>'Main.Home.Aboutus',
-        'gverb'=> 'GET',
-        'pverb'=> '',
+        'get'=> true,
+        'post'=> false,
         'middleware'=>'Main.Home.Aboutus'
 
     ],
     '/notfound' => [
         'target'=>'Helper.Error.Error404',
-        'gverb'=> 'GET',
-        'pverb'=> '',
+        'get'=> true,
+        'post'=> false,
         'middleware'=>''
     ],
     '/internalerror' => [
         'target'=>'Helper.Error.Error500',
-        'gverb'=> 'GET',
-        'pverb'=> '',
+        'get'=> true,
+        'post'=> false,
         'middleware'=>''
     ],
     '/badrequest' => [
         'target'=>'Helper.Error.Error402',
-        'gverb'=> 'GET',
-        'pverb'=> '',
+        'get'=> true,
+        'post'=> false,
         'middleware'=>''
     ],
     '/forbidden' => [
         'target'=>'Helper.Error.Error403',
-        'gverb'=> 'GET',
-        'pverb'=> '',
+        'get'=> true,
+        'post'=> false,
         'middleware'=>''
     ],
     '/methodnotallowed' => [
         'target'=>'Helper.Error.Error405',
-        'gverb'=> 'GET',
-        'pverb'=> '',
+        'get'=> true,
+        'post'=> false,
         'middleware'=>''
     ],
     '/content' => [
         'target'=>'Helper.Error.NotFound',
-        'gverb'=> 'GET',
-        'pverb'=> '',
+        'get'=> true,
+        'post'=> false,
         'middleware'=>''
     ],
     '/login' => [
         'target'=>'Panel.User.Login',
-        'gverb'=> 'GET',
-        'pverb'=> 'POST',
+        'get'=> true,
+        'post'=> true,
         'middleware'=>'Panel.Admin.Login'
     ],
     '/signup' => [
         'target'=>'Panel.User.Signup',
-        'gverb'=> 'GET',
-        'pverb'=> 'POST',
+        'get'=> true,
+        'post'=> true,
         'middleware'=>''
     ],
     '/documentation'=>[
         'target'=>'Main.Home.Documentation',
-        'gverb'=>'GET',
-        'pverb'=>'POST',
+        'get'=> true,
+        'post'=> true,
         'middleware'=>''
     ],
     '/panel'=>[
         'target'=>'Panel.Admin.Index',
-        'gverb'=>'GET',
+        'get'=> true,
         'pverb'=>'',
         'middleware'=>'Panel.Admin.Index'
     ],
     '/panel/posts/newpost'=>[
         'target'=>'Panel.Admin.NewPost',
-        'gverb'=>'GET',
-        'pverb'=>'POST',
+        'get'=> true,
+        'post'=> true,
         'middleware'=>'Panel.Admin.NewPost'
     ],
     '/panel/users'=>[
         'target'=>'Panel.Admin.Users',
-        'gverb'=>'GET',
+        'get'=> true,
         'pverb'=>'',
         'middleware'=>'Panel.Admin.Users'
     ],
     '/Test'=>[
         'target'=>'Test.Index.Call',
-        'gverb'=>'GET',
-        'pverb'=>'POST',
+        'get'=> true,
+        'post'=> true,
         'middleware'=>''
     ],
     '/Testresponse'=>[
         'target'=>'Test.Index.Response',
-        'gverb'=>'GET',
-        'pverb'=>'POST',
+        'get'=> true,
+        'post'=> true,
         'middleware'=>''
     ],
     '/Testcallback'=>[
         'target'=>'Test.Index.Callback',
-        'gverb'=>'GET',
-        'pverb'=>'POST',
+        'get'=> true,
+        'post'=> true,
         'middleware'=>''
     ],
     '/posts/'=>[
         'target'=>'Main.Home.Post',
-        'gverb'=>'GET',
+        'get'=> true,
         'pverb'=>'',
         'middleware'=>'Main.Home.Post'
     ],
     '/panel/posts'=>[
         'target'=>'Panel.Admin.Post',
-        'gverb'=>'GET',
+        'get'=> true,
         'pverb'=>'',
         'middleware'=>'Panel.Admin.Post'
     ],
     '/panel/posts/delete/'=>[
         'target'=>'Panel.Admin.PostDelete',
-        'gverb'=>'GET',
-        'pverb'=>'POST',
+        'get'=> true,
+        'post'=> true,
         'middleware'=>'Panel.Admin.PostDelete'
     ],
     '/panel/posts/update/'=>[
         'target'=>'Panel.Admin.PostUpdate',
-        'gverb'=>'GET',
-        'pverb'=>'POST',
+        'get'=> true,
+        'post'=> true,
         'middleware'=>'Panel.Admin.PostUpdate'
     ],
     '/panel/url'=>[
         'target'=>'Panel.Admin.Url',
-        'gverb'=>'GET',
-        'pverb'=>'POST',
+        'get'=> true,
+        'post'=> true,
         'middleware'=>'Panel.Admin.Post'
     ],
     '/panel/url/newurl'=>[
         'target'=>'Panel.Admin.NewUrl',
-        'gverb'=>'GET',
-        'pverb'=>'POST',
+        'get'=> true,
+        'post'=> true,
         'middleware'=>'Panel.Admin.NewPost'
     ],
     '/panel/url/delete/'=>[
         'target'=>'Panel.Admin.UrlDelete',
-        'gverb'=>'GET',
-        'pverb'=>'POST',
+        'get'=> true,
+        'post'=> true,
         'middleware'=>'Panel.Admin.PostDelete'
     ],
     '/panel/url/update/'=>[
         'target'=>'Panel.Admin.UrlUpdate',
-        'gverb'=>'GET',
-        'pverb'=>'POST',
+        'get'=> true,
+        'post'=> true,
         'middleware'=>'Panel.Admin.PostUpdate'
     ],
 ];
