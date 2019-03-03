@@ -9,9 +9,10 @@
 namespace Controller\Helper;
 
 
+use Controller\BaseController;
 use Route\Show\View;
 
-class ErrorController
+class ErrorController extends BaseController
 {
 
     public function Error404()

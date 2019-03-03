@@ -9,12 +9,10 @@
 namespace Middleware\Shared;
 
 
-class LanguageMiddleware
-{
-    public function __construct()
-    {
+use Middleware\BaseMiddleware;
 
-    }
+class LanguageMiddleware extends BaseMiddleware
+{
     public function Bootstrap()
     {
         if (isset($_COOKIE['Language']) && $_COOKIE['Language'] != "") {

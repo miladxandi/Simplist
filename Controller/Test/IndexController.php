@@ -9,9 +9,10 @@
 namespace Controller\Test;
 
 
+use Controller\BaseController;
 use Route\Show\View;
 
-class IndexController
+class IndexController extends BaseController
 {
     public function Call()
     {

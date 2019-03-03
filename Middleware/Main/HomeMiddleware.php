@@ -8,15 +8,12 @@
 
 namespace Middleware\Main;
 
+use Middleware\BaseMiddleware;
 use Middleware\Important\Security;
 
-class HomeMiddleware
+class HomeMiddleware extends BaseMiddleware
 {
     protected $Security;
-    public function __construct()
-    {
-        $this->Security= new Security();
-    }
 
     public function Index()
     {

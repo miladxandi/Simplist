@@ -1,6 +1,6 @@
 <?php
 
-namespace Plugins\Payment;
+namespace Plugin\Payment;
 
 class Zarinpal
 {

@@ -9,12 +9,12 @@
 namespace Controller\Api;
 
 
-class HomeController
+use Controller\BaseController;
+
+class HomeController extends BaseController
 {
     public function Index($QueryString)
     {
-        http_response_code(200);
-        header('Content-Type: application/json');
-        echo \GuzzleHttp\json_decode(\GuzzleHttp\json_encode('{"Status":{"Code":200,"Text":"Success"},"Response":"'."$QueryString".'"}'));
+        $this->MakeJson('{"Status":{"Code":200,"Text":"Success"},"Response":"'."$QueryString".'"}');
     }
 }

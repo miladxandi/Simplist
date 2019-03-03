@@ -242,7 +242,6 @@ class Router
 
     public static function getCurrentRoute()
     {
-        $WithoutSlashes= substr($_SERVER['REQUEST_URI'], 1);
         $QueryString=null;
         $URI=$_SERVER['REQUEST_URI'];
         $QueryString = null;

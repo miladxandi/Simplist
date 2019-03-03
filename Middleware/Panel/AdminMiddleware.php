@@ -10,27 +10,33 @@ namespace Middleware\Panel;
 
 
 use Core\Configurations\Routing;
+use Middleware\BaseMiddleware;
 use Middleware\Important\Security;
 use Model\Repository\MainFunction\UserRepository;
 use Route\Show\View;
 
-class AdminMiddleware
+class AdminMiddleware extends BaseMiddleware
 {
-	public $Db;
+	public $DB;
 	public function __construct()
 	{
+	    parent::__construct();
 		$this->DB = new UserRepository();
-		$this->Security= new Security();
-
 	}
+
+
 	public function Index()
 	{
 		return $this->PanelCookieS();
 	}
+
+
 	public function Profile()
 	{
 		return $this->PanelCookieS();
 	}
+
+
 	public function Login()
 	{
 
@@ -54,6 +60,8 @@ class AdminMiddleware
         }
 
 	}
+
+
 	public function Lock()
 	{
 
@@ -71,26 +79,38 @@ class AdminMiddleware
 		}
 
 	}
+
+
 	public function NewPost()
 	{
 		return $this->EditorCookieS();
 	}
+
+
 	public function Post()
 	{
 		return $this->EditorCookieS();
 	}
+
+
 	public function Users()
 	{
 		return $this->AdminCookieS();
 	}
+
+
 	public function PostDelete()
 	{
 		return $this->EditorCookieS();
 	}
+
+
 	public function PostUpdate()
 	{
 		return $this->EditorCookieS();
 	}
+
+
 	private function PanelCookieS()
 	{
 		if(isset($_COOKIE['Username']) && isset($_COOKIE['lcsrn_Validation']) && $this->DB->FindByUser($_COOKIE['Username'])['Rows']==1 && password_verify("true",$_COOKIE['lcsrn_Validation']) && password_verify($this->DB->FindByUser($_COOKIE['Username'])['Values']['LoginToken'],$_COOKIE['LoginToken']))
@@ -106,6 +126,8 @@ class AdminMiddleware
 			return ['Status'=> false,'Route'=>'/Forbidden'];
 		}
 	}
+
+
 	private function EditorCookieS()
 	{
 		if(isset($_COOKIE['Username'])==true && isset($_COOKIE['lcsrn_Validation'])==true && $this->DB->FindByUser($_COOKIE['Username'])['Rows']==1 && ($this->DB->FindByUser($_COOKIE['Username'])['Values']['Type']=="Admin" || $this->DB->FindByUser($_COOKIE['Username'])['Values']['Type']=="Editor") && password_verify("true",$_COOKIE['lcsrn_Validation']) && password_verify($this->DB->FindByUser($_COOKIE['Username'])['Values']['LoginToken'],$_COOKIE['LoginToken']))
@@ -122,6 +144,8 @@ class AdminMiddleware
 			return ['Status'=> false,'Route'=>'/Forbidden'];
 		}
 	}
+
+
 	private function AdminCookieS()
 	{
 		if(isset($_COOKIE['Username'])==true && isset($_COOKIE['lcsrn_Validation'])==true && $this->DB->FindByUser($_COOKIE['Username'])['Rows']==1 && $this->DB->FindByUser($_COOKIE['Username'])['Values']['Type']=="Admin" && password_verify("true",$_COOKIE['lcsrn_Validation'])==false && password_verify($this->DB->FindByUser($_COOKIE['Username'])['Values']['LoginToken'],$_COOKIE['LoginToken']))

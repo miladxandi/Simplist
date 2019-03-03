@@ -4,24 +4,24 @@
 namespace Controller\Panel;
 
 
+use Controller\BaseController;
 use Core\Configurations\Routing;
 use Model\Logic\MainLogic\UserFunction;
 use Route\Show\View;
 
-class UserController
+class UserController extends BaseController
 {
-    private $Data;
 
     public function __construct()
     {
-        $this->Data = new UserFunction();
+        $this->Function = new UserFunction();
 
     }
 
     public function Login($Input = null)
     {
         if (isset($_POST['submit']) && isset($_POST['Username']) && isset($_POST['Password'])) {
-            $this->Data->Login();
+            $this->Function->Login();
         } else {
             if (isset($_GET['Logout']) && strtolower($_GET['Logout']) == strtolower("True")) {
                 if (isset($_COOKIE['Username'])) {
@@ -46,7 +46,7 @@ class UserController
     {
         if (isset($_POST['submit']) && isset($_POST['Username']) && isset($_POST['Password'])  && isset($_POST['rePassword'])&& isset($_POST['Firstname']) && isset($_POST['Lastname'])&& isset($_POST['Email']) && $_POST['Password'] == $_POST['rePassword'])
         {
-            $this->Data->Register();
+            $this->Function->Register();
         }
         else
         {
@@ -57,7 +57,7 @@ class UserController
 
     public function Lock()
     {
-        $this->Data->LockScreen();
+        $this->Function->LockScreen();
         View::Process("Panel.User.Lockscreen");
     }
 }

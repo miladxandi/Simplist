@@ -3,25 +3,24 @@
 namespace Controller\Main;
 
 
-use http\QueryString;
+use Controller\BaseController;
 use Model\Logic\MainLogic\PostFunction;
 use Model\Repository\MainFunction\PostRepository;
 use Route\Show\View;
 
-class HomeController
+class HomeController extends BaseController
 {
-	private $Username;
 
 	public function __construct()
 	{
-		$this->Posts = new PostFunction();
-		$this->PostCon = new PostRepository();
+		$this->Function = new PostFunction();
+		$this->Repository = new PostRepository();
 	}
 
 	public function Index()
 	{
 		//$Viewbag="SIMPLIST";
-        $Viewbag = ['PostInfo'=>$this->Posts->Show()];
+        $Viewbag = ['PostInfo'=>$this->Function->Show()];
 		View::Process("Main.Home.Index",$Viewbag);
 	}
 
@@ -31,7 +30,7 @@ class HomeController
 	}
     public function Post(string $QuerryString)
     {
-        $Viewbag = ['PostInfo'=>$this->PostCon->GetPostByUrl(substr($QuerryString,16))];
+        $Viewbag = ['PostInfo'=>$this->Repository->GetPostByUrl(substr($QuerryString,16))];
         View::Process("Main.Home.Post",$Viewbag);
     }
 }
