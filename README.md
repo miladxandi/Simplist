@@ -11,7 +11,7 @@ We strongly suggest our framework for personal blogs, news agencies & human reso
 
 
 
-Just like any other PHP framework we started this project based on MVC architecture with the featured services like `$Add->Loader` , `gVerb` | `pVerb` , SharedLayouts, Middlewares & pre-defined security.
+Just like any other PHP framework we started this project based on MVC architecture with the featured services like `$Add->Loader` , `REST API` , `SharedLayouts` , `Middlewares` & pre-defined security concepts.
 Everything in Simplist is as simple as installing it on your server!
 
 # Documentation
@@ -57,8 +57,8 @@ Every new route should exactly create from this template:
 ```
 '/aboutus' => [
  'target'=>'Main.Home.Aboutus',
- 'gverb'=> 'GET',
- 'pverb'=> 'POST',
+ 'get'=> true,
+ 'post'=> false,
  'middleware'=>'Main.Home.Aboutus'
  'important'=>false 
  ],
@@ -85,9 +85,9 @@ Note: Controllers and Middlewares have to create with exactly `Controller.phtml`
 For example, we have "HomeController" but we can access it by writing just its name without the "Controller" word: "Home"
 
 
-`'gverb'=> 'GET' `  or `'pverb'=> 'POST' `
+`'get'=> true `  or `'post'=> false `
 >These are the general server request methods that we can define here.
-if you want to deny any post request, you just need to delete the `POST` word and leave it empty.
+if you want to deny any post request, you just need to change the `post` value to `false`.
 Then you can see every request with the `POST` request method will show you a "Request Method Not Allowed" error.
 
 
