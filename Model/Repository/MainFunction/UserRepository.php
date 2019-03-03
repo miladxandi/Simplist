@@ -70,13 +70,6 @@ class UserRepository extends BaseRepository
 		$Result->fetchAll(\PDO::FETCH_ASSOC);
 		return $Result->rowCount();
 	}
-
-	public function Insert($Firstname,$Lastname,$Username,$Password,$Email)
-	{
-		$Result = $this->rStatement->Commander("INSERT INTO {$this->Table} (Firstname, Lastname, Username, Password,Email) VALUES ('".$Firstname."','".$Lastname."','".$Username."','".password_hash($Password,1)."','".$Email."')");
-		$Result->fetch(\PDO::FETCH_COLUMN);
-		return $Result->rowCount();
-	}
 	public function Update($Firstname,$Lastname,$Username,$Password,$Email,$Image)
 	{
 		$Result = $this->rStatement->Commander("UPDATE {$this->Table} SET Firstname='".$Firstname."',Lastname='".$Lastname."',Password='".password_hash($Password,1)."',Email='".$Email."',Image='".$Image."' WHERE {$this->Name}={$Username}");

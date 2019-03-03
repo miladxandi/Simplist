@@ -29,7 +29,7 @@ final class UrlFunction implements DataContract
 
 			$Url = $_POST['Url'];
 			$Target = $_POST['Target'];
-			$Insert = $this->Url->Insert($Url,$Target);
+			$Insert = $this->Url->Insert(['url'=>$Url,'target'=>$Target]);
 			if ($Insert == 1) {
 				header("Location: /Panel/NewUrl");
 			} else {

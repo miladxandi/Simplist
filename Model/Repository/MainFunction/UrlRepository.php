@@ -21,13 +21,26 @@ class UrlRepository extends BaseRepository
         $this->Table = "urls";
         $this->PrimaryKey = "Id";
     }
-    public function Insert($Url,$Target)
+    public function Insert($KeyValues)
     {
-        self::StringGenerator($Url);
-        $Result = $this->rStatement->Commander("INSERT INTO {$this->Table} (url, target) VALUES ('".$this->String."','".$Target."')");
+        foreach ($KeyValues as $Key => $Value)
+        {
+            $this->Keys=$this->Keys.$Key.',';
+            if ($Key == 'target' && $Value == null)
+                $this->Values=$this->Values.$this->StringGenerator($Value).',';
+            else
+                $this->Values=$this->Values.'"'.$Value.'",';
+
+        }
+        $this->Keys='('.substr($this->Keys,0,strlen($this->Keys)-1).')';
+        $this->Values='('.substr($this->Values,0,strlen($this->Values)-1).')';
+        var_dump($this->Keys);
+        var_dump($this->Values);
+        $Result = $this->rStatement->Commander("INSERT INTO {$this->Table} {$this->Keys} VALUES {$this->Values}");
         $Result->fetch(\PDO::FETCH_COLUMN);
         return $Result->rowCount();
     }
+
     public function Update($Id,$Url,$Target)
     {
 

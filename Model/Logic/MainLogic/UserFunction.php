@@ -22,8 +22,6 @@ final class UserFunction implements DataContract
     public function __construct()
     {
         $this->User = new UserRepository();
-
-        //self::$Subscriber = new cMailerLite();
     }
 
     public function Register()
@@ -32,9 +30,9 @@ final class UserFunction implements DataContract
         $Lastname = $_POST['Lastname'];
         $Username = $_POST['Username'];
         $Email = $_POST['Email'];
-        $Password = $_POST['Password'];
-        $Insert = $this->User->Insert($Firstname,$Lastname,$Username, $Password, $Email);
-        if ($Insert== "1") {
+        $Password = password_hash( $_POST['Password'],1);
+        $Insert = $this->User->Insert(['Firstname'=>$Firstname, 'Lastname'=>$Lastname, 'Username'=>$Username,'Email'=>$Email, 'Password'=>$Password]);
+        if ($Insert== 1) {
             setcookie("username", null, time() - 3600, "", $_SERVER['HTTP_HOST'], Routing::$SecureProtocol, true);
             setcookie("Firstname",null,time()-3600,"",$_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);
             setcookie("LoginToken",null,time()-3600,"",$_SERVER['HTTP_HOST'],Routing::$SecureProtocol,true);

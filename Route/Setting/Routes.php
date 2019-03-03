@@ -71,7 +71,7 @@ return[
     '/panel'=>[
         'target'=>'Panel.Admin.Index',
         'get'=> true,
-        'pverb'=>'',
+        'post'=> false,
         'middleware'=>'Panel.Admin.Index'
     ],
     '/panel/posts/newpost'=>[
@@ -83,7 +83,7 @@ return[
     '/panel/users'=>[
         'target'=>'Panel.Admin.Users',
         'get'=> true,
-        'pverb'=>'',
+        'post'=> false,
         'middleware'=>'Panel.Admin.Users'
     ],
     '/Test'=>[
@@ -107,13 +107,13 @@ return[
     '/posts/'=>[
         'target'=>'Main.Home.Post',
         'get'=> true,
-        'pverb'=>'',
+        'post'=> false,
         'middleware'=>'Main.Home.Post'
     ],
     '/panel/posts'=>[
         'target'=>'Panel.Admin.Post',
         'get'=> true,
-        'pverb'=>'',
+        'post'=> false,
         'middleware'=>'Panel.Admin.Post'
     ],
     '/panel/posts/delete/'=>[

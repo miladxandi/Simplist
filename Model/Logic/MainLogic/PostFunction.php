@@ -44,7 +44,7 @@ final class PostFunction implements DataContract
 				if (file_exists($TargetFile)) {
 					$NewTargetFile = $DefaultDirectory . rand(0, 500000) . $FileType;
 					if (move_uploaded_file($_FILES["PostImage"]['tmp_name'], $NewTargetFile)) {
-						$Insert = $this->Post->Insert($Name, $Url, $Summary, $Content, $Author, $Date, $NewTargetFile);
+                        $Insert = $this->Post->Insert(['Post_Name'=>$Name, 'Post_Url'=>$Url, 'Post_Summary'=>$Summary, 'Post_Content'=>$Content,'Post_Author'=>$Author,'Post_Date'=>$Date,'Post_Image'=>$NewTargetFile]);
 						if ($Insert == 1) {
 							header("Location: /Panel/Posts");
 						} else {
@@ -59,8 +59,8 @@ final class PostFunction implements DataContract
 					}
 				} else {
 					if (move_uploaded_file($_FILES["PostImage"]['tmp_name'], $TargetFile)) {
-						$Insert = $this->Post->Insert($Name, $Url, $Summary, $Content, $Author, $Date, $TargetFile);
-						if ($Insert == 1) {
+                        $Insert = $this->Post->Insert(['Post_Name'=>$Name, 'Post_Url'=>$Url, 'Post_Summary'=>$Summary, 'Post_Content'=>$Content,'Post_Author'=>$Author,'Post_Date'=>$Date,'Post_Image'=>$TargetFile]);
+                        if ($Insert == 1) {
 							header("Location: /Panel/Posts");
 						} else {
 							header("Location: /Panel/NewPost");
@@ -74,8 +74,8 @@ final class PostFunction implements DataContract
 					}
 				}
 			} else {
-				$Insert = $this->Post->Insert($Name, $Url, $Summary, $Content, $Author, $Date, "Content/Shared/SimplistV2.png");
-				if ($Insert == 1) {
+                $Insert = $this->Post->Insert(['Post_Name'=>$Name, 'Post_Url'=>$Url, 'Post_Summary'=>$Summary, 'Post_Content'=>$Content,'Post_Author'=>$Author,'Post_Date'=>$Date,'Post_Image'=>"Content/Shared/SimplistV2.png"]);
+                if ($Insert == 1) {
 					header("Location: /Panel/Posts");
 				} else {
 					header("Location: /Panel/NewPost");

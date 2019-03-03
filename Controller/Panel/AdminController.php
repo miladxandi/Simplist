@@ -12,7 +12,7 @@ use Route\Show\View;
 
 class AdminController extends BaseController
 {
-    private $Post,$User,$Repository,$Url;
+    private $Post,$User,$Url;
     public function __construct()
     {
         $this->User= new UserFunction();
