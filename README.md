@@ -5,8 +5,8 @@
 # Simplist  ![eastCloud User Download](http://eastcloud.ir/Content/Shared/Official-Badges.png) ![eastCloud User Download](http://eastcloud.ir/Content/Shared/Users-Badges.png)
 
 
-## Simplist is a mini framework based on PHP language for small projects.
-We strongly suggest our framework for personal blogs, news agencies & human resource management.
+## Simplist is a superfast micro-framework based on PHP
+We strongly suggest our framework for personal blogs, news agencies & REST API development.
 
 
 

@@ -8,6 +8,6 @@ class Jsoner
     {
         http_response_code($Code);
         header('Content-Type: application/json');
-        echo \GuzzleHttp\json_decode(\GuzzleHttp\json_encode($Data));
+        echo \GuzzleHttp\json_encode($Data);
     }
 }
