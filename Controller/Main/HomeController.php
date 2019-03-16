@@ -19,7 +19,6 @@ class HomeController extends BaseController
 
 	public function Index()
 	{
-		//$Viewbag="SIMPLIST";
         $Viewbag = ['PostInfo'=>$this->Function->Show()];
 		View::Process("Main.Home.Index",$Viewbag);
 	}

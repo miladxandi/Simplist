@@ -18,15 +18,16 @@
   ],
   "require": {
     "php": "^7.0",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "ext-pdo": "*",
     "doctrine/inflector": "v1.3.0",
     "guzzlehttp/guzzle": "6.3.3",
     "illuminate/contracts": "5.7.19",
     "illuminate/support": "v5.7.11",
+    "morilog/jalali": "3.*",
     "nesbot/carbon": "1.36.2",
-    "symfony/contracts": "v1.0.2",
-    "ext-curl": "*",
-    "ext-json": "*",
-    "ext-pdo": "*"
+    "symfony/contracts": "v1.0.2"
   },
   "require-dev": {
     "ext-json": "*",

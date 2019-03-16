@@ -6,6 +6,13 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Assert\\Assert' => $vendorDir . '/beberlei/assert/lib/Assert/Assert.php',
+    'Assert\\Assertion' => $vendorDir . '/beberlei/assert/lib/Assert/Assertion.php',
+    'Assert\\AssertionChain' => $vendorDir . '/beberlei/assert/lib/Assert/AssertionChain.php',
+    'Assert\\AssertionFailedException' => $vendorDir . '/beberlei/assert/lib/Assert/AssertionFailedException.php',
+    'Assert\\InvalidArgumentException' => $vendorDir . '/beberlei/assert/lib/Assert/InvalidArgumentException.php',
+    'Assert\\LazyAssertion' => $vendorDir . '/beberlei/assert/lib/Assert/LazyAssertion.php',
+    'Assert\\LazyAssertionException' => $vendorDir . '/beberlei/assert/lib/Assert/LazyAssertionException.php',
     'Carbon\\Carbon' => $vendorDir . '/nesbot/carbon/src/Carbon/Carbon.php',
     'Carbon\\CarbonInterval' => $vendorDir . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
     'Carbon\\CarbonPeriod' => $vendorDir . '/nesbot/carbon/src/Carbon/CarbonPeriod.php',
@@ -268,6 +275,8 @@ return array(
     'Illuminate\\Support\\Traits\\Macroable' => $vendorDir . '/illuminate/support/Traits/Macroable.php',
     'Illuminate\\Support\\ViewErrorBag' => $vendorDir . '/illuminate/support/ViewErrorBag.php',
     'JsonSerializable' => $vendorDir . '/nesbot/carbon/src/JsonSerializable.php',
+    'Morilog\\Jalali\\CalendarUtils' => $vendorDir . '/morilog/jalali/src/CalendarUtils.php',
+    'Morilog\\Jalali\\Jalalian' => $vendorDir . '/morilog/jalali/src/Jalalian.php',
     'PHPUnit\\Exception' => $vendorDir . '/phpunit/phpunit/src/Exception.php',
     'PHPUnit\\Framework\\Assert' => $vendorDir . '/phpunit/phpunit/src/Framework/Assert.php',
     'PHPUnit\\Framework\\AssertionFailedError' => $vendorDir . '/phpunit/phpunit/src/Framework/AssertionFailedError.php',

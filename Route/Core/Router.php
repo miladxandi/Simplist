@@ -6,6 +6,7 @@ namespace Route\Core;
 use Middleware\Important\Security;
 use Model\Repository\MainFunction\UrlRepository;
 use Route\Show\View;
+use Plugin\Utility\Jsoner;
 
 class Router
 {
@@ -99,28 +100,23 @@ class Router
                 }
                 else
                 {
-                    echo \GuzzleHttp\json_decode('{"Status":{"Code":402,"Text":"Not Found"},"Response":{}}');
+                    Jsoner::Json(["Code"=>404,"Text"=>"Not Found"],404);
                 }
             }
             else
             {
                 if ($Api == 0)
                 {
-                    http_response_code(404);
-                    header('Content-Type: application/json');
-                    echo  \GuzzleHttp\json_decode(\GuzzleHttp\json_encode('{"Status":{"Code":404,"Text":"Not Found"},"Response":{}}'));
+                    Jsoner::Json(["Code"=>404,"Text"=>"Not Found"],404);
                 }
                 elseif (array_search(strtolower($CurrentApiVerb),$Blocked)==strtolower($CurrentApiVerb) || array_search(strtolower($CurrentApiVerb),$Allowed)!=strtolower($CurrentApiVerb))
                 {
-                    http_response_code(405);
-                    header('Content-Type: application/json');
-                    echo  \GuzzleHttp\json_decode(\GuzzleHttp\json_encode('{"Status":{"Code":405,"Text":"Method Not Allowed"},"Response":{}}'));
+                    Jsoner::Json(["Code"=>405,"Text"=>"Method Not Allowed"],404);
+
                 }
                 else
                 {
-                    http_response_code(402);
-                    header('Content-Type: application/json');
-                    echo \GuzzleHttp\json_decode(\GuzzleHttp\json_encode('{"Status":{"Code":402,"Text":"Bad request"},"Response":{}}'));
+                    Jsoner::Json(["Code"=>402,"Text"=>"Bad request"],402);
                 }
             }
         }
@@ -307,7 +303,7 @@ class Router
         }
         else
         {
-            echo 0;
+            return 0;
         }
     }
 

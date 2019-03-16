@@ -14,7 +14,7 @@ use Plugin\Utility\Jsoner;
 class BaseController
 {
     protected $Repository,$Function;
-    public function MakeJson(string $Data)
+    public function MakeJson($Data)
     {
         Jsoner::Json($Data);
     }
