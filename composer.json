@@ -4,7 +4,7 @@
   "homepage": "https://simplist.ir",
   "minimum-stability": "dev",
   "type": "project",
-  "version": "3.9.4.1",
+  "version": "4.0.0.0",
   "prefer-stable": true,
   "keywords": [
     "framework","simplist","simplist framework"
@@ -16,6 +16,25 @@
       "email": "stun.m_zandizand@riau.ac.ir"
     }
   ],
+  "autoload": {
+    "classmap": [
+      "Controller",
+      "Core",
+      "Middleware",
+      "Plugin",
+      "Plugin",
+      "Route",
+      "Model"
+    ]
+  },
+  "scripts": {
+    "post-root-package-install": [
+      "Core\\Watcher\\Messages::rootPackageInstall"
+    ],
+    "post-create-project-cmd": [
+      "Core\\Watcher\\Messages::createProject"
+    ]
+  },
   "require": {
     "php": "^7.0",
     "ext-curl": "*",
