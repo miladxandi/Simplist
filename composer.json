@@ -4,7 +4,7 @@
   "homepage": "https://simplist.ir",
   "minimum-stability": "dev",
   "type": "project",
-  "version": "4.0.0.0",
+  "version": "4.0.0.1",
   "prefer-stable": true,
   "keywords": [
     "framework","simplist","simplist framework"

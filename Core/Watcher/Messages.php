@@ -13,12 +13,12 @@ use Composer\Installer\PackageEvent;
 
 class Messages
 {
-    public static function rootPackageInstall(Event $event)
-    {
-        echo "Build something awesome";
-    }
     public static function createProject(Event $event)
     {
-        echo "Creating a Simplist project, The most simplest framework for PHP!";
+        echo "\nBuild something awesome\n";
+    }
+    public static function rootPackageInstall(Event $event)
+    {
+        echo "\nCreating a Simplist project, The most simplest framework for PHP!\n";
     }
 }
