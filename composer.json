@@ -1,0 +1,65 @@
+{
+  "name": "miladxandi/simplist",
+  "description": "A project for creating online blogs in the most easiest way. Every CMS at the first step of its development helped the development process and make it faster to easier. They also made some standards in their framework to improve development and usability, But Fate went with the entry of unprofessional people into this arena The software development industry faces many challenges and sabotage by non-developers, with the Simplist we plan to personalize the service for developers.",
+  "homepage": "https://simplist.ir",
+  "minimum-stability": "dev",
+  "type": "project",
+  "version": "4.0.0.1",
+  "prefer-stable": true,
+  "keywords": [
+    "framework","simplist","simplist framework"
+  ],
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "Milad Xandi",
+      "email": "stun.m_zandizand@riau.ac.ir"
+    }
+  ],
+  "autoload": {
+    "classmap": [
+      "Controller",
+      "Core",
+      "Middleware",
+      "Plugin",
+      "Plugin",
+      "Route",
+      "Model"
+    ]
+  },
+  "scripts": {
+    "post-root-package-install": [
+      "Core\\Watcher\\Messages::rootPackageInstall"
+    ],
+    "post-create-project-cmd": [
+      "Core\\Watcher\\Messages::createProject"
+    ]
+  },
+  "require": {
+    "php": "^7.0",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "ext-pdo": "*",
+    "doctrine/inflector": "v1.3.0",
+    "guzzlehttp/guzzle": "6.3.3",
+    "illuminate/contracts": "5.7.19",
+    "illuminate/support": "v5.7.11",
+    "morilog/jalali": "3.*",
+    "nesbot/carbon": "1.36.2",
+    "symfony/contracts": "v1.0.2"
+  },
+  "require-dev": {
+    "ext-json": "*",
+    "doctrine/inflector": "v1.3.0",
+    "illuminate/contracts": "5.7.19",
+    "illuminate/support": "v5.7.11",
+    "nesbot/carbon": "1.36.2",
+    "phpunit/phpunit": "7",
+    "symfony/contracts": "v1.0.2"
+  },
+  "config": {
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "optimize-autoloader": true
+  }
+}

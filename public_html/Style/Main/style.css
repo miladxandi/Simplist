@@ -1,0 +1,22 @@
+@font-face
+{
+    font-family: "Yekan";
+    src: url('../../Fonts/Shared/Yekan.eot');
+    src: url('../../Fonts/Shared/Yekan.eot?iefix') format('embeded-opentype'),
+    url('../../Fonts/Shared/Yekan.woff') format('woff'),
+    url('../../Fonts/Shared/Yekan.ttf') format('truetype'),
+    url('../../Fonts/Shared/Yekan.svg') format('svg');
+}
+body,h1,h2,h3,h4,h5,h6{
+    font-family: Yekan,"Calibri Light";
+}
+.Jobs{
+    -moz-box-shadow:    3px 3px 5px 6px #ccc;
+    -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+    box-shadow:         3px 3px 5px 6px #ccc;
+    padding: 10px;
+    margin: 10px;
+}
+.Fonts{
+    font-family: Yekan,"Calibri Light";
+}

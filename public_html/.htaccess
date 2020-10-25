@@ -1,0 +1,21 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?path=$1 [NC,L,QSA]
+ Options -Indexes
+<IfModule mod_rewrite.c>
+  RewriteEngine on
+  RewriteCond %{REQUEST_URI} "/Controller/" [OR]
+  ##RewriteCond %{REQUEST_URI} "/Script/" [OR]
+  ##RewriteCond %{REQUEST_URI} "/Content/" [OR]
+  RewriteCond %{REQUEST_URI} "/Model/" [OR]
+  ##RewriteCond %{REQUEST_URI} "/Style/" [OR]
+  RewriteCond %{REQUEST_URI} "/vendor/" [OR]
+  RewriteCond %{REQUEST_URI} "/Route/" [OR]
+  RewriteCond %{REQUEST_URI} "/Core/"
+  RewriteRule ^(.*)$ /index.php?path=$1 [NC,L,QSA]
+  <IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteCond %{HTTP_REFERER} !^$
+    RewriteCond %{HTTP_REFERER} !^http://(www\.)?simplist\.ir [NC]
+    RewriteRule \.(png¦jpg¦css¦js¦txt)$ - [F,NC]

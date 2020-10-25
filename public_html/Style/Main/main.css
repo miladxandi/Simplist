@@ -1,0 +1,82 @@
+body{
+
+}
+a.PurpStyle {
+    color: #9756B3;
+    text-decoration: none;
+}
+a.PurpStyle:visited {
+    color: #9756B3;
+    text-decoration: none;
+}
+a.PurpStyle:active {
+    color: #9756B3;
+    text-decoration: none;
+}
+a.PurpStyle:hover {
+    color: #653779;
+    text-decoration: none;
+}
+#PurpText {
+    background-color: transparent;
+    background-image: none;
+    border: 0px #fff solid;
+    margin: 0;
+    padding: 0;
+    text-align: Center;
+}
+#PurpText div {
+    text-align: Center;
+}
+#PurpText:hover {
+    -moz-transition: color 500ms linear 0ms;
+    -webkit-transition: color 500ms linear 0ms;
+    color: #653779;
+    transition: color 500ms linear 0ms;
+}
+#PurpText {
+    -moz-transition: all 500ms linear 0ms;
+    -webkit-transition: all 500ms linear 0ms;
+    transition: all 500ms linear 0ms;
+}
+
+.MainText
+{
+    text-align: center;
+    vertical-align: middle;
+    font-size: 6.5vw;
+    font-family: "Calibri Light";
+}
+.SubText
+{
+    text-align: center;
+    vertical-align: middle;
+    font-size: 20px;
+    font-family: "Calibri Light";
+}
+.Code
+{
+    color: #9756B3;
+}
+.FitLayout
+{
+    margin-left: 100px;
+    margin-right: 100px;
+}
+.PostTitle{
+    font-family: IRRoya;
+    font-size: 40px;
+}
+.PostContent{
+    font-family: IRRoya;
+    font-size: 30px;
+    white-space: pre;
+    direction: rtl;
+    text-align: right;
+}
+.PostAuthor{
+    font-family: IRRoya;
+    font-size: 15px;
+    direction: rtl;
+    text-align: right;
+}
