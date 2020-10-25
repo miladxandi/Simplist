@@ -19,4 +19,5 @@ require '../View/Shared/Layouts.php';
 
 
 
+
 \Route\Core\Router::Register();
