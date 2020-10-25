@@ -25,9 +25,9 @@
      طراحی وب بدون دانش برنامه نویسی">
     <meta content="origin-when-cross-origin" name="referrer">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
-    <link rel="shortcut icon" type="image/x-icon" href="../../../Content/Shared/Logo.png" id="favicon">
-    <link rel="apple-touch-icon" type="image/x-icon" href="../../../Content/Shared/Logo.png">
-    <link rel="apple-touch-icon" type="image/x-icon" href="../../../Content/Shared/Logo.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../../../public_html/Content/Shared/Logo.png" id="favicon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="../../../public_html/Content/Shared/Logo.png">
+    <link rel="apple-touch-icon" type="image/x-icon" href="../../../public_html/Content/Shared/Logo.png">
     <?php
     $Add = new Core\Requirement\oLoad("../../..","Style/Main","Script/Main","Content/Main");
     $Add->Loader("css","bootstrap");
@@ -45,7 +45,7 @@
 
         .parallax {
             /* The image used */
-            background-image: url('../../../Content/Main/Simplist_Version3.jpg');
+            background-image: url('../../../public_html/Content/Main/Simplist_Version3.jpg');
             background-attachment: scroll;
 
 

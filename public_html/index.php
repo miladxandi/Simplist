@@ -15,7 +15,7 @@ require '../Route/Constant/Main.php';
 
 
 
-require '../public_html/View/Shared/Layouts.php';
+require '../View/Shared/Layouts.php';
 
 
 
