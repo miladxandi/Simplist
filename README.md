@@ -2,7 +2,9 @@
 
 [![ko-fi](https://www.ko-fi.com/img/donate_sm.png)](https://ko-fi.com/U7U6N2NR)
 
-# Simplist  ![eastCloud User Download](http://eastcloud.ir/Content/Shared/Official-Badges.png) ![eastCloud User Download](http://eastcloud.ir/Content/Shared/Users-Badges.png)
+![issues](https://img.shields.io/github/issues/miladxandi/Simplist) ![forks](https://img.shields.io/github/forks/miladxandi/Simplist) ![stars](https://img.shields.io/github/stars/miladxandi/Simplist) ![license](https://img.shields.io/github/license/miladxandi/Simplist)
+
+# Simplist 
 
 
 ## Simplist is a superfast micro-framework based on PHP
